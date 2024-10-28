@@ -1,3 +1,4 @@
+using PrimeMillionaire.Game.Data.Entity;
 using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.Presenter;
 using PrimeMillionaire.Game.Presentation.State;
@@ -10,7 +11,11 @@ namespace PrimeMillionaire.Game.Installer
     {
         protected override void Configure(IContainerBuilder builder)
         {
+            // Entity
+            builder.Register<DeckEntity>(Lifetime.Scoped);
+
             // UseCase
+            builder.Register<DeckUseCase>(Lifetime.Scoped);
             builder.Register<StateUseCase>(Lifetime.Scoped);
 
             // State
