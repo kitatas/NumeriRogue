@@ -17,4 +17,9 @@ namespace PrimeMillionaire.Game
             Suit.Spade,
         };
     }
+
+    public sealed class HandConfig
+    {
+        public const int MAX_NUM = 12;
+    }
 }

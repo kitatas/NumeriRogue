@@ -6,6 +6,7 @@ namespace PrimeMillionaire.Game.Data.Entity
     public sealed class DeckEntity
     {
         private readonly List<CardVO> _cards;
+        private int _index;
 
         public DeckEntity()
         {
@@ -22,6 +23,7 @@ namespace PrimeMillionaire.Game.Data.Entity
 
         public void SetUp()
         {
+            _index = 0;
             Shuffle();
         }
 
@@ -36,5 +38,11 @@ namespace PrimeMillionaire.Game.Data.Entity
                 (_cards[i], _cards[j]) = (_cards[j], _cards[i]);
             }
         }
+
+        /// <summary>
+        /// Deckのindexを返す
+        /// </summary>
+        /// <returns></returns>
+        public int Draw() => _index++;
     }
 }
