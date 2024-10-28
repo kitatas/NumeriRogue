@@ -16,9 +16,11 @@ namespace PrimeMillionaire.Game.Installer
 
             // UseCase
             builder.Register<DeckUseCase>(Lifetime.Scoped);
+            builder.Register<HandUseCase>(Lifetime.Scoped);
             builder.Register<StateUseCase>(Lifetime.Scoped);
 
             // State
+            builder.Register<BaseState, DealState>(Lifetime.Scoped);
             builder.Register<BaseState, InitState>(Lifetime.Scoped);
 
             // Presenter

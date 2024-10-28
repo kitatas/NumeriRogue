@@ -4,6 +4,7 @@ namespace PrimeMillionaire.Game
     {
         None = 0,
         Init = 1,
+        Deal = 2,
     }
 
     public enum Suit

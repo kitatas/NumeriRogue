@@ -4,9 +4,16 @@ using PrimeMillionaire.Game.Domain.UseCase;
 
 namespace PrimeMillionaire.Game.Presentation.State
 {
-    public sealed class InitState : BaseState
+    public sealed class DealState : BaseState
     {
-        public override GameState state => GameState.Init;
+        private readonly HandUseCase _handUseCase;
+
+        public DealState(HandUseCase handUseCase)
+        {
+            _handUseCase = handUseCase;
+        }
+
+        public override GameState state => GameState.Deal;
 
         public override async UniTask InitAsync(CancellationToken token)
         {
@@ -15,9 +22,11 @@ namespace PrimeMillionaire.Game.Presentation.State
 
         public override async UniTask<GameState> TickAsync(CancellationToken token)
         {
+            _handUseCase.SetUp();
+
             await UniTask.Yield(token);
 
-            return GameState.Deal;
+            return GameState.None;
         }
     }
 }
