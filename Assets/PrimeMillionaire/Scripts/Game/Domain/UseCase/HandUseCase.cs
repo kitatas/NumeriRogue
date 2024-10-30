@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using PrimeMillionaire.Game.Data.Entity;
 
 namespace PrimeMillionaire.Game.Domain.UseCase
@@ -25,6 +27,20 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 _playerHandEntity.Add(_deckEntity.Draw());
                 _enemyHandEntity.Add(_deckEntity.Draw());
             }
+        }
+
+        public List<HandVO> GetPlayerHands()
+        {
+            return _playerHandEntity.hands
+                .Select((v, i) => new HandVO(i, _deckEntity.GetCard(v)))
+                .ToList();
+        }
+
+        public List<HandVO> GetEnemyHands()
+        {
+            return _enemyHandEntity.hands
+                .Select((v, i) => new HandVO(i, _deckEntity.GetCard(v)))
+                .ToList();
         }
     }
 }

@@ -24,6 +24,10 @@ namespace PrimeMillionaire.Game.Presentation.State
         {
             _handUseCase.SetUp();
 
+            // TODO: 手札の描画
+            var playerHands = _handUseCase.GetPlayerHands();
+            var enemyHands = _handUseCase.GetEnemyHands();
+
             await UniTask.Yield(token);
 
             return GameState.None;

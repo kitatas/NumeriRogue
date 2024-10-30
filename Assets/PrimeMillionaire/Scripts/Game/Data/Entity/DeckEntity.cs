@@ -44,5 +44,7 @@ namespace PrimeMillionaire.Game.Data.Entity
         /// </summary>
         /// <returns></returns>
         public int Draw() => _index++;
+
+        public CardVO GetCard(int index) => _cards[index];
     }
 }

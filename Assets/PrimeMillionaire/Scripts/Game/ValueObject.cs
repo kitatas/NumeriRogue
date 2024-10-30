@@ -11,4 +11,16 @@ namespace PrimeMillionaire.Game
             this.rank = rank;
         }
     }
+
+    public sealed class HandVO
+    {
+        public readonly int index;
+        public readonly CardVO cardVO;
+
+        public HandVO(int index, CardVO cardVO)
+        {
+            this.index = index;
+            this.cardVO = cardVO;
+        }
+    }
 }
