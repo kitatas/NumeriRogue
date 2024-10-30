@@ -1,17 +1,19 @@
+using System.Collections.Generic;
+
 namespace PrimeMillionaire.Game.Data.Entity
 {
     public sealed class HandEntity
     {
-        public readonly int[] hands;
+        public readonly List<int> hands;
 
         public HandEntity()
         {
-            hands = new int[HandConfig.MAX_NUM];
+            hands = new List<int>(HandConfig.MAX_NUM);
         }
 
-        public void Set(int index, int value)
+        public void Add(int value)
         {
-            hands[index] = value;
+            hands.Add(value);
         }
     }
 }
