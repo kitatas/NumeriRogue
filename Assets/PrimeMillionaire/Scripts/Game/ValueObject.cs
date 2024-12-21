@@ -1,14 +1,18 @@
+using UnityEngine;
+
 namespace PrimeMillionaire.Game
 {
     public sealed class CardVO
     {
         public readonly Suit suit;
         public readonly int rank;
+        public readonly Sprite sprite;
 
-        public CardVO(Suit suit, int rank)
+        public CardVO(Suit suit, int rank, Sprite sprite)
         {
             this.suit = suit;
             this.rank = rank;
+            this.sprite = sprite;
         }
     }
 
