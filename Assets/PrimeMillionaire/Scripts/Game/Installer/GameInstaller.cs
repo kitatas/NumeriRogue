@@ -26,6 +26,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.Register<CardRepository>(Lifetime.Scoped);
 
             // UseCase
+            builder.Register<DealUseCase>(Lifetime.Scoped);
             builder.Register<HandUseCase>(Lifetime.Scoped);
             builder.Register<StateUseCase>(Lifetime.Scoped);
 

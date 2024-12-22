@@ -18,7 +18,7 @@ namespace PrimeMillionaire.Game.Data.Entity
             _cards.AddRange(cards);
         }
 
-        public void SetUp()
+        public void Refresh()
         {
             _index = 0;
             Shuffle();

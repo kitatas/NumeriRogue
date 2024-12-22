@@ -17,8 +17,6 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public void SetUp()
         {
-            _deckEntity.SetUp();
-
             _playerHandEntity = new HandEntity();
             _enemyHandEntity = new HandEntity();
 

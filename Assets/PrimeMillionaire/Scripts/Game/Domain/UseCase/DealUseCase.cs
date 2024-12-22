@@ -18,5 +18,10 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         {
             _deckEntity.Init(_cardRepository.GetAll());
         }
+
+        public void SetUp()
+        {
+            _deckEntity.Refresh();
+        }
     }
 }
