@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace PrimeMillionaire.Game.Data.Entity
 {
-    public sealed class HandEntity
+    public abstract class HandEntity
     {
         public readonly List<int> hands;
 
