@@ -1,5 +1,6 @@
 using PrimeMillionaire.Game.Data.DataStore;
 using PrimeMillionaire.Game.Data.Entity;
+using PrimeMillionaire.Game.Domain.Repository;
 using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.Presenter;
 using PrimeMillionaire.Game.Presentation.State;
@@ -20,6 +21,9 @@ namespace PrimeMillionaire.Game.Installer
 
             // Entity
             builder.Register<DeckEntity>(Lifetime.Scoped);
+
+            // Repository
+            builder.Register<CardRepository>(Lifetime.Scoped);
 
             // UseCase
             builder.Register<DeckUseCase>(Lifetime.Scoped);

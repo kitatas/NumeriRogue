@@ -11,14 +11,11 @@ namespace PrimeMillionaire.Game.Data.Entity
         public DeckEntity()
         {
             _cards = new List<CardVO>(CardConfig.MAX_RANK * CardConfig.SUITS.Length);
+        }
 
-            foreach (var suit in CardConfig.SUITS)
-            {
-                for (int i = 1; i <= CardConfig.MAX_RANK; i++)
-                {
-                    _cards.Add(new CardVO(suit, i));
-                }
-            }
+        public void Init(IEnumerable<CardVO> cards)
+        {
+            _cards.AddRange(cards);
         }
 
         public void SetUp()
