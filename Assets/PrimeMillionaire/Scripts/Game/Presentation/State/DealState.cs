@@ -23,6 +23,7 @@ namespace PrimeMillionaire.Game.Presentation.State
 
         public override async UniTask<GameState> TickAsync(CancellationToken token)
         {
+            _dealUseCase.SetUp();
             await UniTask.Yield(token);
 
             return GameState.None;

@@ -7,24 +7,14 @@ namespace PrimeMillionaire.Game.Domain.UseCase
     public sealed class HandUseCase
     {
         private readonly DeckEntity _deckEntity;
-        private HandEntity _playerHandEntity;
-        private HandEntity _enemyHandEntity;
+        private readonly PlayerHandEntity _playerHandEntity;
+        private readonly EnemyHandEntity _enemyHandEntity;
 
-        public HandUseCase(DeckEntity deckEntity)
+        public HandUseCase(DeckEntity deckEntity, PlayerHandEntity playerHandEntity, EnemyHandEntity enemyHandEntity)
         {
             _deckEntity = deckEntity;
-        }
-
-        public void SetUp()
-        {
-            _playerHandEntity = new HandEntity();
-            _enemyHandEntity = new HandEntity();
-
-            for (int i = 0; i < HandConfig.MAX_NUM; i++)
-            {
-                _playerHandEntity.Add(_deckEntity.Draw());
-                _enemyHandEntity.Add(_deckEntity.Draw());
-            }
+            _playerHandEntity = playerHandEntity;
+            _enemyHandEntity = enemyHandEntity;
         }
 
         public List<HandVO> GetPlayerHands()
