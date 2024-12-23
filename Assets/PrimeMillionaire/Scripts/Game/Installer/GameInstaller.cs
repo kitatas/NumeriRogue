@@ -4,6 +4,7 @@ using PrimeMillionaire.Game.Domain.Repository;
 using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.Presenter;
 using PrimeMillionaire.Game.Presentation.State;
+using PrimeMillionaire.Game.Presentation.View;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -41,6 +42,9 @@ namespace PrimeMillionaire.Game.Installer
             {
                 entryPoints.Add<StatePresenter>();
             });
+
+            // View
+            builder.RegisterComponentInHierarchy<TableView>();
         }
     }
 }
