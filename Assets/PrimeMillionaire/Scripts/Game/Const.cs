@@ -21,5 +21,7 @@ namespace PrimeMillionaire.Game
     public sealed class HandConfig
     {
         public const int MAX_NUM = 12;
+
+        public const float HAND_INTERVAL = 140.0f;
     }
 }
