@@ -10,7 +10,7 @@ namespace PrimeMillionaire.Game
     public enum Suit
     {
         None = 0,
-        Clover = 1,
+        Club = 1,
         Diamond = 2,
         Heart = 3,
         Spade = 4,

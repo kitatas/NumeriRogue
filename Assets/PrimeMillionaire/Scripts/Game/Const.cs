@@ -11,7 +11,7 @@ namespace PrimeMillionaire.Game
 
         public static readonly Suit[] SUITS =
         {
-            Suit.Clover,
+            Suit.Club,
             Suit.Diamond,
             Suit.Heart,
             Suit.Spade,
