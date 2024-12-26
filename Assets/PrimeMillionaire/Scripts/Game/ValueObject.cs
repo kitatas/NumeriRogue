@@ -6,6 +6,7 @@ namespace PrimeMillionaire.Game
     {
         public readonly Suit suit;
         public readonly int rank;
+        public readonly string imgPath;
         public readonly Sprite sprite;
 
         public CardVO(Suit suit, int rank, Sprite sprite)
@@ -13,6 +14,13 @@ namespace PrimeMillionaire.Game
             this.suit = suit;
             this.rank = rank;
             this.sprite = sprite;
+        }
+
+        public CardVO(Suit suit, int rank, string imgPath)
+        {
+            this.suit = suit;
+            this.rank = rank;
+            this.imgPath = imgPath;
         }
     }
 

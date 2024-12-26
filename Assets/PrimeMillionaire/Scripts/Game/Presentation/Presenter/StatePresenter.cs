@@ -31,10 +31,8 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
 
         private async UniTaskVoid InitAsync(CancellationToken token)
         {
-            await _states
-                .Select(x => x.InitAsync(token))
-                .ToUniTaskAsyncEnumerable()
-                .ForEachAsync(x => x.Forget(), cancellationToken: token);
+            await UniTask.WhenAll(_states
+                .Select(x => x.InitAsync(token)));
 
             _stateUseCase.state
                 .Subscribe(x => ExecAsync(x, token).Forget())

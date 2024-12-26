@@ -1,21 +1,28 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Game.Data.DataStore;
+using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace PrimeMillionaire.Game.Domain.Repository
 {
     public sealed class CardRepository
     {
-        private readonly CardTable _cardTable;
+        private MemoryDatabase _memoryDatabase;
 
-        public CardRepository(CardTable cardTable)
+        public async UniTask SetUpAsync(CancellationToken token)
         {
-            _cardTable = cardTable;
+            var bytes = "Assets/Externals/Binary/CardMaster.bytes";
+            var asset = await Addressables.LoadAssetAsync<TextAsset>(bytes).WithCancellation(token);
+            _memoryDatabase = new MemoryDatabase(asset.bytes);
         }
 
         public IEnumerable<CardVO> GetAll()
         {
-            return _cardTable.records.Select(x => x.card);
+            return _memoryDatabase.CardMasterTable.All
+                .Select(x => new CardVO(x.suit, x.rank, x.imgPath));
         }
     }
 }
