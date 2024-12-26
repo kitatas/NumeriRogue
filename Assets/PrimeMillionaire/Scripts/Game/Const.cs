@@ -16,6 +16,8 @@ namespace PrimeMillionaire.Game
             Suit.Heart,
             Suit.Spade,
         };
+
+        public const float ROTATE_SPEED = 0.25f;
     }
 
     public sealed class HandConfig

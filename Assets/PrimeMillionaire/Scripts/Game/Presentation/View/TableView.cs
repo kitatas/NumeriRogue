@@ -45,6 +45,7 @@ namespace PrimeMillionaire.Game.Presentation.View
             card.transform.localPosition = deck.localPosition;
             card.Render(hand.card);
             await playerHandView.DealHandAsync(card, HandConfig.TWEEN_DURATION, token);
+            card.Open(CardConfig.ROTATE_SPEED).WithCancellation(token).Forget();
         }
 
         public async UniTask CreateEnemyHandAsync(HandVO hand, CancellationToken token)
