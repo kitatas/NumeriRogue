@@ -1,11 +1,9 @@
-using PrimeMillionaire.Game.Data.DataStore;
 using PrimeMillionaire.Game.Data.Entity;
 using PrimeMillionaire.Game.Domain.Repository;
 using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.Presenter;
 using PrimeMillionaire.Game.Presentation.State;
 using PrimeMillionaire.Game.Presentation.View;
-using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
@@ -13,13 +11,8 @@ namespace PrimeMillionaire.Game.Installer
 {
     public sealed class GameInstaller : LifetimeScope
     {
-        [SerializeField] private CardTable cardTable = default;
-
         protected override void Configure(IContainerBuilder builder)
         {
-            // DataStore
-            builder.RegisterInstance<CardTable>(cardTable);
-
             // Entity
             builder.Register<DeckEntity>(Lifetime.Scoped);
             builder.Register<EnemyHandEntity>(Lifetime.Scoped);
