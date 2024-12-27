@@ -22,7 +22,7 @@ namespace PrimeMillionaire.Game.Domain.Repository
         public IEnumerable<CardVO> GetAll()
         {
             return _memoryDatabase.CardMasterTable.All
-                .Select(x => new CardVO(x.suit, x.rank, x.imgPath));
+                .Select(x => x.card);
         }
     }
 }

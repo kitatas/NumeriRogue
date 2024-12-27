@@ -88,8 +88,8 @@ namespace PrimeMillionaire.Game.Data.DataStore.Tables
                 new MasterMemory.Meta.MetaProperty[]
                 {
                     new MasterMemory.Meta.MetaProperty(typeof(CardMaster).GetProperty("id")),
-                    new MasterMemory.Meta.MetaProperty(typeof(CardMaster).GetProperty("rank")),
                     new MasterMemory.Meta.MetaProperty(typeof(CardMaster).GetProperty("suit")),
+                    new MasterMemory.Meta.MetaProperty(typeof(CardMaster).GetProperty("rank")),
                     new MasterMemory.Meta.MetaProperty(typeof(CardMaster).GetProperty("imgPath")),
                 },
                 new MasterMemory.Meta.MetaIndex[]{

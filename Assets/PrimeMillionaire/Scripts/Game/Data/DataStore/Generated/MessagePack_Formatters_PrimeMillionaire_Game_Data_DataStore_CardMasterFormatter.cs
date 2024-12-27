@@ -22,10 +22,10 @@ namespace MessagePack.Formatters.PrimeMillionaire.Game.Data.DataStore
     {
         // id
         private static global::System.ReadOnlySpan<byte> GetSpan_id() => new byte[1 + 2] { 162, 105, 100 };
-        // rank
-        private static global::System.ReadOnlySpan<byte> GetSpan_rank() => new byte[1 + 4] { 164, 114, 97, 110, 107 };
         // suit
         private static global::System.ReadOnlySpan<byte> GetSpan_suit() => new byte[1 + 4] { 164, 115, 117, 105, 116 };
+        // rank
+        private static global::System.ReadOnlySpan<byte> GetSpan_rank() => new byte[1 + 4] { 164, 114, 97, 110, 107 };
         // imgPath
         private static global::System.ReadOnlySpan<byte> GetSpan_imgPath() => new byte[1 + 7] { 167, 105, 109, 103, 80, 97, 116, 104 };
 
@@ -41,10 +41,10 @@ namespace MessagePack.Formatters.PrimeMillionaire.Game.Data.DataStore
             writer.WriteMapHeader(4);
             writer.WriteRaw(GetSpan_id());
             writer.Write(value.id);
-            writer.WriteRaw(GetSpan_rank());
-            writer.Write(value.rank);
             writer.WriteRaw(GetSpan_suit());
             global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<Suit>(formatterResolver).Serialize(ref writer, value.suit, options);
+            writer.WriteRaw(GetSpan_rank());
+            writer.Write(value.rank);
             writer.WriteRaw(GetSpan_imgPath());
             global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Serialize(ref writer, value.imgPath, options);
         }
@@ -60,8 +60,8 @@ namespace MessagePack.Formatters.PrimeMillionaire.Game.Data.DataStore
             var formatterResolver = options.Resolver;
             var length = reader.ReadMapHeader();
             var __id__ = default(int);
-            var __rank__ = default(int);
             var __suit__ = default(Suit);
+            var __rank__ = default(int);
             var __imgPath__ = default(string);
 
             for (int i = 0; i < length; i++)
@@ -82,11 +82,11 @@ namespace MessagePack.Formatters.PrimeMillionaire.Game.Data.DataStore
                         switch (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey))
                         {
                             default: goto FAIL;
-                            case 1802396018UL:
-                                __rank__ = reader.ReadInt32();
-                                continue;
                             case 1953068403UL:
                                 __suit__ = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<Suit>(formatterResolver).Deserialize(ref reader, options);
+                                continue;
+                            case 1802396018UL:
+                                __rank__ = reader.ReadInt32();
                                 continue;
                         }
                     case 7:
@@ -98,7 +98,7 @@ namespace MessagePack.Formatters.PrimeMillionaire.Game.Data.DataStore
                 }
             }
 
-            var ____result = new global::PrimeMillionaire.Game.Data.DataStore.CardMaster(__id__, __rank__, __suit__, __imgPath__);
+            var ____result = new global::PrimeMillionaire.Game.Data.DataStore.CardMaster(__id__, __suit__, __rank__, __imgPath__);
             reader.Depth--;
             return ____result;
         }
