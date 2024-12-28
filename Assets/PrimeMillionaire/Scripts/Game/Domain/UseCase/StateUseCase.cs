@@ -1,18 +1,24 @@
+using System;
 using R3;
 
 namespace PrimeMillionaire.Game.Domain.UseCase
 {
-    public sealed class StateUseCase
+    public sealed class StateUseCase : IDisposable
     {
-        private readonly ReactiveProperty<GameState> _state;
+        private readonly Subject<GameState> _state;
 
         public StateUseCase()
         {
-            _state = new ReactiveProperty<GameState>(GameConfig.INIT_STATE);
+            _state = new Subject<GameState>();
         }
 
         public Observable<GameState> state => _state.Where(x => x != GameState.None);
 
-        public void Set(GameState value) => _state.Value = value;
+        public void Set(GameState value) => _state?.OnNext(value);
+
+        public void Dispose()
+        {
+            _state?.Dispose();
+        }
     }
 }

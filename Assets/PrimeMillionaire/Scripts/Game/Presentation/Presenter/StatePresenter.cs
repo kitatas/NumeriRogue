@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Cysharp.Threading.Tasks.Linq;
 using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.State;
 using R3;
@@ -37,6 +36,8 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
             _stateUseCase.state
                 .Subscribe(x => ExecAsync(x, token).Forget())
                 .AddTo(token);
+
+            _stateUseCase.Set(GameConfig.INIT_STATE);
         }
 
         private async UniTaskVoid ExecAsync(GameState state, CancellationToken token)
