@@ -1,5 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Triggers;
 using DG.Tweening;
 using PrimeMillionaire.Common.Utility;
 using UniEx;
@@ -12,14 +13,24 @@ namespace PrimeMillionaire.Game.Presentation.View
     {
         [SerializeField] private Image main = default;
         [SerializeField] private Image background = default;
+        [SerializeField] private Image mask = default;
 
         public async UniTask RenderAsync(CardVO card, CancellationToken token)
         {
+            ActivateMask(false);
             var sprite = await ResourceHelper.LoadAsync<Sprite>(card.imgPath, token);
             main.sprite = sprite;
         }
 
+        public UniTask OrderAsync(CancellationToken token)
+        {
+            return main.GetAsyncPointerDownTrigger().OnPointerDownAsync(token).AsUniTask();
+        }
+
         public void ActivateBackground(bool value) => background.gameObject.SetActive(value);
+        public void ActivateMask(bool value) => mask.gameObject.SetActive(value);
+        public void SwitchMask() => ActivateMask(!isOrder);
+        public bool isOrder => mask.gameObject.activeSelf;
 
         public Tween TweenX(float value, float duration)
         {

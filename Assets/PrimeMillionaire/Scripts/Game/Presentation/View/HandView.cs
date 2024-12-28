@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
@@ -53,6 +54,15 @@ namespace PrimeMillionaire.Game.Presentation.View
 
             _cardViews.Clear();
             gameObject.DestroyChildren();
+        }
+
+        public async UniTask<(int index, int count)> OrderAsync(CancellationToken token)
+        {
+            var index = await UniTask.WhenAny(_cardViews
+                .Select(x => x.OrderAsync(token)));
+
+            _cardViews[index].SwitchMask();
+            return (index, _cardViews.Count(x => x.isOrder));
         }
     }
 }

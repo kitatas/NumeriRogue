@@ -59,5 +59,10 @@ namespace PrimeMillionaire.Game.Presentation.View
         {
             await enemyHandView.DealHandAsync(card, HandConfig.TWEEN_DURATION, token);
         }
+
+        public async UniTask<(int index, int count)> OrderPlayerHandsAsync(CancellationToken token)
+        {
+            return await playerHandView.OrderAsync(token);
+        }
     }
 }
