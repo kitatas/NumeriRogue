@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using PrimeMillionaire.Common.Utility;
 using PrimeMillionaire.Game.Data.DataStore;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 
 namespace PrimeMillionaire.Game.Domain.Repository
 {
@@ -15,7 +15,7 @@ namespace PrimeMillionaire.Game.Domain.Repository
         public async UniTask SetUpAsync(CancellationToken token)
         {
             var bytes = "Assets/Externals/Binary/CardMaster.bytes";
-            var asset = await Addressables.LoadAssetAsync<TextAsset>(bytes).WithCancellation(token);
+            var asset = await ResourceHelper.LoadAsync<TextAsset>(bytes, token);
             _memoryDatabase = new MemoryDatabase(asset.bytes);
         }
 
