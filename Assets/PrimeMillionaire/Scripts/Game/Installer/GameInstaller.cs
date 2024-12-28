@@ -29,6 +29,7 @@ namespace PrimeMillionaire.Game.Installer
             // State
             builder.Register<BaseState, DealState>(Lifetime.Scoped);
             builder.Register<BaseState, InitState>(Lifetime.Scoped);
+            builder.Register<BaseState, OrderState>(Lifetime.Scoped);
 
             // Presenter
             builder.UseEntryPoints(Lifetime.Scoped, entryPoints =>

@@ -35,7 +35,7 @@ namespace PrimeMillionaire.Game.Presentation.State
                 _tableView.RenderEnemyHandsAsync(_handUseCase.GetEnemyHands(), token)
             );
 
-            return GameState.None;
+            return GameState.Order;
         }
     }
 }
