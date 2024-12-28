@@ -1,4 +1,7 @@
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using PrimeMillionaire.Common.Utility;
 using UniEx;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,9 +13,10 @@ namespace PrimeMillionaire.Game.Presentation.View
         [SerializeField] private Image main = default;
         [SerializeField] private Image background = default;
 
-        public void Render(CardVO card)
+        public async UniTask RenderAsync(CardVO card, CancellationToken token)
         {
-            main.sprite = card.sprite;
+            var sprite = await ResourceHelper.LoadAsync<Sprite>(card.imgPath, token);
+            main.sprite = sprite;
         }
 
         public void ActivateBackground(bool value) => background.gameObject.SetActive(value);

@@ -26,7 +26,8 @@ namespace PrimeMillionaire.Game.Presentation.View
         {
             foreach (var playerHand in playerHands)
             {
-                await CreatePlayerHandAsync(playerHand, token);
+                var card = await CreateCardAsync(playerHand, token);
+                await DealPlayerHandAsync(card, token);
             }
         }
 
@@ -35,24 +36,27 @@ namespace PrimeMillionaire.Game.Presentation.View
             await UniTaskHelper.DelayAsync(HandConfig.TWEEN_DURATION / 2.0f, token);
             foreach (var enemyHand in enemyHands)
             {
-                await CreateEnemyHandAsync(enemyHand, token);
+                var card = await CreateCardAsync(enemyHand, token);
+                await DealEnemyHandAsync(card, token);
             }
         }
 
-        public async UniTask CreatePlayerHandAsync(HandVO hand, CancellationToken token)
+        public async UniTask<CardView> CreateCardAsync(HandVO hand, CancellationToken token)
         {
             var card = Instantiate(cardView, transform);
             card.transform.localPosition = deck.localPosition;
-            card.Render(hand.card);
+            await card.RenderAsync(hand.card, token);
+            return card;
+        }
+
+        public async UniTask DealPlayerHandAsync(CardView card, CancellationToken token)
+        {
             await playerHandView.DealHandAsync(card, HandConfig.TWEEN_DURATION, token);
             card.Open(CardConfig.ROTATE_SPEED).WithCancellation(token).Forget();
         }
 
-        public async UniTask CreateEnemyHandAsync(HandVO hand, CancellationToken token)
+        public async UniTask DealEnemyHandAsync(CardView card, CancellationToken token)
         {
-            var card = Instantiate(cardView, transform);
-            card.transform.localPosition = deck.localPosition;
-            card.Render(hand.card);
             await enemyHandView.DealHandAsync(card, HandConfig.TWEEN_DURATION, token);
         }
     }

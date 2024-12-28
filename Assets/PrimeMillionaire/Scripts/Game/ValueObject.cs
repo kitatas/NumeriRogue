@@ -27,12 +27,12 @@ namespace PrimeMillionaire.Game
     public sealed class HandVO
     {
         public readonly int index;
-        public readonly CardVO cardVO;
+        public readonly CardVO card;
 
-        public HandVO(int index, CardVO cardVO)
+        public HandVO(int index, CardVO card)
         {
             this.index = index;
-            this.cardVO = cardVO;
+            this.card = card;
         }
     }
 }
