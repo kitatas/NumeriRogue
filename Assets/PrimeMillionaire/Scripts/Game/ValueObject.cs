@@ -46,5 +46,11 @@ namespace PrimeMillionaire.Game
             index = -1;
             card = null;
         }
+
+        public OrderVO(int index, CardVO card)
+        {
+            this.index = index;
+            this.card = card;
+        }
     }
 }

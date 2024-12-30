@@ -1,15 +1,20 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.View;
 
 namespace PrimeMillionaire.Game.Presentation.State
 {
     public sealed class OrderState : BaseState
     {
+        private readonly HandUseCase _handUseCase;
+        private readonly OrderUseCase _orderUseCase;
         private readonly TableView _tableView;
 
-        public OrderState(TableView tableView)
+        public OrderState(HandUseCase handUseCase, OrderUseCase orderUseCase, TableView tableView)
         {
+            _handUseCase = handUseCase;
+            _orderUseCase = orderUseCase;
             _tableView = tableView;
         }
 
@@ -25,6 +30,9 @@ namespace PrimeMillionaire.Game.Presentation.State
             while (true)
             {
                 var (index, count) = await _tableView.OrderPlayerHandsAsync(token);
+                var card = _handUseCase.GetPlayerCard(index);
+                _orderUseCase.Set(new OrderVO(index, card));
+
                 if (count == HandConfig.ORDER_NUM) break;
             }
 

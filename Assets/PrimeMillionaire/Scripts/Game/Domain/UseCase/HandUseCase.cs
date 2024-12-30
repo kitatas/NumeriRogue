@@ -28,5 +28,10 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             return _enemyHandEntity.hands
                 .Select((v, i) => new HandVO(i, _deckEntity.GetCard(v)));
         }
+
+        public CardVO GetPlayerCard(int index)
+        {
+            return _deckEntity.GetCard(_playerHandEntity.hands[index]);
+        }
     }
 }
