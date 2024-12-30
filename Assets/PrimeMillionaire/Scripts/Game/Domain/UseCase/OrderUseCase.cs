@@ -36,5 +36,17 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 _orders[i] = new OrderVO();
             }
         }
+
+        public void Refresh()
+        {
+            for (int i = 0; i < _orders.Count; i++)
+            {
+                _orders[i] = new OrderVO();
+            }
+        }
+
+        public int value => _orders.Any(x => x.card == null)
+            ? 0
+            : int.Parse(string.Join("", _orders.Select(x => x.card.rank)));
     }
 }

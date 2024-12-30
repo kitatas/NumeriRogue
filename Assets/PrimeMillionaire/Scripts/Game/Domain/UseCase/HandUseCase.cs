@@ -33,5 +33,10 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         {
             return _deckEntity.GetCard(_playerHandEntity.hands[index]);
         }
+
+        public CardVO GetEnemyCard(int index)
+        {
+            return _deckEntity.GetCard(_enemyHandEntity.hands[index]);
+        }
     }
 }

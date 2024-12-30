@@ -1,7 +1,9 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using PrimeMillionaire.Common.Utility;
 using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.View;
+using PrimeMillionaire.Game.Utility;
 
 namespace PrimeMillionaire.Game.Presentation.State
 {
@@ -34,6 +36,18 @@ namespace PrimeMillionaire.Game.Presentation.State
                 _orderUseCase.Set(card);
 
                 if (count == HandConfig.ORDER_NUM) break;
+            }
+
+            var enemyOrder = OrderHelper.GetOrder(_handUseCase.GetEnemyHands(), _orderUseCase.value);
+
+            _orderUseCase.Refresh();
+            await UniTaskHelper.DelayAsync(0.5f, token);
+
+            foreach (var index in enemyOrder.index)
+            {
+                var card = _handUseCase.GetEnemyCard(index);
+                _orderUseCase.Set(card);
+                await UniTaskHelper.DelayAsync(0.5f, token);
             }
 
             return GameState.None;
