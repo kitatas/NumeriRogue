@@ -35,4 +35,16 @@ namespace PrimeMillionaire.Game
             this.card = card;
         }
     }
+
+    public sealed class OrderVO
+    {
+        public readonly int index;
+        public readonly CardVO card;
+
+        public OrderVO()
+        {
+            index = -1;
+            card = null;
+        }
+    }
 }
