@@ -53,6 +53,15 @@ namespace PrimeMillionaire.Game.Presentation.View
                 .Append(RotateY(360.0f, duration));
         }
 
+        public Tween Close(float duration)
+        {
+            return DOTween.Sequence()
+                .Append(RotateY(90.0f, duration))
+                .AppendCallback(() => ActivateBackground(true))
+                .Append(RotateY(270.0f, 0.0f))
+                .Append(RotateY(360.0f, duration));
+        }
+
         public Tween RotateY(float value, float duration)
         {
             return transform.ToRectTransform()

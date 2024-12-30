@@ -23,6 +23,7 @@ namespace PrimeMillionaire.Game.Presentation.View
             {
                 if (card == null)
                 {
+                    cardView.Close(CardConfig.ROTATE_SPEED).WithCancellation(token).Forget();
                 }
                 else
                 {
