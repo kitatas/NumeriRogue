@@ -38,18 +38,15 @@ namespace PrimeMillionaire.Game
 
     public sealed class OrderVO
     {
-        public readonly int index;
         public readonly CardVO card;
 
         public OrderVO()
         {
-            index = -1;
             card = null;
         }
 
-        public OrderVO(int index, CardVO card)
+        public OrderVO(CardVO card)
         {
-            this.index = index;
             this.card = card;
         }
     }
