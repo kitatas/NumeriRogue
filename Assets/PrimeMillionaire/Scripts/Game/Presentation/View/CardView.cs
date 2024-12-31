@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Triggers;
 using DG.Tweening;
 using PrimeMillionaire.Common.Utility;
+using TMPro;
 using UniEx;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,7 @@ namespace PrimeMillionaire.Game.Presentation.View
         [SerializeField] private Image main = default;
         [SerializeField] private Image background = default;
         [SerializeField] private Image mask = default;
+        [SerializeField] private TextMeshProUGUI orderNo = default;
 
         public async UniTask RenderAsync(CardVO card, CancellationToken token)
         {
@@ -31,6 +33,18 @@ namespace PrimeMillionaire.Game.Presentation.View
         public void ActivateMask(bool value) => mask.gameObject.SetActive(value);
         public void SwitchMask() => ActivateMask(!isOrder);
         public bool isOrder => mask.gameObject.activeSelf;
+
+        public void RenderOrderNo(int no)
+        {
+            if (isOrder)
+            {
+                orderNo.text = $"{no}";
+            }
+            else
+            {
+                orderNo.text = $"";
+            }
+        }
 
         public Tween TweenX(float value, float duration)
         {

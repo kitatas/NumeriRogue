@@ -64,5 +64,10 @@ namespace PrimeMillionaire.Game.Presentation.View
         {
             return await playerHandView.OrderAsync(token);
         }
+
+        public async UniTask RenderPlayerOrderNo(int index, int no, CancellationToken token)
+        {
+            await playerHandView.RenderOrderNoAsync(index, no, token);
+        }
     }
 }

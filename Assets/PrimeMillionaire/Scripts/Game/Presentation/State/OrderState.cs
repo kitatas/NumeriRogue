@@ -33,7 +33,8 @@ namespace PrimeMillionaire.Game.Presentation.State
             {
                 var (index, count) = await _tableView.OrderPlayerHandsAsync(token);
                 var card = _handUseCase.GetPlayerCard(index);
-                _orderUseCase.Set(card);
+                var orderNo = _orderUseCase.Set(card);
+                await _tableView.RenderPlayerOrderNo(index, orderNo, token);
 
                 if (count == HandConfig.ORDER_NUM) break;
             }

@@ -19,7 +19,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public ObservableList<OrderVO> orders => _orders;
 
-        public void Set(CardVO card)
+        public int Set(CardVO card)
         {
             var orderList = _orders.ToList();
             var o = orderList.Find(x => x.card == card);
@@ -28,12 +28,14 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 // 選択
                 var i = orderList.IndexOf(orderList.Find(x => x.card == null));
                 _orders[i] = new OrderVO(card);
+                return i + 1;
             }
             else
             {
                 // 選択解除
                 var i = orderList.IndexOf(o);
                 _orders[i] = new OrderVO();
+                return i + 1;
             }
         }
 

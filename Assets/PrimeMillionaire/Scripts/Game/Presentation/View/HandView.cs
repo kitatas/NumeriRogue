@@ -64,5 +64,11 @@ namespace PrimeMillionaire.Game.Presentation.View
             _cardViews[index].SwitchMask();
             return (index, _cardViews.Count(x => x.isOrder));
         }
+
+        public async UniTask RenderOrderNoAsync(int index, int no, CancellationToken token)
+        {
+            _cardViews[index].RenderOrderNo(no);
+            await UniTask.Yield(token);
+        }
     }
 }
