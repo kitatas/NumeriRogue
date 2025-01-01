@@ -27,13 +27,14 @@ namespace PrimeMillionaire.Game.Presentation.View
 
         private async UniTask TweenHandsAsync(float duration, CancellationToken token)
         {
-            var cardCount = _cardViews.Count;
+            var cardCount = _cardViews.Count(x => x.isActive);
             var pointX = cardCount.IsEven()
                 ? -1.0f * HandConfig.HAND_INTERVAL * (cardCount * 0.5f - 0.5f)
                 : -1.0f * HandConfig.HAND_INTERVAL * Mathf.Floor(cardCount * 0.5f);
 
-            for (int i = 0; i < cardCount; i++)
+            for (int i = 0; i < _cardViews.Count; i++)
             {
+                if (_cardViews[i].isActive == false) continue;
                 _cardViews[i].TweenX(pointX, duration);
                 pointX += HandConfig.HAND_INTERVAL;
             }
@@ -78,8 +79,7 @@ namespace PrimeMillionaire.Game.Presentation.View
                 .TweenY(300.0f * side.ToSign(), duration)
                 .WithCancellation(token);
 
-            Destroy(_cardViews[index].gameObject);
-            _cardViews.RemoveAt(index);
+            _cardViews[index].Activate(false);
             await TweenHandsAsync(duration, token);
         }
 
@@ -97,6 +97,16 @@ namespace PrimeMillionaire.Game.Presentation.View
             }
 
             return index;
+        }
+
+        public void DestroyCards()
+        {
+            for (int i = _cardViews.Count - 1; i >= 0; i--)
+            {
+                if (_cardViews[i].isActive == false) Destroy(_cardViews[i].gameObject);
+            }
+
+            _cardViews = new List<CardView>(_cardViews.Where(x => x.isActive));
         }
     }
 }

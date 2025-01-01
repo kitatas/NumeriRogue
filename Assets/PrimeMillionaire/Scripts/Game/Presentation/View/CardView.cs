@@ -29,9 +29,11 @@ namespace PrimeMillionaire.Game.Presentation.View
             return main.GetAsyncPointerDownTrigger().OnPointerDownAsync(token).AsUniTask();
         }
 
+        public void Activate(bool value) => gameObject.SetActive(value);
         public void ActivateBackground(bool value) => background.gameObject.SetActive(value);
         public void ActivateMask(bool value) => mask.gameObject.SetActive(value);
         public void SwitchMask() => ActivateMask(!isOrder);
+        public bool isActive => gameObject.activeSelf;
         public bool isOrder => mask.gameObject.activeSelf;
 
         public void RenderOrderNo(int no)

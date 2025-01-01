@@ -71,6 +71,8 @@ namespace PrimeMillionaire.Game.Presentation.State
                 _orderUseCase.RefreshAsync(token)
             );
 
+            _tableView.DestroyHideCards();
+
             return _handUseCase.IsPlayerHandsEmpty()
                 ? GameState.None
                 : GameState.Order;

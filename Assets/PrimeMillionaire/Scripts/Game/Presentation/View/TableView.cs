@@ -79,5 +79,11 @@ namespace PrimeMillionaire.Game.Presentation.View
         {
             await enemyHandView.HideAsync(Side.Enemy, index, HandConfig.TRASH_DURATION, token);
         }
+
+        public void DestroyHideCards()
+        {
+            playerHandView.DestroyCards();
+            enemyHandView.DestroyCards();
+        }
     }
 }
