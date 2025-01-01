@@ -9,16 +9,16 @@ namespace PrimeMillionaire.Game.Utility
         {
             var cards = hands
                 .Select(x => x.card)
-                .ToList();
+                .ToArray();
 
             var orders = new List<(int[] index, int value)>();
-            for (int i = 0; i < cards.Count - 1; i++)
+            for (int i = 0; i < cards.Length; i++)
             {
-                for (int j = 0; j < cards.Count - 1; j++)
+                for (int j = 0; j < cards.Length; j++)
                 {
                     if (j == i) continue;
 
-                    for (int k = 0; k < cards.Count - 1; k++)
+                    for (int k = 0; k < cards.Length; k++)
                     {
                         if (k == i || k == j) continue;
 
