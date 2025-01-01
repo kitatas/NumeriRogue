@@ -71,7 +71,9 @@ namespace PrimeMillionaire.Game.Presentation.State
                 _orderUseCase.RefreshAsync(token)
             );
 
-            return GameState.None;
+            return _handUseCase.IsPlayerHandsEmpty()
+                ? GameState.None
+                : GameState.Order;
         }
     }
 }

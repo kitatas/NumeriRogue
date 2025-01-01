@@ -54,5 +54,10 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 _enemyHandEntity.Remove(i);
             }
         }
+
+        public bool IsPlayerHandsEmpty()
+        {
+            return _playerHandEntity.hands.Count == 0;
+        }
     }
 }
