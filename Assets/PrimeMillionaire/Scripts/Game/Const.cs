@@ -32,5 +32,6 @@ namespace PrimeMillionaire.Game
 
         public const float HAND_INTERVAL = 140.0f;
         public const float TWEEN_DURATION = 0.5f;
+        public const float TRASH_DURATION = 0.05f;
     }
 }

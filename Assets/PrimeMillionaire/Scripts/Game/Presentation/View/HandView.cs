@@ -4,6 +4,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using PrimeMillionaire.Common.Utility;
+using PrimeMillionaire.Game.Utility;
 using UniEx;
 using UnityEngine;
 
@@ -69,6 +70,33 @@ namespace PrimeMillionaire.Game.Presentation.View
         {
             _cardViews[index].RenderOrderNo(no);
             await UniTask.Yield(token);
+        }
+
+        public async UniTask HideAsync(Side side, int index, float duration, CancellationToken token)
+        {
+            await _cardViews[index]
+                .TweenY(300.0f * side.ToSign(), duration)
+                .WithCancellation(token);
+
+            Destroy(_cardViews[index].gameObject);
+            _cardViews.RemoveAt(index);
+            await TweenHandsAsync(duration, token);
+        }
+
+        public async UniTask<IEnumerable<int>> TrashCards(Side side, float duration, CancellationToken token)
+        {
+            var index = new List<int>();
+            for (int i = _cardViews.Count - 1; i >= 0; i--)
+            {
+                if (_cardViews[i].isOrder) index.Add(i);
+            }
+
+            foreach (var i in index)
+            {
+                await HideAsync(side, i, duration, token);
+            }
+
+            return index;
         }
     }
 }

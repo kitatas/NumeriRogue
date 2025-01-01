@@ -69,5 +69,15 @@ namespace PrimeMillionaire.Game.Presentation.View
         {
             await playerHandView.RenderOrderNoAsync(index, no, token);
         }
+
+        public async UniTask<IEnumerable<int>> TrashPlayerHandsAsync(CancellationToken token)
+        {
+            return await playerHandView.TrashCards(Side.Player, HandConfig.TRASH_DURATION, token);
+        }
+
+        public async UniTask TrashEnemyHandAsync(int index, CancellationToken token)
+        {
+            await enemyHandView.HideAsync(Side.Enemy, index, HandConfig.TRASH_DURATION, token);
+        }
     }
 }
