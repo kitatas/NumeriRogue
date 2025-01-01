@@ -16,6 +16,8 @@ namespace PrimeMillionaire.Game.Data.Entity
             hands.Add(value);
         }
 
+        public void Remove(int index) => hands.RemoveAt(index);
+
         public void Clear() => hands.Clear();
     }
 }

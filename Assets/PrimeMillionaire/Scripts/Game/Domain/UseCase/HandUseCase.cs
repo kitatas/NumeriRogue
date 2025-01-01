@@ -38,5 +38,21 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         {
             return _deckEntity.GetCard(_enemyHandEntity.hands[index]);
         }
+
+        public void RemovePlayerCards(IEnumerable<int> index)
+        {
+            foreach (var i in index)
+            {
+                _playerHandEntity.Remove(i);
+            }
+        }
+
+        public void RemoveEnemyCards(IEnumerable<int> index)
+        {
+            foreach (var i in index)
+            {
+                _enemyHandEntity.Remove(i);
+            }
+        }
     }
 }

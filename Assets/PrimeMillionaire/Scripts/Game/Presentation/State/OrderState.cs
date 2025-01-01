@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common.Utility;
@@ -42,6 +43,9 @@ namespace PrimeMillionaire.Game.Presentation.State
                 if (count == HandConfig.ORDER_NUM) break;
             }
 
+            {
+                _handUseCase.RemovePlayerCards(index);
+            }
             await _orderUseCase.PushValueAsync(token);
 
             var playerPt = _orderUseCase.currentValue;
@@ -57,6 +61,7 @@ namespace PrimeMillionaire.Game.Presentation.State
                 _orderUseCase.Set(card);
                 await UniTaskHelper.DelayAsync(0.5f, token);
             }
+            _handUseCase.RemoveEnemyCards(enemyOrder.index.OrderByDescending(x => x));
 
             await _orderUseCase.PushValueAsync(token);
 
