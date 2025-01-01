@@ -9,18 +9,18 @@ namespace PrimeMillionaire.Game.Presentation.View
         [SerializeField] private TextMeshProUGUI player = default;
         [SerializeField] private TextMeshProUGUI enemy = default;
 
-        public void RenderPlayer(int value)
+        public Tween RenderPlayer(int value)
         {
-            DOTween.To(
+            return DOTween.To(
                 () => int.Parse(player.text),
                 x => player.text = $"{x}",
                 value,
                 OrderConfig.TWEEN_DURATION);
         }
 
-        public void RenderEnemy(int value)
+        public Tween RenderEnemy(int value)
         {
-            DOTween.To(
+            return DOTween.To(
                 () => int.Parse(enemy.text),
                 x => enemy.text = $"{x}",
                 value,

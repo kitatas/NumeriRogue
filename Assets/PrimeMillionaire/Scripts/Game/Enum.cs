@@ -16,4 +16,11 @@ namespace PrimeMillionaire.Game
         Heart = 3,
         Spade = 4,
     }
+
+    public enum Side
+    {
+        None = 0,
+        Player = 1,
+        Enemy = 2,
+    }
 }

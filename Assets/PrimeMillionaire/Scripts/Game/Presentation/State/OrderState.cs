@@ -9,12 +9,15 @@ namespace PrimeMillionaire.Game.Presentation.State
 {
     public sealed class OrderState : BaseState
     {
+        private readonly BattlePtUseCase _battlePtUseCase;
         private readonly HandUseCase _handUseCase;
         private readonly OrderUseCase _orderUseCase;
         private readonly TableView _tableView;
 
-        public OrderState(HandUseCase handUseCase, OrderUseCase orderUseCase, TableView tableView)
+        public OrderState(BattlePtUseCase battlePtUseCase, HandUseCase handUseCase, OrderUseCase orderUseCase,
+            TableView tableView)
         {
+            _battlePtUseCase = battlePtUseCase;
             _handUseCase = handUseCase;
             _orderUseCase = orderUseCase;
             _tableView = tableView;
@@ -41,7 +44,10 @@ namespace PrimeMillionaire.Game.Presentation.State
 
             await _orderUseCase.PushValueAsync(token);
 
-            var enemyOrder = OrderHelper.GetOrder(_handUseCase.GetEnemyHands(), _orderUseCase.currentValue);
+            var playerPt = _orderUseCase.currentValue;
+            await _battlePtUseCase.AddPlayerBattlePtAsync(playerPt, token);
+
+            var enemyOrder = OrderHelper.GetOrder(_handUseCase.GetEnemyHands(), playerPt);
 
             _orderUseCase.Refresh();
             await UniTaskHelper.DelayAsync(0.5f, token);

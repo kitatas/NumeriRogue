@@ -61,4 +61,16 @@ namespace PrimeMillionaire.Game
             this.value = value;
         }
     }
+
+    public sealed class BattlePtVO : ICommand
+    {
+        public readonly Side side;
+        public readonly int value;
+
+        public BattlePtVO(Side side, int value)
+        {
+            this.side = side;
+            this.value = value;
+        }
+    }
 }

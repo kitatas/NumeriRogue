@@ -1,20 +1,34 @@
-using R3;
-using UnityEngine;
+using System.Threading;
+using Cysharp.Threading.Tasks;
+using PrimeMillionaire.Game.Data.Entity;
+using VitalRouter;
 
 namespace PrimeMillionaire.Game.Domain.UseCase
 {
     public sealed class BattlePtUseCase
     {
-        private readonly ReactiveProperty<int> _playerPt;
-        private readonly ReactiveProperty<int> _enemyPt;
+        private readonly PlayerBattlePtEntity _playerBattlePtEntity;
+        private readonly EnemyBattlePtEntity _enemyBattlePtEntity;
 
-        public BattlePtUseCase()
+        public BattlePtUseCase(PlayerBattlePtEntity playerBattlePtEntity, EnemyBattlePtEntity enemyBattlePtEntity)
         {
-            _playerPt = new ReactiveProperty<int>(0);
-            _enemyPt = new ReactiveProperty<int>(0);
+            _playerBattlePtEntity = playerBattlePtEntity;
+            _enemyBattlePtEntity = enemyBattlePtEntity;
         }
 
-        public Observable<int> playerPt => _playerPt;
-        public Observable<int> enemyPt => _enemyPt;
+        public int currentPlayerPt => _playerBattlePtEntity.currentValue;
+        public int currentEnemyPt => _enemyBattlePtEntity.currentValue;
+
+        public async UniTask AddPlayerBattlePtAsync(int value, CancellationToken token)
+        {
+            _playerBattlePtEntity.Add(value);
+            await Router.Default.PublishAsync(new BattlePtVO(Side.Player, currentPlayerPt), token);
+        }
+
+        public async UniTask AddEnemyBattlePtAsync(int value, CancellationToken token)
+        {
+            _enemyBattlePtEntity.Add(value);
+            await Router.Default.PublishAsync(new BattlePtVO(Side.Enemy, currentEnemyPt), token);
+        }
     }
 }
