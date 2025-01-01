@@ -39,6 +39,8 @@ namespace PrimeMillionaire.Game.Presentation.State
                 if (count == HandConfig.ORDER_NUM) break;
             }
 
+            _orderUseCase.PushValue();
+
             var enemyOrder = OrderHelper.GetOrder(_handUseCase.GetEnemyHands(), _orderUseCase.value);
 
             _orderUseCase.Refresh();

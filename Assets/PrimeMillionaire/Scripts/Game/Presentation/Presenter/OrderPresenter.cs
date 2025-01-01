@@ -27,6 +27,13 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
                 })
                 .AddTo(_orderView);
 
+            _orderUseCase.orderValue
+                .SubscribeAwait(async (x, token) =>
+                {
+                    await _orderView.SetAsync(x, token);
+                })
+                .AddTo(_orderView);
+
             _orderView.Init();
         }
     }
