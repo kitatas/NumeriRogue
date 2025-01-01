@@ -1,4 +1,5 @@
 using UnityEngine;
+using VitalRouter;
 
 namespace PrimeMillionaire.Game
 {
@@ -48,6 +49,16 @@ namespace PrimeMillionaire.Game
         public OrderVO(CardVO card)
         {
             this.card = card;
+        }
+    }
+
+    public sealed class OrderValueVO : ICommand
+    {
+        public readonly int value;
+
+        public OrderValueVO(int value)
+        {
+            this.value = value;
         }
     }
 }

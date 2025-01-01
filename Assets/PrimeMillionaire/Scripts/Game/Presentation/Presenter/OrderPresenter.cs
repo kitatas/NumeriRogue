@@ -3,6 +3,7 @@ using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.View;
 using R3;
 using VContainer.Unity;
+using VitalRouter;
 
 namespace PrimeMillionaire.Game.Presentation.Presenter
 {
@@ -27,10 +28,10 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
                 })
                 .AddTo(_orderView);
 
-            _orderUseCase.orderValue
-                .SubscribeAwait(async (x, token) =>
+            Router.Default
+                .SubscribeAwait<OrderValueVO>(async (x, context) =>
                 {
-                    await _orderView.SetAsync(x, token);
+                    await _orderView.SetAsync(x.value, context.CancellationToken);
                 })
                 .AddTo(_orderView);
 
