@@ -2,6 +2,7 @@ using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using ObservableCollections;
+using PrimeMillionaire.Common.Utility;
 using VitalRouter;
 
 namespace PrimeMillionaire.Game.Domain.UseCase
@@ -42,12 +43,14 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             }
         }
 
-        public void Refresh()
+        public async UniTask RefreshAsync(CancellationToken token)
         {
             for (int i = 0; i < _orders.Count; i++)
             {
                 _orders[i] = new OrderVO();
             }
+
+            await UniTaskHelper.DelayAsync(1.0f, token);
         }
 
         public int currentValue => _orders.Any(x => x.card == null)
@@ -57,6 +60,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         public async UniTask PushValueAsync(CancellationToken token)
         {
             await Router.Default.PublishAsync(new OrderValueVO(currentValue), token);
+            await UniTaskHelper.DelayAsync(1.0f, token);
         }
     }
 }

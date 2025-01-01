@@ -45,19 +45,26 @@ namespace PrimeMillionaire.Game.Presentation.State
             await _orderUseCase.PushValueAsync(token);
 
             var playerPt = _orderUseCase.currentValue;
-            await _battlePtUseCase.AddPlayerBattlePtAsync(playerPt, token);
+            await (
+                _battlePtUseCase.AddPlayerBattlePtAsync(playerPt, token),
+                _orderUseCase.RefreshAsync(token)
+            );
 
             var enemyOrder = OrderHelper.GetOrder(_handUseCase.GetEnemyHands(), playerPt);
-
-            _orderUseCase.Refresh();
-            await UniTaskHelper.DelayAsync(0.5f, token);
-
             foreach (var index in enemyOrder.index)
             {
                 var card = _handUseCase.GetEnemyCard(index);
                 _orderUseCase.Set(card);
                 await UniTaskHelper.DelayAsync(0.5f, token);
             }
+
+            await _orderUseCase.PushValueAsync(token);
+
+            var enemyPt = _orderUseCase.currentValue;
+            await (
+                _battlePtUseCase.AddEnemyBattlePtAsync(enemyPt, token),
+                _orderUseCase.RefreshAsync(token)
+            );
 
             return GameState.None;
         }
