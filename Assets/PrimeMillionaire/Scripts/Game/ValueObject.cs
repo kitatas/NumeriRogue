@@ -25,6 +25,18 @@ namespace PrimeMillionaire.Game
         }
     }
 
+    public sealed class CharacterVO
+    {
+        public readonly CharacterType type;
+        public readonly string objPath;
+
+        public CharacterVO(CharacterType type, string objPath)
+        {
+            this.type = type;
+            this.objPath = objPath;
+        }
+    }
+
     public sealed class HandVO
     {
         public readonly int index;

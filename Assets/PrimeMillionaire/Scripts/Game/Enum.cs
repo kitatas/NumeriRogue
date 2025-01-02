@@ -23,4 +23,11 @@ namespace PrimeMillionaire.Game
         Player = 1,
         Enemy = 2,
     }
+
+    public enum CharacterType
+    {
+        None = 0,
+        Andromeda = 1,
+        Borealjuggernaut = 2,
+    }
 }
