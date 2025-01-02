@@ -18,7 +18,7 @@ namespace PrimeMillionaire.Game.Data.DataStore.Tables
         public CardMasterTable(CardMaster[] sortedData)
             : base(sortedData)
         {
-            this.primaryIndexSelector = x => x.id;
+            this.primaryIndexSelector = x => x.Id;
             OnAfterConstruct();
         }
 
@@ -26,14 +26,14 @@ namespace PrimeMillionaire.Game.Data.DataStore.Tables
 
 
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public CardMaster FindByid(int key)
+        public CardMaster FindById(int key)
         {
             var lo = 0;
             var hi = data.Length - 1;
             while (lo <= hi)
             {
                 var mid = (int)(((uint)hi + (uint)lo) >> 1);
-                var selected = data[mid].id;
+                var selected = data[mid].Id;
                 var found = (selected < key) ? -1 : (selected > key) ? 1 : 0;
                 if (found == 0) { return data[mid]; }
                 if (found < 0) { lo = mid + 1; }
@@ -43,14 +43,14 @@ namespace PrimeMillionaire.Game.Data.DataStore.Tables
         }
 
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public bool TryFindByid(int key, out CardMaster result)
+        public bool TryFindById(int key, out CardMaster result)
         {
             var lo = 0;
             var hi = data.Length - 1;
             while (lo <= hi)
             {
                 var mid = (int)(((uint)hi + (uint)lo) >> 1);
-                var selected = data[mid].id;
+                var selected = data[mid].Id;
                 var found = (selected < key) ? -1 : (selected > key) ? 1 : 0;
                 if (found == 0) { result = data[mid]; return true; }
                 if (found < 0) { lo = mid + 1; }
@@ -60,12 +60,12 @@ namespace PrimeMillionaire.Game.Data.DataStore.Tables
             return false;
         }
 
-        public CardMaster FindClosestByid(int key, bool selectLower = true)
+        public CardMaster FindClosestById(int key, bool selectLower = true)
         {
             return FindUniqueClosestCore(data, primaryIndexSelector, System.Collections.Generic.Comparer<int>.Default, key, selectLower);
         }
 
-        public RangeView<CardMaster> FindRangeByid(int min, int max, bool ascendant = true)
+        public RangeView<CardMaster> FindRangeById(int min, int max, bool ascendant = true)
         {
             return FindUniqueRangeCore(data, primaryIndexSelector, System.Collections.Generic.Comparer<int>.Default, min, max, ascendant);
         }
@@ -75,7 +75,7 @@ namespace PrimeMillionaire.Game.Data.DataStore.Tables
         {
 #if !DISABLE_MASTERMEMORY_VALIDATOR
 
-            ValidateUniqueCore(data, primaryIndexSelector, "id", resultSet);       
+            ValidateUniqueCore(data, primaryIndexSelector, "Id", resultSet);       
 
 #endif
         }
@@ -87,14 +87,14 @@ namespace PrimeMillionaire.Game.Data.DataStore.Tables
             return new MasterMemory.Meta.MetaTable(typeof(CardMaster), typeof(CardMasterTable), "CardMaster",
                 new MasterMemory.Meta.MetaProperty[]
                 {
-                    new MasterMemory.Meta.MetaProperty(typeof(CardMaster).GetProperty("id")),
-                    new MasterMemory.Meta.MetaProperty(typeof(CardMaster).GetProperty("suit")),
-                    new MasterMemory.Meta.MetaProperty(typeof(CardMaster).GetProperty("rank")),
-                    new MasterMemory.Meta.MetaProperty(typeof(CardMaster).GetProperty("imgPath")),
+                    new MasterMemory.Meta.MetaProperty(typeof(CardMaster).GetProperty("Id")),
+                    new MasterMemory.Meta.MetaProperty(typeof(CardMaster).GetProperty("Suit")),
+                    new MasterMemory.Meta.MetaProperty(typeof(CardMaster).GetProperty("Rank")),
+                    new MasterMemory.Meta.MetaProperty(typeof(CardMaster).GetProperty("ImgPath")),
                 },
                 new MasterMemory.Meta.MetaIndex[]{
                     new MasterMemory.Meta.MetaIndex(new System.Reflection.PropertyInfo[] {
-                        typeof(CardMaster).GetProperty("id"),
+                        typeof(CardMaster).GetProperty("Id"),
                     }, true, true, System.Collections.Generic.Comparer<int>.Default),
                 });
         }

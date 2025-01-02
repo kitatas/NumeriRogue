@@ -8,13 +8,13 @@ namespace PrimeMillionaire.Game.Data.DataStore
     {
         public CharacterMaster(CharacterType type, string objPath)
         {
-            this.type = type;
-            this.objPath = objPath;
+            Type = type;
+            ObjPath = objPath;
         }
 
-        [PrimaryKey] public CharacterType type { get; }
-        public string objPath { get; }
+        [PrimaryKey] public CharacterType Type { get; }
+        public string ObjPath { get; }
 
-        [IgnoreMember] public CharacterVO character => new CharacterVO(type, objPath);
+        [IgnoreMember] public CharacterVO character => new CharacterVO(Type, ObjPath);
     }
 }

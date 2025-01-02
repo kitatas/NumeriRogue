@@ -8,17 +8,17 @@ namespace PrimeMillionaire.Game.Data.DataStore
     {
         public CardMaster(int id, Suit suit, int rank, string imgPath)
         {
-            this.id = id;
-            this.suit = suit;
-            this.rank = rank;
-            this.imgPath = imgPath;
+            Id = id;
+            Suit = suit;
+            Rank = rank;
+            ImgPath = imgPath;
         }
 
-        [PrimaryKey] public int id { get; }
-        public Suit suit { get; }
-        public int rank { get; }
-        public string imgPath { get; }
+        [PrimaryKey] public int Id { get; }
+        public Suit Suit { get; }
+        public int Rank { get; }
+        public string ImgPath { get; }
 
-        [IgnoreMember] public CardVO card => new(suit, rank, imgPath);
+        [IgnoreMember] public CardVO card => new(Suit, Rank, ImgPath);
     }
 }

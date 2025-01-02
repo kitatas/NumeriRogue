@@ -20,10 +20,10 @@ namespace MessagePack.Formatters.PrimeMillionaire.Game.Data.DataStore
 {
     public sealed class CharacterMasterFormatter : global::MessagePack.Formatters.IMessagePackFormatter<global::PrimeMillionaire.Game.Data.DataStore.CharacterMaster>
     {
-        // type
-        private static global::System.ReadOnlySpan<byte> GetSpan_type() => new byte[1 + 4] { 164, 116, 121, 112, 101 };
-        // objPath
-        private static global::System.ReadOnlySpan<byte> GetSpan_objPath() => new byte[1 + 7] { 167, 111, 98, 106, 80, 97, 116, 104 };
+        // Type
+        private static global::System.ReadOnlySpan<byte> GetSpan_Type() => new byte[1 + 4] { 164, 84, 121, 112, 101 };
+        // ObjPath
+        private static global::System.ReadOnlySpan<byte> GetSpan_ObjPath() => new byte[1 + 7] { 167, 79, 98, 106, 80, 97, 116, 104 };
 
         public void Serialize(ref global::MessagePack.MessagePackWriter writer, global::PrimeMillionaire.Game.Data.DataStore.CharacterMaster value, global::MessagePack.MessagePackSerializerOptions options)
         {
@@ -35,10 +35,10 @@ namespace MessagePack.Formatters.PrimeMillionaire.Game.Data.DataStore
 
             var formatterResolver = options.Resolver;
             writer.WriteMapHeader(2);
-            writer.WriteRaw(GetSpan_type());
-            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<CharacterType>(formatterResolver).Serialize(ref writer, value.type, options);
-            writer.WriteRaw(GetSpan_objPath());
-            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Serialize(ref writer, value.objPath, options);
+            writer.WriteRaw(GetSpan_Type());
+            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<CharacterType>(formatterResolver).Serialize(ref writer, value.Type, options);
+            writer.WriteRaw(GetSpan_ObjPath());
+            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Serialize(ref writer, value.ObjPath, options);
         }
 
         public global::PrimeMillionaire.Game.Data.DataStore.CharacterMaster Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)
@@ -51,8 +51,8 @@ namespace MessagePack.Formatters.PrimeMillionaire.Game.Data.DataStore
             options.Security.DepthStep(ref reader);
             var formatterResolver = options.Resolver;
             var length = reader.ReadMapHeader();
-            var __type__ = default(CharacterType);
-            var __objPath__ = default(string);
+            var __Type__ = default(CharacterType);
+            var __ObjPath__ = default(string);
 
             for (int i = 0; i < length; i++)
             {
@@ -64,20 +64,20 @@ namespace MessagePack.Formatters.PrimeMillionaire.Game.Data.DataStore
                       reader.Skip();
                       continue;
                     case 4:
-                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 1701869940UL) { goto FAIL; }
+                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 1701869908UL) { goto FAIL; }
 
-                        __type__ = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<CharacterType>(formatterResolver).Deserialize(ref reader, options);
+                        __Type__ = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<CharacterType>(formatterResolver).Deserialize(ref reader, options);
                         continue;
                     case 7:
-                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 29401358887707247UL) { goto FAIL; }
+                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 29401358887707215UL) { goto FAIL; }
 
-                        __objPath__ = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Deserialize(ref reader, options);
+                        __ObjPath__ = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Deserialize(ref reader, options);
                         continue;
 
                 }
             }
 
-            var ____result = new global::PrimeMillionaire.Game.Data.DataStore.CharacterMaster(__type__, __objPath__);
+            var ____result = new global::PrimeMillionaire.Game.Data.DataStore.CharacterMaster(__Type__, __ObjPath__);
             reader.Depth--;
             return ____result;
         }

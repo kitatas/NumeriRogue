@@ -18,29 +18,29 @@ namespace PrimeMillionaire.Game.Data.DataStore.Tables
         public CharacterMasterTable(CharacterMaster[] sortedData)
             : base(sortedData)
         {
-            this.primaryIndexSelector = x => x.type;
+            this.primaryIndexSelector = x => x.Type;
             OnAfterConstruct();
         }
 
         partial void OnAfterConstruct();
 
 
-        public CharacterMaster FindBytype(CharacterType key)
+        public CharacterMaster FindByType(CharacterType key)
         {
             return FindUniqueCore(data, primaryIndexSelector, System.Collections.Generic.Comparer<CharacterType>.Default, key, true);
         }
         
-        public bool TryFindBytype(CharacterType key, out CharacterMaster result)
+        public bool TryFindByType(CharacterType key, out CharacterMaster result)
         {
             return TryFindUniqueCore(data, primaryIndexSelector, System.Collections.Generic.Comparer<CharacterType>.Default, key, out result);
         }
 
-        public CharacterMaster FindClosestBytype(CharacterType key, bool selectLower = true)
+        public CharacterMaster FindClosestByType(CharacterType key, bool selectLower = true)
         {
             return FindUniqueClosestCore(data, primaryIndexSelector, System.Collections.Generic.Comparer<CharacterType>.Default, key, selectLower);
         }
 
-        public RangeView<CharacterMaster> FindRangeBytype(CharacterType min, CharacterType max, bool ascendant = true)
+        public RangeView<CharacterMaster> FindRangeByType(CharacterType min, CharacterType max, bool ascendant = true)
         {
             return FindUniqueRangeCore(data, primaryIndexSelector, System.Collections.Generic.Comparer<CharacterType>.Default, min, max, ascendant);
         }
@@ -50,7 +50,7 @@ namespace PrimeMillionaire.Game.Data.DataStore.Tables
         {
 #if !DISABLE_MASTERMEMORY_VALIDATOR
 
-            ValidateUniqueCore(data, primaryIndexSelector, "type", resultSet);       
+            ValidateUniqueCore(data, primaryIndexSelector, "Type", resultSet);       
 
 #endif
         }
@@ -62,12 +62,12 @@ namespace PrimeMillionaire.Game.Data.DataStore.Tables
             return new MasterMemory.Meta.MetaTable(typeof(CharacterMaster), typeof(CharacterMasterTable), "CharacterMaster",
                 new MasterMemory.Meta.MetaProperty[]
                 {
-                    new MasterMemory.Meta.MetaProperty(typeof(CharacterMaster).GetProperty("type")),
-                    new MasterMemory.Meta.MetaProperty(typeof(CharacterMaster).GetProperty("objPath")),
+                    new MasterMemory.Meta.MetaProperty(typeof(CharacterMaster).GetProperty("Type")),
+                    new MasterMemory.Meta.MetaProperty(typeof(CharacterMaster).GetProperty("ObjPath")),
                 },
                 new MasterMemory.Meta.MetaIndex[]{
                     new MasterMemory.Meta.MetaIndex(new System.Reflection.PropertyInfo[] {
-                        typeof(CharacterMaster).GetProperty("type"),
+                        typeof(CharacterMaster).GetProperty("Type"),
                     }, true, true, System.Collections.Generic.Comparer<CharacterType>.Default),
                 });
         }
