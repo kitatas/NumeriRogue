@@ -26,6 +26,7 @@ namespace PrimeMillionaire.Game.Installer
 
             // UseCase
             builder.Register<BattlePtUseCase>(Lifetime.Scoped);
+            builder.Register<CharacterUseCase>(Lifetime.Scoped);
             builder.Register<DealUseCase>(Lifetime.Scoped);
             builder.Register<HandUseCase>(Lifetime.Scoped);
             builder.Register<OrderUseCase>(Lifetime.Scoped);
@@ -35,6 +36,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.Register<BaseState, DealState>(Lifetime.Scoped);
             builder.Register<BaseState, InitState>(Lifetime.Scoped);
             builder.Register<BaseState, OrderState>(Lifetime.Scoped);
+            builder.Register<BaseState, SetUpState>(Lifetime.Scoped);
 
             // Presenter
             builder.UseEntryPoints(Lifetime.Scoped, entryPoints =>
@@ -45,6 +47,7 @@ namespace PrimeMillionaire.Game.Installer
             });
 
             // View
+            builder.RegisterComponentInHierarchy<BattleView>();
             builder.RegisterComponentInHierarchy<BattlePtView>();
             builder.RegisterComponentInHierarchy<OrderView>();
             builder.RegisterComponentInHierarchy<TableView>();

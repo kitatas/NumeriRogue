@@ -17,7 +17,7 @@ namespace PrimeMillionaire.Game.Presentation.State
         {
             await UniTask.Yield(token);
 
-            return GameState.Deal;
+            return GameState.SetUp;
         }
     }
 }
