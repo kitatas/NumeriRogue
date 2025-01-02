@@ -45,9 +45,10 @@ namespace PrimeMillionaire.Game.Data.DataStore
 
         static MasterMemoryResolverGetFormatterHelper()
         {
-            lookup = new global::System.Collections.Generic.Dictionary<Type, int>(1)
+            lookup = new global::System.Collections.Generic.Dictionary<Type, int>(2)
             {
                 {typeof(CardMaster[]), 0 },
+                {typeof(CharacterMaster[]), 1 },
             };
         }
 
@@ -59,6 +60,7 @@ namespace PrimeMillionaire.Game.Data.DataStore
             switch (key)
             {
                 case 0: return new MessagePack.Formatters.ArrayFormatter<CardMaster>();
+                case 1: return new MessagePack.Formatters.ArrayFormatter<CharacterMaster>();
                 default: return null;
             }
         }

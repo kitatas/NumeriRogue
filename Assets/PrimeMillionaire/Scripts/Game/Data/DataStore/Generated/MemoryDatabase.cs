@@ -13,12 +13,15 @@ namespace PrimeMillionaire.Game.Data.DataStore
    public sealed class MemoryDatabase : MemoryDatabaseBase
    {
         public CardMasterTable CardMasterTable { get; private set; }
+        public CharacterMasterTable CharacterMasterTable { get; private set; }
 
         public MemoryDatabase(
-            CardMasterTable CardMasterTable
+            CardMasterTable CardMasterTable,
+            CharacterMasterTable CharacterMasterTable
         )
         {
             this.CardMasterTable = CardMasterTable;
+            this.CharacterMasterTable = CharacterMasterTable;
         }
 
         public MemoryDatabase(byte[] databaseBinary, bool internString = true, MessagePack.IFormatterResolver formatterResolver = null, int maxDegreeOfParallelism = 1)
@@ -41,6 +44,7 @@ namespace PrimeMillionaire.Game.Data.DataStore
         void InitSequential(Dictionary<string, (int offset, int count)> header, System.ReadOnlyMemory<byte> databaseBinary, MessagePack.MessagePackSerializerOptions options, int maxDegreeOfParallelism)
         {
             this.CardMasterTable = ExtractTableData<CardMaster, CardMasterTable>(header, databaseBinary, options, xs => new CardMasterTable(xs));
+            this.CharacterMasterTable = ExtractTableData<CharacterMaster, CharacterMasterTable>(header, databaseBinary, options, xs => new CharacterMasterTable(xs));
         }
 
         void InitParallel(Dictionary<string, (int offset, int count)> header, System.ReadOnlyMemory<byte> databaseBinary, MessagePack.MessagePackSerializerOptions options, int maxDegreeOfParallelism)
@@ -48,6 +52,7 @@ namespace PrimeMillionaire.Game.Data.DataStore
             var extracts = new Action[]
             {
                 () => this.CardMasterTable = ExtractTableData<CardMaster, CardMasterTable>(header, databaseBinary, options, xs => new CardMasterTable(xs)),
+                () => this.CharacterMasterTable = ExtractTableData<CharacterMaster, CharacterMasterTable>(header, databaseBinary, options, xs => new CharacterMasterTable(xs)),
             };
             
             System.Threading.Tasks.Parallel.Invoke(new System.Threading.Tasks.ParallelOptions
@@ -65,6 +70,7 @@ namespace PrimeMillionaire.Game.Data.DataStore
         {
             var builder = new DatabaseBuilder();
             builder.Append(this.CardMasterTable.GetRawDataUnsafe());
+            builder.Append(this.CharacterMasterTable.GetRawDataUnsafe());
             return builder;
         }
 
@@ -72,6 +78,7 @@ namespace PrimeMillionaire.Game.Data.DataStore
         {
             var builder = new DatabaseBuilder(resolver);
             builder.Append(this.CardMasterTable.GetRawDataUnsafe());
+            builder.Append(this.CharacterMasterTable.GetRawDataUnsafe());
             return builder;
         }
 
@@ -83,10 +90,13 @@ namespace PrimeMillionaire.Game.Data.DataStore
             var database = new ValidationDatabase(new object[]
             {
                 CardMasterTable,
+                CharacterMasterTable,
             });
 
             ((ITableUniqueValidate)CardMasterTable).ValidateUnique(result);
             ValidateTable(CardMasterTable.All, database, "id", CardMasterTable.PrimaryKeySelector, result);
+            ((ITableUniqueValidate)CharacterMasterTable).ValidateUnique(result);
+            ValidateTable(CharacterMasterTable.All, database, "type", CharacterMasterTable.PrimaryKeySelector, result);
 
             return result;
         }
@@ -101,6 +111,8 @@ namespace PrimeMillionaire.Game.Data.DataStore
             {
                 case "CardMaster":
                     return db.CardMasterTable;
+                case "CharacterMaster":
+                    return db.CharacterMasterTable;
                 
                 default:
                     return null;
@@ -115,6 +127,7 @@ namespace PrimeMillionaire.Game.Data.DataStore
 
             var dict = new Dictionary<string, MasterMemory.Meta.MetaTable>();
             dict.Add("CardMaster", PrimeMillionaire.Game.Data.DataStore.Tables.CardMasterTable.CreateMetaTable());
+            dict.Add("CharacterMaster", PrimeMillionaire.Game.Data.DataStore.Tables.CharacterMasterTable.CreateMetaTable());
 
             metaTable = new MasterMemory.Meta.MetaDatabase(dict);
             return metaTable;

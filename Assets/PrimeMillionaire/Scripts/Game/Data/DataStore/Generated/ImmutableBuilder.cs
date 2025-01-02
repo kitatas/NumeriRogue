@@ -29,7 +29,8 @@ namespace PrimeMillionaire.Game.Data.DataStore
             var newData = CloneAndSortBy(data, x => x.id, System.Collections.Generic.Comparer<int>.Default);
             var table = new CardMasterTable(newData);
             memory = new MemoryDatabase(
-                table
+                table,
+                memory.CharacterMasterTable
             
             );
         }
@@ -40,7 +41,8 @@ namespace PrimeMillionaire.Game.Data.DataStore
             var newData = CloneAndSortBy(data, x => x.id, System.Collections.Generic.Comparer<int>.Default);
             var table = new CardMasterTable(newData);
             memory = new MemoryDatabase(
-                table
+                table,
+                memory.CharacterMasterTable
             
             );
         }
@@ -51,6 +53,42 @@ namespace PrimeMillionaire.Game.Data.DataStore
             var newData = CloneAndSortBy(data, x => x.id, System.Collections.Generic.Comparer<int>.Default);
             var table = new CardMasterTable(newData);
             memory = new MemoryDatabase(
+                table,
+                memory.CharacterMasterTable
+            
+            );
+        }
+
+        public void ReplaceAll(System.Collections.Generic.IList<CharacterMaster> data)
+        {
+            var newData = CloneAndSortBy(data, x => x.type, System.Collections.Generic.Comparer<CharacterType>.Default);
+            var table = new CharacterMasterTable(newData);
+            memory = new MemoryDatabase(
+                memory.CardMasterTable,
+                table
+            
+            );
+        }
+
+        public void RemoveCharacterMaster(CharacterType[] keys)
+        {
+            var data = RemoveCore(memory.CharacterMasterTable.GetRawDataUnsafe(), keys, x => x.type, System.Collections.Generic.Comparer<CharacterType>.Default);
+            var newData = CloneAndSortBy(data, x => x.type, System.Collections.Generic.Comparer<CharacterType>.Default);
+            var table = new CharacterMasterTable(newData);
+            memory = new MemoryDatabase(
+                memory.CardMasterTable,
+                table
+            
+            );
+        }
+
+        public void Diff(CharacterMaster[] addOrReplaceData)
+        {
+            var data = DiffCore(memory.CharacterMasterTable.GetRawDataUnsafe(), addOrReplaceData, x => x.type, System.Collections.Generic.Comparer<CharacterType>.Default);
+            var newData = CloneAndSortBy(data, x => x.type, System.Collections.Generic.Comparer<CharacterType>.Default);
+            var table = new CharacterMasterTable(newData);
+            memory = new MemoryDatabase(
+                memory.CardMasterTable,
                 table
             
             );

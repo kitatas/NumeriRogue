@@ -21,5 +21,11 @@ namespace PrimeMillionaire.Game.Data.DataStore
             return this;
         }
 
+        public DatabaseBuilder Append(System.Collections.Generic.IEnumerable<CharacterMaster> dataSource)
+        {
+            AppendCore(dataSource, x => x.type, System.Collections.Generic.Comparer<CharacterType>.Default);
+            return this;
+        }
+
     }
 }

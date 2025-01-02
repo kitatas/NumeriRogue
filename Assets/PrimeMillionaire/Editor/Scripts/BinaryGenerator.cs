@@ -48,5 +48,40 @@ namespace PrimeMillionaire.Editor.Scripts
             File.WriteAllBytes(bytes, binary);
             AssetDatabase.Refresh();
         }
+
+        [MenuItem("Tools/BinaryGenerate/" + nameof(CharacterMaster))]
+        private static void SetUp()
+        {
+            var messagePackResolvers = CompositeResolver.Create(
+                MasterMemoryResolver.Instance,
+                GeneratedResolver.Instance,
+                StandardResolver.Instance
+            );
+
+            var options = MessagePackSerializerOptions.Standard.WithResolver(messagePackResolvers);
+            MessagePackSerializer.DefaultOptions = options;
+
+            var characterMaster = new List<CharacterMaster>();
+            foreach (var type in FastEnum.GetValues<CharacterType>())
+            {
+                if (type == CharacterType.None) continue;
+                var objPath = $"Assets/PrimeMillionaire/Prefabs/Characters/{type.FastToString()}.prefab";
+                characterMaster.Add(new CharacterMaster(type, objPath));
+            }
+
+            var databaseBuilder = new DatabaseBuilder();
+            databaseBuilder.Append(characterMaster);
+            var binary = databaseBuilder.Build();
+
+            var bytes = "Assets/Externals/Binary/CharacterMaster.bytes";
+            var directory = Path.GetDirectoryName(bytes);
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
+            File.WriteAllBytes(bytes, binary);
+            AssetDatabase.Refresh();
+        }
     }
 }
