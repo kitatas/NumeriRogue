@@ -7,6 +7,7 @@ namespace PrimeMillionaire.Game
         SetUp = 2,
         Deal = 3,
         Order = 4,
+        Battle = 5,
     }
 
     public enum Suit

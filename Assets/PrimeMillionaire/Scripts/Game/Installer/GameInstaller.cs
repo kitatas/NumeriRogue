@@ -33,6 +33,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.Register<StateUseCase>(Lifetime.Scoped);
 
             // State
+            builder.Register<BaseState, BattleState>(Lifetime.Scoped);
             builder.Register<BaseState, DealState>(Lifetime.Scoped);
             builder.Register<BaseState, InitState>(Lifetime.Scoped);
             builder.Register<BaseState, OrderState>(Lifetime.Scoped);

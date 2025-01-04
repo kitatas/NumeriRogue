@@ -74,7 +74,7 @@ namespace PrimeMillionaire.Game.Presentation.State
             _tableView.DestroyHideCards();
 
             return _handUseCase.IsPlayerHandsEmpty()
-                ? GameState.None
+                ? GameState.Battle
                 : GameState.Order;
         }
     }

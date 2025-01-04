@@ -30,5 +30,21 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _enemyBattlePtEntity.Add(value);
             await Router.Default.PublishAsync(new BattlePtVO(Side.Enemy, currentEnemyPt), token);
         }
+
+        public async UniTask ResetAsync(CancellationToken token)
+        {
+            _playerBattlePtEntity.Reset();
+            _enemyBattlePtEntity.Reset();
+
+            await (
+                Router.Default.PublishAsync(new BattlePtVO(Side.Player, currentPlayerPt), token).AsUniTask(),
+                Router.Default.PublishAsync(new BattlePtVO(Side.Enemy, currentEnemyPt), token).AsUniTask()
+            );
+        }
+
+        public Side GetAttacker()
+        {
+            return currentPlayerPt >= currentEnemyPt ? Side.Player : Side.Enemy;
+        }
     }
 }
