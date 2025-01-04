@@ -1,6 +1,8 @@
+using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common.Utility;
+using UniEx;
 using UnityEngine;
 
 namespace PrimeMillionaire.Game.Presentation.View
@@ -25,6 +27,35 @@ namespace PrimeMillionaire.Game.Presentation.View
             var enemyObj = await ResourceHelper.LoadAsync<GameObject>(character.objPath, token);
             _enemyView = Instantiate(enemyObj, enemy.position, Quaternion.identity).GetComponent<CharacterView>();
             _enemyView.FlipX(Side.Enemy);
+        }
+
+        public void PlayAnimation(Side attacker, bool isDestroy)
+        {
+            var (attackerView, defenderView) = GetCharacterViews(attacker);
+
+            attackerView.Attack(true);
+
+            this.Delay(attackerView.applyDamageTime, () =>
+            {
+                attackerView.Attack(false);
+                defenderView.Damage(true);
+
+                this.DelayFrame(1, () =>
+                {
+                    defenderView.Damage(false);
+                    defenderView.Dead(isDestroy);
+                });
+            });
+        }
+
+        private (CharacterView attackerView, CharacterView defenderView) GetCharacterViews(Side attacker)
+        {
+            return attacker switch
+            {
+                Side.Player => (attackerView: _playerView, defenderView: _enemyView),
+                Side.Enemy => (attackerView: _enemyView, defenderView: _playerView),
+                _ => throw new Exception(),
+            };
         }
     }
 }
