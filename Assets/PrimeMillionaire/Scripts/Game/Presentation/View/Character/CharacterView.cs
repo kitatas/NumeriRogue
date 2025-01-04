@@ -7,6 +7,7 @@ namespace PrimeMillionaire.Game.Presentation.View
     {
         public abstract CharacterType characterType { get; }
         public abstract float applyDamageTime { get; }
+        public abstract float deadTime { get; }
 
         #region Animation
 

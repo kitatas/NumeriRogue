@@ -40,7 +40,7 @@ namespace PrimeMillionaire.Game.Presentation.View
                 attackerView.Attack(false);
                 defenderView.Damage(true);
 
-                this.DelayFrame(1, () =>
+                this.Delay(defenderView.deadTime, () =>
                 {
                     defenderView.Damage(false);
                     defenderView.Dead(isDestroy);
