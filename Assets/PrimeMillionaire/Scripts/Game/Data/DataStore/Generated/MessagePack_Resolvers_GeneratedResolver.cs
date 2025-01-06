@@ -47,10 +47,11 @@ namespace MessagePack.Resolvers
 
         static GeneratedResolverGetFormatterHelper()
         {
-            lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(2)
+            lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(3)
             {
                 { typeof(global::PrimeMillionaire.Game.Data.DataStore.CardMaster), 0 },
                 { typeof(global::PrimeMillionaire.Game.Data.DataStore.CharacterMaster), 1 },
+                { typeof(global::PrimeMillionaire.Game.Data.DataStore.ParameterMaster), 2 },
             };
         }
 
@@ -66,6 +67,7 @@ namespace MessagePack.Resolvers
             {
                 case 0: return new MessagePack.Formatters.PrimeMillionaire.Game.Data.DataStore.CardMasterFormatter();
                 case 1: return new MessagePack.Formatters.PrimeMillionaire.Game.Data.DataStore.CharacterMasterFormatter();
+                case 2: return new MessagePack.Formatters.PrimeMillionaire.Game.Data.DataStore.ParameterMasterFormatter();
                 default: return null;
             }
         }

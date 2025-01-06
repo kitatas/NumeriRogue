@@ -30,7 +30,8 @@ namespace PrimeMillionaire.Game.Data.DataStore
             var table = new CardMasterTable(newData);
             memory = new MemoryDatabase(
                 table,
-                memory.CharacterMasterTable
+                memory.CharacterMasterTable,
+                memory.ParameterMasterTable
             
             );
         }
@@ -42,7 +43,8 @@ namespace PrimeMillionaire.Game.Data.DataStore
             var table = new CardMasterTable(newData);
             memory = new MemoryDatabase(
                 table,
-                memory.CharacterMasterTable
+                memory.CharacterMasterTable,
+                memory.ParameterMasterTable
             
             );
         }
@@ -54,7 +56,8 @@ namespace PrimeMillionaire.Game.Data.DataStore
             var table = new CardMasterTable(newData);
             memory = new MemoryDatabase(
                 table,
-                memory.CharacterMasterTable
+                memory.CharacterMasterTable,
+                memory.ParameterMasterTable
             
             );
         }
@@ -65,7 +68,8 @@ namespace PrimeMillionaire.Game.Data.DataStore
             var table = new CharacterMasterTable(newData);
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
-                table
+                table,
+                memory.ParameterMasterTable
             
             );
         }
@@ -77,7 +81,8 @@ namespace PrimeMillionaire.Game.Data.DataStore
             var table = new CharacterMasterTable(newData);
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
-                table
+                table,
+                memory.ParameterMasterTable
             
             );
         }
@@ -89,6 +94,45 @@ namespace PrimeMillionaire.Game.Data.DataStore
             var table = new CharacterMasterTable(newData);
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
+                table,
+                memory.ParameterMasterTable
+            
+            );
+        }
+
+        public void ReplaceAll(System.Collections.Generic.IList<ParameterMaster> data)
+        {
+            var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<CharacterType>.Default);
+            var table = new ParameterMasterTable(newData);
+            memory = new MemoryDatabase(
+                memory.CardMasterTable,
+                memory.CharacterMasterTable,
+                table
+            
+            );
+        }
+
+        public void RemoveParameterMaster(CharacterType[] keys)
+        {
+            var data = RemoveCore(memory.ParameterMasterTable.GetRawDataUnsafe(), keys, x => x.Type, System.Collections.Generic.Comparer<CharacterType>.Default);
+            var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<CharacterType>.Default);
+            var table = new ParameterMasterTable(newData);
+            memory = new MemoryDatabase(
+                memory.CardMasterTable,
+                memory.CharacterMasterTable,
+                table
+            
+            );
+        }
+
+        public void Diff(ParameterMaster[] addOrReplaceData)
+        {
+            var data = DiffCore(memory.ParameterMasterTable.GetRawDataUnsafe(), addOrReplaceData, x => x.Type, System.Collections.Generic.Comparer<CharacterType>.Default);
+            var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<CharacterType>.Default);
+            var table = new ParameterMasterTable(newData);
+            memory = new MemoryDatabase(
+                memory.CardMasterTable,
+                memory.CharacterMasterTable,
                 table
             
             );

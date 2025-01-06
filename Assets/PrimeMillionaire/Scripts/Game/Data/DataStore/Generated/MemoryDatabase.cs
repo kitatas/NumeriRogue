@@ -14,14 +14,17 @@ namespace PrimeMillionaire.Game.Data.DataStore
    {
         public CardMasterTable CardMasterTable { get; private set; }
         public CharacterMasterTable CharacterMasterTable { get; private set; }
+        public ParameterMasterTable ParameterMasterTable { get; private set; }
 
         public MemoryDatabase(
             CardMasterTable CardMasterTable,
-            CharacterMasterTable CharacterMasterTable
+            CharacterMasterTable CharacterMasterTable,
+            ParameterMasterTable ParameterMasterTable
         )
         {
             this.CardMasterTable = CardMasterTable;
             this.CharacterMasterTable = CharacterMasterTable;
+            this.ParameterMasterTable = ParameterMasterTable;
         }
 
         public MemoryDatabase(byte[] databaseBinary, bool internString = true, MessagePack.IFormatterResolver formatterResolver = null, int maxDegreeOfParallelism = 1)
@@ -45,6 +48,7 @@ namespace PrimeMillionaire.Game.Data.DataStore
         {
             this.CardMasterTable = ExtractTableData<CardMaster, CardMasterTable>(header, databaseBinary, options, xs => new CardMasterTable(xs));
             this.CharacterMasterTable = ExtractTableData<CharacterMaster, CharacterMasterTable>(header, databaseBinary, options, xs => new CharacterMasterTable(xs));
+            this.ParameterMasterTable = ExtractTableData<ParameterMaster, ParameterMasterTable>(header, databaseBinary, options, xs => new ParameterMasterTable(xs));
         }
 
         void InitParallel(Dictionary<string, (int offset, int count)> header, System.ReadOnlyMemory<byte> databaseBinary, MessagePack.MessagePackSerializerOptions options, int maxDegreeOfParallelism)
@@ -53,6 +57,7 @@ namespace PrimeMillionaire.Game.Data.DataStore
             {
                 () => this.CardMasterTable = ExtractTableData<CardMaster, CardMasterTable>(header, databaseBinary, options, xs => new CardMasterTable(xs)),
                 () => this.CharacterMasterTable = ExtractTableData<CharacterMaster, CharacterMasterTable>(header, databaseBinary, options, xs => new CharacterMasterTable(xs)),
+                () => this.ParameterMasterTable = ExtractTableData<ParameterMaster, ParameterMasterTable>(header, databaseBinary, options, xs => new ParameterMasterTable(xs)),
             };
             
             System.Threading.Tasks.Parallel.Invoke(new System.Threading.Tasks.ParallelOptions
@@ -71,6 +76,7 @@ namespace PrimeMillionaire.Game.Data.DataStore
             var builder = new DatabaseBuilder();
             builder.Append(this.CardMasterTable.GetRawDataUnsafe());
             builder.Append(this.CharacterMasterTable.GetRawDataUnsafe());
+            builder.Append(this.ParameterMasterTable.GetRawDataUnsafe());
             return builder;
         }
 
@@ -79,6 +85,7 @@ namespace PrimeMillionaire.Game.Data.DataStore
             var builder = new DatabaseBuilder(resolver);
             builder.Append(this.CardMasterTable.GetRawDataUnsafe());
             builder.Append(this.CharacterMasterTable.GetRawDataUnsafe());
+            builder.Append(this.ParameterMasterTable.GetRawDataUnsafe());
             return builder;
         }
 
@@ -91,12 +98,15 @@ namespace PrimeMillionaire.Game.Data.DataStore
             {
                 CardMasterTable,
                 CharacterMasterTable,
+                ParameterMasterTable,
             });
 
             ((ITableUniqueValidate)CardMasterTable).ValidateUnique(result);
             ValidateTable(CardMasterTable.All, database, "Id", CardMasterTable.PrimaryKeySelector, result);
             ((ITableUniqueValidate)CharacterMasterTable).ValidateUnique(result);
             ValidateTable(CharacterMasterTable.All, database, "Type", CharacterMasterTable.PrimaryKeySelector, result);
+            ((ITableUniqueValidate)ParameterMasterTable).ValidateUnique(result);
+            ValidateTable(ParameterMasterTable.All, database, "Type", ParameterMasterTable.PrimaryKeySelector, result);
 
             return result;
         }
@@ -113,6 +123,8 @@ namespace PrimeMillionaire.Game.Data.DataStore
                     return db.CardMasterTable;
                 case "CharacterMaster":
                     return db.CharacterMasterTable;
+                case "ParameterMaster":
+                    return db.ParameterMasterTable;
                 
                 default:
                     return null;
@@ -128,6 +140,7 @@ namespace PrimeMillionaire.Game.Data.DataStore
             var dict = new Dictionary<string, MasterMemory.Meta.MetaTable>();
             dict.Add("CardMaster", PrimeMillionaire.Game.Data.DataStore.Tables.CardMasterTable.CreateMetaTable());
             dict.Add("CharacterMaster", PrimeMillionaire.Game.Data.DataStore.Tables.CharacterMasterTable.CreateMetaTable());
+            dict.Add("ParameterMaster", PrimeMillionaire.Game.Data.DataStore.Tables.ParameterMasterTable.CreateMetaTable());
 
             metaTable = new MasterMemory.Meta.MetaDatabase(dict);
             return metaTable;
