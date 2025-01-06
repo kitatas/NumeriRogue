@@ -6,15 +6,15 @@ namespace PrimeMillionaire.Game.Data.DataStore
     [MemoryTable(nameof(CharacterMaster)), MessagePackObject(true)]
     public sealed class CharacterMaster
     {
-        public CharacterMaster(CharacterType type, string objPath)
+        public CharacterMaster(int type, string objPath)
         {
             Type = type;
             ObjPath = objPath;
         }
 
-        [PrimaryKey] public CharacterType Type { get; }
+        [PrimaryKey] public int Type { get; }
         public string ObjPath { get; }
 
-        [IgnoreMember] public CharacterVO character => new CharacterVO(Type, ObjPath);
+        public CharacterVO ToVO() => new(Type, ObjPath);
     }
 }

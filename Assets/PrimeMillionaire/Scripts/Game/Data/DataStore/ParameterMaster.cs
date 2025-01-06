@@ -6,7 +6,7 @@ namespace PrimeMillionaire.Game.Data.DataStore
     [MemoryTable(nameof(ParameterMaster)), MessagePackObject(true)]
     public sealed class ParameterMaster
     {
-        public ParameterMaster(CharacterType type, int hp, int atk, int def)
+        public ParameterMaster(int type, int hp, int atk, int def)
         {
             Type = type;
             Hp = hp;
@@ -14,11 +14,11 @@ namespace PrimeMillionaire.Game.Data.DataStore
             Def = def;
         }
 
-        [PrimaryKey] public CharacterType Type { get; }
+        [PrimaryKey] public int Type { get; }
         public int Hp { get; }
         public int Atk { get; }
         public int Def { get; }
 
-        [IgnoreMember] public ParameterVO parameter => new ParameterVO(Type, Hp, Atk, Def);
+        public ParameterVO ToVO() => new ParameterVO(Type, Hp, Atk, Def);
     }
 }

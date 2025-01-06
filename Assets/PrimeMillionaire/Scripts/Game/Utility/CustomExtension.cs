@@ -1,4 +1,5 @@
 using System;
+using FastEnumUtility;
 
 namespace PrimeMillionaire.Game.Utility
 {
@@ -12,6 +13,13 @@ namespace PrimeMillionaire.Game.Utility
                 Side.Enemy => 1,
                 _ => throw new Exception(),
             };
+        }
+
+        public static CharacterType ToCharacterType(this int self)
+        {
+            return FastEnum.IsDefined<CharacterType>(self)
+                ? (CharacterType)self
+                : throw new Exception();
         }
     }
 }

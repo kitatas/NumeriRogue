@@ -1,3 +1,4 @@
+using PrimeMillionaire.Game.Utility;
 using UnityEngine;
 using VitalRouter;
 
@@ -30,9 +31,9 @@ namespace PrimeMillionaire.Game
         public readonly CharacterType type;
         public readonly string objPath;
 
-        public CharacterVO(CharacterType type, string objPath)
+        public CharacterVO(int type, string objPath)
         {
-            this.type = type;
+            this.type = type.ToCharacterType();
             this.objPath = objPath;
         }
     }
@@ -44,9 +45,9 @@ namespace PrimeMillionaire.Game
         public readonly int atk;
         public readonly int def;
 
-        public ParameterVO(CharacterType type, int hp, int atk, int def)
+        public ParameterVO(int type, int hp, int atk, int def)
         {
-            this.type = type;
+            this.type = type.ToCharacterType();
             this.hp = hp;
             this.atk = atk;
             this.def = def;

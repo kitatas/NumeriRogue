@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using FastEnumUtility;
 using PrimeMillionaire.Common.Utility;
 using PrimeMillionaire.Game.Data.DataStore;
 using UnityEngine;
@@ -20,9 +21,9 @@ namespace PrimeMillionaire.Game.Domain.Repository
 
         public CharacterVO Find(CharacterType type)
         {
-            if (_memoryDatabase.CharacterMasterTable.TryFindByType(type, out var master))
+            if (_memoryDatabase.CharacterMasterTable.TryFindByType(type.ToInt32(), out var master))
             {
-                return master.character;
+                return master.ToVO();
             }
             else
             {
