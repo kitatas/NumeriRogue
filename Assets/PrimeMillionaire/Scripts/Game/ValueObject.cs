@@ -37,6 +37,22 @@ namespace PrimeMillionaire.Game
         }
     }
 
+    public sealed class ParameterVO
+    {
+        public readonly CharacterType type;
+        public readonly int hp;
+        public readonly int atk;
+        public readonly int def;
+
+        public ParameterVO(CharacterType type, int hp, int atk, int def)
+        {
+            this.type = type;
+            this.hp = hp;
+            this.atk = atk;
+            this.def = def;
+        }
+    }
+
     public sealed class HandVO
     {
         public readonly int index;
