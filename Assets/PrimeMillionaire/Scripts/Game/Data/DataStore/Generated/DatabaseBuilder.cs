@@ -23,13 +23,13 @@ namespace PrimeMillionaire.Game.Data.DataStore
 
         public DatabaseBuilder Append(System.Collections.Generic.IEnumerable<CharacterMaster> dataSource)
         {
-            AppendCore(dataSource, x => x.Type, System.Collections.Generic.Comparer<CharacterType>.Default);
+            AppendCore(dataSource, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
             return this;
         }
 
         public DatabaseBuilder Append(System.Collections.Generic.IEnumerable<ParameterMaster> dataSource)
         {
-            AppendCore(dataSource, x => x.Type, System.Collections.Generic.Comparer<CharacterType>.Default);
+            AppendCore(dataSource, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
             return this;
         }
 

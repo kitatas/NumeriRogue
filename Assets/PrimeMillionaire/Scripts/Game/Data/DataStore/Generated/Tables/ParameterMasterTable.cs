@@ -11,8 +11,8 @@ namespace PrimeMillionaire.Game.Data.DataStore.Tables
 {
    public sealed partial class ParameterMasterTable : TableBase<ParameterMaster>, ITableUniqueValidate
    {
-        public Func<ParameterMaster, CharacterType> PrimaryKeySelector => primaryIndexSelector;
-        readonly Func<ParameterMaster, CharacterType> primaryIndexSelector;
+        public Func<ParameterMaster, int> PrimaryKeySelector => primaryIndexSelector;
+        readonly Func<ParameterMaster, int> primaryIndexSelector;
 
 
         public ParameterMasterTable(ParameterMaster[] sortedData)
@@ -25,24 +25,49 @@ namespace PrimeMillionaire.Game.Data.DataStore.Tables
         partial void OnAfterConstruct();
 
 
-        public ParameterMaster FindByType(CharacterType key)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        public ParameterMaster FindByType(int key)
         {
-            return FindUniqueCore(data, primaryIndexSelector, System.Collections.Generic.Comparer<CharacterType>.Default, key, true);
-        }
-        
-        public bool TryFindByType(CharacterType key, out ParameterMaster result)
-        {
-            return TryFindUniqueCore(data, primaryIndexSelector, System.Collections.Generic.Comparer<CharacterType>.Default, key, out result);
+            var lo = 0;
+            var hi = data.Length - 1;
+            while (lo <= hi)
+            {
+                var mid = (int)(((uint)hi + (uint)lo) >> 1);
+                var selected = data[mid].Type;
+                var found = (selected < key) ? -1 : (selected > key) ? 1 : 0;
+                if (found == 0) { return data[mid]; }
+                if (found < 0) { lo = mid + 1; }
+                else { hi = mid - 1; }
+            }
+            return ThrowKeyNotFound(key);
         }
 
-        public ParameterMaster FindClosestByType(CharacterType key, bool selectLower = true)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+        public bool TryFindByType(int key, out ParameterMaster result)
         {
-            return FindUniqueClosestCore(data, primaryIndexSelector, System.Collections.Generic.Comparer<CharacterType>.Default, key, selectLower);
+            var lo = 0;
+            var hi = data.Length - 1;
+            while (lo <= hi)
+            {
+                var mid = (int)(((uint)hi + (uint)lo) >> 1);
+                var selected = data[mid].Type;
+                var found = (selected < key) ? -1 : (selected > key) ? 1 : 0;
+                if (found == 0) { result = data[mid]; return true; }
+                if (found < 0) { lo = mid + 1; }
+                else { hi = mid - 1; }
+            }
+            result = default;
+            return false;
         }
 
-        public RangeView<ParameterMaster> FindRangeByType(CharacterType min, CharacterType max, bool ascendant = true)
+        public ParameterMaster FindClosestByType(int key, bool selectLower = true)
         {
-            return FindUniqueRangeCore(data, primaryIndexSelector, System.Collections.Generic.Comparer<CharacterType>.Default, min, max, ascendant);
+            return FindUniqueClosestCore(data, primaryIndexSelector, System.Collections.Generic.Comparer<int>.Default, key, selectLower);
+        }
+
+        public RangeView<ParameterMaster> FindRangeByType(int min, int max, bool ascendant = true)
+        {
+            return FindUniqueRangeCore(data, primaryIndexSelector, System.Collections.Generic.Comparer<int>.Default, min, max, ascendant);
         }
 
 
@@ -70,7 +95,7 @@ namespace PrimeMillionaire.Game.Data.DataStore.Tables
                 new MasterMemory.Meta.MetaIndex[]{
                     new MasterMemory.Meta.MetaIndex(new System.Reflection.PropertyInfo[] {
                         typeof(ParameterMaster).GetProperty("Type"),
-                    }, true, true, System.Collections.Generic.Comparer<CharacterType>.Default),
+                    }, true, true, System.Collections.Generic.Comparer<int>.Default),
                 });
         }
 
