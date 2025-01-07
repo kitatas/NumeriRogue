@@ -11,7 +11,7 @@ namespace PrimeMillionaire.Editor.Scripts
 {
     public static class BinaryGenerator
     {
-        [MenuItem("Tools/BinaryGenerate/" + nameof(CardMaster))]
+        [MenuItem("Tools/MasterMemory/CreateBinary")]
         private static void GenerateCardMaster()
         {
             var messagePackResolvers = CompositeResolver.Create(
@@ -33,47 +33,21 @@ namespace PrimeMillionaire.Editor.Scripts
                     cardMaster.Add(new CardMaster(id++, suit, i, imgPath));
                 }
             }
-
-            var databaseBuilder = new DatabaseBuilder();
-            databaseBuilder.Append(cardMaster);
-            var binary = databaseBuilder.Build();
-
-            var bytes = "Assets/Externals/Binary/CardMaster.bytes";
-            var directory = Path.GetDirectoryName(bytes);
-            if (!Directory.Exists(directory))
-            {
-                Directory.CreateDirectory(directory);
-            }
-
-            File.WriteAllBytes(bytes, binary);
-            AssetDatabase.Refresh();
-        }
-
-        [MenuItem("Tools/BinaryGenerate/" + nameof(CharacterMaster))]
-        private static void SetUp()
-        {
-            var messagePackResolvers = CompositeResolver.Create(
-                MasterMemoryResolver.Instance,
-                GeneratedResolver.Instance,
-                StandardResolver.Instance
-            );
-
-            var options = MessagePackSerializerOptions.Standard.WithResolver(messagePackResolvers);
-            MessagePackSerializer.DefaultOptions = options;
-
+            
             var characterMaster = new List<CharacterMaster>();
             foreach (var type in FastEnum.GetValues<CharacterType>())
             {
                 if (type == CharacterType.None) continue;
                 var objPath = $"Assets/PrimeMillionaire/Prefabs/Characters/{type.FastToString()}.prefab";
-                characterMaster.Add(new CharacterMaster(type, objPath));
+                characterMaster.Add(new CharacterMaster(type.ToInt32(), objPath));
             }
 
             var databaseBuilder = new DatabaseBuilder();
+            databaseBuilder.Append(cardMaster);
             databaseBuilder.Append(characterMaster);
             var binary = databaseBuilder.Build();
 
-            var bytes = "Assets/Externals/Binary/CharacterMaster.bytes";
+            var bytes = "Assets/Externals/Binary/MasterMemory.bytes";
             var directory = Path.GetDirectoryName(bytes);
             if (!Directory.Exists(directory))
             {
