@@ -1,5 +1,3 @@
-using System.Threading;
-using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Game.Domain.Repository;
 
 namespace PrimeMillionaire.Game.Domain.UseCase
@@ -11,11 +9,6 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         public CharacterUseCase(CharacterRepository characterRepository)
         {
             _characterRepository = characterRepository;
-        }
-
-        public async UniTask InitAsync(CancellationToken token)
-        {
-            await _characterRepository.SetUpAsync(token);
         }
 
         public (CharacterVO player, CharacterVO enemy) GetBattleCharacters()

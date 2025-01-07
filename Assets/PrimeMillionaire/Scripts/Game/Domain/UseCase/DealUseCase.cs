@@ -1,5 +1,3 @@
-using System.Threading;
-using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Game.Data.Entity;
 using PrimeMillionaire.Game.Domain.Repository;
 
@@ -21,9 +19,8 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _cardRepository = cardRepository;
         }
 
-        public async UniTask InitAsync(CancellationToken token)
+        public void Init()
         {
-            await _cardRepository.SetUpAsync(token);
             _deckEntity.Init(_cardRepository.GetAll());
         }
 
