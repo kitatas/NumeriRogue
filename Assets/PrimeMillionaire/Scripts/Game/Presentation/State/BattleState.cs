@@ -9,11 +9,13 @@ namespace PrimeMillionaire.Game.Presentation.State
     public sealed class BattleState : BaseState
     {
         private readonly BattlePtUseCase _battlePtUseCase;
+        private readonly BattleUseCase _battleUseCase;
         private readonly BattleView _battleView;
 
-        public BattleState(BattlePtUseCase battlePtUseCase, BattleView battleView)
+        public BattleState(BattlePtUseCase battlePtUseCase, BattleUseCase battleUseCase, BattleView battleView)
         {
             _battlePtUseCase = battlePtUseCase;
+            _battleUseCase = battleUseCase;
             _battleView = battleView;
         }
 
@@ -27,10 +29,11 @@ namespace PrimeMillionaire.Game.Presentation.State
         public override async UniTask<GameState> TickAsync(CancellationToken token)
         {
             var attacker = _battlePtUseCase.GetAttacker();
-            var isDestroy = false;
+            var isDestroy = _battleUseCase.IsDestroy();
             _battleView.PlayAnimation(attacker, isDestroy);
 
-            await UniTaskHelper.DelayAsync(2.0f, token);
+            await UniTaskHelper.DelayAsync(1.5f, token);
+            await _battleUseCase.ExecBattleAsync(token);
 
             await _battlePtUseCase.ResetAsync(token);
 
