@@ -24,12 +24,15 @@ namespace PrimeMillionaire.Game.Installer
             builder.Register<DeckEntity>(Lifetime.Scoped);
             builder.Register<EnemyBattlePtEntity>(Lifetime.Scoped);
             builder.Register<EnemyHandEntity>(Lifetime.Scoped);
+            builder.Register<EnemyParameterEntity>(Lifetime.Scoped);
             builder.Register<PlayerBattlePtEntity>(Lifetime.Scoped);
             builder.Register<PlayerHandEntity>(Lifetime.Scoped);
+            builder.Register<PlayerParameterEntity>(Lifetime.Scoped);
 
             // Repository
             builder.Register<CardRepository>(Lifetime.Scoped);
             builder.Register<CharacterRepository>(Lifetime.Scoped);
+            builder.Register<ParameterRepository>(Lifetime.Scoped);
 
             // UseCase
             builder.Register<BattlePtUseCase>(Lifetime.Scoped);
@@ -37,6 +40,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.Register<DealUseCase>(Lifetime.Scoped);
             builder.Register<HandUseCase>(Lifetime.Scoped);
             builder.Register<OrderUseCase>(Lifetime.Scoped);
+            builder.Register<ParameterUseCase>(Lifetime.Scoped);
             builder.Register<StateUseCase>(Lifetime.Scoped);
 
             // State

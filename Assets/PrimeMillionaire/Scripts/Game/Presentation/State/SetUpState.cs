@@ -8,11 +8,13 @@ namespace PrimeMillionaire.Game.Presentation.State
     public sealed class SetUpState : BaseState
     {
         private readonly CharacterUseCase _characterUseCase;
+        private readonly ParameterUseCase _parameterUseCase;
         private readonly BattleView _battleView;
 
-        public SetUpState(CharacterUseCase characterUseCase, BattleView battleView)
+        public SetUpState(CharacterUseCase characterUseCase, ParameterUseCase parameterUseCase, BattleView battleView)
         {
             _characterUseCase = characterUseCase;
+            _parameterUseCase = parameterUseCase;
             _battleView = battleView;
         }
 
@@ -30,6 +32,8 @@ namespace PrimeMillionaire.Game.Presentation.State
                 _battleView.CreatePlayerAsync(player, token),
                 _battleView.CreateEnemyAsync(enemy, token)
             );
+
+            _parameterUseCase.Init();
 
             return GameState.Deal;
         }
