@@ -10,25 +10,18 @@ using VContainer.Unity;
 
 namespace PrimeMillionaire.Game.Presentation.Presenter
 {
-    public sealed class StatePresenter : IStartable, IDisposable
+    public sealed class StatePresenter : IAsyncStartable
     {
         private readonly StateUseCase _stateUseCase;
         private readonly List<BaseState> _states;
-        private readonly CancellationTokenSource _tokenSource;
 
         public StatePresenter(StateUseCase stateUseCase, IEnumerable<BaseState> states)
         {
             _stateUseCase = stateUseCase;
             _states = states.ToList();
-            _tokenSource = new CancellationTokenSource();
         }
 
-        public void Start()
-        {
-            InitAsync(_tokenSource.Token).Forget();
-        }
-
-        private async UniTaskVoid InitAsync(CancellationToken token)
+        public async UniTask StartAsync(CancellationToken token)
         {
             await UniTask.WhenAll(_states
                 .Select(x => x.InitAsync(token)));
@@ -59,12 +52,6 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
                 // TODO: retry
                 throw;
             }
-        }
-
-        public void Dispose()
-        {
-            _tokenSource?.Cancel();
-            _tokenSource?.Dispose();
         }
     }
 }
