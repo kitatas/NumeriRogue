@@ -1,3 +1,4 @@
+using FastEnumUtility;
 using PrimeMillionaire.Game.Utility;
 using UnityEngine;
 using VitalRouter;
@@ -38,12 +39,13 @@ namespace PrimeMillionaire.Game
         }
     }
 
-    public sealed class ParameterVO
+    public sealed class ParameterVO : ICommand
     {
         public readonly CharacterType type;
         public readonly int hp;
         public readonly int atk;
         public readonly int def;
+        public readonly int currentHp;
 
         public ParameterVO(int type, int hp, int atk, int def)
         {
@@ -51,7 +53,10 @@ namespace PrimeMillionaire.Game
             this.hp = hp;
             this.atk = atk;
             this.def = def;
+            this.currentHp = hp;
         }
+
+        public string name => type.FastToString();
     }
 
     public sealed class HandVO

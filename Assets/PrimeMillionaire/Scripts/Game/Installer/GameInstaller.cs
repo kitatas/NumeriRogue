@@ -55,6 +55,7 @@ namespace PrimeMillionaire.Game.Installer
             {
                 entryPoints.Add<BattlePtPresenter>();
                 entryPoints.Add<OrderPresenter>();
+                entryPoints.Add<ParameterPresenter>();
                 entryPoints.Add<StatePresenter>();
             });
 
@@ -62,6 +63,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.RegisterComponentInHierarchy<BattleView>();
             builder.RegisterComponentInHierarchy<BattlePtView>();
             builder.RegisterComponentInHierarchy<OrderView>();
+            builder.RegisterComponentInHierarchy<PlayerParameterView>();
             builder.RegisterComponentInHierarchy<TableView>();
         }
     }

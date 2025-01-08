@@ -5,6 +5,11 @@ namespace PrimeMillionaire.Game
         public const GameState INIT_STATE = GameState.Init;
     }
 
+    public sealed class BattleConfig
+    {
+        public const float TWEEN_DURATION = 0.25f;
+    }
+
     public sealed class CardConfig
     {
         public const int MAX_RANK = 13;
