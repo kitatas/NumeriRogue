@@ -29,7 +29,8 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _enemyParameterEntity.Init(enemyParameter);
 
             await (
-                Router.Default.PublishAsync(_playerParameterEntity.ToVO(), token)
+                Router.Default.PublishAsync(_playerParameterEntity.ToVO(), token).AsUniTask(),
+                Router.Default.PublishAsync(_enemyParameterEntity.ToVO(), token).AsUniTask()
             );
         }
     }

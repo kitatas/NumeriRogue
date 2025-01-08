@@ -79,6 +79,17 @@ namespace PrimeMillionaire.Game
         }
     }
 
+    public sealed class EnemyParameterVO : ParameterVO, ICommand
+    {
+        public EnemyParameterVO(int type, int hp, int atk, int def) : base(type, hp, atk, def)
+        {
+        }
+
+        public EnemyParameterVO(ParameterVO parameter, int currentHp) : base(parameter, currentHp)
+        {
+        }
+    }
+
     public sealed class HandVO
     {
         public readonly int index;

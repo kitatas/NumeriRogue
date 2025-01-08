@@ -9,10 +9,12 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
     public sealed class ParameterPresenter : IStartable
     {
         private readonly PlayerParameterView _playerParameterView;
+        private readonly EnemyParameterView _enemyParameterView;
 
-        public ParameterPresenter(PlayerParameterView playerParameterView)
+        public ParameterPresenter(PlayerParameterView playerParameterView, EnemyParameterView enemyParameterView)
         {
             _playerParameterView = playerParameterView;
+            _enemyParameterView = enemyParameterView;
         }
 
         public void Start()
@@ -24,6 +26,14 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
                         .WithCancellation(context.CancellationToken);
                 })
                 .AddTo(_playerParameterView);
+
+            Router.Default
+                .SubscribeAwait<EnemyParameterVO>(async (x, context) =>
+                {
+                    await _enemyParameterView.Render(x, BattleConfig.TWEEN_DURATION)
+                        .WithCancellation(context.CancellationToken);
+                })
+                .AddTo(_enemyParameterView);
         }
     }
 }
