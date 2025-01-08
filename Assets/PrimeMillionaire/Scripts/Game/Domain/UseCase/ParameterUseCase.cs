@@ -1,5 +1,8 @@
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Game.Data.Entity;
 using PrimeMillionaire.Game.Domain.Repository;
+using VitalRouter;
 
 namespace PrimeMillionaire.Game.Domain.UseCase
 {
@@ -17,13 +20,17 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _parameterRepository = parameterRepository;
         }
 
-        public void Init()
+        public async UniTask InitAsync(CancellationToken token)
         {
             var playerParameter = _parameterRepository.Find(CharacterType.Andromeda);
-            _playerParameterEntity.SetParameter(playerParameter);
+            _playerParameterEntity.Init(playerParameter);
 
             var enemyParameter = _parameterRepository.Find(CharacterType.Borealjuggernaut);
-            _enemyParameterEntity.SetParameter(enemyParameter);
+            _enemyParameterEntity.Init(enemyParameter);
+
+            await (
+                Router.Default.PublishAsync(_playerParameterEntity.ToVO(), token)
+            );
         }
     }
 }

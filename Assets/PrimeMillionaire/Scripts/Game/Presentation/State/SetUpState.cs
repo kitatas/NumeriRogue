@@ -29,11 +29,10 @@ namespace PrimeMillionaire.Game.Presentation.State
         {
             var (player, enemy) = _characterUseCase.GetBattleCharacters();
             await (
+                _parameterUseCase.InitAsync(token),
                 _battleView.CreatePlayerAsync(player, token),
                 _battleView.CreateEnemyAsync(enemy, token)
             );
-
-            _parameterUseCase.Init();
 
             return GameState.Deal;
         }

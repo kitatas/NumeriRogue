@@ -56,6 +56,15 @@ namespace PrimeMillionaire.Game
             this.currentHp = hp;
         }
 
+        public ParameterVO(ParameterVO parameter, int currentHp)
+        {
+            this.type = parameter.type;
+            this.hp = parameter.hp;
+            this.atk = parameter.atk;
+            this.def = parameter.def;
+            this.currentHp = currentHp;
+        }
+
         public string name => type.FastToString();
     }
 
