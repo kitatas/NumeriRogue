@@ -39,7 +39,7 @@ namespace PrimeMillionaire.Game
         }
     }
 
-    public sealed class ParameterVO : ICommand
+    public class ParameterVO
     {
         public readonly CharacterType type;
         public readonly int hp;
@@ -66,6 +66,17 @@ namespace PrimeMillionaire.Game
         }
 
         public string name => type.FastToString();
+    }
+
+    public sealed class PlayerParameterVO : ParameterVO, ICommand
+    {
+        public PlayerParameterVO(int type, int hp, int atk, int def) : base(type, hp, atk, def)
+        {
+        }
+
+        public PlayerParameterVO(ParameterVO parameter, int currentHp) : base(parameter, currentHp)
+        {
+        }
     }
 
     public sealed class HandVO

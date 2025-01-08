@@ -18,7 +18,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
         public void Start()
         {
             Router.Default
-                .SubscribeAwait<ParameterVO>(async (x, context) =>
+                .SubscribeAwait<PlayerParameterVO>(async (x, context) =>
                 {
                     await _playerParameterView.Render(x, BattleConfig.TWEEN_DURATION)
                         .WithCancellation(context.CancellationToken);
