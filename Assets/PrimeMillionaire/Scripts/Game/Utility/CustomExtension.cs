@@ -15,6 +15,13 @@ namespace PrimeMillionaire.Game.Utility
             };
         }
 
+        public static Suit ToSuit(this int self)
+        {
+            return FastEnum.IsDefined<Suit>(self)
+                ? (Suit)self
+                : throw new Exception();
+        }
+
         public static CharacterType ToCharacterType(this int self)
         {
             return FastEnum.IsDefined<CharacterType>(self)

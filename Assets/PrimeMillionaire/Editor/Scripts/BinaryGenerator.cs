@@ -49,7 +49,7 @@ namespace PrimeMillionaire.Editor.Scripts
                 for (int i = 1; i <= CardConfig.MAX_RANK; i++)
                 {
                     var imgPath = $"Assets/Externals/Sprites/Cards/card_{suit.FastToString().ToLower()}s_{i}.png";
-                    cardMaster.Add(new CardMaster(id++, suit, i, imgPath));
+                    cardMaster.Add(new CardMaster(id++, suit.ToInt32(), i, imgPath));
                 }
             }
 

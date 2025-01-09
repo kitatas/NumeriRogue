@@ -6,7 +6,7 @@ namespace PrimeMillionaire.Game.Data.DataStore
     [MemoryTable(nameof(CardMaster)), MessagePackObject(true)]
     public sealed class CardMaster
     {
-        public CardMaster(int id, Suit suit, int rank, string imgPath)
+        public CardMaster(int id, int suit, int rank, string imgPath)
         {
             Id = id;
             Suit = suit;
@@ -15,7 +15,7 @@ namespace PrimeMillionaire.Game.Data.DataStore
         }
 
         [PrimaryKey] public int Id { get; }
-        public Suit Suit { get; }
+        public int Suit { get; }
         public int Rank { get; }
         public string ImgPath { get; }
 

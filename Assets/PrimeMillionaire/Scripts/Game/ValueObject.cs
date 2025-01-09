@@ -12,16 +12,16 @@ namespace PrimeMillionaire.Game
         public readonly string imgPath;
         public readonly Sprite sprite;
 
-        public CardVO(Suit suit, int rank, Sprite sprite)
+        public CardVO(int suit, int rank, Sprite sprite)
         {
-            this.suit = suit;
+            this.suit = suit.ToSuit();
             this.rank = rank;
             this.sprite = sprite;
         }
 
-        public CardVO(Suit suit, int rank, string imgPath)
+        public CardVO(int suit, int rank, string imgPath)
         {
-            this.suit = suit;
+            this.suit = suit.ToSuit();
             this.rank = rank;
             this.imgPath = imgPath;
         }
