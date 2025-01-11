@@ -22,6 +22,6 @@ namespace PrimeMillionaire.Game.Data.Entity
         public void SetHp(int hp) => _hp = hp;
 
         public void Heal(int value) => _hp = Mathf.Min(maxHp, currentHp + value);
-        public void Damage(int value) => _hp = Mathf.Max(0, currentHp - value);
+        public void Damage(int value) => _hp = Mathf.Max(0, currentHp - Mathf.Max(0, value));
     }
 }
