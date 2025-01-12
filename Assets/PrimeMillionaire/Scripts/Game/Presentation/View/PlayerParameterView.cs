@@ -1,6 +1,7 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace PrimeMillionaire.Game.Presentation.View
 {
@@ -11,6 +12,7 @@ namespace PrimeMillionaire.Game.Presentation.View
         [SerializeField] private TextMeshProUGUI atk = default;
         [SerializeField] private TextMeshProUGUI def = default;
         [SerializeField] private TextMeshProUGUI currentHp = default;
+        [SerializeField] private Image hpGauge = default;
 
         public Tween Render(ParameterVO parameter, float duration)
         {
@@ -36,6 +38,11 @@ namespace PrimeMillionaire.Game.Presentation.View
                     () => int.Parse(currentHp.text),
                     x => currentHp.text = $"{x}",
                     parameter.currentHp,
+                    duration))
+                .Join(DOTween.To(
+                    () => hpGauge.fillAmount,
+                    x => hpGauge.fillAmount = x,
+                    parameter.hpRate,
                     duration));
         }
     }

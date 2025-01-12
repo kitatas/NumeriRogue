@@ -66,6 +66,7 @@ namespace PrimeMillionaire.Game
         }
 
         public string name => type.FastToString();
+        public float hpRate => (float)currentHp / hp;
     }
 
     public sealed class PlayerParameterVO : ParameterVO, ICommand
