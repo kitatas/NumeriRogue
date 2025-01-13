@@ -32,4 +32,12 @@ namespace PrimeMillionaire.Game
         Andromeda = 1,
         Borealjuggernaut = 2,
     }
+
+    public enum BonusType
+    {
+        None = 0,
+        PrimeNumber = 1,
+        Suit = 2,
+        Down = 3,
+    }
 }

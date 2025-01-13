@@ -21,6 +21,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.RegisterInstance<MemoryDatabase>(new MemoryDatabase(memoryFile.bytes));
 
             // Entity
+            builder.Register<BonusEntity>(Lifetime.Scoped);
             builder.Register<DeckEntity>(Lifetime.Scoped);
             builder.Register<EnemyBattlePtEntity>(Lifetime.Scoped);
             builder.Register<EnemyHandEntity>(Lifetime.Scoped);

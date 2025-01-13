@@ -28,5 +28,16 @@ namespace PrimeMillionaire.Game.Utility
                 ? (CharacterType)self
                 : throw new Exception();
         }
+
+        public static float ToBonus(this BonusType type)
+        {
+            return type switch
+            {
+                BonusType.PrimeNumber => 2.0f,
+                BonusType.Suit => 1.5f,
+                BonusType.Down => 0.5f,
+                _ => throw new Exception(),
+            };
+        }
     }
 }
