@@ -17,5 +17,7 @@ namespace PrimeMillionaire.Game.Data.Entity
         public void Clear() => _bonusTypes.Clear();
 
         public float totalValue => 1.0f + _bonusTypes.Sum(x => x.ToBonus());
+
+        public BonusVO ToVO() => new(_bonusTypes);
     }
 }

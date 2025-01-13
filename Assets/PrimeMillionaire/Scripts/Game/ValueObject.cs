@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using FastEnumUtility;
 using PrimeMillionaire.Game.Utility;
 using UnityEngine;
@@ -121,10 +122,22 @@ namespace PrimeMillionaire.Game
     public sealed class OrderValueVO : ICommand
     {
         public readonly int value;
+        public readonly BonusVO bonus;
 
-        public OrderValueVO(int value)
+        public OrderValueVO(int value, BonusVO bonus)
         {
             this.value = value;
+            this.bonus = bonus;
+        }
+    }
+
+    public sealed class BonusVO
+    {
+        public readonly List<BonusType> types;
+
+        public BonusVO(List<BonusType> types)
+        {
+            this.types = types;
         }
     }
 

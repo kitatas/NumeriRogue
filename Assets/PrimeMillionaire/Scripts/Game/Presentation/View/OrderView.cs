@@ -1,6 +1,7 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using PrimeMillionaire.Game.Utility;
 using TMPro;
 using UniEx;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace PrimeMillionaire.Game.Presentation.View
     {
         [SerializeField] private CardView[] cardViews = default;
         [SerializeField] private TextMeshProUGUI currentValue = default;
+        [SerializeField] private BonusView bonusView = default;
 
         public void Init()
         {
@@ -20,8 +22,7 @@ namespace PrimeMillionaire.Game.Presentation.View
             }
 
             currentValue.text = "0";
-            currentValue
-                .DOFade(0.0f, 0.0f);
+            bonusView.Hide(0.0f);
         }
 
         public async UniTask RenderAsync(int index, CardVO card, CancellationToken token)
@@ -40,28 +41,29 @@ namespace PrimeMillionaire.Game.Presentation.View
             }
         }
 
-        public async UniTask SetAsync(int value, CancellationToken token)
+        public async UniTask SetAsync(OrderValueVO orderValue, CancellationToken token)
         {
-            if (value == 0)
+            var value = orderValue.value;
+            await TweenOrderValue(value).WithCancellation(token);
+
+            foreach (var type in orderValue.bonus.types)
             {
-                await DOTween.Sequence()
-                    .Append(currentValue
-                        .DOFade(0.0f, OrderConfig.TWEEN_DURATION))
-                    .AppendCallback(() => currentValue.text = "0")
-                    .WithCancellation(token);
+                value = (int)(value * type.ToBonus());
+                await bonusView.TweenAsync(type, token);
+                await TweenOrderValue(value).WithCancellation(token);
             }
-            else
-            {
-                await DOTween.Sequence()
-                    .Append(currentValue
-                        .DOFade(1.0f, OrderConfig.TWEEN_DURATION))
-                    .Append(DOTween.To(
-                        () => int.Parse(currentValue.text),
-                        x => currentValue.text = $"{x}",
-                        value,
-                        OrderConfig.TWEEN_DURATION))
-                    .WithCancellation(token);
-            }
+        }
+
+        private Tween TweenOrderValue(int value)
+        {
+            return DOTween.Sequence()
+                .Append(currentValue
+                    .DOFade(1.0f, OrderConfig.TWEEN_DURATION))
+                .Append(DOTween.To(
+                    () => int.Parse(currentValue.text),
+                    x => currentValue.text = $"{x}",
+                    value,
+                    OrderConfig.TWEEN_DURATION));
         }
     }
 }
