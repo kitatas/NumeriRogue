@@ -16,7 +16,10 @@ namespace PrimeMillionaire.Game.Data.Entity
         public void Add(BonusType type) => _bonusTypes.Add(type);
         public void Clear() => _bonusTypes.Clear();
 
-        public float totalValue => 1.0f + _bonusTypes.Sum(x => x.ToBonus());
+        public int CalcOrderValue(int value)
+        {
+            return _bonusTypes.Aggregate(value, (current, type) => (int)(current * type.ToBonus()));
+        }
 
         public BonusVO ToVO() => new(_bonusTypes);
     }

@@ -60,6 +60,8 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             ? 0
             : int.Parse(string.Join("", _orders.Select(x => x.card.rank)));
 
+        public int currentValueWithBonus => _bonusEntity.CalcOrderValue(currentValue);
+
         private bool isSuitBonus => _orders.Any(x => x.card != null) &&
                                     _orders.Select(x => x.card.suit).GroupBy(x => x).Count() == 1;
 
