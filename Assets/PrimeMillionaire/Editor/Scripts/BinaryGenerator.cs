@@ -27,6 +27,7 @@ namespace PrimeMillionaire.Editor.Scripts
             databaseBuilder.Append(GetCardMaster());
             databaseBuilder.Append(GetCharacterMaster());
             databaseBuilder.Append(GetParameterMaster());
+            databaseBuilder.Append(GetPrimeNumberMaster());
             var binary = databaseBuilder.Build();
 
             var bytes = "Assets/Externals/Binary/MasterMemory.bytes";
@@ -75,6 +76,27 @@ namespace PrimeMillionaire.Editor.Scripts
             parameterMaster.Add(new ParameterMaster(CharacterType.Andromeda.ToInt32(), 1100, 110, 120));
             parameterMaster.Add(new ParameterMaster(CharacterType.Borealjuggernaut.ToInt32(), 1200, 130, 140));
             return parameterMaster;
+        }
+
+        private static List<PrimeNumberMaster> GetPrimeNumberMaster()
+        {
+            var primeNumberMaster = new List<PrimeNumberMaster>();
+            for (int i = 111; i < 131313; i += 2)
+            {
+                if (IsPrime(i)) primeNumberMaster.Add(new PrimeNumberMaster(i));
+            }
+
+            return primeNumberMaster;
+        }
+
+        private static bool IsPrime(int value)
+        {
+            for (int i = 3; i * i <= value; i += 2)
+            {
+                if (value % i == 0) return false;
+            }
+
+            return true;
         }
     }
 }
