@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using ObservableCollections;
 using PrimeMillionaire.Common.Utility;
 using PrimeMillionaire.Game.Data.Entity;
+using PrimeMillionaire.Game.Domain.Repository;
 using VitalRouter;
 
 namespace PrimeMillionaire.Game.Domain.UseCase
@@ -11,11 +12,13 @@ namespace PrimeMillionaire.Game.Domain.UseCase
     public sealed class OrderUseCase
     {
         private readonly BonusEntity _bonusEntity;
+        private readonly PrimeNumberRepository _primeNumberRepository;
         private readonly ObservableList<OrderVO> _orders;
 
-        public OrderUseCase(BonusEntity bonusEntity)
+        public OrderUseCase(BonusEntity bonusEntity, PrimeNumberRepository primeNumberRepository)
         {
             _bonusEntity = bonusEntity;
+            _primeNumberRepository = primeNumberRepository;
             _orders = new ObservableList<OrderVO>(HandConfig.ORDER_NUM)
             {
                 new OrderVO(),
@@ -62,12 +65,15 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public int currentValueWithBonus => _bonusEntity.CalcOrderValue(currentValue);
 
+        private bool isPrimeNumber => _primeNumberRepository.IsExist(currentValue);
+
         private bool isSuitBonus => _orders.Any(x => x.card != null) &&
                                     _orders.Select(x => x.card.suit).GroupBy(x => x).Count() == 1;
 
         public async UniTask PushValueAsync(CancellationToken token)
         {
             _bonusEntity.Clear();
+            if (isPrimeNumber) _bonusEntity.Add(BonusType.PrimeNumber);
             if (isSuitBonus) _bonusEntity.Add(BonusType.Suit);
 
             await Router.Default.PublishAsync(new OrderValueVO(currentValue, _bonusEntity.ToVO()), token);

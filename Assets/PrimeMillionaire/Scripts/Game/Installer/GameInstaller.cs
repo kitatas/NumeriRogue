@@ -34,6 +34,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.Register<CardRepository>(Lifetime.Scoped);
             builder.Register<CharacterRepository>(Lifetime.Scoped);
             builder.Register<ParameterRepository>(Lifetime.Scoped);
+            builder.Register<PrimeNumberRepository>(Lifetime.Scoped);
 
             // UseCase
             builder.Register<BattlePtUseCase>(Lifetime.Scoped);
