@@ -33,5 +33,11 @@ namespace PrimeMillionaire.Game.Data.DataStore
             return this;
         }
 
+        public DatabaseBuilder Append(System.Collections.Generic.IEnumerable<PrimeNumberMaster> dataSource)
+        {
+            AppendCore(dataSource, x => x.Value, System.Collections.Generic.Comparer<int>.Default);
+            return this;
+        }
+
     }
 }

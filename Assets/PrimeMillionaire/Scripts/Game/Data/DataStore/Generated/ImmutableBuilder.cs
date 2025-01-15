@@ -31,7 +31,8 @@ namespace PrimeMillionaire.Game.Data.DataStore
             memory = new MemoryDatabase(
                 table,
                 memory.CharacterMasterTable,
-                memory.ParameterMasterTable
+                memory.ParameterMasterTable,
+                memory.PrimeNumberMasterTable
             
             );
         }
@@ -44,7 +45,8 @@ namespace PrimeMillionaire.Game.Data.DataStore
             memory = new MemoryDatabase(
                 table,
                 memory.CharacterMasterTable,
-                memory.ParameterMasterTable
+                memory.ParameterMasterTable,
+                memory.PrimeNumberMasterTable
             
             );
         }
@@ -57,7 +59,8 @@ namespace PrimeMillionaire.Game.Data.DataStore
             memory = new MemoryDatabase(
                 table,
                 memory.CharacterMasterTable,
-                memory.ParameterMasterTable
+                memory.ParameterMasterTable,
+                memory.PrimeNumberMasterTable
             
             );
         }
@@ -69,7 +72,8 @@ namespace PrimeMillionaire.Game.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 table,
-                memory.ParameterMasterTable
+                memory.ParameterMasterTable,
+                memory.PrimeNumberMasterTable
             
             );
         }
@@ -82,7 +86,8 @@ namespace PrimeMillionaire.Game.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 table,
-                memory.ParameterMasterTable
+                memory.ParameterMasterTable,
+                memory.PrimeNumberMasterTable
             
             );
         }
@@ -95,7 +100,8 @@ namespace PrimeMillionaire.Game.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 table,
-                memory.ParameterMasterTable
+                memory.ParameterMasterTable,
+                memory.PrimeNumberMasterTable
             
             );
         }
@@ -107,7 +113,8 @@ namespace PrimeMillionaire.Game.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
-                table
+                table,
+                memory.PrimeNumberMasterTable
             
             );
         }
@@ -120,7 +127,8 @@ namespace PrimeMillionaire.Game.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
-                table
+                table,
+                memory.PrimeNumberMasterTable
             
             );
         }
@@ -133,6 +141,48 @@ namespace PrimeMillionaire.Game.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
+                table,
+                memory.PrimeNumberMasterTable
+            
+            );
+        }
+
+        public void ReplaceAll(System.Collections.Generic.IList<PrimeNumberMaster> data)
+        {
+            var newData = CloneAndSortBy(data, x => x.Value, System.Collections.Generic.Comparer<int>.Default);
+            var table = new PrimeNumberMasterTable(newData);
+            memory = new MemoryDatabase(
+                memory.CardMasterTable,
+                memory.CharacterMasterTable,
+                memory.ParameterMasterTable,
+                table
+            
+            );
+        }
+
+        public void RemovePrimeNumberMaster(int[] keys)
+        {
+            var data = RemoveCore(memory.PrimeNumberMasterTable.GetRawDataUnsafe(), keys, x => x.Value, System.Collections.Generic.Comparer<int>.Default);
+            var newData = CloneAndSortBy(data, x => x.Value, System.Collections.Generic.Comparer<int>.Default);
+            var table = new PrimeNumberMasterTable(newData);
+            memory = new MemoryDatabase(
+                memory.CardMasterTable,
+                memory.CharacterMasterTable,
+                memory.ParameterMasterTable,
+                table
+            
+            );
+        }
+
+        public void Diff(PrimeNumberMaster[] addOrReplaceData)
+        {
+            var data = DiffCore(memory.PrimeNumberMasterTable.GetRawDataUnsafe(), addOrReplaceData, x => x.Value, System.Collections.Generic.Comparer<int>.Default);
+            var newData = CloneAndSortBy(data, x => x.Value, System.Collections.Generic.Comparer<int>.Default);
+            var table = new PrimeNumberMasterTable(newData);
+            memory = new MemoryDatabase(
+                memory.CardMasterTable,
+                memory.CharacterMasterTable,
+                memory.ParameterMasterTable,
                 table
             
             );
