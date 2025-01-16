@@ -1,5 +1,21 @@
 {
   "dependencies": {
+    "com.annulusgames.alchemy": {
+      "version": "https://github.com/AnnulusGames/Alchemy.git?path=/Alchemy/Assets/Alchemy",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "84fb71550bf28d2b5250adafac948e802ddd4b51"
+    },
+    "com.coffee.ui-effect": {
+      "version": "5.2.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
     "com.cysharp.mastermemory": {
       "version": "2.4.4",
       "depth": 0,
@@ -22,6 +38,13 @@
       "source": "registry",
       "dependencies": {},
       "url": "https://package.openupm.com"
+    },
+    "com.kitatas.uniex": {
+      "version": "https://github.com/kitatas/UniEx.git?path=/Assets/UniEx",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "4b1b9203be7cec1a0b1d4ed2ecb5e26f81bebc8c"
     },
     "com.unity.2d.animation": {
       "version": "10.1.1",
@@ -116,6 +139,20 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.addressables": {
+      "version": "1.21.21",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.assetbundle": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0",
+        "com.unity.modules.imageconversion": "1.0.0",
+        "com.unity.modules.unitywebrequest": "1.0.0",
+        "com.unity.scriptablebuildpipeline": "1.21.23",
+        "com.unity.modules.unitywebrequestassetbundle": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.burst": {
       "version": "1.8.13",
       "depth": 1,
@@ -182,6 +219,22 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.profiling.core": {
+      "version": "1.0.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.recorder": {
+      "version": "5.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.timeline": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.render-pipelines.core": {
       "version": "16.0.6",
       "depth": 1,
@@ -215,6 +268,13 @@
         "com.unity.mathematics": "1.2.4",
         "com.unity.render-pipelines.core": "16.0.1"
       }
+    },
+    "com.unity.scriptablebuildpipeline": {
+      "version": "1.21.23",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
     },
     "com.unity.searcher": {
       "version": "4.9.2",
@@ -265,7 +325,14 @@
       }
     },
     "jp.hadashikick.vcontainer": {
-      "version": "1.16.3",
+      "version": "1.16.8",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
+    "jp.hadashikick.vitalrouter": {
+      "version": "1.6.2",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
@@ -281,29 +348,38 @@
       "url": "https://unitynuget-registry.azurewebsites.net"
     },
     "org.nuget.messagepack": {
-      "version": "2.5.187",
+      "version": "3.1.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "org.nuget.messagepack.annotations": "2.5.187",
-        "org.nuget.microsoft.bcl.asyncinterfaces": "6.0.0",
-        "org.nuget.system.collections.immutable": "6.0.0",
+        "org.nuget.messagepackanalyzer": "3.1.1",
+        "org.nuget.messagepack.annotations": "3.1.1",
+        "org.nuget.microsoft.bcl.asyncinterfaces": "8.0.0",
+        "org.nuget.system.collections.immutable": "8.0.0",
         "org.nuget.system.reflection.emit": "4.7.0",
         "org.nuget.system.reflection.emit.lightweight": "4.7.0",
         "org.nuget.system.threading.tasks.extensions": "4.5.4",
+        "org.nuget.system.memory": "4.5.5",
         "org.nuget.system.runtime.compilerservices.unsafe": "6.0.0"
       },
       "url": "https://unitynuget-registry.azurewebsites.net"
     },
     "org.nuget.messagepack.annotations": {
-      "version": "2.5.187",
+      "version": "3.1.1",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://unitynuget-registry.azurewebsites.net"
+    },
+    "org.nuget.messagepackanalyzer": {
+      "version": "3.1.1",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://unitynuget-registry.azurewebsites.net"
     },
     "org.nuget.microsoft.bcl.asyncinterfaces": {
-      "version": "6.0.0",
+      "version": "8.0.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -330,6 +406,26 @@
       },
       "url": "https://unitynuget-registry.azurewebsites.net"
     },
+    "org.nuget.observablecollections": {
+      "version": "3.3.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "org.nuget.system.memory": "4.5.4",
+        "org.nuget.system.runtime.compilerservices.unsafe": "6.0.0"
+      },
+      "url": "https://unitynuget-registry.azurewebsites.net"
+    },
+    "org.nuget.observablecollections.r3": {
+      "version": "3.3.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "org.nuget.observablecollections": "3.3.3",
+        "org.nuget.r3": "1.0.0"
+      },
+      "url": "https://unitynuget-registry.azurewebsites.net"
+    },
     "org.nuget.r3": {
       "version": "1.2.9",
       "depth": 0,
@@ -352,12 +448,12 @@
       "url": "https://unitynuget-registry.azurewebsites.net"
     },
     "org.nuget.system.collections.immutable": {
-      "version": "6.0.0",
+      "version": "8.0.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "org.nuget.system.runtime.compilerservices.unsafe": "6.0.0",
-        "org.nuget.system.memory": "4.5.4"
+        "org.nuget.system.memory": "4.5.5",
+        "org.nuget.system.runtime.compilerservices.unsafe": "6.0.0"
       },
       "url": "https://unitynuget-registry.azurewebsites.net"
     },
