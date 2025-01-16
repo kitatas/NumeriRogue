@@ -11,10 +11,10 @@ namespace PrimeMillionaire.Common.Installer
         protected override void Configure(IContainerBuilder builder)
         {
             // UseCase
-            builder.Register<SceneUseCase>(Lifetime.Scoped);
+            builder.Register<SceneUseCase>(Lifetime.Singleton);
 
             // Presenter
-            builder.UseEntryPoints(Lifetime.Scoped, entryPoints =>
+            builder.UseEntryPoints(Lifetime.Singleton, entryPoints =>
             {
                 entryPoints.Add<ScenePresenter>();
             });

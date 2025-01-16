@@ -23,10 +23,13 @@ namespace PrimeMillionaire.Common.Presentation.Presenter
             _sceneUseCase.load
                 .SubscribeAwait(async (x, token) =>
                 {
-                    // TODO: transition
+                    if (x.isFade) await _transitionView.FadeIn(0.1f).WithCancellation(token);
                     await SceneManager.LoadSceneAsync(x.name).ToUniTask(cancellationToken: token);
+                    if (x.isFade) await _transitionView.FadeOut(0.1f).WithCancellation(token);
                 })
                 .AddTo(_transitionView);
+
+            _transitionView.FadeOut(0.0f);
         }
     }
 }

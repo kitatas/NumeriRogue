@@ -14,5 +14,6 @@ namespace PrimeMillionaire.Common
         }
 
         public string name => sceneName.FastToString();
+        public bool isFade => loadType == LoadType.Fade;
     }
 }
