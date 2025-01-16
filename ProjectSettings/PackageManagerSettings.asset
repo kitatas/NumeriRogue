@@ -39,6 +39,7 @@ MonoBehaviour:
     m_Name: OpenUPM
     m_Url: https://package.openupm.com
     m_Scopes:
+    - com.coffee
     - com.cysharp
     - jp.hadashikick
     m_IsDefault: 0
