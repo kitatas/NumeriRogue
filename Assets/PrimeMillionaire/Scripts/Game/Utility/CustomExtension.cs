@@ -35,7 +35,7 @@ namespace PrimeMillionaire.Game.Utility
             {
                 BonusType.PrimeNumber => 2.0f,
                 BonusType.Suit => 1.5f,
-                BonusType.Down => 0.5f,
+                BonusType.ValueDown => 0.5f,
                 _ => throw new Exception(),
             };
         }

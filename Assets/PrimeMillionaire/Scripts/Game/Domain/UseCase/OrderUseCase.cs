@@ -14,6 +14,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         private readonly BonusEntity _bonusEntity;
         private readonly PrimeNumberRepository _primeNumberRepository;
         private readonly ObservableList<OrderVO> _orders;
+        private int _prevValue;
 
         public OrderUseCase(BonusEntity bonusEntity, PrimeNumberRepository primeNumberRepository)
         {
@@ -25,6 +26,8 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 new OrderVO(),
                 new OrderVO(),
             };
+
+            _prevValue = 0;
         }
 
         public ObservableList<OrderVO> orders => _orders;
@@ -70,14 +73,19 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         private bool isSuitBonus => _orders.Any(x => x.card != null) &&
                                     _orders.Select(x => x.card.suit).GroupBy(x => x).Count() == 1;
 
+        private bool isValueDown => _prevValue >= currentValue;
+
         public async UniTask PushValueAsync(CancellationToken token)
         {
             _bonusEntity.Clear();
             if (isPrimeNumber) _bonusEntity.Add(BonusType.PrimeNumber);
             if (isSuitBonus) _bonusEntity.Add(BonusType.Suit);
+            if (isValueDown) _bonusEntity.Add(BonusType.ValueDown);
 
             await Router.Default.PublishAsync(new OrderValueVO(currentValue, _bonusEntity.ToVO()), token);
             await UniTaskHelper.DelayAsync(1.0f, token);
+
+            _prevValue = currentValueWithBonus;
         }
     }
 }

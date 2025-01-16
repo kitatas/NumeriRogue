@@ -38,6 +38,6 @@ namespace PrimeMillionaire.Game
         None = 0,
         PrimeNumber = 1,
         Suit = 2,
-        Down = 3,
+        ValueDown = 3,
     }
 }
