@@ -19,7 +19,7 @@ namespace PrimeMillionaire.Game.Presentation.View
         public async UniTask TweenAsync(BonusType type, CancellationToken token)
         {
             bonusType.text = $"{type.FastToString()}";
-            bonusValue.text = $"x {type.ToBonus()}";
+            bonusValue.text = $"x {type.ToBonus():0.0}";
 
             await Show(0.25f).WithCancellation(token);
             await UniTaskHelper.DelayAsync(0.25f, token);
