@@ -7,12 +7,23 @@ namespace PrimeMillionaire.Game.Presentation.View
 {
     public sealed class PlayerParameterView : MonoBehaviour
     {
+        [SerializeField] private RectTransform arrow = default;
         [SerializeField] private TextMeshProUGUI characterName = default;
         [SerializeField] private TextMeshProUGUI hp = default;
         [SerializeField] private TextMeshProUGUI atk = default;
         [SerializeField] private TextMeshProUGUI def = default;
         [SerializeField] private TextMeshProUGUI currentHp = default;
         [SerializeField] private Image hpGauge = default;
+
+        private void Awake()
+        {
+            var y = arrow.anchoredPosition.y;
+            arrow
+                .DOAnchorPosY(y - 10.0f, 1.0f)
+                .SetEase(Ease.InQuint)
+                .SetLoops(-1, LoopType.Yoyo)
+                .SetLink(gameObject);
+        }
 
         public Tween Render(ParameterVO parameter, float duration)
         {
@@ -43,7 +54,8 @@ namespace PrimeMillionaire.Game.Presentation.View
                     () => hpGauge.fillAmount,
                     x => hpGauge.fillAmount = x,
                     parameter.hpRate,
-                    duration));
+                    duration))
+                .SetLink(gameObject);
         }
     }
 }
