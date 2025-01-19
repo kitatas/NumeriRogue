@@ -32,6 +32,8 @@ namespace PrimeMillionaire.Game.Presentation.State
 
         public override async UniTask<GameState> TickAsync(CancellationToken token)
         {
+            await _orderUseCase.FadeCardsAsync(1.0f, token);
+
             while (true)
             {
                 var (index, count) = await _tableView.OrderPlayerHandsAsync(token);
@@ -61,6 +63,7 @@ namespace PrimeMillionaire.Game.Presentation.State
                 _orderUseCase.Set(card);
                 await _tableView.TrashEnemyHandAsync(index, token);
             }
+
             _handUseCase.RemoveEnemyCards(enemyOrder.index.OrderByDescending(x => x));
 
             await _orderUseCase.PushValueAsync(token);
@@ -73,7 +76,13 @@ namespace PrimeMillionaire.Game.Presentation.State
 
             _tableView.DestroyHideCards();
 
-            return _handUseCase.IsPlayerHandsEmpty()
+            var isPlayerHandsEmpty = _handUseCase.IsPlayerHandsEmpty();
+            if (isPlayerHandsEmpty)
+            {
+                await _orderUseCase.FadeCardsAsync(0.0f, token);
+            }
+
+            return isPlayerHandsEmpty
                 ? GameState.Battle
                 : GameState.Order;
         }

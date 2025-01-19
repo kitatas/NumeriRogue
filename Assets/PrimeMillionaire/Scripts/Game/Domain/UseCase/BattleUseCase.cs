@@ -1,5 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using PrimeMillionaire.Common.Utility;
 using PrimeMillionaire.Game.Data.Entity;
 using VitalRouter;
 
@@ -39,6 +40,9 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public async UniTask ExecBattleAsync(CancellationToken token)
         {
+            // Damage Animation との調整
+            await UniTaskHelper.DelayAsync(0.25f, token);
+
             if (_playerBattlePtEntity.currentValue >= _enemyBattlePtEntity.currentValue)
             {
                 var atk = _playerParameterEntity.atk * _playerBattlePtEntity.currentValue;

@@ -30,10 +30,12 @@ namespace PrimeMillionaire.Game.Presentation.State
         {
             var attacker = _battlePtUseCase.GetAttacker();
             var isDestroy = _battleUseCase.IsDestroy();
-            _battleView.PlayAnimation(attacker, isDestroy);
+            await _battleView.PlayAttackAnimAsync(attacker, token);
 
-            await UniTaskHelper.DelayAsync(1.5f, token);
-            await _battleUseCase.ExecBattleAsync(token);
+            await (
+                _battleView.PlayDamageAnimAsync(attacker, isDestroy, token),
+                _battleUseCase.ExecBattleAsync(token)
+            );
 
             await _battlePtUseCase.ResetAsync(token);
 

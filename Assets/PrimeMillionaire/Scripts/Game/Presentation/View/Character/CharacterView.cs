@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 
 namespace PrimeMillionaire.Game.Presentation.View
@@ -48,6 +49,17 @@ namespace PrimeMillionaire.Game.Presentation.View
                 Side.Enemy => false,
                 _ => throw new Exception(),
             };
+        }
+
+        #endregion
+
+        #region Tween
+
+        public Tween TweenPositionX(float x, float duration)
+        {
+            return transform
+                .DOLocalMoveX(x, duration)
+                .SetLink(gameObject);
         }
 
         #endregion

@@ -39,4 +39,9 @@ namespace PrimeMillionaire.Game
         public const float TWEEN_DURATION = 0.5f;
         public const float TRASH_DURATION = 0.05f;
     }
+
+    public sealed class CharacterConfig
+    {
+        public const float MOVE_TIME = 0.25f;
+    }
 }

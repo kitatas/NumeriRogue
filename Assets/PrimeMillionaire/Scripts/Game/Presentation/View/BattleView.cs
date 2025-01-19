@@ -29,23 +29,34 @@ namespace PrimeMillionaire.Game.Presentation.View
             _enemyView.FlipX(Side.Enemy);
         }
 
-        public void PlayAnimation(Side attacker, bool isDestroy)
+        public async UniTask PlayAttackAnimAsync(Side attacker, CancellationToken token)
         {
             var (attackerView, defenderView) = GetCharacterViews(attacker);
+            await attackerView.TweenPositionX(0.0f, CharacterConfig.MOVE_TIME)
+                .WithCancellation(token);
 
             attackerView.Attack(true);
 
-            this.Delay(attackerView.applyDamageTime, () =>
-            {
-                attackerView.Attack(false);
-                defenderView.Damage(true);
+            await UniTaskHelper.DelayAsync(attackerView.applyDamageTime, token);
+        }
 
-                this.Delay(defenderView.deadTime, () =>
-                {
-                    defenderView.Damage(false);
-                    defenderView.Dead(isDestroy);
-                });
+        public async UniTask PlayDamageAnimAsync(Side attacker, bool isDestroy, CancellationToken token)
+        {
+            var (attackerView, defenderView) = GetCharacterViews(attacker);
+
+            attackerView.Attack(false);
+            defenderView.Damage(true);
+
+            this.Delay(defenderView.deadTime, () =>
+            {
+                defenderView.Damage(false);
+                defenderView.Dead(isDestroy);
             });
+            await UniTaskHelper.DelayAsync(1.5f, token);
+
+            var x = GetDefaultPositionX(attacker);
+            await attackerView.TweenPositionX(x, CharacterConfig.MOVE_TIME)
+                .WithCancellation(token);
         }
 
         private (CharacterView attackerView, CharacterView defenderView) GetCharacterViews(Side attacker)
@@ -54,6 +65,16 @@ namespace PrimeMillionaire.Game.Presentation.View
             {
                 Side.Player => (attackerView: _playerView, defenderView: _enemyView),
                 Side.Enemy => (attackerView: _enemyView, defenderView: _playerView),
+                _ => throw new Exception(),
+            };
+        }
+
+        private float GetDefaultPositionX(Side side)
+        {
+            return side switch
+            {
+                Side.Player => player.localPosition.x,
+                Side.Enemy => enemy.localPosition.x,
                 _ => throw new Exception(),
             };
         }
