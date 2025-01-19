@@ -131,6 +131,18 @@ namespace PrimeMillionaire.Game
         }
     }
 
+    public sealed class OrderCardsFadeVO : ICommand
+    {
+        public readonly float value;
+        public readonly float duration;
+
+        public OrderCardsFadeVO(float value, float duration)
+        {
+            this.value = value;
+            this.duration = duration;
+        }
+    }
+
     public sealed class BonusVO
     {
         public readonly List<BonusType> types;

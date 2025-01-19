@@ -83,5 +83,14 @@ namespace PrimeMillionaire.Game.Presentation.View
             return transform.ToRectTransform()
                 .DORotate(new Vector3(0.0f, value, 0.0f), duration, RotateMode.FastBeyond360);
         }
+
+        public Tween Fade(float value, float duration)
+        {
+            return DOTween.Sequence()
+                .Append(main.DOFade(value, duration))
+                .Join(background.DOFade(value, duration))
+                .Join(mask.DOFade(value, duration))
+                .SetLink(gameObject);
+        }
     }
 }

@@ -35,6 +35,13 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
                 })
                 .AddTo(_orderView);
 
+            Router.Default
+                .SubscribeAwait<OrderCardsFadeVO>(async (x, context) =>
+                {
+                    await _orderView.FadeCardsAsync(x.value, x.duration, context.CancellationToken);
+                })
+                .AddTo(_orderView);
+
             _orderView.Init();
         }
     }
