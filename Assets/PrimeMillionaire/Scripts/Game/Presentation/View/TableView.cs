@@ -26,7 +26,7 @@ namespace PrimeMillionaire.Game.Presentation.View
         {
             foreach (var playerHand in playerHands)
             {
-                var card = await CreateCardAsync(playerHand, token);
+                var card = CreateCardAsyncForget(playerHand, token);
                 await DealPlayerHandAsync(card, token);
             }
         }
@@ -36,7 +36,7 @@ namespace PrimeMillionaire.Game.Presentation.View
             await UniTaskHelper.DelayAsync(HandConfig.TWEEN_DURATION / 2.0f, token);
             foreach (var enemyHand in enemyHands)
             {
-                var card = await CreateCardAsync(enemyHand, token);
+                var card = CreateCardAsyncForget(enemyHand, token);
                 await DealEnemyHandAsync(card, token);
             }
         }
@@ -46,6 +46,14 @@ namespace PrimeMillionaire.Game.Presentation.View
             var card = Instantiate(cardView, transform);
             card.transform.localPosition = deck.localPosition;
             await card.RenderAsync(hand.card, token);
+            return card;
+        }
+
+        public CardView CreateCardAsyncForget(HandVO hand, CancellationToken token)
+        {
+            var card = Instantiate(cardView, transform);
+            card.transform.localPosition = deck.localPosition;
+            card.RenderAsync(hand.card, token).Forget();
             return card;
         }
 
