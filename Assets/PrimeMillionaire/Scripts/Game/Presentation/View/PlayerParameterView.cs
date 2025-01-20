@@ -14,6 +14,7 @@ namespace PrimeMillionaire.Game.Presentation.View
         [SerializeField] private TextMeshProUGUI def = default;
         [SerializeField] private TextMeshProUGUI currentHp = default;
         [SerializeField] private Image hpGauge = default;
+        [SerializeField] private Image redGauge = default;
 
         private void Awake()
         {
@@ -55,6 +56,12 @@ namespace PrimeMillionaire.Game.Presentation.View
                     x => hpGauge.fillAmount = x,
                     parameter.hpRate,
                     duration))
+                .Join(DOTween.To(
+                        () => redGauge.fillAmount,
+                        x => redGauge.fillAmount = x,
+                        parameter.hpRate,
+                        duration)
+                    .SetDelay(duration * 2.0f))
                 .SetLink(gameObject);
         }
     }
