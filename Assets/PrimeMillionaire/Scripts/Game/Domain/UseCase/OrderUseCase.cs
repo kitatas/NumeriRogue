@@ -88,9 +88,19 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _prevValue = currentValueWithBonus;
         }
 
-        public async UniTask FadeCardsAsync(float value, CancellationToken token)
+        public async UniTask ShowOrderCardsAsync(float duration, CancellationToken token)
         {
-            await Router.Default.PublishAsync(new OrderCardsFadeVO(value, OrderConfig.TWEEN_DURATION), token);
+            await FadeOrderCardsAsync(Fade.Out, duration, token);
+        }
+
+        public async UniTask HideOrderCardsAsync(float duration, CancellationToken token)
+        {
+            await FadeOrderCardsAsync(Fade.In, duration, token);
+        }
+
+        private async UniTask FadeOrderCardsAsync(Fade fade, float duration, CancellationToken token)
+        {
+            await Router.Default.PublishAsync(new OrderCardsFadeVO(fade, duration), token);
         }
     }
 }

@@ -40,4 +40,11 @@ namespace PrimeMillionaire.Game
         Suit = 2,
         ValueDown = 3,
     }
+
+    public enum Fade
+    {
+        None = 0,
+        In = 1,
+        Out = 2,
+    }
 }

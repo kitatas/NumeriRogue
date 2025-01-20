@@ -1,3 +1,4 @@
+using System;
 using ObservableCollections;
 using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.View;
@@ -38,7 +39,17 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
             Router.Default
                 .SubscribeAwait<OrderCardsFadeVO>(async (x, context) =>
                 {
-                    await _orderView.FadeCardsAsync(x.value, x.duration, context.CancellationToken);
+                    switch (x.fade)
+                    {
+                        case Fade.In:
+                            await _orderView.FadeInCardsAsync(x.duration, context.CancellationToken);
+                            break;
+                        case Fade.Out:
+                            await _orderView.FadeOutCardsAsync(x.duration, context.CancellationToken);
+                            break;
+                        default:
+                            throw new Exception();
+                    }
                 })
                 .AddTo(_orderView);
 

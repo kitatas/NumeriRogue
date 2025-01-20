@@ -66,10 +66,16 @@ namespace PrimeMillionaire.Game.Presentation.View
                     OrderConfig.TWEEN_DURATION));
         }
 
-        public async UniTask FadeCardsAsync(float value, float duration, CancellationToken token)
+        public async UniTask FadeInCardsAsync(float duration, CancellationToken token)
         {
             await UniTask.WhenAll(cardViews
-                .Select(x => x.Fade(value, duration).WithCancellation(token)));
+                .Select(x => x.FadeIn(duration).WithCancellation(token)));
+        }
+
+        public async UniTask FadeOutCardsAsync(float duration, CancellationToken token)
+        {
+            await UniTask.WhenAll(cardViews
+                .Select(x => x.FadeOut(duration).WithCancellation(token)));
         }
     }
 }
