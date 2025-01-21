@@ -151,7 +151,7 @@ PrefabInstance:
     - target: {fileID: 7076579982940099400, guid: 43d15ac4b62f84904bd3df5c6e70f65c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -8246103488371625927, guid: adc82568ebb8a469098ff7b437c0c6f4, type: 3}
+      objectReference: {fileID: -4403125564411251402, guid: 3101c17c910784ee49eb2cd602d69d77, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -526,7 +526,7 @@ PrefabInstance:
     - target: {fileID: 7076579982940099400, guid: 43d15ac4b62f84904bd3df5c6e70f65c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -8246103488371625927, guid: adc82568ebb8a469098ff7b437c0c6f4, type: 3}
+      objectReference: {fileID: -4403125564411251402, guid: 3101c17c910784ee49eb2cd602d69d77, type: 3}
     - target: {fileID: 7076579982940099400, guid: 43d15ac4b62f84904bd3df5c6e70f65c, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
