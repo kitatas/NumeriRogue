@@ -88,7 +88,6 @@ namespace PrimeMillionaire.Game.Data.DataStore.Tables
                 new MasterMemory.Meta.MetaProperty[]
                 {
                     new MasterMemory.Meta.MetaProperty(typeof(CharacterMaster).GetProperty("Type")),
-                    new MasterMemory.Meta.MetaProperty(typeof(CharacterMaster).GetProperty("ObjPath")),
                 },
                 new MasterMemory.Meta.MetaIndex[]{
                     new MasterMemory.Meta.MetaIndex(new System.Reflection.PropertyInfo[] {

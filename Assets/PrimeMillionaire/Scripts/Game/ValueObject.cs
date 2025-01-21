@@ -25,10 +25,11 @@ namespace PrimeMillionaire.Game
         public readonly CharacterType type;
         public readonly string objPath;
 
-        public CharacterVO(int type, string objPath)
+        public CharacterVO(int type)
         {
-            this.type = type.ToCharacterType();
-            this.objPath = objPath;
+            var t = type.ToCharacterType();
+            this.type = t;
+            this.objPath = $"Assets/PrimeMillionaire/Prefabs/Characters/{t.FastToString()}.prefab";
         }
     }
 

@@ -62,8 +62,7 @@ namespace PrimeMillionaire.Editor.Scripts
             foreach (var type in FastEnum.GetValues<CharacterType>())
             {
                 if (type == CharacterType.None) continue;
-                var objPath = $"Assets/PrimeMillionaire/Prefabs/Characters/{type.FastToString()}.prefab";
-                characterMaster.Add(new CharacterMaster(type.ToInt32(), objPath));
+                characterMaster.Add(new CharacterMaster(type.ToInt32()));
             }
 
             return characterMaster;
@@ -72,8 +71,8 @@ namespace PrimeMillionaire.Editor.Scripts
         private static List<ParameterMaster> GetParameterMaster()
         {
             var parameterMaster = new List<ParameterMaster>();
-            parameterMaster.Add(new ParameterMaster(CharacterType.Andromeda.ToInt32(), 1100, 110, 120));
-            parameterMaster.Add(new ParameterMaster(CharacterType.Borealjuggernaut.ToInt32(), 1200, 130, 140));
+            parameterMaster.Add(new ParameterMaster(CharacterType.Andromeda.ToInt32(), 1100, 110, 240));
+            parameterMaster.Add(new ParameterMaster(CharacterType.Borealjuggernaut.ToInt32(), 1200, 130, 280));
             return parameterMaster;
         }
 
