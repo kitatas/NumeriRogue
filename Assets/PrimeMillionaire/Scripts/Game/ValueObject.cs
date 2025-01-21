@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using FastEnumUtility;
 using PrimeMillionaire.Game.Utility;
-using UnityEngine;
 using VitalRouter;
 
 namespace PrimeMillionaire.Game
@@ -11,20 +10,13 @@ namespace PrimeMillionaire.Game
         public readonly Suit suit;
         public readonly int rank;
         public readonly string imgPath;
-        public readonly Sprite sprite;
 
-        public CardVO(int suit, int rank, Sprite sprite)
+        public CardVO(int suit, int rank)
         {
-            this.suit = suit.ToSuit();
+            var s = suit.ToSuit();
+            this.suit = s;
             this.rank = rank;
-            this.sprite = sprite;
-        }
-
-        public CardVO(int suit, int rank, string imgPath)
-        {
-            this.suit = suit.ToSuit();
-            this.rank = rank;
-            this.imgPath = imgPath;
+            this.imgPath = $"Assets/Externals/Sprites/Cards/cards.png[card_{s.FastToString().ToLower()}s_{rank}]";
         }
     }
 

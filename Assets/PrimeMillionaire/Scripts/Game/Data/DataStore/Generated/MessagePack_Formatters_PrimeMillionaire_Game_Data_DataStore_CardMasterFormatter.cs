@@ -24,8 +24,6 @@ namespace MessagePack.Formatters.PrimeMillionaire.Game.Data.DataStore
         private static global::System.ReadOnlySpan<byte> GetSpan_Suit() => new byte[1 + 4] { 164, 83, 117, 105, 116 };
         // Rank
         private static global::System.ReadOnlySpan<byte> GetSpan_Rank() => new byte[1 + 4] { 164, 82, 97, 110, 107 };
-        // ImgPath
-        private static global::System.ReadOnlySpan<byte> GetSpan_ImgPath() => new byte[1 + 7] { 167, 73, 109, 103, 80, 97, 116, 104 };
 
         public void Serialize(ref global::MessagePack.MessagePackWriter writer, global::PrimeMillionaire.Game.Data.DataStore.CardMaster value, global::MessagePack.MessagePackSerializerOptions options)
         {
@@ -35,16 +33,13 @@ namespace MessagePack.Formatters.PrimeMillionaire.Game.Data.DataStore
                 return;
             }
 
-            var formatterResolver = options.Resolver;
-            writer.WriteMapHeader(4);
+            writer.WriteMapHeader(3);
             writer.WriteRaw(GetSpan_Id());
             writer.Write(value.Id);
             writer.WriteRaw(GetSpan_Suit());
             writer.Write(value.Suit);
             writer.WriteRaw(GetSpan_Rank());
             writer.Write(value.Rank);
-            writer.WriteRaw(GetSpan_ImgPath());
-            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Serialize(ref writer, value.ImgPath, options);
         }
 
         public global::PrimeMillionaire.Game.Data.DataStore.CardMaster Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)
@@ -55,12 +50,10 @@ namespace MessagePack.Formatters.PrimeMillionaire.Game.Data.DataStore
             }
 
             options.Security.DepthStep(ref reader);
-            var formatterResolver = options.Resolver;
             var length = reader.ReadMapHeader();
             var __Id__ = default(int);
             var __Suit__ = default(int);
             var __Rank__ = default(int);
-            var __ImgPath__ = default(string);
 
             for (int i = 0; i < length; i++)
             {
@@ -87,16 +80,11 @@ namespace MessagePack.Formatters.PrimeMillionaire.Game.Data.DataStore
                                 __Rank__ = reader.ReadInt32();
                                 continue;
                         }
-                    case 7:
-                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 29401358887513417UL) { goto FAIL; }
-
-                        __ImgPath__ = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Deserialize(ref reader, options);
-                        continue;
 
                 }
             }
 
-            var ____result = new global::PrimeMillionaire.Game.Data.DataStore.CardMaster(__Id__, __Suit__, __Rank__, __ImgPath__);
+            var ____result = new global::PrimeMillionaire.Game.Data.DataStore.CardMaster(__Id__, __Suit__, __Rank__);
             reader.Depth--;
             return ____result;
         }
