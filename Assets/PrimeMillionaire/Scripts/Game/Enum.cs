@@ -37,7 +37,7 @@ namespace PrimeMillionaire.Game
     {
         None = 0,
         PrimeNumber = 1,
-        Suit = 2,
+        SuitMatch = 2,
         ValueDown = 3,
     }
 
