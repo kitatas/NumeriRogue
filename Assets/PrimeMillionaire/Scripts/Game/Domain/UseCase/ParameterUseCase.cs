@@ -20,18 +20,22 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _parameterRepository = parameterRepository;
         }
 
-        public async UniTask InitAsync(CancellationToken token)
+        public async UniTask InitPlayerParamAsync(CancellationToken token)
         {
-            var playerParameter = _parameterRepository.Find(CharacterType.Andromeda);
-            _playerParameterEntity.Init(playerParameter);
+            // TODO: CharacterTypeのベタ書き
+            var parameter = _parameterRepository.Find(CharacterType.Andromeda);
+            _playerParameterEntity.Init(parameter);
 
-            var enemyParameter = _parameterRepository.Find(CharacterType.Borealjuggernaut);
-            _enemyParameterEntity.Init(enemyParameter);
+            await Router.Default.PublishAsync(_playerParameterEntity.ToVO(), token);
+        }
 
-            await (
-                Router.Default.PublishAsync(_playerParameterEntity.ToVO(), token).AsUniTask(),
-                Router.Default.PublishAsync(_enemyParameterEntity.ToVO(), token).AsUniTask()
-            );
+        public async UniTask InitEnemyParamAsync(CancellationToken token)
+        {
+            // TODO: CharacterTypeのベタ書き
+            var parameter = _parameterRepository.Find(CharacterType.Borealjuggernaut);
+            _enemyParameterEntity.Init(parameter);
+
+            await Router.Default.PublishAsync(_enemyParameterEntity.ToVO(), token);
         }
     }
 }

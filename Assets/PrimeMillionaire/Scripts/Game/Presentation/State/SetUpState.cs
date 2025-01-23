@@ -27,10 +27,9 @@ namespace PrimeMillionaire.Game.Presentation.State
 
         public override async UniTask<GameState> TickAsync(CancellationToken token)
         {
-            var (player, enemy) = _characterUseCase.GetBattleCharacters();
+            var enemy = _characterUseCase.GetEnemyCharacter();
             await (
-                _parameterUseCase.InitAsync(token),
-                _battleView.CreatePlayerAsync(player, token),
+                _parameterUseCase.InitEnemyParamAsync(token),
                 _battleView.CreateEnemyAsync(enemy, token)
             );
 

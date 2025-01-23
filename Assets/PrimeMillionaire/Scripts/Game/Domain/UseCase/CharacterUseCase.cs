@@ -11,13 +11,16 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _characterRepository = characterRepository;
         }
 
-        public (CharacterVO player, CharacterVO enemy) GetBattleCharacters()
+        public CharacterVO GetPlayerCharacter()
         {
             // TODO: CharacterTypeのベタ書き
-            return (
-                player: _characterRepository.Find(CharacterType.Andromeda),
-                enemy: _characterRepository.Find(CharacterType.Borealjuggernaut)
-            );
+            return _characterRepository.Find(CharacterType.Andromeda);
+        }
+
+        public CharacterVO GetEnemyCharacter()
+        {
+            // TODO: CharacterTypeのベタ書き
+            return _characterRepository.Find(CharacterType.Borealjuggernaut);
         }
     }
 }

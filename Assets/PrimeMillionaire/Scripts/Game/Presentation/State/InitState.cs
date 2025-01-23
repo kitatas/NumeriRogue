@@ -1,11 +1,23 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Game.Domain.UseCase;
+using PrimeMillionaire.Game.Presentation.View;
 
 namespace PrimeMillionaire.Game.Presentation.State
 {
     public sealed class InitState : BaseState
     {
+        private readonly CharacterUseCase _characterUseCase;
+        private readonly ParameterUseCase _parameterUseCase;
+        private readonly BattleView _battleView;
+
+        public InitState(CharacterUseCase characterUseCase, ParameterUseCase parameterUseCase, BattleView battleView)
+        {
+            _characterUseCase = characterUseCase;
+            _parameterUseCase = parameterUseCase;
+            _battleView = battleView;
+        }
+
         public override GameState state => GameState.Init;
 
         public override async UniTask InitAsync(CancellationToken token)
@@ -15,7 +27,11 @@ namespace PrimeMillionaire.Game.Presentation.State
 
         public override async UniTask<GameState> TickAsync(CancellationToken token)
         {
-            await UniTask.Yield(token);
+            var player = _characterUseCase.GetPlayerCharacter();
+            await (
+                _parameterUseCase.InitPlayerParamAsync(token),
+                _battleView.CreatePlayerAsync(player, token)
+            );
 
             return GameState.SetUp;
         }
