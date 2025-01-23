@@ -78,5 +78,10 @@ namespace PrimeMillionaire.Game.Presentation.View
                 _ => throw new Exception(),
             };
         }
+
+        public void DestroyEnemy()
+        {
+            Destroy(_enemyView.gameObject);
+        }
     }
 }

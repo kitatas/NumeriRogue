@@ -39,8 +39,13 @@ namespace PrimeMillionaire.Game.Presentation.State
 
             await _battlePtUseCase.ResetAsync(token);
 
+            if (isDestroy)
+            {
+                _battleView.DestroyEnemy();
+            }
+
             return isDestroy
-                ? GameState.None
+                ? GameState.SetUp
                 : GameState.Deal;
         }
     }
