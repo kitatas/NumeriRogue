@@ -30,6 +30,11 @@ namespace PrimeMillionaire.Game
         public const float TWEEN_DURATION = 0.25f;
     }
 
+    public sealed class DollarConfig
+    {
+        public const float TWEEN_DURATION = 0.25f;
+    }
+
     public sealed class HandConfig
     {
         public const int MAX_NUM = 12;
