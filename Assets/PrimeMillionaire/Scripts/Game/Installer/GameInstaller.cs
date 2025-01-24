@@ -24,6 +24,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.Register<BonusEntity>(Lifetime.Scoped);
             builder.Register<DeckEntity>(Lifetime.Scoped);
             builder.Register<EnemyBattlePtEntity>(Lifetime.Scoped);
+            builder.Register<EnemyCountEntity>(Lifetime.Scoped);
             builder.Register<EnemyHandEntity>(Lifetime.Scoped);
             builder.Register<EnemyParameterEntity>(Lifetime.Scoped);
             builder.Register<PlayerBattlePtEntity>(Lifetime.Scoped);
@@ -42,6 +43,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.Register<BattleUseCase>(Lifetime.Scoped);
             builder.Register<CharacterUseCase>(Lifetime.Scoped);
             builder.Register<DealUseCase>(Lifetime.Scoped);
+            builder.Register<EnemyCountUseCase>(Lifetime.Scoped);
             builder.Register<HandUseCase>(Lifetime.Scoped);
             builder.Register<OrderUseCase>(Lifetime.Scoped);
             builder.Register<ParameterUseCase>(Lifetime.Scoped);
@@ -59,6 +61,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.UseEntryPoints(Lifetime.Scoped, entryPoints =>
             {
                 entryPoints.Add<BattlePtPresenter>();
+                entryPoints.Add<EnemyCountPresenter>();
                 entryPoints.Add<OrderPresenter>();
                 entryPoints.Add<ParameterPresenter>();
                 entryPoints.Add<StatePresenter>();
@@ -68,6 +71,7 @@ namespace PrimeMillionaire.Game.Installer
             // View
             builder.RegisterComponentInHierarchy<BattleView>();
             builder.RegisterComponentInHierarchy<BattlePtView>();
+            builder.RegisterComponentInHierarchy<EnemyCountView>();
             builder.RegisterComponentInHierarchy<EnemyParameterView>();
             builder.RegisterComponentInHierarchy<OrderView>();
             builder.RegisterComponentInHierarchy<PlayerParameterView>();
