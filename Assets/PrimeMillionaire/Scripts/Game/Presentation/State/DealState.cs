@@ -9,12 +9,14 @@ namespace PrimeMillionaire.Game.Presentation.State
     {
         private readonly DealUseCase _dealUseCase;
         private readonly HandUseCase _handUseCase;
+        private readonly TurnUseCase _turnUseCase;
         private readonly TableView _tableView;
 
-        public DealState(DealUseCase dealUseCase, HandUseCase handUseCase, TableView tableView)
+        public DealState(DealUseCase dealUseCase, HandUseCase handUseCase, TurnUseCase turnUseCase, TableView tableView)
         {
             _dealUseCase = dealUseCase;
             _handUseCase = handUseCase;
+            _turnUseCase = turnUseCase;
             _tableView = tableView;
         }
 
@@ -28,6 +30,8 @@ namespace PrimeMillionaire.Game.Presentation.State
 
         public override async UniTask<GameState> TickAsync(CancellationToken token)
         {
+            _turnUseCase.Increment();
+
             _dealUseCase.SetUp();
             await _tableView.SetUpAsync(token);
 

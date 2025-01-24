@@ -9,12 +9,15 @@ namespace PrimeMillionaire.Game.Presentation.State
     {
         private readonly CharacterUseCase _characterUseCase;
         private readonly ParameterUseCase _parameterUseCase;
+        private readonly TurnUseCase _turnUseCase;
         private readonly BattleView _battleView;
 
-        public SetUpState(CharacterUseCase characterUseCase, ParameterUseCase parameterUseCase, BattleView battleView)
+        public SetUpState(CharacterUseCase characterUseCase, ParameterUseCase parameterUseCase, TurnUseCase turnUseCase,
+            BattleView battleView)
         {
             _characterUseCase = characterUseCase;
             _parameterUseCase = parameterUseCase;
+            _turnUseCase = turnUseCase;
             _battleView = battleView;
         }
 
@@ -27,6 +30,8 @@ namespace PrimeMillionaire.Game.Presentation.State
 
         public override async UniTask<GameState> TickAsync(CancellationToken token)
         {
+            _turnUseCase.Reset();
+
             var enemy = _characterUseCase.GetEnemyCharacter();
             await (
                 _parameterUseCase.InitEnemyParamAsync(token),
