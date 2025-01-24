@@ -29,6 +29,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.Register<PlayerBattlePtEntity>(Lifetime.Scoped);
             builder.Register<PlayerHandEntity>(Lifetime.Scoped);
             builder.Register<PlayerParameterEntity>(Lifetime.Scoped);
+            builder.Register<TurnEntity>(Lifetime.Scoped);
 
             // Repository
             builder.Register<CardRepository>(Lifetime.Scoped);
@@ -45,6 +46,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.Register<OrderUseCase>(Lifetime.Scoped);
             builder.Register<ParameterUseCase>(Lifetime.Scoped);
             builder.Register<StateUseCase>(Lifetime.Scoped);
+            builder.Register<TurnUseCase>(Lifetime.Scoped);
 
             // State
             builder.Register<BaseState, BattleState>(Lifetime.Scoped);
@@ -60,6 +62,7 @@ namespace PrimeMillionaire.Game.Installer
                 entryPoints.Add<OrderPresenter>();
                 entryPoints.Add<ParameterPresenter>();
                 entryPoints.Add<StatePresenter>();
+                entryPoints.Add<TurnPresenter>();
             });
 
             // View
@@ -69,6 +72,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.RegisterComponentInHierarchy<OrderView>();
             builder.RegisterComponentInHierarchy<PlayerParameterView>();
             builder.RegisterComponentInHierarchy<TableView>();
+            builder.RegisterComponentInHierarchy<TurnView>();
         }
     }
 }
