@@ -31,6 +31,7 @@ namespace PrimeMillionaire.Game.Data.DataStore
             memory = new MemoryDatabase(
                 table,
                 memory.CharacterMasterTable,
+                memory.DropRateMasterTable,
                 memory.ParameterMasterTable,
                 memory.PrimeNumberMasterTable
             
@@ -45,6 +46,7 @@ namespace PrimeMillionaire.Game.Data.DataStore
             memory = new MemoryDatabase(
                 table,
                 memory.CharacterMasterTable,
+                memory.DropRateMasterTable,
                 memory.ParameterMasterTable,
                 memory.PrimeNumberMasterTable
             
@@ -59,6 +61,7 @@ namespace PrimeMillionaire.Game.Data.DataStore
             memory = new MemoryDatabase(
                 table,
                 memory.CharacterMasterTable,
+                memory.DropRateMasterTable,
                 memory.ParameterMasterTable,
                 memory.PrimeNumberMasterTable
             
@@ -72,6 +75,7 @@ namespace PrimeMillionaire.Game.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 table,
+                memory.DropRateMasterTable,
                 memory.ParameterMasterTable,
                 memory.PrimeNumberMasterTable
             
@@ -86,6 +90,7 @@ namespace PrimeMillionaire.Game.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 table,
+                memory.DropRateMasterTable,
                 memory.ParameterMasterTable,
                 memory.PrimeNumberMasterTable
             
@@ -100,6 +105,51 @@ namespace PrimeMillionaire.Game.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 table,
+                memory.DropRateMasterTable,
+                memory.ParameterMasterTable,
+                memory.PrimeNumberMasterTable
+            
+            );
+        }
+
+        public void ReplaceAll(System.Collections.Generic.IList<DropRateMaster> data)
+        {
+            var newData = CloneAndSortBy(data, x => x.Turn, System.Collections.Generic.Comparer<int>.Default);
+            var table = new DropRateMasterTable(newData);
+            memory = new MemoryDatabase(
+                memory.CardMasterTable,
+                memory.CharacterMasterTable,
+                table,
+                memory.ParameterMasterTable,
+                memory.PrimeNumberMasterTable
+            
+            );
+        }
+
+        public void RemoveDropRateMaster(int[] keys)
+        {
+            var data = RemoveCore(memory.DropRateMasterTable.GetRawDataUnsafe(), keys, x => x.Turn, System.Collections.Generic.Comparer<int>.Default);
+            var newData = CloneAndSortBy(data, x => x.Turn, System.Collections.Generic.Comparer<int>.Default);
+            var table = new DropRateMasterTable(newData);
+            memory = new MemoryDatabase(
+                memory.CardMasterTable,
+                memory.CharacterMasterTable,
+                table,
+                memory.ParameterMasterTable,
+                memory.PrimeNumberMasterTable
+            
+            );
+        }
+
+        public void Diff(DropRateMaster[] addOrReplaceData)
+        {
+            var data = DiffCore(memory.DropRateMasterTable.GetRawDataUnsafe(), addOrReplaceData, x => x.Turn, System.Collections.Generic.Comparer<int>.Default);
+            var newData = CloneAndSortBy(data, x => x.Turn, System.Collections.Generic.Comparer<int>.Default);
+            var table = new DropRateMasterTable(newData);
+            memory = new MemoryDatabase(
+                memory.CardMasterTable,
+                memory.CharacterMasterTable,
+                table,
                 memory.ParameterMasterTable,
                 memory.PrimeNumberMasterTable
             
@@ -113,6 +163,7 @@ namespace PrimeMillionaire.Game.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
+                memory.DropRateMasterTable,
                 table,
                 memory.PrimeNumberMasterTable
             
@@ -127,6 +178,7 @@ namespace PrimeMillionaire.Game.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
+                memory.DropRateMasterTable,
                 table,
                 memory.PrimeNumberMasterTable
             
@@ -141,6 +193,7 @@ namespace PrimeMillionaire.Game.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
+                memory.DropRateMasterTable,
                 table,
                 memory.PrimeNumberMasterTable
             
@@ -154,6 +207,7 @@ namespace PrimeMillionaire.Game.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
+                memory.DropRateMasterTable,
                 memory.ParameterMasterTable,
                 table
             
@@ -168,6 +222,7 @@ namespace PrimeMillionaire.Game.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
+                memory.DropRateMasterTable,
                 memory.ParameterMasterTable,
                 table
             
@@ -182,6 +237,7 @@ namespace PrimeMillionaire.Game.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
+                memory.DropRateMasterTable,
                 memory.ParameterMasterTable,
                 table
             

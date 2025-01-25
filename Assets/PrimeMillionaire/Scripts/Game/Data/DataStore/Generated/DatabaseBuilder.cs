@@ -27,6 +27,12 @@ namespace PrimeMillionaire.Game.Data.DataStore
             return this;
         }
 
+        public DatabaseBuilder Append(System.Collections.Generic.IEnumerable<DropRateMaster> dataSource)
+        {
+            AppendCore(dataSource, x => x.Turn, System.Collections.Generic.Comparer<int>.Default);
+            return this;
+        }
+
         public DatabaseBuilder Append(System.Collections.Generic.IEnumerable<ParameterMaster> dataSource)
         {
             AppendCore(dataSource, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
