@@ -29,6 +29,7 @@ namespace PrimeMillionaire.Editor.Scripts
             databaseBuilder.Append(GetDropRateMaster());
             databaseBuilder.Append(GetParameterMaster());
             databaseBuilder.Append(GetPrimeNumberMaster());
+            databaseBuilder.Append(GetSkillMaster());
             var binary = databaseBuilder.Build();
 
             var bytes = "Assets/Externals/Binary/MasterMemory.bytes";
@@ -108,6 +109,22 @@ namespace PrimeMillionaire.Editor.Scripts
             }
 
             return true;
+        }
+
+        private static List<SkillMaster> GetSkillMaster()
+        {
+            return new List<SkillMaster>
+            {
+                new(1, 1, 1, 10),
+                new(2, 1, 2, 10),
+                new(3, 1, 3, 10),
+                new(4, 2, 1, 20),
+                new(5, 2, 2, 20),
+                new(6, 2, 3, 20),
+                new(7, 3, 1, 30),
+                new(8, 3, 2, 30),
+                new(9, 3, 3, 30),
+            };
         }
     }
 }
