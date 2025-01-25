@@ -26,6 +26,7 @@ namespace PrimeMillionaire.Editor.Scripts
             var databaseBuilder = new DatabaseBuilder();
             databaseBuilder.Append(GetCardMaster());
             databaseBuilder.Append(GetCharacterMaster());
+            databaseBuilder.Append(GetDropRateMaster());
             databaseBuilder.Append(GetParameterMaster());
             databaseBuilder.Append(GetPrimeNumberMaster());
             var binary = databaseBuilder.Build();
@@ -66,6 +67,18 @@ namespace PrimeMillionaire.Editor.Scripts
             }
 
             return characterMaster;
+        }
+
+        private static List<DropRateMaster> GetDropRateMaster()
+        {
+            return new List<DropRateMaster>
+            {
+                new(1, 2.0f),
+                new(2, 1.75f),
+                new(3, 1.5f),
+                new(4, 1.25f),
+                new(5, 1.0f),
+            };
         }
 
         private static List<ParameterMaster> GetParameterMaster()
