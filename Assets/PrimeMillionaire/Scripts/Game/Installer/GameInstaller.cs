@@ -36,6 +36,7 @@ namespace PrimeMillionaire.Game.Installer
             // Repository
             builder.Register<CardRepository>(Lifetime.Scoped);
             builder.Register<CharacterRepository>(Lifetime.Scoped);
+            builder.Register<DropRepository>(Lifetime.Scoped);
             builder.Register<ParameterRepository>(Lifetime.Scoped);
             builder.Register<PrimeNumberRepository>(Lifetime.Scoped);
 
@@ -45,6 +46,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.Register<CharacterUseCase>(Lifetime.Scoped);
             builder.Register<DealUseCase>(Lifetime.Scoped);
             builder.Register<DollarUseCase>(Lifetime.Scoped);
+            builder.Register<DropUseCase>(Lifetime.Scoped);
             builder.Register<EnemyCountUseCase>(Lifetime.Scoped);
             builder.Register<HandUseCase>(Lifetime.Scoped);
             builder.Register<OrderUseCase>(Lifetime.Scoped);
