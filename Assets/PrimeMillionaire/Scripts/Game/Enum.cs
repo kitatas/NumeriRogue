@@ -41,6 +41,14 @@ namespace PrimeMillionaire.Game
         ValueDown = 3,
     }
 
+    public enum SkillType
+    {
+        None = 0,
+        HpUp = 1,
+        AtkUp = 2,
+        DefUp = 3,
+    }
+
     public enum Fade
     {
         None = 0,

@@ -157,4 +157,18 @@ namespace PrimeMillionaire.Game
             this.value = value;
         }
     }
+
+    public sealed class SkillVO
+    {
+        public readonly SkillType type;
+        public readonly int value;
+        public readonly string description;
+
+        public SkillVO(int type, int value)
+        {
+            this.type = type.ToSkillType();
+            this.value = value;
+            this.description = this.type.ToDescription(value);
+        }
+    }
 }

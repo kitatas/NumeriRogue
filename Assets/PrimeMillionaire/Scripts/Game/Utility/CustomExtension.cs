@@ -39,5 +39,23 @@ namespace PrimeMillionaire.Game.Utility
                 _ => throw new Exception(),
             };
         }
+
+        public static SkillType ToSkillType(this int self)
+        {
+            return FastEnum.IsDefined<SkillType>(self)
+                ? (SkillType)self
+                : throw new Exception();
+        }
+
+        public static string ToDescription(this SkillType self, int value)
+        {
+            return self switch
+            {
+                SkillType.HpUp => $"HP {value}% UP",
+                SkillType.AtkUp => $"ATK {value}% UP",
+                SkillType.DefUp => $"DEF {value}% UP",
+                _ => throw new Exception(),
+            };
+        }
     }
 }
