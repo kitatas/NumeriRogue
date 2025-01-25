@@ -1,6 +1,5 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using PrimeMillionaire.Common.Utility;
 using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.View;
 
@@ -10,12 +9,17 @@ namespace PrimeMillionaire.Game.Presentation.State
     {
         private readonly BattlePtUseCase _battlePtUseCase;
         private readonly BattleUseCase _battleUseCase;
+        private readonly DollarUseCase _dollarUseCase;
+        private readonly DropUseCase _dropUseCase;
         private readonly BattleView _battleView;
 
-        public BattleState(BattlePtUseCase battlePtUseCase, BattleUseCase battleUseCase, BattleView battleView)
+        public BattleState(BattlePtUseCase battlePtUseCase, BattleUseCase battleUseCase, DollarUseCase dollarUseCase,
+            DropUseCase dropUseCase, BattleView battleView)
         {
             _battlePtUseCase = battlePtUseCase;
             _battleUseCase = battleUseCase;
+            _dollarUseCase = dollarUseCase;
+            _dropUseCase = dropUseCase;
             _battleView = battleView;
         }
 
@@ -41,6 +45,7 @@ namespace PrimeMillionaire.Game.Presentation.State
 
             if (isDestroy)
             {
+                _dollarUseCase.Add(_dropUseCase.GetDropDollar());
                 _battleView.DestroyEnemy();
             }
 
