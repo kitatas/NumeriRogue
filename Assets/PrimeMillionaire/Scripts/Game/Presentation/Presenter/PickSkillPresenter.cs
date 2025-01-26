@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
+using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.View;
 using R3;
 using VContainer.Unity;
@@ -9,10 +10,12 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
 {
     public sealed class PickSkillPresenter : IStartable
     {
+        private readonly HoldSkillUseCase _holdSkillUseCase;
         private readonly PickSkillView _pickSkillView;
 
-        public PickSkillPresenter(PickSkillView pickSkillView)
+        public PickSkillPresenter(HoldSkillUseCase holdSkillUseCase, PickSkillView pickSkillView)
         {
+            _holdSkillUseCase = holdSkillUseCase;
             _pickSkillView = pickSkillView;
         }
 
@@ -34,6 +37,10 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
                     {
                         await _pickSkillView.FadeIn(ModalConfig.TWEEN_DURATION)
                             .WithCancellation(context.CancellationToken);
+
+                        // TODO: skip
+                        var (_, skill) = await UniTask.WhenAny(_pickSkillView.OnClicksAsync(context.CancellationToken));
+                        await _holdSkillUseCase.AddAsync(skill, context.CancellationToken);
                     }
                     else
                     {

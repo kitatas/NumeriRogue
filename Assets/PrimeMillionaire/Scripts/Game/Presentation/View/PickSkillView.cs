@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
@@ -38,6 +40,13 @@ namespace PrimeMillionaire.Game.Presentation.View
         public async UniTask RenderAsync(PickSkillVO pickSkill, CancellationToken token)
         {
             await skillViews[pickSkill.index].RenderAsync(pickSkill.skill, token);
+        }
+
+        public List<UniTask<SkillVO>> OnClicksAsync(CancellationToken token)
+        {
+            return skillViews
+                .Select(x => x.SelectAsync(token))
+                .ToList();
         }
     }
 }

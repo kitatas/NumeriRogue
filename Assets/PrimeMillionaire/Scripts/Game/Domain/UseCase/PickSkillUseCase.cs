@@ -29,6 +29,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             );
 
             await ActivateModalAsync(true, token);
+            await ActivateModalAsync(false, token);
         }
 
         public async UniTask ActivateModalAsync(bool value, CancellationToken token)
