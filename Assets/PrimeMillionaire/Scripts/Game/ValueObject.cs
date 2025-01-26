@@ -183,4 +183,16 @@ namespace PrimeMillionaire.Game
             this.skill = skill;
         }
     }
+
+    public sealed class ModalVO : ICommand
+    {
+        public readonly ModalType type;
+        public readonly bool isActivate;
+
+        public ModalVO(ModalType type, bool isActivate)
+        {
+            this.type = type;
+            this.isActivate = isActivate;
+        }
+    }
 }

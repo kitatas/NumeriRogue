@@ -55,4 +55,10 @@ namespace PrimeMillionaire.Game
         In = 1,
         Out = 2,
     }
+
+    public enum ModalType
+    {
+        None = 0,
+        PickSkill = 1,
+    }
 }

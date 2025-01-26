@@ -27,6 +27,13 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             await UniTask.WhenAll(skills
                 .Select((x, i) => Router.Default.PublishAsync(new PickSkillVO(i, x), token).AsUniTask())
             );
+
+            await ActivateModalAsync(true, token);
+        }
+
+        public async UniTask ActivateModalAsync(bool value, CancellationToken token)
+        {
+            await Router.Default.PublishAsync(new ModalVO(ModalType.PickSkill, value), token);
         }
     }
 }
