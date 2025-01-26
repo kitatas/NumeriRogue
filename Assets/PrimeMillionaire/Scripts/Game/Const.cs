@@ -49,4 +49,9 @@ namespace PrimeMillionaire.Game
     {
         public const float MOVE_TIME = 0.25f;
     }
+
+    public sealed class SkillConfig
+    {
+        public const int LOT_NUM = 3;
+    }
 }

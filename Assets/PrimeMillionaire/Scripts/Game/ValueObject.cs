@@ -171,4 +171,16 @@ namespace PrimeMillionaire.Game
             this.description = this.type.ToDescription(value);
         }
     }
+
+    public sealed class PickSkillVO : ICommand
+    {
+        public readonly int index;
+        public readonly SkillVO skill;
+
+        public PickSkillVO(int index, SkillVO skill)
+        {
+            this.index = index;
+            this.skill = skill;
+        }
+    }
 }

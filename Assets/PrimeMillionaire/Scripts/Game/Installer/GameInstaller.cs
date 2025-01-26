@@ -28,6 +28,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.Register<EnemyCountEntity>(Lifetime.Scoped);
             builder.Register<EnemyHandEntity>(Lifetime.Scoped);
             builder.Register<EnemyParameterEntity>(Lifetime.Scoped);
+            builder.Register<LevelEntity>(Lifetime.Scoped);
             builder.Register<PlayerBattlePtEntity>(Lifetime.Scoped);
             builder.Register<PlayerHandEntity>(Lifetime.Scoped);
             builder.Register<PlayerParameterEntity>(Lifetime.Scoped);
@@ -39,6 +40,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.Register<DropRepository>(Lifetime.Scoped);
             builder.Register<ParameterRepository>(Lifetime.Scoped);
             builder.Register<PrimeNumberRepository>(Lifetime.Scoped);
+            builder.Register<SkillRepository>(Lifetime.Scoped);
 
             // UseCase
             builder.Register<BattlePtUseCase>(Lifetime.Scoped);
