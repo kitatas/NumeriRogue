@@ -8,6 +8,7 @@ namespace PrimeMillionaire.Game
         Deal = 3,
         Order = 4,
         Battle = 5,
+        Pick = 6,
     }
 
     public enum Suit

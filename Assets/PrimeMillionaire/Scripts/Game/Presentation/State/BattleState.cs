@@ -50,7 +50,7 @@ namespace PrimeMillionaire.Game.Presentation.State
             }
 
             return isDestroy
-                ? GameState.SetUp
+                ? GameState.Pick
                 : GameState.Deal;
         }
     }
