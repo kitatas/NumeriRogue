@@ -184,6 +184,16 @@ namespace PrimeMillionaire.Game
         }
     }
 
+    public sealed class HoldSkillVO : ICommand
+    {
+        public readonly List<SkillVO> skills;
+
+        public HoldSkillVO(List<SkillVO> skills)
+        {
+            this.skills = skills;
+        }
+    }
+
     public sealed class ModalVO : ICommand
     {
         public readonly ModalType type;

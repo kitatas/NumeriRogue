@@ -40,7 +40,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
 
                         // TODO: skip
                         var (_, skill) = await UniTask.WhenAny(_pickSkillView.OnClicksAsync(context.CancellationToken));
-                        await _holdSkillUseCase.AddAsync(skill, context.CancellationToken);
+                        _holdSkillUseCase.AddAsync(skill, context.CancellationToken).Forget();
                     }
                     else
                     {

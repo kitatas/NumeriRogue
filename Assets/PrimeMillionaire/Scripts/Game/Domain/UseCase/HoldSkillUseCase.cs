@@ -1,14 +1,21 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using PrimeMillionaire.Game.Data.Entity;
 
 namespace PrimeMillionaire.Game.Domain.UseCase
 {
     public sealed class HoldSkillUseCase
     {
-        public async UniTask AddAsync(SkillVO skill, CancellationToken token)
+        private readonly HoldSkillEntity _holdSkillEntity;
+
+        public HoldSkillUseCase(HoldSkillEntity holdSkillEntity)
         {
-            UnityEngine.Debug.Log($"type: {skill.type}, value: {skill.value}");
-            await UniTask.Yield(token);
+            _holdSkillEntity = holdSkillEntity;
+        }
+
+        public async UniTaskVoid AddAsync(SkillVO skill, CancellationToken token)
+        {
+            _holdSkillEntity.Add(skill);
         }
     }
 }
