@@ -11,6 +11,7 @@ namespace PrimeMillionaire.Game.Presentation.View
     public sealed class PickSkillView : MonoBehaviour
     {
         [SerializeField] private CanvasGroup canvasGroup = default;
+        [SerializeField] private RectTransform statusView = default;
         [SerializeField] private SkillView[] skillViews = default;
 
         public Tween FadeIn(float duration)
@@ -22,6 +23,12 @@ namespace PrimeMillionaire.Game.Presentation.View
                     .SetEase(Ease.OutBack))
                 .Join(canvasGroup.transform.ToRectTransform()
                     .DOScale(Vector3.one, duration)
+                    .SetEase(Ease.OutBack))
+                .Join(statusView
+                    .DOScale(1.0f, duration)
+                    .SetEase(Ease.OutBack))
+                .Join(statusView
+                    .DOAnchorPos(new Vector2(-450.0f, 0.0f), duration)
                     .SetEase(Ease.OutBack));
         }
 
@@ -33,6 +40,12 @@ namespace PrimeMillionaire.Game.Presentation.View
                     .SetEase(Ease.OutQuart))
                 .Join(canvasGroup.transform.ToRectTransform()
                     .DOScale(Vector3.one * 0.8f, duration)
+                    .SetEase(Ease.OutQuart))
+                .Join(statusView
+                    .DOScale(0.5f, duration)
+                    .SetEase(Ease.OutQuart))
+                .Join(statusView
+                    .DOAnchorPos(new Vector2(-185.0f, 105.0f), duration)
                     .SetEase(Ease.OutQuart))
                 .AppendCallback(() => canvasGroup.blocksRaycasts = false);
         }
