@@ -6,6 +6,7 @@ using MessagePack;
 using PrimeMillionaire.Game.Data.DataStore;
 using System.Collections.Generic;
 using System;
+using UnityEngine;
 
 namespace PrimeMillionaire.Game.Data.DataStore.Tables
 {
@@ -110,7 +111,8 @@ namespace PrimeMillionaire.Game.Data.DataStore.Tables
                     new MasterMemory.Meta.MetaProperty(typeof(SkillMaster).GetProperty("Id")),
                     new MasterMemory.Meta.MetaProperty(typeof(SkillMaster).GetProperty("Level")),
                     new MasterMemory.Meta.MetaProperty(typeof(SkillMaster).GetProperty("Type")),
-                    new MasterMemory.Meta.MetaProperty(typeof(SkillMaster).GetProperty("Value")),
+                    new MasterMemory.Meta.MetaProperty(typeof(SkillMaster).GetProperty("Min")),
+                    new MasterMemory.Meta.MetaProperty(typeof(SkillMaster).GetProperty("Max")),
                 },
                 new MasterMemory.Meta.MetaIndex[]{
                     new MasterMemory.Meta.MetaIndex(new System.Reflection.PropertyInfo[] {

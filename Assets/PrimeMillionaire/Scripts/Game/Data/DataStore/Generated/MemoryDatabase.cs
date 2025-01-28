@@ -6,6 +6,7 @@ using MessagePack;
 using PrimeMillionaire.Game.Data.DataStore;
 using System.Collections.Generic;
 using System;
+using UnityEngine;
 using PrimeMillionaire.Game.Data.DataStore.Tables;
 
 namespace PrimeMillionaire.Game.Data.DataStore
