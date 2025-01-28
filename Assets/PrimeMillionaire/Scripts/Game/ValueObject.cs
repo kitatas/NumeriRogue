@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using FastEnumUtility;
 using PrimeMillionaire.Game.Utility;
+using UnityEngine;
 using VitalRouter;
 
 namespace PrimeMillionaire.Game
@@ -163,12 +164,14 @@ namespace PrimeMillionaire.Game
         public readonly SkillType type;
         public readonly int value;
         public readonly string description;
+        public readonly int price;
 
         public SkillVO(int type, int value)
         {
             this.type = type.ToSkillType();
             this.value = value;
             this.description = this.type.ToDescription(value);
+            this.price = this.type.ToPrice(value);
         }
     }
 

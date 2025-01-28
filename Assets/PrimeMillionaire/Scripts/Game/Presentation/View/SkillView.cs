@@ -1,6 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Cysharp.Threading.Tasks.Triggers;
+using R3;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +12,8 @@ namespace PrimeMillionaire.Game.Presentation.View
         [SerializeField] private Image background = default;
         [SerializeField] private Image icon = default;
         [SerializeField] private TextMeshProUGUI description = default;
+        [SerializeField] private Button button = default;
+        [SerializeField] private TextMeshProUGUI buttonText = default;
 
         public SkillVO skill { get; private set; }
 
@@ -21,6 +23,9 @@ namespace PrimeMillionaire.Game.Presentation.View
             background.color = new Color(0.5f, 1.0f, 0.5f);
             icon.color = new Color(1.0f, 1.0f, 1.0f);
             description.text = skill.description;
+            button.gameObject.SetActive(true);
+            button.interactable = true;
+            buttonText.text = $"${skill.price}";
 
             // WANT: skill icon
             await UniTask.Yield(token);
@@ -31,15 +36,23 @@ namespace PrimeMillionaire.Game.Presentation.View
             background.color = new Color(0.5f, 0.5f, 0.5f);
             icon.color = new Color(0.2f, 0.2f, 0.2f);
             description.text = "---";
+            button.gameObject.SetActive(false);
+            button.interactable = false;
+            buttonText.text = "$0";
 
             icon.sprite = null;
             await UniTask.Yield(token);
         }
 
-        public async UniTask<SkillVO> SelectAsync(CancellationToken token)
+        public Observable<SkillVO> OnClickAsObservable()
         {
-            await background.GetAsyncPointerDownTrigger().OnPointerDownAsync(token);
-            return skill;
+            return button.OnClickAsObservable().Select(_ => skill);
+        }
+
+        public void SoldOut()
+        {
+            button.interactable = false;
+            buttonText.text = "SoldOut";
         }
     }
 }

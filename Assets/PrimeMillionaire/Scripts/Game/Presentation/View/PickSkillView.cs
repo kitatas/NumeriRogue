@@ -1,8 +1,8 @@
-using System.Collections.Generic;
-using System.Linq;
+using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using R3;
 using UniEx;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +15,20 @@ namespace PrimeMillionaire.Game.Presentation.View
         [SerializeField] private RectTransform statusView = default;
         [SerializeField] private SkillView[] skillViews = default;
         [SerializeField] private Button nextBattleButton = default;
+
+        public void Init(Action<SkillVO> action)
+        {
+            foreach (var skillView in skillViews)
+            {
+                skillView.OnClickAsObservable()
+                    .Subscribe(x =>
+                    {
+                        skillView.SoldOut();
+                        action?.Invoke(x);
+                    })
+                    .AddTo(skillView);
+            }
+        }
 
         public Tween FadeIn(float duration)
         {
@@ -30,7 +44,7 @@ namespace PrimeMillionaire.Game.Presentation.View
                     .DOScale(1.0f, duration)
                     .SetEase(Ease.OutBack))
                 .Join(statusView
-                    .DOAnchorPos(new Vector2(-450.0f, 0.0f), duration)
+                    .DOAnchorPos(new Vector2(-450.0f, 75.0f), duration)
                     .SetEase(Ease.OutBack));
         }
 
@@ -47,7 +61,7 @@ namespace PrimeMillionaire.Game.Presentation.View
                     .DOScale(0.5f, duration)
                     .SetEase(Ease.OutQuart))
                 .Join(statusView
-                    .DOAnchorPos(new Vector2(-185.0f, 105.0f), duration)
+                    .DOAnchorPos(new Vector2(-115.0f, 105.0f), duration)
                     .SetEase(Ease.OutQuart))
                 .AppendCallback(() => canvasGroup.blocksRaycasts = false);
         }

@@ -1,3 +1,5 @@
+using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Game.Domain.UseCase;
@@ -8,19 +10,23 @@ using VitalRouter;
 
 namespace PrimeMillionaire.Game.Presentation.Presenter
 {
-    public sealed class PickSkillPresenter : IStartable
+    public sealed class PickSkillPresenter : IStartable, IDisposable
     {
         private readonly HoldSkillUseCase _holdSkillUseCase;
         private readonly PickSkillView _pickSkillView;
+        private readonly CancellationTokenSource _tokenSource;
 
         public PickSkillPresenter(HoldSkillUseCase holdSkillUseCase, PickSkillView pickSkillView)
         {
             _holdSkillUseCase = holdSkillUseCase;
             _pickSkillView = pickSkillView;
+            _tokenSource = new CancellationTokenSource();
         }
 
         public void Start()
         {
+            _pickSkillView.Init(x => _holdSkillUseCase.AddAsync(x, _tokenSource.Token).Forget());
+
             Router.Default
                 .SubscribeAwait<PickSkillVO>(async (x, context) =>
                 {
@@ -47,6 +53,12 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
                     }
                 })
                 .AddTo(_pickSkillView);
+        }
+
+        public void Dispose()
+        {
+            _tokenSource?.Cancel();
+            _tokenSource?.Dispose();
         }
     }
 }

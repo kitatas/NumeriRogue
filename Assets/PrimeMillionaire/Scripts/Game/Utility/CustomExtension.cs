@@ -57,5 +57,16 @@ namespace PrimeMillionaire.Game.Utility
                 _ => throw new Exception(),
             };
         }
+
+        public static int ToPrice(this SkillType self, int value)
+        {
+            return self switch
+            {
+                SkillType.HpUp => value * 8,
+                SkillType.AtkUp => value * 7,
+                SkillType.DefUp => value * 5,
+                _ => throw new Exception(),
+            };
+        }
     }
 }
