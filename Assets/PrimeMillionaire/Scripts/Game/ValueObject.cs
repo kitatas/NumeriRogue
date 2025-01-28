@@ -165,6 +165,7 @@ namespace PrimeMillionaire.Game
         public readonly int value;
         public readonly string description;
         public readonly int price;
+        public bool isHold;
 
         public SkillVO(int type, int value)
         {
@@ -194,6 +195,10 @@ namespace PrimeMillionaire.Game
         public HoldSkillVO(List<SkillVO> skills)
         {
             this.skills = skills;
+            foreach (var skill in this.skills)
+            {
+                skill.isHold = true;
+            }
         }
     }
 

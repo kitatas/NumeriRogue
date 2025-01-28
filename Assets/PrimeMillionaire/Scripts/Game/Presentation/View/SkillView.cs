@@ -25,7 +25,7 @@ namespace PrimeMillionaire.Game.Presentation.View
             description.text = skill.description;
             button.gameObject.SetActive(true);
             button.interactable = isInteractable;
-            buttonText.text = $"${skill.price}";
+            buttonText.text = skill.isHold ? "Trash" : $"${skill.price}";
 
             // WANT: skill icon
             await UniTask.Yield(token);

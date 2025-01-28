@@ -8,6 +8,8 @@ namespace PrimeMillionaire.Game.Presentation.View
     {
         [SerializeField] private SkillView[] skillViews = default;
 
+        public SkillView[] skills => skillViews;
+
         public async UniTask RenderAsync(HoldSkillVO holdSkill, CancellationToken token)
         {
             for (int i = 0; i < skillViews.Length; i++)
