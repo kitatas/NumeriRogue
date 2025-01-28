@@ -17,14 +17,14 @@ namespace PrimeMillionaire.Game.Presentation.View
 
         public SkillVO skill { get; private set; }
 
-        public async UniTask RenderAsync(SkillVO value, CancellationToken token)
+        public async UniTask RenderAsync(SkillVO value, bool isInteractable, CancellationToken token)
         {
             skill = value;
             background.color = new Color(0.5f, 1.0f, 0.5f);
             icon.color = new Color(1.0f, 1.0f, 1.0f);
             description.text = skill.description;
             button.gameObject.SetActive(true);
-            button.interactable = true;
+            button.interactable = isInteractable;
             buttonText.text = $"${skill.price}";
 
             // WANT: skill icon
@@ -37,8 +37,7 @@ namespace PrimeMillionaire.Game.Presentation.View
             icon.color = new Color(0.2f, 0.2f, 0.2f);
             description.text = "---";
             button.gameObject.SetActive(false);
-            button.interactable = false;
-            buttonText.text = "$0";
+            buttonText.text = "";
 
             icon.sprite = null;
             await UniTask.Yield(token);
@@ -49,9 +48,15 @@ namespace PrimeMillionaire.Game.Presentation.View
             return button.OnClickAsObservable().Select(_ => skill);
         }
 
+        public void Repaint(int value)
+        {
+            if (skill == null) return;
+
+            button.interactable = value >= skill.price && buttonText.text != "SoldOut";
+        }
+
         public void SoldOut()
         {
-            button.interactable = false;
             buttonText.text = "SoldOut";
         }
     }

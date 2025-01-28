@@ -1,8 +1,6 @@
-using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using R3;
 using UniEx;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,17 +14,13 @@ namespace PrimeMillionaire.Game.Presentation.View
         [SerializeField] private SkillView[] skillViews = default;
         [SerializeField] private Button nextBattleButton = default;
 
-        public void Init(Action<SkillVO> action)
+        public SkillView[] skills => skillViews;
+
+        public void Repaint(int value)
         {
             foreach (var skillView in skillViews)
             {
-                skillView.OnClickAsObservable()
-                    .Subscribe(x =>
-                    {
-                        skillView.SoldOut();
-                        action?.Invoke(x);
-                    })
-                    .AddTo(skillView);
+                skillView.Repaint(value);
             }
         }
 
@@ -66,9 +60,9 @@ namespace PrimeMillionaire.Game.Presentation.View
                 .AppendCallback(() => canvasGroup.blocksRaycasts = false);
         }
 
-        public async UniTask RenderAsync(PickSkillVO pickSkill, CancellationToken token)
+        public async UniTask RenderAsync(PickSkillVO pickSkill, bool isConsume, CancellationToken token)
         {
-            await skillViews[pickSkill.index].RenderAsync(pickSkill.skill, token);
+            await skillViews[pickSkill.index].RenderAsync(pickSkill.skill, isConsume, token);
         }
 
         public async UniTask OnClickNextBattle(CancellationToken token)

@@ -12,12 +12,15 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
 {
     public sealed class PickSkillPresenter : IStartable, IDisposable
     {
+        private readonly DollarUseCase _dollarUseCase;
         private readonly HoldSkillUseCase _holdSkillUseCase;
         private readonly PickSkillView _pickSkillView;
         private readonly CancellationTokenSource _tokenSource;
 
-        public PickSkillPresenter(HoldSkillUseCase holdSkillUseCase, PickSkillView pickSkillView)
+        public PickSkillPresenter(DollarUseCase dollarUseCase, HoldSkillUseCase holdSkillUseCase,
+            PickSkillView pickSkillView)
         {
+            _dollarUseCase = dollarUseCase;
             _holdSkillUseCase = holdSkillUseCase;
             _pickSkillView = pickSkillView;
             _tokenSource = new CancellationTokenSource();
@@ -25,12 +28,27 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
 
         public void Start()
         {
-            _pickSkillView.Init(x => _holdSkillUseCase.AddAsync(x, _tokenSource.Token).Forget());
+            foreach (var skillView in _pickSkillView.skills)
+            {
+                skillView.OnClickAsObservable()
+                    .Where(x => _dollarUseCase.IsConsume(x.price))
+                    .Subscribe(x =>
+                    {
+                        skillView.SoldOut();
+                        _dollarUseCase.Consume(x.price);
+                        _holdSkillUseCase.AddAsync(x, _tokenSource.Token).Forget();
+                    })
+                    .AddTo(skillView);
+            }
+
+            _dollarUseCase.dollar
+                .Subscribe(_pickSkillView.Repaint)
+                .AddTo(_pickSkillView);
 
             Router.Default
                 .SubscribeAwait<PickSkillVO>(async (x, context) =>
                 {
-                    await _pickSkillView.RenderAsync(x, context.CancellationToken);
+                    await _pickSkillView.RenderAsync(x, _dollarUseCase.IsConsume(x.skill.price), context.CancellationToken);
                 })
                 .AddTo(_pickSkillView);
 

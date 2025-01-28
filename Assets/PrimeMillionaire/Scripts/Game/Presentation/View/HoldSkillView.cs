@@ -14,7 +14,7 @@ namespace PrimeMillionaire.Game.Presentation.View
             {
                 if (i < holdSkill.skills.Count)
                 {
-                    await skillViews[i].RenderAsync(holdSkill.skills[i], token);
+                    await skillViews[i].RenderAsync(holdSkill.skills[i], true, token);
                 }
                 else
                 {
