@@ -38,9 +38,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
                         await _pickSkillView.FadeIn(ModalConfig.TWEEN_DURATION)
                             .WithCancellation(context.CancellationToken);
 
-                        // TODO: skip
-                        var (_, skill) = await UniTask.WhenAny(_pickSkillView.OnClicksAsync(context.CancellationToken));
-                        _holdSkillUseCase.AddAsync(skill, context.CancellationToken).Forget();
+                        await _pickSkillView.OnClickNextBattle(context.CancellationToken);
                     }
                     else
                     {

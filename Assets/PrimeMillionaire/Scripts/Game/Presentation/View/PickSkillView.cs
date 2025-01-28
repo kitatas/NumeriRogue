@@ -5,6 +5,7 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UniEx;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace PrimeMillionaire.Game.Presentation.View
 {
@@ -13,6 +14,7 @@ namespace PrimeMillionaire.Game.Presentation.View
         [SerializeField] private CanvasGroup canvasGroup = default;
         [SerializeField] private RectTransform statusView = default;
         [SerializeField] private SkillView[] skillViews = default;
+        [SerializeField] private Button nextBattleButton = default;
 
         public Tween FadeIn(float duration)
         {
@@ -55,11 +57,9 @@ namespace PrimeMillionaire.Game.Presentation.View
             await skillViews[pickSkill.index].RenderAsync(pickSkill.skill, token);
         }
 
-        public List<UniTask<SkillVO>> OnClicksAsync(CancellationToken token)
+        public async UniTask OnClickNextBattle(CancellationToken token)
         {
-            return skillViews
-                .Select(x => x.SelectAsync(token))
-                .ToList();
+            await nextBattleButton.OnClickAsync(token);
         }
     }
 }
