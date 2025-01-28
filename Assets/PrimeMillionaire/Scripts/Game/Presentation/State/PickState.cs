@@ -6,10 +6,12 @@ namespace PrimeMillionaire.Game.Presentation.State
 {
     public sealed class PickState : BaseState
     {
+        private readonly HoldSkillUseCase _holdSkillUseCase;
         private readonly PickSkillUseCase _pickSkillUseCase;
 
-        public PickState(PickSkillUseCase pickSkillUseCase)
+        public PickState(HoldSkillUseCase holdSkillUseCase, PickSkillUseCase pickSkillUseCase)
         {
+            _holdSkillUseCase = holdSkillUseCase;
             _pickSkillUseCase = pickSkillUseCase;
         }
 
@@ -17,7 +19,10 @@ namespace PrimeMillionaire.Game.Presentation.State
 
         public override async UniTask InitAsync(CancellationToken token)
         {
-            await _pickSkillUseCase.ActivateModalAsync(false, token);
+            await (
+                _holdSkillUseCase.ApplyViewAsync(token),
+                _pickSkillUseCase.ActivateModalAsync(false, token)
+            );
         }
 
         public override async UniTask<GameState> TickAsync(CancellationToken token)

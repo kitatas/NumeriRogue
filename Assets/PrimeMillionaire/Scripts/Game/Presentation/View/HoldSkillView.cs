@@ -10,9 +10,16 @@ namespace PrimeMillionaire.Game.Presentation.View
 
         public async UniTask RenderAsync(HoldSkillVO holdSkill, CancellationToken token)
         {
-            for (int i = 0; i < holdSkill.skills.Count; i++)
+            for (int i = 0; i < skillViews.Length; i++)
             {
-                await skillViews[i].RenderAsync(holdSkill.skills[i], token);
+                if (i < holdSkill.skills.Count)
+                {
+                    await skillViews[i].RenderAsync(holdSkill.skills[i], token);
+                }
+                else
+                {
+                    await skillViews[i].RenderEmptyAsync(token);
+                }
             }
         }
     }
