@@ -45,6 +45,11 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
                 .Subscribe(_pickSkillView.Repaint)
                 .AddTo(_pickSkillView);
 
+            _holdSkillUseCase.isFull
+                .Select(x => x ? 0 : _dollarUseCase.currentValue)
+                .Subscribe(_pickSkillView.Repaint)
+                .AddTo(_pickSkillView);
+
             Router.Default
                 .SubscribeAwait<PickSkillVO>(async (x, context) =>
                 {

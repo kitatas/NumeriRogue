@@ -11,6 +11,8 @@ namespace PrimeMillionaire.Game.Data.Entity
             _skills = new List<SkillVO>();
         }
 
+        public int count => _skills.Count;
+
         public void Add(SkillVO skill) => _skills.Add(skill);
         public void Remove(SkillVO skill) => _skills.Remove(skill);
 
