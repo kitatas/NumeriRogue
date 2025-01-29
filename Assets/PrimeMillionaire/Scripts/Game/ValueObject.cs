@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using FastEnumUtility;
 using PrimeMillionaire.Game.Utility;
-using UnityEngine;
 using VitalRouter;
 
 namespace PrimeMillionaire.Game
@@ -51,13 +50,13 @@ namespace PrimeMillionaire.Game
             this.currentHp = hp;
         }
 
-        public ParameterVO(ParameterVO parameter, int currentHp)
+        public ParameterVO(ParameterVO parameter, int currentHp, int additionalHp)
         {
             this.type = parameter.type;
-            this.hp = parameter.hp;
+            this.hp = parameter.hp + additionalHp;
             this.atk = parameter.atk;
             this.def = parameter.def;
-            this.currentHp = currentHp;
+            this.currentHp = currentHp + additionalHp;
         }
 
         public string name => type.FastToString();
@@ -70,7 +69,8 @@ namespace PrimeMillionaire.Game
         {
         }
 
-        public PlayerParameterVO(ParameterVO parameter, int currentHp) : base(parameter, currentHp)
+        public PlayerParameterVO(ParameterVO parameter, int currentHp, int additionalHp) : base(parameter, currentHp,
+            additionalHp)
         {
         }
     }
@@ -81,7 +81,8 @@ namespace PrimeMillionaire.Game
         {
         }
 
-        public EnemyParameterVO(ParameterVO parameter, int currentHp) : base(parameter, currentHp)
+        public EnemyParameterVO(ParameterVO parameter, int currentHp, int additionalHp) : base(parameter, currentHp,
+            additionalHp)
         {
         }
     }
