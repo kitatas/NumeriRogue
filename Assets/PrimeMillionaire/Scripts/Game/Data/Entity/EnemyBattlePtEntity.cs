@@ -1,6 +1,6 @@
 namespace PrimeMillionaire.Game.Data.Entity
 {
-    public sealed class EnemyBattlePtEntity : BattlePtEntity
+    public sealed class EnemyBattlePtEntity : BaseBattlePtEntity
     {
     }
 }

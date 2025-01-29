@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace PrimeMillionaire.Game.Data.Entity
 {
-    public abstract class ParameterEntity
+    public abstract class BaseParameterEntity
     {
         protected ParameterVO _parameter;
         private int _hp;

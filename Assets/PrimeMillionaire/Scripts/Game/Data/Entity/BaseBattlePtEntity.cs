@@ -2,11 +2,11 @@ using UnityEngine;
 
 namespace PrimeMillionaire.Game.Data.Entity
 {
-    public abstract class BattlePtEntity
+    public abstract class BaseBattlePtEntity
     {
         private int _value;
 
-        public BattlePtEntity()
+        public BaseBattlePtEntity()
         {
             Reset();
         }

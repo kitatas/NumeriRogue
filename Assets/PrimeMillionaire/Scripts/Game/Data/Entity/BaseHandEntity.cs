@@ -2,11 +2,11 @@ using System.Collections.Generic;
 
 namespace PrimeMillionaire.Game.Data.Entity
 {
-    public abstract class HandEntity
+    public abstract class BaseHandEntity
     {
         public readonly List<int> hands;
 
-        public HandEntity()
+        public BaseHandEntity()
         {
             hands = new List<int>(HandConfig.MAX_NUM);
         }

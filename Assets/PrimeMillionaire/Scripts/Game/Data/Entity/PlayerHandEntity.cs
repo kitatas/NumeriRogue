@@ -1,6 +1,6 @@
 namespace PrimeMillionaire.Game.Data.Entity
 {
-    public sealed class PlayerHandEntity : HandEntity
+    public sealed class PlayerHandEntity : BaseHandEntity
     {
     }
 }
