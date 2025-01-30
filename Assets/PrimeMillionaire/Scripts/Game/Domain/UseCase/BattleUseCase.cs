@@ -30,15 +30,11 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         {
             if (_playerBattlePtEntity.currentValue >= _enemyBattlePtEntity.currentValue)
             {
-                var atk = GetPlayerAtk() * _playerBattlePtEntity.currentValue;
-                var def = _enemyParameterEntity.def * _enemyBattlePtEntity.currentValue;
-                return _enemyParameterEntity.currentHp <= atk - def;
+                return _enemyParameterEntity.currentHpWithAdditional <= GetEnemyDamage();
             }
             else
             {
-                var atk = _enemyParameterEntity.atk * _enemyBattlePtEntity.currentValue;
-                var def = GetPlayerDef() * _playerBattlePtEntity.currentValue;
-                return _playerParameterEntity.currentHp <= atk - def;
+                return _playerParameterEntity.currentHpWithAdditional <= GetPlayerDamage();
             }
         }
 
@@ -49,30 +45,36 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
             if (_playerBattlePtEntity.currentValue >= _enemyBattlePtEntity.currentValue)
             {
-                var atk = GetPlayerAtk() * _playerBattlePtEntity.currentValue;
-                var def = _enemyParameterEntity.def * _enemyBattlePtEntity.currentValue;
-                _enemyParameterEntity.Damage(atk - def);
+                _enemyParameterEntity.Damage(GetEnemyDamage());
                 await Router.Default.PublishAsync(_enemyParameterEntity.ToVO(), token);
             }
             else
             {
-                var atk = _enemyParameterEntity.atk * _enemyBattlePtEntity.currentValue;
-                var def = GetPlayerDef() * _playerBattlePtEntity.currentValue;
-                _playerParameterEntity.Damage(atk - def);
+                _playerParameterEntity.Damage(GetPlayerDamage());
                 await Router.Default.PublishAsync(_playerParameterEntity.ToVO(), token);
             }
         }
 
-        private int GetPlayerAtk()
+        private int GetEnemyDamage()
         {
             var rate = _holdSkillEntity.GetTotalRate(SkillType.AtkUp) + 1.0f;
-            return Mathf.CeilToInt(_playerParameterEntity.atk * rate);
+            var atk = _playerBattlePtEntity.currentValue + Mathf.CeilToInt(_playerParameterEntity.atk * rate);
+            var def = _enemyBattlePtEntity.currentValue + _enemyParameterEntity.def;
+            return CalcDamage(atk, def);
         }
 
-        private int GetPlayerDef()
+
+        private int GetPlayerDamage()
         {
             var rate = _holdSkillEntity.GetTotalRate(SkillType.DefUp) + 1.0f;
-            return Mathf.CeilToInt(_playerParameterEntity.def * rate);
+            var atk = _enemyBattlePtEntity.currentValue + _enemyParameterEntity.atk;
+            var def = _playerBattlePtEntity.currentValue + Mathf.CeilToInt(_playerParameterEntity.def * rate);
+            return CalcDamage(atk, def);
+        }
+
+        private static int CalcDamage(float atk, float def)
+        {
+            return Mathf.CeilToInt(atk / def * 100 * Random.Range(0.95f, 1.05f));
         }
     }
 }
