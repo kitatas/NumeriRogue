@@ -20,6 +20,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         }
 
         public Observable<bool> isFull => _holdCount.Select(x => x == SkillConfig.HOLD_NUM);
+        public bool hasEmpty => _holdSkillEntity.count < SkillConfig.HOLD_NUM;
 
         public async UniTaskVoid AddAsync(SkillVO skill, CancellationToken token)
         {

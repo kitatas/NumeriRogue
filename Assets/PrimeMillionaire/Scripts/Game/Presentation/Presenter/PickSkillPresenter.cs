@@ -53,7 +53,8 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
             Router.Default
                 .SubscribeAwait<PickSkillVO>(async (x, context) =>
                 {
-                    await _pickSkillView.RenderAsync(x, _dollarUseCase.IsConsume(x.skill.price), context.CancellationToken);
+                    var isConsume = _dollarUseCase.IsConsume(x.skill.price) && _holdSkillUseCase.hasEmpty;
+                    await _pickSkillView.RenderAsync(x, isConsume, context.CancellationToken);
                 })
                 .AddTo(_pickSkillView);
 
