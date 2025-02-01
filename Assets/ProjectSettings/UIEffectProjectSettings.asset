@@ -19,6 +19,10 @@ ShaderVariantCollection:
         passType: 0
       - keywords: COLOR_HSV_MODIFIER SAMPLING_BLUR_FAST
         passType: 0
+      - keywords: EDGE_COLOR_REPLACE EDGE_PLAIN
+        passType: 0
+      - keywords: EDGE_COLOR_REPLACE EDGE_SHINY
+        passType: 0
       - keywords: TONE_GRAYSCALE
         passType: 0
       - keywords: TONE_POSTERIZE
