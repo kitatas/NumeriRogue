@@ -27,9 +27,8 @@ namespace PrimeMillionaire.Game
 
         public CharacterVO(int type)
         {
-            var t = type.ToCharacterType();
-            this.type = t;
-            this.objPath = $"Assets/PrimeMillionaire/Prefabs/Characters/{t.FastToString()}.prefab";
+            this.type = type.ToCharacterType();
+            this.objPath = $"Assets/PrimeMillionaire/Prefabs/Characters/Character - {this.type.FastToString()}.prefab";
         }
     }
 

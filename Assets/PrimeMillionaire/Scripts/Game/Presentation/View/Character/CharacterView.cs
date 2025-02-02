@@ -6,6 +6,9 @@ namespace PrimeMillionaire.Game.Presentation.View
 {
     public abstract class CharacterView : MonoBehaviour
     {
+        [SerializeField] private Animator animator = default;
+        [SerializeField] private SpriteRenderer spriteRenderer = default;
+
         public abstract CharacterType characterType { get; }
         public abstract float applyDamageTime { get; }
         public abstract float deadTime { get; }
@@ -15,9 +18,6 @@ namespace PrimeMillionaire.Game.Presentation.View
         private static readonly int _isAttack = Animator.StringToHash("IsAttack");
         private static readonly int _isDamage = Animator.StringToHash("IsDamage");
         private static readonly int _isDead = Animator.StringToHash("IsDead");
-
-        private Animator _animator;
-        private Animator animator => _animator ??= GetComponent<Animator>();
 
         public void Attack(bool value)
         {
@@ -37,9 +37,6 @@ namespace PrimeMillionaire.Game.Presentation.View
         #endregion
 
         #region Sprite
-
-        private SpriteRenderer _spriteRenderer;
-        private SpriteRenderer spriteRenderer => _spriteRenderer ??= GetComponent<SpriteRenderer>();
 
         public void FlipX(Side side)
         {
