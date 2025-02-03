@@ -3,8 +3,9 @@ using System.IO;
 using FastEnumUtility;
 using MessagePack;
 using MessagePack.Resolvers;
+using PrimeMillionaire.Common;
+using PrimeMillionaire.Common.Data.DataStore;
 using PrimeMillionaire.Game;
-using PrimeMillionaire.Game.Data.DataStore;
 using UnityEditor;
 
 namespace PrimeMillionaire.Editor.Scripts

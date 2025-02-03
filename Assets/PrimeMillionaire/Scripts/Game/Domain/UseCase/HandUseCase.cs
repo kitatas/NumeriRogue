@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using PrimeMillionaire.Common;
 using PrimeMillionaire.Game.Data.Entity;
 
 namespace PrimeMillionaire.Game.Domain.UseCase

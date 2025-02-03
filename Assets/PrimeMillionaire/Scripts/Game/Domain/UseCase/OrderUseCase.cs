@@ -2,6 +2,8 @@ using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using ObservableCollections;
+using PrimeMillionaire.Common;
+using PrimeMillionaire.Common.Domain.Repository;
 using PrimeMillionaire.Common.Utility;
 using PrimeMillionaire.Game.Data.Entity;
 using PrimeMillionaire.Game.Domain.Repository;

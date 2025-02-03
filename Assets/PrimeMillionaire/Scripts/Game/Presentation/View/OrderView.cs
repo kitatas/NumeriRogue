@@ -1,6 +1,7 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using PrimeMillionaire.Common;
 using PrimeMillionaire.Game.Utility;
 using TMPro;
 using UniEx;

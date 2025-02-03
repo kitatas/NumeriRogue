@@ -1,4 +1,5 @@
-using PrimeMillionaire.Game.Domain.Repository;
+using PrimeMillionaire.Common;
+using PrimeMillionaire.Common.Domain.Repository;
 
 namespace PrimeMillionaire.Game.Domain.UseCase
 {

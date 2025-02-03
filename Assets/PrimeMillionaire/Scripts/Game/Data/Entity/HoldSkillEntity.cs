@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using PrimeMillionaire.Common;
 
 namespace PrimeMillionaire.Game.Data.Entity
 {

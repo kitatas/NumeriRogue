@@ -1,5 +1,6 @@
 using System;
 using DG.Tweening;
+using PrimeMillionaire.Common;
 using UnityEngine;
 
 namespace PrimeMillionaire.Game.Presentation.View

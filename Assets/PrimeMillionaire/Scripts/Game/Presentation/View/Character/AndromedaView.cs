@@ -1,3 +1,5 @@
+using PrimeMillionaire.Common;
+
 namespace PrimeMillionaire.Game.Presentation.View
 {
     public sealed class AndromedaView : CharacterView

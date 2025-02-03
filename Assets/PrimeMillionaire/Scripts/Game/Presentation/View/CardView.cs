@@ -2,6 +2,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Triggers;
 using DG.Tweening;
+using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Utility;
 using TMPro;
 using UniEx;

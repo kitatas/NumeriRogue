@@ -1,4 +1,4 @@
-using PrimeMillionaire.Game.Data.DataStore;
+using PrimeMillionaire.Common.Data.DataStore;
 
 namespace PrimeMillionaire.Game.Domain.Repository
 {

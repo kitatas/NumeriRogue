@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using PrimeMillionaire.Game.Data.DataStore;
+using PrimeMillionaire.Common;
+using PrimeMillionaire.Common.Data.DataStore;
 
 namespace PrimeMillionaire.Game.Domain.Repository
 {

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using PrimeMillionaire.Common;
 using UnityEngine;
 
 namespace PrimeMillionaire.Game.Data.Entity

@@ -1,3 +1,5 @@
+using PrimeMillionaire.Common;
+
 namespace PrimeMillionaire.Game
 {
     public sealed class GameConfig

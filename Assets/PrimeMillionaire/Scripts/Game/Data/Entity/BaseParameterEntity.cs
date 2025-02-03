@@ -1,3 +1,4 @@
+using PrimeMillionaire.Common;
 using UnityEngine;
 
 namespace PrimeMillionaire.Game.Data.Entity

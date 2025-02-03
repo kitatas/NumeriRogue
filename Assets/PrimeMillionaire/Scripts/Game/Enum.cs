@@ -11,27 +11,11 @@ namespace PrimeMillionaire.Game
         Pick = 6,
     }
 
-    public enum Suit
-    {
-        None = 0,
-        Club = 1,
-        Diamond = 2,
-        Heart = 3,
-        Spade = 4,
-    }
-
     public enum Side
     {
         None = 0,
         Player = 1,
         Enemy = 2,
-    }
-
-    public enum CharacterType
-    {
-        None = 0,
-        Andromeda = 1,
-        Borealjuggernaut = 2,
     }
 
     public enum BonusType
@@ -40,14 +24,6 @@ namespace PrimeMillionaire.Game
         PrimeNumber = 1,
         SuitMatch = 2,
         ValueDown = 3,
-    }
-
-    public enum SkillType
-    {
-        None = 0,
-        HpUp = 1,
-        AtkUp = 2,
-        DefUp = 3,
     }
 
     public enum Fade

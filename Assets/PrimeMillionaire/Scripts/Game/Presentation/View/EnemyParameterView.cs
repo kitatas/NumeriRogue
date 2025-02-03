@@ -1,4 +1,5 @@
 using DG.Tweening;
+using PrimeMillionaire.Common;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

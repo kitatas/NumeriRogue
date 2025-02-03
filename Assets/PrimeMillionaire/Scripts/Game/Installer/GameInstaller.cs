@@ -1,11 +1,9 @@
-using PrimeMillionaire.Game.Data.DataStore;
 using PrimeMillionaire.Game.Data.Entity;
 using PrimeMillionaire.Game.Domain.Repository;
 using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.Presenter;
 using PrimeMillionaire.Game.Presentation.State;
 using PrimeMillionaire.Game.Presentation.View;
-using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
@@ -13,13 +11,8 @@ namespace PrimeMillionaire.Game.Installer
 {
     public sealed class GameInstaller : LifetimeScope
     {
-        [SerializeField] private TextAsset memoryFile = default;
-
         protected override void Configure(IContainerBuilder builder)
         {
-            // DataStore
-            builder.RegisterInstance<MemoryDatabase>(new MemoryDatabase(memoryFile.bytes));
-
             // Entity
             builder.Register<BonusEntity>(Lifetime.Scoped);
             builder.Register<DeckEntity>(Lifetime.Scoped);
@@ -37,9 +30,7 @@ namespace PrimeMillionaire.Game.Installer
 
             // Repository
             builder.Register<CardRepository>(Lifetime.Scoped);
-            builder.Register<CharacterRepository>(Lifetime.Scoped);
             builder.Register<DropRepository>(Lifetime.Scoped);
-            builder.Register<ParameterRepository>(Lifetime.Scoped);
             builder.Register<PrimeNumberRepository>(Lifetime.Scoped);
             builder.Register<SkillRepository>(Lifetime.Scoped);
 
