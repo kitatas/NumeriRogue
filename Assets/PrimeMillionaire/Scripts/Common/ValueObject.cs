@@ -36,13 +36,16 @@ namespace PrimeMillionaire.Common
     public sealed class CharacterVO : ICommand
     {
         public readonly CharacterType type;
-        public readonly string objPath;
+        public readonly string name;
 
         public CharacterVO(int type)
         {
             this.type = type.ToCharacterType();
-            this.objPath = $"Assets/PrimeMillionaire/Prefabs/Characters/Character - {this.type.FastToString()}.prefab";
+            this.name = this.type.FastToString();
         }
+
+        public string objPath => $"Assets/PrimeMillionaire/Prefabs/Characters/Character - {name}.prefab";
+        public string imgPath => $"Assets/Externals/Sprites/Characters/boss_{name.ToLower()}.png[boss_{name.ToLower()}_101]";
     }
 
     public class ParameterVO
