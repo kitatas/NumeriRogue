@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using FastEnumUtility;
 using PrimeMillionaire.Common.Data.DataStore;
 
@@ -11,6 +13,13 @@ namespace PrimeMillionaire.Common.Domain.Repository
         public CharacterRepository(MemoryDatabase memoryDatabase)
         {
             _memoryDatabase = memoryDatabase;
+        }
+
+        public List<CharacterVO> GetAll()
+        {
+            return _memoryDatabase.CharacterMasterTable.All
+                .Select(x => x.ToVO())
+                .ToList();
         }
 
         public CharacterVO Find(CharacterType type)

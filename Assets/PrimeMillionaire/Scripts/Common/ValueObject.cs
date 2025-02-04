@@ -1,5 +1,6 @@
 using FastEnumUtility;
 using PrimeMillionaire.Common.Utility;
+using VitalRouter;
 
 namespace PrimeMillionaire.Common
 {
@@ -32,7 +33,7 @@ namespace PrimeMillionaire.Common
         }
     }
 
-    public sealed class CharacterVO
+    public sealed class CharacterVO : ICommand
     {
         public readonly CharacterType type;
         public readonly string objPath;
