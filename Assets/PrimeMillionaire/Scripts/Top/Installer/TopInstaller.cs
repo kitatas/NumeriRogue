@@ -1,6 +1,7 @@
 using PrimeMillionaire.Top.Domain.UseCase;
 using PrimeMillionaire.Top.Presentation.Presenter;
 using PrimeMillionaire.Top.Presentation.State;
+using PrimeMillionaire.Top.Presentation.View;
 using VContainer;
 using VContainer.Unity;
 
@@ -11,6 +12,7 @@ namespace PrimeMillionaire.Top.Installer
         protected override void Configure(IContainerBuilder builder)
         {
             // UseCase
+            builder.Register<CharacterUseCase>(Lifetime.Scoped);
             builder.Register<StateUseCase>(Lifetime.Scoped);
 
             // State
@@ -19,8 +21,12 @@ namespace PrimeMillionaire.Top.Installer
             // Presenter
             builder.UseEntryPoints(Lifetime.Scoped, entryPoints =>
             {
+                entryPoints.Add<CharacterPresenter>();
                 entryPoints.Add<StatePresenter>();
             });
+
+            // View
+            builder.RegisterComponentInHierarchy<CharacterListView>();
         }
     }
 }
