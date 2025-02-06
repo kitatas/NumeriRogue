@@ -1,21 +1,28 @@
+using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Data.Entity;
 using PrimeMillionaire.Common.Domain.Repository;
+using R3;
 using VitalRouter;
 
 namespace PrimeMillionaire.Top.Domain.UseCase
 {
-    public sealed class CharacterUseCase
+    public sealed class CharacterUseCase : IDisposable
     {
         private readonly PlayerCharacterEntity _playerCharacterEntity;
         private readonly CharacterRepository _characterRepository;
+        private readonly Subject<CharacterVO> _orderCharacter;
 
         public CharacterUseCase(PlayerCharacterEntity playerCharacterEntity, CharacterRepository characterRepository)
         {
             _playerCharacterEntity = playerCharacterEntity;
             _characterRepository = characterRepository;
+            _orderCharacter = new Subject<CharacterVO>();
         }
+
+        public Observable<CharacterVO> orderCharacter => _orderCharacter;
 
         public async UniTask RenderPlayableCharacterAsync(CancellationToken token)
         {
@@ -32,6 +39,13 @@ namespace PrimeMillionaire.Top.Domain.UseCase
         {
             _playerCharacterEntity.SetType(type);
 
+            var character = _characterRepository.Find(_playerCharacterEntity.type);
+            _orderCharacter?.OnNext(character);
+        }
+
+        public void Dispose()
+        {
+            _orderCharacter?.Dispose();
         }
     }
 }

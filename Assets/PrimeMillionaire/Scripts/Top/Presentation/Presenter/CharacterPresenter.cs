@@ -1,4 +1,5 @@
 using PrimeMillionaire.Common;
+using PrimeMillionaire.Top.Domain.UseCase;
 using PrimeMillionaire.Top.Presentation.View;
 using R3;
 using VContainer.Unity;
@@ -8,10 +9,12 @@ namespace PrimeMillionaire.Top.Presentation.Presenter
 {
     public sealed class CharacterPresenter : IStartable
     {
+        private readonly CharacterUseCase _characterUseCase;
         private readonly CharacterListView _characterListView;
 
-        public CharacterPresenter(CharacterListView characterListView)
+        public CharacterPresenter(CharacterUseCase characterUseCase, CharacterListView characterListView)
         {
+            _characterUseCase = characterUseCase;
             _characterListView = characterListView;
         }
 
@@ -21,6 +24,13 @@ namespace PrimeMillionaire.Top.Presentation.Presenter
                 .SubscribeAwait<CharacterVO>(async (x, context) =>
                 {
                     await _characterListView.RenderAsync(x, context.CancellationToken);
+                })
+                .AddTo(_characterListView);
+
+            _characterUseCase.orderCharacter
+                .SubscribeAwait(async (x, token) =>
+                {
+                    await _characterListView.OrderAsync(x, token);
                 })
                 .AddTo(_characterListView);
         }
