@@ -23,7 +23,7 @@ namespace PrimeMillionaire.Top.Presentation.State
         public override async UniTask<TopState> TickAsync(CancellationToken token)
         {
             await UniTask.Yield(token);
-            return TopState.None;
+            return TopState.Order;
         }
     }
 }

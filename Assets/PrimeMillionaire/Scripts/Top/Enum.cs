@@ -4,5 +4,6 @@ namespace PrimeMillionaire.Top
     {
         None = 0,
         Init = 1,
+        Order = 2,
     }
 }
