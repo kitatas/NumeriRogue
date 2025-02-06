@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
@@ -12,10 +11,11 @@ namespace PrimeMillionaire.Top.Presentation.View
         [SerializeField] private Transform viewport = default;
         [SerializeField] private OrderCharacterView orderCharacterView = default;
 
-        public async UniTask RenderAsync(CharacterVO character, CancellationToken token)
+        public async UniTask<CharacterView> RenderAsync(CharacterVO character, CancellationToken token)
         {
             var view = Instantiate(characterView, viewport);
             await view.RenderAsync(character, token);
+            return view;
         }
 
         public async UniTask OrderAsync(CharacterVO value, CancellationToken token)

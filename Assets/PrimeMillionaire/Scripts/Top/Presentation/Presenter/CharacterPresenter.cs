@@ -23,7 +23,11 @@ namespace PrimeMillionaire.Top.Presentation.Presenter
             Router.Default
                 .SubscribeAwait<CharacterVO>(async (x, context) =>
                 {
-                    await _characterListView.RenderAsync(x, context.CancellationToken);
+                    var characterView = await _characterListView.RenderAsync(x, context.CancellationToken);
+                    characterView.pointerDown
+                        .Select(_ => x.type)
+                        .Subscribe(_characterUseCase.Order)
+                        .AddTo(_characterListView);
                 })
                 .AddTo(_characterListView);
 
