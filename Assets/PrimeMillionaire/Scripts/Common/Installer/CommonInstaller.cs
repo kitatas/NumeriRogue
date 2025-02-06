@@ -1,4 +1,5 @@
 using PrimeMillionaire.Common.Data.DataStore;
+using PrimeMillionaire.Common.Data.Entity;
 using PrimeMillionaire.Common.Domain.Repository;
 using PrimeMillionaire.Common.Domain.UseCase;
 using PrimeMillionaire.Common.Presentation.Presenter;
@@ -17,6 +18,9 @@ namespace PrimeMillionaire.Common.Installer
         {
             // DataStore
             builder.RegisterInstance<MemoryDatabase>(new MemoryDatabase(memoryFile.bytes));
+
+            // Entity
+            builder.Register<PlayerCharacterEntity>(Lifetime.Singleton);
 
             // Repository
             builder.Register<CharacterRepository>(Lifetime.Scoped);
