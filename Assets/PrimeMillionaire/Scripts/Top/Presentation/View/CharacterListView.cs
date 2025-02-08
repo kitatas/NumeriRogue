@@ -18,7 +18,7 @@ namespace PrimeMillionaire.Top.Presentation.View
             return view;
         }
 
-        public async UniTask OrderAsync(CharacterVO value, CancellationToken token)
+        public async UniTask OrderAsync((CharacterVO, ParameterVO) value, CancellationToken token)
         {
             await orderCharacterView.RenderAsync(value, token);
         }

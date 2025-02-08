@@ -13,16 +13,19 @@ namespace PrimeMillionaire.Top.Domain.UseCase
     {
         private readonly PlayerCharacterEntity _playerCharacterEntity;
         private readonly CharacterRepository _characterRepository;
-        private readonly Subject<CharacterVO> _orderCharacter;
+        private readonly ParameterRepository _parameterRepository;
+        private readonly Subject<(CharacterVO character, ParameterVO parameter)> _orderCharacter;
 
-        public CharacterUseCase(PlayerCharacterEntity playerCharacterEntity, CharacterRepository characterRepository)
+        public CharacterUseCase(PlayerCharacterEntity playerCharacterEntity, CharacterRepository characterRepository,
+            ParameterRepository parameterRepository)
         {
             _playerCharacterEntity = playerCharacterEntity;
             _characterRepository = characterRepository;
-            _orderCharacter = new Subject<CharacterVO>();
+            _parameterRepository = parameterRepository;
+            _orderCharacter = new Subject<(CharacterVO, ParameterVO)>();
         }
 
-        public Observable<CharacterVO> orderCharacter => _orderCharacter;
+        public Observable<(CharacterVO, ParameterVO)> orderCharacter => _orderCharacter;
 
         public async UniTask RenderPlayableCharacterAsync(CancellationToken token)
         {
@@ -40,7 +43,8 @@ namespace PrimeMillionaire.Top.Domain.UseCase
             _playerCharacterEntity.SetType(type);
 
             var character = _characterRepository.Find(_playerCharacterEntity.type);
-            _orderCharacter?.OnNext(character);
+            var parameter = _parameterRepository.Find(_playerCharacterEntity.type);
+            _orderCharacter?.OnNext((character, parameter));
         }
 
         public void Dispose()
