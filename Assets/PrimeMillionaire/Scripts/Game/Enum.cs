@@ -9,6 +9,7 @@ namespace PrimeMillionaire.Game
         Order = 4,
         Battle = 5,
         Pick = 6,
+        Load = 7,
     }
 
     public enum Side
