@@ -28,6 +28,7 @@ namespace PrimeMillionaire.Top.Installer
 
             // View
             builder.RegisterComponentInHierarchy<CharacterListView>();
+            builder.RegisterComponentInHierarchy<OrderView>();
         }
     }
 }
