@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Game.Domain.UseCase;
@@ -45,13 +46,20 @@ namespace PrimeMillionaire.Game.Presentation.State
 
             if (isDestroy)
             {
-                _dollarUseCase.Add(_dropUseCase.GetDropDollar());
-                _battleView.DestroyEnemy();
+                switch (attacker)
+                {
+                    case Side.Player:
+                        _dollarUseCase.Add(_dropUseCase.GetDropDollar());
+                        _battleView.DestroyEnemy();
+                        return GameState.Pick;
+                    case Side.Enemy:
+                        return GameState.Load;
+                    default:
+                        throw new Exception();
+                }
             }
 
-            return isDestroy
-                ? GameState.Pick
-                : GameState.Deal;
+            return GameState.Deal;
         }
     }
 }
