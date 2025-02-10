@@ -61,14 +61,11 @@ namespace PrimeMillionaire.Editor.Scripts
 
         private static List<CharacterMaster> GetCharacterMaster()
         {
-            var characterMaster = new List<CharacterMaster>();
-            foreach (var type in FastEnum.GetValues<CharacterType>())
+            return new List<CharacterMaster>
             {
-                if (type == CharacterType.None) continue;
-                characterMaster.Add(new CharacterMaster(type.ToInt32()));
-            }
-
-            return characterMaster;
+                new(CharacterType.Andromeda.ToInt32(), StageType.Abyssian.ToInt32()),
+                new(CharacterType.Borealjuggernaut.ToInt32(), StageType.Vanar.ToInt32())
+            };
         }
 
         private static List<DropRateMaster> GetDropRateMaster()
