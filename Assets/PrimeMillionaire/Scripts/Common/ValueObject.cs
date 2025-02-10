@@ -116,4 +116,16 @@ namespace PrimeMillionaire.Common
         public string mgPath => $"Assets/Externals/Sprites/Stages/{lowerName}/midground@2x.png[midground@2x_0]";
         public string glowPath => $"Assets/Externals/Sprites/Stages/{lowerName}/midground_glow@2x.png[midground_glow@2x_0]";
     }
+
+    public sealed class LevelVO
+    {
+        public readonly int level;
+        public readonly float rate;
+
+        public LevelVO(int level, float rate)
+        {
+            this.level = level;
+            this.rate = rate;
+        }
+    }
 }
