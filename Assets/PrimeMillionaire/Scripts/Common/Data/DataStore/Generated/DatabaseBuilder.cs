@@ -34,6 +34,12 @@ namespace PrimeMillionaire.Common.Data.DataStore
             return this;
         }
 
+        public DatabaseBuilder Append(System.Collections.Generic.IEnumerable<LevelMaster> dataSource)
+        {
+            AppendCore(dataSource, x => x.Level, System.Collections.Generic.Comparer<int>.Default);
+            return this;
+        }
+
         public DatabaseBuilder Append(System.Collections.Generic.IEnumerable<ParameterMaster> dataSource)
         {
             AppendCore(dataSource, x => x.Type, System.Collections.Generic.Comparer<int>.Default);

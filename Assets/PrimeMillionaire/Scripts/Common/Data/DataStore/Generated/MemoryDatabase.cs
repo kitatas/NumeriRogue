@@ -16,6 +16,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
         public CardMasterTable CardMasterTable { get; private set; }
         public CharacterMasterTable CharacterMasterTable { get; private set; }
         public DropRateMasterTable DropRateMasterTable { get; private set; }
+        public LevelMasterTable LevelMasterTable { get; private set; }
         public ParameterMasterTable ParameterMasterTable { get; private set; }
         public PrimeNumberMasterTable PrimeNumberMasterTable { get; private set; }
         public SkillMasterTable SkillMasterTable { get; private set; }
@@ -24,6 +25,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             CardMasterTable CardMasterTable,
             CharacterMasterTable CharacterMasterTable,
             DropRateMasterTable DropRateMasterTable,
+            LevelMasterTable LevelMasterTable,
             ParameterMasterTable ParameterMasterTable,
             PrimeNumberMasterTable PrimeNumberMasterTable,
             SkillMasterTable SkillMasterTable
@@ -32,6 +34,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             this.CardMasterTable = CardMasterTable;
             this.CharacterMasterTable = CharacterMasterTable;
             this.DropRateMasterTable = DropRateMasterTable;
+            this.LevelMasterTable = LevelMasterTable;
             this.ParameterMasterTable = ParameterMasterTable;
             this.PrimeNumberMasterTable = PrimeNumberMasterTable;
             this.SkillMasterTable = SkillMasterTable;
@@ -59,6 +62,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             this.CardMasterTable = ExtractTableData<CardMaster, CardMasterTable>(header, databaseBinary, options, xs => new CardMasterTable(xs));
             this.CharacterMasterTable = ExtractTableData<CharacterMaster, CharacterMasterTable>(header, databaseBinary, options, xs => new CharacterMasterTable(xs));
             this.DropRateMasterTable = ExtractTableData<DropRateMaster, DropRateMasterTable>(header, databaseBinary, options, xs => new DropRateMasterTable(xs));
+            this.LevelMasterTable = ExtractTableData<LevelMaster, LevelMasterTable>(header, databaseBinary, options, xs => new LevelMasterTable(xs));
             this.ParameterMasterTable = ExtractTableData<ParameterMaster, ParameterMasterTable>(header, databaseBinary, options, xs => new ParameterMasterTable(xs));
             this.PrimeNumberMasterTable = ExtractTableData<PrimeNumberMaster, PrimeNumberMasterTable>(header, databaseBinary, options, xs => new PrimeNumberMasterTable(xs));
             this.SkillMasterTable = ExtractTableData<SkillMaster, SkillMasterTable>(header, databaseBinary, options, xs => new SkillMasterTable(xs));
@@ -71,6 +75,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 () => this.CardMasterTable = ExtractTableData<CardMaster, CardMasterTable>(header, databaseBinary, options, xs => new CardMasterTable(xs)),
                 () => this.CharacterMasterTable = ExtractTableData<CharacterMaster, CharacterMasterTable>(header, databaseBinary, options, xs => new CharacterMasterTable(xs)),
                 () => this.DropRateMasterTable = ExtractTableData<DropRateMaster, DropRateMasterTable>(header, databaseBinary, options, xs => new DropRateMasterTable(xs)),
+                () => this.LevelMasterTable = ExtractTableData<LevelMaster, LevelMasterTable>(header, databaseBinary, options, xs => new LevelMasterTable(xs)),
                 () => this.ParameterMasterTable = ExtractTableData<ParameterMaster, ParameterMasterTable>(header, databaseBinary, options, xs => new ParameterMasterTable(xs)),
                 () => this.PrimeNumberMasterTable = ExtractTableData<PrimeNumberMaster, PrimeNumberMasterTable>(header, databaseBinary, options, xs => new PrimeNumberMasterTable(xs)),
                 () => this.SkillMasterTable = ExtractTableData<SkillMaster, SkillMasterTable>(header, databaseBinary, options, xs => new SkillMasterTable(xs)),
@@ -93,6 +98,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             builder.Append(this.CardMasterTable.GetRawDataUnsafe());
             builder.Append(this.CharacterMasterTable.GetRawDataUnsafe());
             builder.Append(this.DropRateMasterTable.GetRawDataUnsafe());
+            builder.Append(this.LevelMasterTable.GetRawDataUnsafe());
             builder.Append(this.ParameterMasterTable.GetRawDataUnsafe());
             builder.Append(this.PrimeNumberMasterTable.GetRawDataUnsafe());
             builder.Append(this.SkillMasterTable.GetRawDataUnsafe());
@@ -105,6 +111,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             builder.Append(this.CardMasterTable.GetRawDataUnsafe());
             builder.Append(this.CharacterMasterTable.GetRawDataUnsafe());
             builder.Append(this.DropRateMasterTable.GetRawDataUnsafe());
+            builder.Append(this.LevelMasterTable.GetRawDataUnsafe());
             builder.Append(this.ParameterMasterTable.GetRawDataUnsafe());
             builder.Append(this.PrimeNumberMasterTable.GetRawDataUnsafe());
             builder.Append(this.SkillMasterTable.GetRawDataUnsafe());
@@ -121,6 +128,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 CardMasterTable,
                 CharacterMasterTable,
                 DropRateMasterTable,
+                LevelMasterTable,
                 ParameterMasterTable,
                 PrimeNumberMasterTable,
                 SkillMasterTable,
@@ -132,6 +140,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
             ValidateTable(CharacterMasterTable.All, database, "Type", CharacterMasterTable.PrimaryKeySelector, result);
             ((ITableUniqueValidate)DropRateMasterTable).ValidateUnique(result);
             ValidateTable(DropRateMasterTable.All, database, "Turn", DropRateMasterTable.PrimaryKeySelector, result);
+            ((ITableUniqueValidate)LevelMasterTable).ValidateUnique(result);
+            ValidateTable(LevelMasterTable.All, database, "Level", LevelMasterTable.PrimaryKeySelector, result);
             ((ITableUniqueValidate)ParameterMasterTable).ValidateUnique(result);
             ValidateTable(ParameterMasterTable.All, database, "Type", ParameterMasterTable.PrimaryKeySelector, result);
             ((ITableUniqueValidate)PrimeNumberMasterTable).ValidateUnique(result);
@@ -156,6 +166,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
                     return db.CharacterMasterTable;
                 case "DropRateMaster":
                     return db.DropRateMasterTable;
+                case "LevelMaster":
+                    return db.LevelMasterTable;
                 case "ParameterMaster":
                     return db.ParameterMasterTable;
                 case "PrimeNumberMaster":
@@ -178,6 +190,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             dict.Add("CardMaster", PrimeMillionaire.Common.Data.DataStore.Tables.CardMasterTable.CreateMetaTable());
             dict.Add("CharacterMaster", PrimeMillionaire.Common.Data.DataStore.Tables.CharacterMasterTable.CreateMetaTable());
             dict.Add("DropRateMaster", PrimeMillionaire.Common.Data.DataStore.Tables.DropRateMasterTable.CreateMetaTable());
+            dict.Add("LevelMaster", PrimeMillionaire.Common.Data.DataStore.Tables.LevelMasterTable.CreateMetaTable());
             dict.Add("ParameterMaster", PrimeMillionaire.Common.Data.DataStore.Tables.ParameterMasterTable.CreateMetaTable());
             dict.Add("PrimeNumberMaster", PrimeMillionaire.Common.Data.DataStore.Tables.PrimeNumberMasterTable.CreateMetaTable());
             dict.Add("SkillMaster", PrimeMillionaire.Common.Data.DataStore.Tables.SkillMasterTable.CreateMetaTable());
