@@ -37,4 +37,13 @@ namespace PrimeMillionaire.Common
         AtkUp = 2,
         DefUp = 3,
     }
+
+    public enum StageType
+    {
+        None = 0,
+        Abyssian = 1,
+        Redrock = 2,
+        Shimzar = 3,
+        Vanar = 4,
+    }
 }

@@ -37,11 +37,13 @@ namespace PrimeMillionaire.Common
     {
         public readonly CharacterType type;
         public readonly string name;
+        public readonly StageVO stage;
 
-        public CharacterVO(int type)
+        public CharacterVO(int type, int stage)
         {
             this.type = type.ToCharacterType();
             this.name = this.type.FastToString();
+            this.stage = new StageVO(stage);
         }
 
         public string objPath => $"Assets/PrimeMillionaire/Prefabs/Characters/Character - {name}.prefab";
@@ -93,5 +95,22 @@ namespace PrimeMillionaire.Common
             this.description = this.type.ToDescription(value);
             this.price = this.type.ToPrice(value);
         }
+    }
+
+    public sealed class StageVO
+    {
+        public readonly StageType type;
+        public readonly string name;
+        public readonly string lowerName;
+
+        public StageVO(int type)
+        {
+            this.type = type.ToStageType();
+            this.name = this.type.FastToString();
+            this.lowerName = this.name.ToLower();
+        }
+
+        public string bgPath => $"Assets/Externals/Sprites/Stages/{lowerName}/background@2x.jpg";
+        public string mgPath => $"Assets/Externals/Sprites/Stages/{lowerName}/midground@2x.jpg";
     }
 }

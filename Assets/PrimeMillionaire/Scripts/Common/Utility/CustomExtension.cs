@@ -47,5 +47,12 @@ namespace PrimeMillionaire.Common.Utility
                 _ => throw new Exception(),
             };
         }
+
+        public static StageType ToStageType(this int self)
+        {
+            return FastEnum.IsDefined<StageType>(self)
+                ? (StageType)self
+                : throw new Exception();
+        }
     }
 }
