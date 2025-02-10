@@ -1,5 +1,6 @@
 using FastEnumUtility;
 using PrimeMillionaire.Common.Utility;
+using UnityEngine;
 using VitalRouter;
 
 namespace PrimeMillionaire.Common
@@ -74,6 +75,15 @@ namespace PrimeMillionaire.Common
             this.atk = parameter.atk;
             this.def = parameter.def;
             this.currentHp = currentHp + additionalHp;
+        }
+
+        public ParameterVO(ParameterVO parameter, LevelVO level)
+        {
+            this.type = parameter.type;
+            this.hp = Mathf.CeilToInt(parameter.hp * level.rate);
+            this.atk = Mathf.CeilToInt(parameter.atk * level.rate);
+            this.def = Mathf.CeilToInt(parameter.def * level.rate);
+            this.currentHp = Mathf.CeilToInt(parameter.currentHp * level.rate);
         }
 
         public string name => type.FastToString();
