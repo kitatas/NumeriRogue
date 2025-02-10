@@ -20,6 +20,8 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
     {
         // Type
         private static global::System.ReadOnlySpan<byte> GetSpan_Type() => new byte[1 + 4] { 164, 84, 121, 112, 101 };
+        // Stage
+        private static global::System.ReadOnlySpan<byte> GetSpan_Stage() => new byte[1 + 5] { 165, 83, 116, 97, 103, 101 };
 
         public void Serialize(ref global::MessagePack.MessagePackWriter writer, global::PrimeMillionaire.Common.Data.DataStore.CharacterMaster value, global::MessagePack.MessagePackSerializerOptions options)
         {
@@ -29,9 +31,11 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
                 return;
             }
 
-            writer.WriteMapHeader(1);
+            writer.WriteMapHeader(2);
             writer.WriteRaw(GetSpan_Type());
             writer.Write(value.Type);
+            writer.WriteRaw(GetSpan_Stage());
+            writer.Write(value.Stage);
         }
 
         public global::PrimeMillionaire.Common.Data.DataStore.CharacterMaster Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)
@@ -44,6 +48,7 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
             options.Security.DepthStep(ref reader);
             var length = reader.ReadMapHeader();
             var __Type__ = default(int);
+            var __Stage__ = default(int);
 
             for (int i = 0; i < length; i++)
             {
@@ -59,11 +64,16 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
 
                         __Type__ = reader.ReadInt32();
                         continue;
+                    case 5:
+                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 435526136915UL) { goto FAIL; }
+
+                        __Stage__ = reader.ReadInt32();
+                        continue;
 
                 }
             }
 
-            var ____result = new global::PrimeMillionaire.Common.Data.DataStore.CharacterMaster(__Type__);
+            var ____result = new global::PrimeMillionaire.Common.Data.DataStore.CharacterMaster(__Type__, __Stage__);
             reader.Depth--;
             return ____result;
         }
