@@ -1,4 +1,3 @@
-using PrimeMillionaire.Common.Domain.Repository;
 using PrimeMillionaire.Game.Data.Entity;
 using PrimeMillionaire.Game.Domain.Repository;
 using UnityEngine;
@@ -7,21 +6,26 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 {
     public sealed class DropUseCase
     {
+        private readonly EnemyCountEntity _enemyCountEntity;
         private readonly TurnEntity _turnEntity;
         private readonly DropRepository _dropRepository;
+        private readonly LevelRepository _levelRepository;
 
-        public DropUseCase(TurnEntity turnEntity, DropRepository dropRepository)
+        public DropUseCase(EnemyCountEntity enemyCountEntity, TurnEntity turnEntity, DropRepository dropRepository,
+            LevelRepository levelRepository)
         {
+            _enemyCountEntity = enemyCountEntity;
             _turnEntity = turnEntity;
             _dropRepository = dropRepository;
+            _levelRepository = levelRepository;
         }
 
         public int GetDropDollar()
         {
-            // TODO: 敵の強さから獲得可能な$を取得する
-            var baseDropDollar = 500;
+            var baseDropDollar = 80;
+            var level = _levelRepository.FindClosest(_enemyCountEntity.currentValue);
             var wrapTurn = Mathf.Min(5, _turnEntity.currentValue);
-            return Mathf.CeilToInt(baseDropDollar * _dropRepository.FindDropRate(wrapTurn));
+            return Mathf.CeilToInt(baseDropDollar * _dropRepository.FindDropRate(wrapTurn) * level.rate);
         }
     }
 }

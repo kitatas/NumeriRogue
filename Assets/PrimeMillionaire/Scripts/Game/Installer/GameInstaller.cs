@@ -30,6 +30,7 @@ namespace PrimeMillionaire.Game.Installer
 
             // Repository
             builder.Register<DropRepository>(Lifetime.Scoped);
+            builder.Register<LevelRepository>(Lifetime.Scoped);
             builder.Register<PrimeNumberRepository>(Lifetime.Scoped);
             builder.Register<SkillRepository>(Lifetime.Scoped);
 
