@@ -1,19 +1,21 @@
 using System.Collections.Generic;
 using System.IO;
-using FastEnumUtility;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using MessagePack;
 using MessagePack.Resolvers;
-using PrimeMillionaire.Common;
+using Newtonsoft.Json;
 using PrimeMillionaire.Common.Data.DataStore;
-using PrimeMillionaire.Game;
+using PrimeMillionaire.Common.Utility;
 using UnityEditor;
+using UnityEngine;
 
 namespace PrimeMillionaire.Editor.Scripts
 {
     public static class BinaryGenerator
     {
         [MenuItem("Tools/MasterMemory/CreateBinary")]
-        private static void GenerateCardMaster()
+        private static async void GenerateCardMaster()
         {
             var messagePackResolvers = CompositeResolver.Create(
                 MasterMemoryResolver.Instance,
@@ -24,13 +26,19 @@ namespace PrimeMillionaire.Editor.Scripts
             var options = MessagePackSerializerOptions.Standard.WithResolver(messagePackResolvers);
             MessagePackSerializer.DefaultOptions = options;
 
+            var card = await GetCardMasterAsync(CancellationToken.None);
+            var character = await GetCharacterMasterAsync(CancellationToken.None);
+            var dropRate = await GetDropRateMasterAsync(CancellationToken.None);
+            var parameter = await GetParameterMasterAsync(CancellationToken.None);
+            var skill = await GetSkillMasterAsync(CancellationToken.None);
+
             var databaseBuilder = new DatabaseBuilder();
-            databaseBuilder.Append(GetCardMaster());
-            databaseBuilder.Append(GetCharacterMaster());
-            databaseBuilder.Append(GetDropRateMaster());
-            databaseBuilder.Append(GetParameterMaster());
+            databaseBuilder.Append(card);
+            databaseBuilder.Append(character);
+            databaseBuilder.Append(dropRate);
+            databaseBuilder.Append(parameter);
             databaseBuilder.Append(GetPrimeNumberMaster());
-            databaseBuilder.Append(GetSkillMaster());
+            databaseBuilder.Append(skill);
             var binary = databaseBuilder.Build();
 
             var bytes = "Assets/Externals/Binary/MasterMemory.bytes";
@@ -44,48 +52,28 @@ namespace PrimeMillionaire.Editor.Scripts
             AssetDatabase.Refresh();
         }
 
-        private static List<CardMaster> GetCardMaster()
+        private static async UniTask<List<CardMaster>> GetCardMasterAsync(CancellationToken token)
         {
-            var cardMaster = new List<CardMaster>();
-            var id = 1;
-            foreach (var suit in CardConfig.SUITS)
-            {
-                for (int i = 1; i <= CardConfig.MAX_RANK; i++)
-                {
-                    cardMaster.Add(new CardMaster(id++, suit.ToInt32(), i));
-                }
-            }
-
-            return cardMaster;
+            var json = await ResourceHelper.LoadExternalsAsync<TextAsset>("Jsons/card.json", token);
+            return JsonConvert.DeserializeObject<List<CardMaster>>(json.text);
         }
 
-        private static List<CharacterMaster> GetCharacterMaster()
+        private static async UniTask<List<CharacterMaster>> GetCharacterMasterAsync(CancellationToken token)
         {
-            return new List<CharacterMaster>
-            {
-                new(CharacterType.Andromeda.ToInt32(), StageType.Abyssian.ToInt32()),
-                new(CharacterType.Borealjuggernaut.ToInt32(), StageType.Vanar.ToInt32())
-            };
+            var json = await ResourceHelper.LoadExternalsAsync<TextAsset>("Jsons/character.json", token);
+            return JsonConvert.DeserializeObject<List<CharacterMaster>>(json.text);
         }
 
-        private static List<DropRateMaster> GetDropRateMaster()
+        private static async UniTask<List<DropRateMaster>> GetDropRateMasterAsync(CancellationToken token)
         {
-            return new List<DropRateMaster>
-            {
-                new(1, 2.0f),
-                new(2, 1.75f),
-                new(3, 1.5f),
-                new(4, 1.25f),
-                new(5, 1.0f),
-            };
+            var json = await ResourceHelper.LoadExternalsAsync<TextAsset>("Jsons/drop_rate.json", token);
+            return JsonConvert.DeserializeObject<List<DropRateMaster>>(json.text);
         }
 
-        private static List<ParameterMaster> GetParameterMaster()
+        private static async UniTask<List<ParameterMaster>> GetParameterMasterAsync(CancellationToken token)
         {
-            var parameterMaster = new List<ParameterMaster>();
-            parameterMaster.Add(new ParameterMaster(CharacterType.Andromeda.ToInt32(), 1100, 110, 240));
-            parameterMaster.Add(new ParameterMaster(CharacterType.Borealjuggernaut.ToInt32(), 1200, 130, 280));
-            return parameterMaster;
+            var json = await ResourceHelper.LoadExternalsAsync<TextAsset>("Jsons/parameter.json", token);
+            return JsonConvert.DeserializeObject<List<ParameterMaster>>(json.text);
         }
 
         private static List<PrimeNumberMaster> GetPrimeNumberMaster()
@@ -109,20 +97,10 @@ namespace PrimeMillionaire.Editor.Scripts
             return true;
         }
 
-        private static List<SkillMaster> GetSkillMaster()
+        private static async UniTask<List<SkillMaster>> GetSkillMasterAsync(CancellationToken token)
         {
-            return new List<SkillMaster>
-            {
-                new(1, 1, 1, 10, 20),
-                new(2, 1, 2, 10, 20),
-                new(3, 1, 3, 10, 20),
-                new(4, 2, 1, 20, 30),
-                new(5, 2, 2, 20, 30),
-                new(6, 2, 3, 20, 30),
-                new(7, 3, 1, 30, 40),
-                new(8, 3, 2, 30, 40),
-                new(9, 3, 3, 30, 40),
-            };
+            var json = await ResourceHelper.LoadExternalsAsync<TextAsset>("Jsons/skill.json", token);
+            return JsonConvert.DeserializeObject<List<SkillMaster>>(json.text);
         }
     }
 }
