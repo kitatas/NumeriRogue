@@ -1,28 +1,31 @@
+using PrimeMillionaire.Common.Data.Entity;
 using PrimeMillionaire.Common.Domain.Repository;
 using PrimeMillionaire.Game.Data.Entity;
-using PrimeMillionaire.Game.Domain.Repository;
 
 namespace PrimeMillionaire.Game.Domain.UseCase
 {
     public sealed class DealUseCase
     {
+        private readonly PlayerCharacterEntity _playerCharacterEntity;
         private readonly DeckEntity _deckEntity;
         private readonly PlayerHandEntity _playerHandEntity;
         private readonly EnemyHandEntity _enemyHandEntity;
-        private readonly CardRepository _cardRepository;
+        private readonly DeckRepository _deckRepository;
 
-        public DealUseCase(DeckEntity deckEntity, PlayerHandEntity playerHandEntity, EnemyHandEntity enemyHandEntity,
-            CardRepository cardRepository)
+        public DealUseCase(PlayerCharacterEntity playerCharacterEntity, DeckEntity deckEntity,
+            PlayerHandEntity playerHandEntity, EnemyHandEntity enemyHandEntity, DeckRepository deckRepository)
         {
+            _playerCharacterEntity = playerCharacterEntity;
             _deckEntity = deckEntity;
             _playerHandEntity = playerHandEntity;
             _enemyHandEntity = enemyHandEntity;
-            _cardRepository = cardRepository;
+            _deckRepository = deckRepository;
         }
 
         public void Init()
         {
-            _deckEntity.Init(_cardRepository.GetAll());
+            var deck = _deckRepository.GetCards(_playerCharacterEntity.type);
+            _deckEntity.Init(deck);
         }
 
         public void SetUp()
