@@ -12,6 +12,7 @@ namespace PrimeMillionaire.Game.Presentation.View
     {
         [SerializeField] private Transform player = default;
         [SerializeField] private Transform enemy = default;
+        [SerializeField] private StageView stageView = default;
 
         private CharacterView _playerView;
         private CharacterView _enemyView;
@@ -21,6 +22,8 @@ namespace PrimeMillionaire.Game.Presentation.View
             var playerObj = await ResourceHelper.LoadAsync<GameObject>(character.objPath, token);
             _playerView = Instantiate(playerObj, player.position, Quaternion.identity).GetComponent<CharacterView>();
             _playerView.FlipX(Side.Player);
+
+            await stageView.LoadAsync(character.stage, token);
         }
 
         public async UniTask CreateEnemyAsync(CharacterVO character, CancellationToken token)

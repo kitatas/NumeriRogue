@@ -110,7 +110,10 @@ namespace PrimeMillionaire.Common
             this.lowerName = this.name.ToLower();
         }
 
-        public string bgPath => $"Assets/Externals/Sprites/Stages/{lowerName}/background@2x.jpg";
-        public string mgPath => $"Assets/Externals/Sprites/Stages/{lowerName}/midground@2x.jpg";
+        public bool hasGlow => type is StageType.Abyssian or StageType.Redrock;
+
+        public string bgPath => $"Assets/Externals/Sprites/Stages/{lowerName}/background@2x.jpg[background@2x_0]";
+        public string mgPath => $"Assets/Externals/Sprites/Stages/{lowerName}/midground@2x.png[midground@2x_0]";
+        public string glowPath => $"Assets/Externals/Sprites/Stages/{lowerName}/midground_glow@2x.png[midground_glow@2x_0]";
     }
 }
