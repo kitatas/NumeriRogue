@@ -18,6 +18,5 @@ namespace PrimeMillionaire.Common.Data.DataStore
         public int Rank { get; }
 
         public CardVO ToVO() => new(Suit, Rank);
-        [IgnoreMember] public CardVO card => new(Suit, Rank);
     }
 }

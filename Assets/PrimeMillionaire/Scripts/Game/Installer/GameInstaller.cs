@@ -29,7 +29,6 @@ namespace PrimeMillionaire.Game.Installer
             builder.Register<TurnEntity>(Lifetime.Scoped);
 
             // Repository
-            builder.Register<CardRepository>(Lifetime.Scoped);
             builder.Register<DropRepository>(Lifetime.Scoped);
             builder.Register<PrimeNumberRepository>(Lifetime.Scoped);
             builder.Register<SkillRepository>(Lifetime.Scoped);
