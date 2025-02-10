@@ -14,5 +14,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
 
         [PrimaryKey] public int Turn { get; }
         public float Rate { get; }
+
+        public DropRateVO ToVO() => new(Turn, Rate);
     }
 }

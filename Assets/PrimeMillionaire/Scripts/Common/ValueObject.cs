@@ -127,6 +127,18 @@ namespace PrimeMillionaire.Common
         public string glowPath => $"Assets/Externals/Sprites/Stages/{lowerName}/midground_glow@2x.png[midground_glow@2x_0]";
     }
 
+    public sealed class DropRateVO
+    {
+        public readonly int turn;
+        public readonly float dropRate;
+
+        public DropRateVO(int turn, float dropRate)
+        {
+            this.turn = turn;
+            this.dropRate = dropRate;
+        }
+    }
+
     public sealed class LevelVO
     {
         public readonly int level;

@@ -24,8 +24,8 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         {
             var baseDropDollar = 80;
             var level = _levelRepository.FindClosest(_enemyCountEntity.currentValue);
-            var wrapTurn = Mathf.Min(5, _turnEntity.currentValue);
-            return Mathf.CeilToInt(baseDropDollar * _dropRepository.FindDropRate(wrapTurn) * level.rate);
+            var dropRate = _dropRepository.FindClosest(_turnEntity.currentValue);
+            return Mathf.CeilToInt(baseDropDollar * level.rate * dropRate.dropRate);
         }
     }
 }

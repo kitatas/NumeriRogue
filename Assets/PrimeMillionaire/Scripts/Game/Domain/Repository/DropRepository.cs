@@ -1,4 +1,4 @@
-using System;
+using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Data.DataStore;
 
 namespace PrimeMillionaire.Game.Domain.Repository
@@ -12,16 +12,9 @@ namespace PrimeMillionaire.Game.Domain.Repository
             _memoryDatabase = memoryDatabase;
         }
 
-        public float FindDropRate(int turn)
+        public DropRateVO FindClosest(int turn)
         {
-            if (_memoryDatabase.DropRateMasterTable.TryFindByTurn(turn, out var master))
-            {
-                return master.Rate;
-            }
-            else
-            {
-                throw new Exception();
-            }
+            return _memoryDatabase.DropRateMasterTable.FindClosestByTurn(turn).ToVO();
         }
     }
 }
