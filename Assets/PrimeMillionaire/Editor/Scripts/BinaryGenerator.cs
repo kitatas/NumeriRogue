@@ -26,11 +26,13 @@ namespace PrimeMillionaire.Editor.Scripts
             var options = MessagePackSerializerOptions.Standard.WithResolver(messagePackResolvers);
             MessagePackSerializer.DefaultOptions = options;
 
-            var card = await GetCardMasterAsync(CancellationToken.None);
-            var character = await GetCharacterMasterAsync(CancellationToken.None);
-            var dropRate = await GetDropRateMasterAsync(CancellationToken.None);
-            var parameter = await GetParameterMasterAsync(CancellationToken.None);
-            var skill = await GetSkillMasterAsync(CancellationToken.None);
+            var token = CancellationToken.None;
+            var card = await GetCardMasterAsync(token);
+            var character = await GetCharacterMasterAsync(token);
+            var dropRate = await GetDropRateMasterAsync(token);
+            var parameter = await GetParameterMasterAsync(token);
+            var skill = await GetSkillMasterAsync(token);
+            var level = await GetLevelMasterAsync(token);
 
             var databaseBuilder = new DatabaseBuilder();
             databaseBuilder.Append(card);
@@ -39,6 +41,7 @@ namespace PrimeMillionaire.Editor.Scripts
             databaseBuilder.Append(parameter);
             databaseBuilder.Append(GetPrimeNumberMaster());
             databaseBuilder.Append(skill);
+            databaseBuilder.Append(level);
             var binary = databaseBuilder.Build();
 
             var bytes = "Assets/Externals/Binary/MasterMemory.bytes";
@@ -101,6 +104,12 @@ namespace PrimeMillionaire.Editor.Scripts
         {
             var json = await ResourceHelper.LoadExternalsAsync<TextAsset>("Jsons/skill.json", token);
             return JsonConvert.DeserializeObject<List<SkillMaster>>(json.text);
+        }
+
+        private static async UniTask<List<LevelMaster>> GetLevelMasterAsync(CancellationToken token)
+        {
+            var json = await ResourceHelper.LoadExternalsAsync<TextAsset>("Jsons/level.json", token);
+            return JsonConvert.DeserializeObject<List<LevelMaster>>(json.text);
         }
     }
 }
