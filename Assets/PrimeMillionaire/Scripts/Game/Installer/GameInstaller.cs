@@ -18,6 +18,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.Register<DeckEntity>(Lifetime.Scoped);
             builder.Register<DollarEntity>(Lifetime.Scoped);
             builder.Register<EnemyBattlePtEntity>(Lifetime.Scoped);
+            builder.Register<EnemyCharacterEntity>(Lifetime.Scoped);
             builder.Register<EnemyCountEntity>(Lifetime.Scoped);
             builder.Register<EnemyHandEntity>(Lifetime.Scoped);
             builder.Register<EnemyParameterEntity>(Lifetime.Scoped);

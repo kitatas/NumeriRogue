@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using FastEnumUtility;
 using PrimeMillionaire.Common.Data.DataStore;
+using PrimeMillionaire.Common.Utility;
+using UniEx;
 
 namespace PrimeMillionaire.Common.Domain.Repository
 {
@@ -20,6 +22,15 @@ namespace PrimeMillionaire.Common.Domain.Repository
             return _memoryDatabase.CharacterMasterTable.All
                 .Select(x => x.ToVO())
                 .ToList();
+        }
+
+        public CharacterVO FindOther(CharacterType type)
+        {
+            return _memoryDatabase.CharacterMasterTable.All
+                .Where(x => x.Type.ToCharacterType() != type)
+                .ToList()
+                .GetRandom()
+                .ToVO();
         }
 
         public CharacterVO Find(CharacterType type)

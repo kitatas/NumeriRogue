@@ -1,17 +1,21 @@
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Data.Entity;
 using PrimeMillionaire.Common.Domain.Repository;
+using PrimeMillionaire.Game.Data.Entity;
 
 namespace PrimeMillionaire.Game.Domain.UseCase
 {
     public sealed class CharacterUseCase
     {
         private readonly PlayerCharacterEntity _playerCharacterEntity;
+        private readonly EnemyCharacterEntity _enemyCharacterEntity;
         private readonly CharacterRepository _characterRepository;
 
-        public CharacterUseCase(PlayerCharacterEntity playerCharacterEntity, CharacterRepository characterRepository)
+        public CharacterUseCase(PlayerCharacterEntity playerCharacterEntity, EnemyCharacterEntity enemyCharacterEntity,
+            CharacterRepository characterRepository)
         {
             _playerCharacterEntity = playerCharacterEntity;
+            _enemyCharacterEntity = enemyCharacterEntity;
             _characterRepository = characterRepository;
         }
 
@@ -22,8 +26,9 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public CharacterVO GetEnemyCharacter()
         {
-            // TODO: CharacterTypeのベタ書き
-            return _characterRepository.Find(CharacterType.Borealjuggernaut);
+            var character = _characterRepository.FindOther(_playerCharacterEntity.type);
+            _enemyCharacterEntity.SetType(character.type);
+            return character;
         }
     }
 }

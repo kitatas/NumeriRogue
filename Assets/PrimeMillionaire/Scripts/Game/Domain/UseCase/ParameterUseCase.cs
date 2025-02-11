@@ -13,17 +13,20 @@ namespace PrimeMillionaire.Game.Domain.UseCase
     {
         private readonly PlayerCharacterEntity _playerCharacterEntity;
         private readonly PlayerParameterEntity _playerParameterEntity;
+        private readonly EnemyCharacterEntity _enemyCharacterEntity;
         private readonly EnemyParameterEntity _enemyParameterEntity;
         private readonly EnemyCountEntity _enemyCountEntity;
         private readonly ParameterRepository _parameterRepository;
         private readonly LevelRepository _levelRepository;
 
         public ParameterUseCase(PlayerCharacterEntity playerCharacterEntity,
-            PlayerParameterEntity playerParameterEntity, EnemyParameterEntity enemyParameterEntity,
-            EnemyCountEntity enemyCountEntity, ParameterRepository parameterRepository, LevelRepository levelRepository)
+            PlayerParameterEntity playerParameterEntity, EnemyCharacterEntity enemyCharacterEntity,
+            EnemyParameterEntity enemyParameterEntity, EnemyCountEntity enemyCountEntity,
+            ParameterRepository parameterRepository, LevelRepository levelRepository)
         {
             _playerCharacterEntity = playerCharacterEntity;
             _playerParameterEntity = playerParameterEntity;
+            _enemyCharacterEntity = enemyCharacterEntity;
             _enemyParameterEntity = enemyParameterEntity;
             _enemyCountEntity = enemyCountEntity;
             _parameterRepository = parameterRepository;
@@ -40,8 +43,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public async UniTask InitEnemyParamAsync(CancellationToken token)
         {
-            // TODO: CharacterTypeのベタ書き
-            var parameter = _parameterRepository.Find(CharacterType.Borealjuggernaut);
+            var parameter = _parameterRepository.Find(_enemyCharacterEntity.type);
             var level = _levelRepository.FindClosest(_enemyCountEntity.currentValue);
             _enemyParameterEntity.Init(parameter, level);
 
