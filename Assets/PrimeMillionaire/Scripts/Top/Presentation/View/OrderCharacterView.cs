@@ -1,6 +1,5 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Utility;
 using TMPro;
 using UnityEngine;
@@ -16,14 +15,14 @@ namespace PrimeMillionaire.Top.Presentation.View
         [SerializeField] private TextMeshProUGUI atk = default;
         [SerializeField] private TextMeshProUGUI def = default;
 
-        public async UniTask RenderAsync((CharacterVO character, ParameterVO paramter) value, CancellationToken token)
+        public async UniTask RenderAsync(OrderCharacterVO value, CancellationToken token)
         {
             var img = await ResourceHelper.LoadAsync<Sprite>(value.character.imgPath, token);
             chara.sprite = img;
             charaName.text = value.character.name;
-            hp.text = $"{value.paramter.hp}";
-            atk.text = $"{value.paramter.atk}";
-            def.text = $"{value.paramter.def}";
+            hp.text = $"{value.parameter.hp}";
+            atk.text = $"{value.parameter.atk}";
+            def.text = $"{value.parameter.def}";
         }
     }
 }
