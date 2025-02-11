@@ -14,6 +14,7 @@ namespace PrimeMillionaire.Top.Presentation.View
         [SerializeField] private TextMeshProUGUI hp = default;
         [SerializeField] private TextMeshProUGUI atk = default;
         [SerializeField] private TextMeshProUGUI def = default;
+        [SerializeField] private DeckView deckView = default;
 
         public async UniTask RenderAsync(OrderCharacterVO value, CancellationToken token)
         {
@@ -23,6 +24,7 @@ namespace PrimeMillionaire.Top.Presentation.View
             hp.text = $"{value.parameter.hp}";
             atk.text = $"{value.parameter.atk}";
             def.text = $"{value.parameter.def}";
+            deckView.Render(value.deck);
         }
     }
 }

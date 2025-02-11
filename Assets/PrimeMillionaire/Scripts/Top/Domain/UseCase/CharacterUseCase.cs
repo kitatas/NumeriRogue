@@ -13,14 +13,16 @@ namespace PrimeMillionaire.Top.Domain.UseCase
     {
         private readonly PlayerCharacterEntity _playerCharacterEntity;
         private readonly CharacterRepository _characterRepository;
+        private readonly DeckRepository _deckRepository;
         private readonly ParameterRepository _parameterRepository;
         private readonly Subject<OrderCharacterVO> _orderCharacter;
 
         public CharacterUseCase(PlayerCharacterEntity playerCharacterEntity, CharacterRepository characterRepository,
-            ParameterRepository parameterRepository)
+            DeckRepository deckRepository, ParameterRepository parameterRepository)
         {
             _playerCharacterEntity = playerCharacterEntity;
             _characterRepository = characterRepository;
+            _deckRepository = deckRepository;
             _parameterRepository = parameterRepository;
             _orderCharacter = new Subject<OrderCharacterVO>();
         }
@@ -44,7 +46,8 @@ namespace PrimeMillionaire.Top.Domain.UseCase
 
             var character = _characterRepository.Find(_playerCharacterEntity.type);
             var parameter = _parameterRepository.Find(_playerCharacterEntity.type);
-            var order = new OrderCharacterVO(character, parameter);
+            var deck = _deckRepository.GetCards(_playerCharacterEntity.type);
+            var order = new OrderCharacterVO(character, parameter, deck);
             _orderCharacter?.OnNext(order);
         }
 
