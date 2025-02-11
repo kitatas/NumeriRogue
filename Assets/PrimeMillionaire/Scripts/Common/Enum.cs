@@ -29,6 +29,7 @@ namespace PrimeMillionaire.Common
         Andromeda = 1,
         Borealjuggernaut = 2,
         Dissonance = 3,
+        Kron = 4,
     }
 
     public enum SkillType

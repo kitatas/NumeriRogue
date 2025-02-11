@@ -24,7 +24,8 @@ namespace PrimeMillionaire.Common.Domain.Repository
                 // TODO: ベタ書き
                 CharacterType.Andromeda => master.Where(x => x.Suit.ToSuit() is Suit.Spade or Suit.Heart),
                 CharacterType.Borealjuggernaut => master.Where(x => !x.Rank.IsEven()),
-                CharacterType.Dissonance => master.Where(x => x.Rank > 6),
+                CharacterType.Dissonance => master.Where(x => x.Rank >= 7),
+                CharacterType.Kron => master.Where(x => x.Rank <= 7),
                 _ => throw new Exception(),
             };
 
