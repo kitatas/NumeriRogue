@@ -1,7 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using UniEx;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +9,7 @@ namespace PrimeMillionaire.Game.Presentation.View
     public sealed class PickSkillView : MonoBehaviour
     {
         [SerializeField] private CanvasGroup canvasGroup = default;
+        [SerializeField] private RectTransform shopView = default;
         [SerializeField] private RectTransform statusView = default;
         [SerializeField] private SkillView[] skillViews = default;
         [SerializeField] private Button nextBattleButton = default;
@@ -31,11 +31,14 @@ namespace PrimeMillionaire.Game.Presentation.View
                 .Append(canvasGroup
                     .DOFade(1.0f, duration)
                     .SetEase(Ease.OutBack))
-                .Join(canvasGroup.transform.ToRectTransform()
+                .Join(shopView
                     .DOScale(Vector3.one, duration)
                     .SetEase(Ease.OutBack))
+                .Join(shopView
+                    .DOAnchorPos(new Vector2(450.0f, 75.0f), duration)
+                    .SetEase(Ease.OutBack))
                 .Join(statusView
-                    .DOScale(1.0f, duration)
+                    .DOScale(Vector3.one, duration)
                     .SetEase(Ease.OutBack))
                 .Join(statusView
                     .DOAnchorPos(new Vector2(-450.0f, 75.0f), duration)
@@ -48,11 +51,14 @@ namespace PrimeMillionaire.Game.Presentation.View
                 .Append(canvasGroup
                     .DOFade(0.0f, duration)
                     .SetEase(Ease.OutQuart))
-                .Join(canvasGroup.transform.ToRectTransform()
-                    .DOScale(Vector3.one * 0.8f, duration)
+                .Join(shopView
+                    .DOScale(Vector3.one * 0.5f, duration)
+                    .SetEase(Ease.OutQuart))
+                .Join(shopView
+                    .DOAnchorPos(new Vector2(115.0f, 105.0f), duration)
                     .SetEase(Ease.OutQuart))
                 .Join(statusView
-                    .DOScale(0.5f, duration)
+                    .DOScale(Vector3.one * 0.5f, duration)
                     .SetEase(Ease.OutQuart))
                 .Join(statusView
                     .DOAnchorPos(new Vector2(-115.0f, 105.0f), duration)
