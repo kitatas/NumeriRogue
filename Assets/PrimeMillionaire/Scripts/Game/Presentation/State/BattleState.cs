@@ -53,7 +53,7 @@ namespace PrimeMillionaire.Game.Presentation.State
                         _battleView.DestroyEnemy();
                         return GameState.Pick;
                     case Side.Enemy:
-                        return GameState.Load;
+                        return GameState.Fail;
                     default:
                         throw new Exception();
                 }
