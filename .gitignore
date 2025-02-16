@@ -66,6 +66,9 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# MasterData
+/[Mm]aster/
+
 # Packed Addressables
 /[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 
