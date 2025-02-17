@@ -1,18 +1,34 @@
 using System;
+using System.Collections;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using Object = UnityEngine.Object;
 
 namespace PrimeMillionaire.Common.Utility
 {
+    public static class MonoBehaviourHelper
+    {
+        public static Coroutine LoadAsset<T>(this MonoBehaviour self, string path, Action<T> action) where T : Object
+        {
+            return self.StartCoroutine(ResourceHelper.LoadCor<T>(path, action));
+        }
+    }
+
     public static class ResourceHelper
     {
-        public static T Load<T>(string path) where T : Object
+        public static IEnumerator LoadCor<T>(string path, Action<T> action) where T : Object
         {
-            return Addressables.LoadAssetAsync<T>(path).Result;
+            var handle = Addressables.LoadAssetAsync<T>(path);
+            yield return handle;
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                action?.Invoke(handle.Result);
+            }
         }
-        
+
         public static async UniTask<T> LoadAsync<T>(string path, CancellationToken token) where T : Object
         {
             return await Addressables.LoadAssetAsync<T>(path).WithCancellation(token);

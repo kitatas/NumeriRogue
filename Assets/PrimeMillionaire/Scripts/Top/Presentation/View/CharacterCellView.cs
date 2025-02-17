@@ -16,7 +16,6 @@ namespace PrimeMillionaire.Top.Presentation.View
         [SerializeField] private Image chara = default;
         [SerializeField] private TextMeshProUGUI characterName = default;
 
-        public CharacterVO character { get; private set; }
         private float _currentPosition;
 
         private static readonly int _scroll = Animator.StringToHash("Scroll");
@@ -30,9 +29,8 @@ namespace PrimeMillionaire.Top.Presentation.View
 
         public override void UpdateContent(CharacterVO value)
         {
-            character = value;
-            chara.sprite = ResourceHelper.Load<Sprite>(character.imgPath);
-            characterName.text = character.name;
+            this.LoadAsset<Sprite>(value.imgPath, x => chara.sprite = x);
+            characterName.text = value.name;
         }
 
         public override void UpdatePosition(float position)
