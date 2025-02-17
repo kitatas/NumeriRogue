@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using PrimeMillionaire.Common;
 
@@ -15,5 +16,11 @@ namespace PrimeMillionaire.Top
             this.parameter = parameter;
             this.deck = deck;
         }
+    }
+
+    public sealed class ScrollContextVO
+    {
+        public int index = -1;
+        public Action<int> onSelect;
     }
 }

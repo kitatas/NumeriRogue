@@ -1,5 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using PrimeMillionaire.Common.Utility;
 using PrimeMillionaire.Top.Domain.UseCase;
 
 namespace PrimeMillionaire.Top.Presentation.State
@@ -17,7 +18,8 @@ namespace PrimeMillionaire.Top.Presentation.State
 
         public override async UniTask InitAsync(CancellationToken token)
         {
-            await _characterUseCase.RenderPlayableCharacterAsync(token);
+            _characterUseCase.Order(1.ToCharacterType());
+            await UniTask.Yield(token);
         }
 
         public override async UniTask<TopState> TickAsync(CancellationToken token)

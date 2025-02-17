@@ -27,7 +27,8 @@ namespace PrimeMillionaire.Top.Installer
             });
 
             // View
-            builder.RegisterComponentInHierarchy<CharacterListView>();
+            builder.RegisterComponentInHierarchy<CharacterScrollView>();
+            builder.RegisterComponentInHierarchy<OrderCharacterView>();
             builder.RegisterComponentInHierarchy<OrderView>();
         }
     }

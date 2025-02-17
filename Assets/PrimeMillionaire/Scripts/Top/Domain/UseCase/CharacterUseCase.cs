@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
@@ -38,6 +39,11 @@ namespace PrimeMillionaire.Top.Domain.UseCase
             }
 
             Order(characters[0].type);
+        }
+
+        public List<CharacterVO> GetAll()
+        {
+            return _characterRepository.GetAll();
         }
 
         public void Order(CharacterType type)

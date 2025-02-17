@@ -1,42 +1,34 @@
-using PrimeMillionaire.Common;
 using PrimeMillionaire.Top.Domain.UseCase;
 using PrimeMillionaire.Top.Presentation.View;
 using R3;
 using VContainer.Unity;
-using VitalRouter;
 
 namespace PrimeMillionaire.Top.Presentation.Presenter
 {
     public sealed class CharacterPresenter : IStartable
     {
         private readonly CharacterUseCase _characterUseCase;
-        private readonly CharacterListView _characterListView;
+        private readonly CharacterScrollView _characterScrollView;
+        private readonly OrderCharacterView _orderCharacterView;
 
-        public CharacterPresenter(CharacterUseCase characterUseCase, CharacterListView characterListView)
+        public CharacterPresenter(CharacterUseCase characterUseCase, CharacterScrollView characterScrollView,
+            OrderCharacterView orderCharacterView)
         {
             _characterUseCase = characterUseCase;
-            _characterListView = characterListView;
+            _characterScrollView = characterScrollView;
+            _orderCharacterView = orderCharacterView;
         }
 
         public void Start()
         {
-            Router.Default
-                .SubscribeAwait<CharacterVO>(async (x, context) =>
-                {
-                    var characterView = await _characterListView.RenderAsync(x, context.CancellationToken);
-                    characterView.pointerDown
-                        .Select(_ => x.type)
-                        .Subscribe(_characterUseCase.Order)
-                        .AddTo(_characterListView);
-                })
-                .AddTo(_characterListView);
+            _characterScrollView.Init(_characterUseCase.GetAll(), _characterUseCase.Order);
 
             _characterUseCase.orderCharacter
                 .SubscribeAwait(async (x, token) =>
                 {
-                    await _characterListView.OrderAsync(x, token);
+                    await _orderCharacterView.RenderAsync(x, token);
                 })
-                .AddTo(_characterListView);
+                .AddTo(_orderCharacterView);
         }
     }
 }

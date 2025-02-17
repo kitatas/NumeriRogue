@@ -8,6 +8,11 @@ namespace PrimeMillionaire.Common.Utility
 {
     public static class ResourceHelper
     {
+        public static T Load<T>(string path) where T : Object
+        {
+            return Addressables.LoadAssetAsync<T>(path).Result;
+        }
+        
         public static async UniTask<T> LoadAsync<T>(string path, CancellationToken token) where T : Object
         {
             return await Addressables.LoadAssetAsync<T>(path).WithCancellation(token);
