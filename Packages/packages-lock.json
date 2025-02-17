@@ -408,6 +408,13 @@
       "dependencies": {},
       "url": "https://package.openupm.com"
     },
+    "jp.setchi.fancyscrollview": {
+      "version": "1.9.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
     "org.nuget.fastenum": {
       "version": "1.8.0",
       "depth": 0,
