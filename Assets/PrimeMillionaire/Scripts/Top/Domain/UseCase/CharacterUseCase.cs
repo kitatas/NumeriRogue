@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Threading;
-using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Data.Entity;
 using PrimeMillionaire.Common.Domain.Repository;
 using R3;
-using VitalRouter;
 
 namespace PrimeMillionaire.Top.Domain.UseCase
 {
@@ -29,17 +26,6 @@ namespace PrimeMillionaire.Top.Domain.UseCase
         }
 
         public Observable<OrderCharacterVO> orderCharacter => _orderCharacter;
-
-        public async UniTask RenderPlayableCharacterAsync(CancellationToken token)
-        {
-            var characters = _characterRepository.GetAll();
-            foreach (var character in characters)
-            {
-                await Router.Default.PublishAsync(character, token).AsUniTask();
-            }
-
-            Order(characters[0].type);
-        }
 
         public List<CharacterVO> GetAll()
         {
