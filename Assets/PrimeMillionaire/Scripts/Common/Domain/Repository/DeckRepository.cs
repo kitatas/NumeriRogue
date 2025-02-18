@@ -26,6 +26,7 @@ namespace PrimeMillionaire.Common.Domain.Repository
                 CharacterType.Borealjuggernaut => master.Where(x => !x.Rank.IsEven()),
                 CharacterType.Dissonance => master.Where(x => x.Rank >= 7),
                 CharacterType.Kron => master.Where(x => x.Rank <= 7),
+                CharacterType.Paragon => master,
                 _ => throw new Exception(),
             };
 

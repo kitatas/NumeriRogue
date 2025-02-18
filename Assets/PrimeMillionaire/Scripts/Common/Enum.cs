@@ -30,6 +30,7 @@ namespace PrimeMillionaire.Common
         Borealjuggernaut = 2,
         Dissonance = 3,
         Kron = 4,
+        Paragon = 5,
     }
 
     public enum SkillType
