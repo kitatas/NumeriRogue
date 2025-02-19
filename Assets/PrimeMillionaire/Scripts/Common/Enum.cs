@@ -31,6 +31,7 @@ namespace PrimeMillionaire.Common
         Dissonance = 3,
         Kron = 4,
         Paragon = 5,
+        Harmony = 6,
     }
 
     public enum SkillType

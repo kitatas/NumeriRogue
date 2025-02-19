@@ -27,6 +27,7 @@ namespace PrimeMillionaire.Common.Domain.Repository
                 CharacterType.Dissonance => master.Where(x => x.Rank >= 7),
                 CharacterType.Kron => master.Where(x => x.Rank <= 7),
                 CharacterType.Paragon => master,
+                CharacterType.Harmony => master.Where(x => x.Rank is 1 or 2 or 3 or 5 or 8 or 13),
                 _ => throw new Exception(),
             };
 
