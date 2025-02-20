@@ -28,6 +28,7 @@ namespace PrimeMillionaire.Common.Domain.Repository
                 CharacterType.Kron => master.Where(x => x.Rank <= 7),
                 CharacterType.Paragon => master,
                 CharacterType.Harmony => master.Where(x => x.Rank is 1 or 2 or 3 or 5 or 8 or 13),
+                CharacterType.Candypanda => master.Where(x => x.Rank is 4 or 6 or 7 or 9 or 10 or 11 or 12),
                 _ => throw new Exception(),
             };
 
