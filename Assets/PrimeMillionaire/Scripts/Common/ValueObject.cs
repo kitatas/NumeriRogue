@@ -39,12 +39,14 @@ namespace PrimeMillionaire.Common
         public readonly CharacterType type;
         public readonly string name;
         public readonly StageVO stage;
+        public readonly ParameterVO parameter;
 
-        public CharacterVO(int type, int stage)
+        public CharacterVO(int type, int stage, int hp, int atk, int def)
         {
             this.type = type.ToCharacterType();
             this.name = this.type.FastToString();
             this.stage = new StageVO(stage);
+            this.parameter = new ParameterVO(type, hp, atk, def);
         }
 
         public string objPath => $"Assets/PrimeMillionaire/Prefabs/Characters/Character - {name}.prefab";

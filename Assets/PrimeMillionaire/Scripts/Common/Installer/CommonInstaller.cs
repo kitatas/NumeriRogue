@@ -25,7 +25,6 @@ namespace PrimeMillionaire.Common.Installer
             // Repository
             builder.Register<CharacterRepository>(Lifetime.Singleton);
             builder.Register<DeckRepository>(Lifetime.Singleton);
-            builder.Register<ParameterRepository>(Lifetime.Singleton);
 
             // UseCase
             builder.Register<SceneUseCase>(Lifetime.Singleton);

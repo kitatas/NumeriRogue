@@ -22,6 +22,12 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
         private static global::System.ReadOnlySpan<byte> GetSpan_Type() => new byte[1 + 4] { 164, 84, 121, 112, 101 };
         // Stage
         private static global::System.ReadOnlySpan<byte> GetSpan_Stage() => new byte[1 + 5] { 165, 83, 116, 97, 103, 101 };
+        // Hp
+        private static global::System.ReadOnlySpan<byte> GetSpan_Hp() => new byte[1 + 2] { 162, 72, 112 };
+        // Atk
+        private static global::System.ReadOnlySpan<byte> GetSpan_Atk() => new byte[1 + 3] { 163, 65, 116, 107 };
+        // Def
+        private static global::System.ReadOnlySpan<byte> GetSpan_Def() => new byte[1 + 3] { 163, 68, 101, 102 };
 
         public void Serialize(ref global::MessagePack.MessagePackWriter writer, global::PrimeMillionaire.Common.Data.DataStore.CharacterMaster value, global::MessagePack.MessagePackSerializerOptions options)
         {
@@ -31,11 +37,17 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
                 return;
             }
 
-            writer.WriteMapHeader(2);
+            writer.WriteMapHeader(5);
             writer.WriteRaw(GetSpan_Type());
             writer.Write(value.Type);
             writer.WriteRaw(GetSpan_Stage());
             writer.Write(value.Stage);
+            writer.WriteRaw(GetSpan_Hp());
+            writer.Write(value.Hp);
+            writer.WriteRaw(GetSpan_Atk());
+            writer.Write(value.Atk);
+            writer.WriteRaw(GetSpan_Def());
+            writer.Write(value.Def);
         }
 
         public global::PrimeMillionaire.Common.Data.DataStore.CharacterMaster Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)
@@ -49,6 +61,9 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
             var length = reader.ReadMapHeader();
             var __Type__ = default(int);
             var __Stage__ = default(int);
+            var __Hp__ = default(int);
+            var __Atk__ = default(int);
+            var __Def__ = default(int);
 
             for (int i = 0; i < length; i++)
             {
@@ -69,11 +84,27 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
 
                         __Stage__ = reader.ReadInt32();
                         continue;
+                    case 2:
+                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 28744UL) { goto FAIL; }
+
+                        __Hp__ = reader.ReadInt32();
+                        continue;
+                    case 3:
+                        switch (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey))
+                        {
+                            default: goto FAIL;
+                            case 7042113UL:
+                                __Atk__ = reader.ReadInt32();
+                                continue;
+                            case 6710596UL:
+                                __Def__ = reader.ReadInt32();
+                                continue;
+                        }
 
                 }
             }
 
-            var ____result = new global::PrimeMillionaire.Common.Data.DataStore.CharacterMaster(__Type__, __Stage__);
+            var ____result = new global::PrimeMillionaire.Common.Data.DataStore.CharacterMaster(__Type__, __Stage__, __Hp__, __Atk__, __Def__);
             reader.Depth--;
             return ____result;
         }

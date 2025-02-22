@@ -21,9 +21,9 @@ namespace PrimeMillionaire.Top.Presentation.View
             var img = await ResourceHelper.LoadAsync<Sprite>(value.character.imgPath, token);
             chara.sprite = img;
             charaName.text = value.character.name;
-            hp.text = $"{value.parameter.hp}";
-            atk.text = $"{value.parameter.atk}";
-            def.text = $"{value.parameter.def}";
+            hp.text = $"{value.character.parameter.hp}";
+            atk.text = $"{value.character.parameter.atk}";
+            def.text = $"{value.character.parameter.def}";
             deckView.Render(value.deck);
         }
     }
