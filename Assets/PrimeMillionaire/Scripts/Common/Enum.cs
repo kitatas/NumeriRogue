@@ -33,6 +33,7 @@ namespace PrimeMillionaire.Common
         Paragon = 5,
         Harmony = 6,
         Candypanda = 7,
+        Chaosknight = 8,
     }
 
     public enum SkillType
