@@ -32,6 +32,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             memory = new MemoryDatabase(
                 table,
                 memory.CharacterMasterTable,
+                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.PrimeNumberMasterTable,
@@ -48,6 +49,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             memory = new MemoryDatabase(
                 table,
                 memory.CharacterMasterTable,
+                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.PrimeNumberMasterTable,
@@ -64,6 +66,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             memory = new MemoryDatabase(
                 table,
                 memory.CharacterMasterTable,
+                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.PrimeNumberMasterTable,
@@ -79,6 +82,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 table,
+                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.PrimeNumberMasterTable,
@@ -95,6 +99,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 table,
+                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.PrimeNumberMasterTable,
@@ -111,6 +116,57 @@ namespace PrimeMillionaire.Common.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 table,
+                memory.DeckMasterTable,
+                memory.DropRateMasterTable,
+                memory.LevelMasterTable,
+                memory.PrimeNumberMasterTable,
+                memory.SkillMasterTable
+            
+            );
+        }
+
+        public void ReplaceAll(System.Collections.Generic.IList<DeckMaster> data)
+        {
+            var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
+            var table = new DeckMasterTable(newData);
+            memory = new MemoryDatabase(
+                memory.CardMasterTable,
+                memory.CharacterMasterTable,
+                table,
+                memory.DropRateMasterTable,
+                memory.LevelMasterTable,
+                memory.PrimeNumberMasterTable,
+                memory.SkillMasterTable
+            
+            );
+        }
+
+        public void RemoveDeckMaster(int[] keys)
+        {
+            var data = RemoveCore(memory.DeckMasterTable.GetRawDataUnsafe(), keys, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
+            var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
+            var table = new DeckMasterTable(newData);
+            memory = new MemoryDatabase(
+                memory.CardMasterTable,
+                memory.CharacterMasterTable,
+                table,
+                memory.DropRateMasterTable,
+                memory.LevelMasterTable,
+                memory.PrimeNumberMasterTable,
+                memory.SkillMasterTable
+            
+            );
+        }
+
+        public void Diff(DeckMaster[] addOrReplaceData)
+        {
+            var data = DiffCore(memory.DeckMasterTable.GetRawDataUnsafe(), addOrReplaceData, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
+            var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
+            var table = new DeckMasterTable(newData);
+            memory = new MemoryDatabase(
+                memory.CardMasterTable,
+                memory.CharacterMasterTable,
+                table,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.PrimeNumberMasterTable,
@@ -126,6 +182,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
+                memory.DeckMasterTable,
                 table,
                 memory.LevelMasterTable,
                 memory.PrimeNumberMasterTable,
@@ -142,6 +199,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
+                memory.DeckMasterTable,
                 table,
                 memory.LevelMasterTable,
                 memory.PrimeNumberMasterTable,
@@ -158,6 +216,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
+                memory.DeckMasterTable,
                 table,
                 memory.LevelMasterTable,
                 memory.PrimeNumberMasterTable,
@@ -173,6 +232,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
+                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 table,
                 memory.PrimeNumberMasterTable,
@@ -189,6 +249,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
+                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 table,
                 memory.PrimeNumberMasterTable,
@@ -205,6 +266,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
+                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 table,
                 memory.PrimeNumberMasterTable,
@@ -220,6 +282,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
+                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 table,
@@ -236,6 +299,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
+                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 table,
@@ -252,6 +316,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
+                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 table,
@@ -267,6 +332,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
+                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.PrimeNumberMasterTable,
@@ -283,6 +349,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
+                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.PrimeNumberMasterTable,
@@ -299,6 +366,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
+                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.PrimeNumberMasterTable,

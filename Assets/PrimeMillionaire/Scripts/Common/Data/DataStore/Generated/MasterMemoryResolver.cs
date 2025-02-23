@@ -46,14 +46,15 @@ namespace PrimeMillionaire.Common.Data.DataStore
 
         static MasterMemoryResolverGetFormatterHelper()
         {
-            lookup = new global::System.Collections.Generic.Dictionary<Type, int>(6)
+            lookup = new global::System.Collections.Generic.Dictionary<Type, int>(7)
             {
                 {typeof(CardMaster[]), 0 },
                 {typeof(CharacterMaster[]), 1 },
-                {typeof(DropRateMaster[]), 2 },
-                {typeof(LevelMaster[]), 3 },
-                {typeof(PrimeNumberMaster[]), 4 },
-                {typeof(SkillMaster[]), 5 },
+                {typeof(DeckMaster[]), 2 },
+                {typeof(DropRateMaster[]), 3 },
+                {typeof(LevelMaster[]), 4 },
+                {typeof(PrimeNumberMaster[]), 5 },
+                {typeof(SkillMaster[]), 6 },
             };
         }
 
@@ -66,10 +67,11 @@ namespace PrimeMillionaire.Common.Data.DataStore
             {
                 case 0: return new MessagePack.Formatters.ArrayFormatter<CardMaster>();
                 case 1: return new MessagePack.Formatters.ArrayFormatter<CharacterMaster>();
-                case 2: return new MessagePack.Formatters.ArrayFormatter<DropRateMaster>();
-                case 3: return new MessagePack.Formatters.ArrayFormatter<LevelMaster>();
-                case 4: return new MessagePack.Formatters.ArrayFormatter<PrimeNumberMaster>();
-                case 5: return new MessagePack.Formatters.ArrayFormatter<SkillMaster>();
+                case 2: return new MessagePack.Formatters.ArrayFormatter<DeckMaster>();
+                case 3: return new MessagePack.Formatters.ArrayFormatter<DropRateMaster>();
+                case 4: return new MessagePack.Formatters.ArrayFormatter<LevelMaster>();
+                case 5: return new MessagePack.Formatters.ArrayFormatter<PrimeNumberMaster>();
+                case 6: return new MessagePack.Formatters.ArrayFormatter<SkillMaster>();
                 default: return null;
             }
         }
