@@ -11,11 +11,9 @@ namespace PrimeMillionaire.Game.Presentation.View
         [SerializeField] private SpriteRenderer spriteRenderer = default;
 
         public abstract CharacterType characterType { get; }
-        protected abstract int attackFinishFrame { get; }
         protected abstract int applyDamageFrame { get; }
         protected abstract int deadFrame { get; }
 
-        public float attackFinishTime => attackFinishFrame / 12.0f;
         public float applyDamageTime => applyDamageFrame / 12.0f; 
         public float deadTime => deadFrame / 12.0f;
 

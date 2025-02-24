@@ -40,14 +40,15 @@ namespace PrimeMillionaire.Game.Presentation.View
                 .WithCancellation(token);
 
             attackerView.Attack(true);
-            this.Delay(attackerView.attackFinishTime, () => attackerView.Attack(false));
+            await UniTaskHelper.DelayAsync(attackerView.applyDamageTime, token);
+
+            attackerView.Attack(false);
         }
 
         public async UniTask PlayDamageAnimAsync(Side attacker, bool isDestroy, CancellationToken token)
         {
             var (attackerView, defenderView) = GetCharacterViews(attacker);
 
-            await UniTaskHelper.DelayAsync(attackerView.applyDamageTime, token);
             defenderView.Damage(true);
 
             this.Delay(defenderView.deadTime, () =>

@@ -5,7 +5,6 @@ namespace PrimeMillionaire.Game.Presentation.View
     public sealed class CandypandaView : CharacterView
     {
         public override CharacterType characterType => CharacterType.Candypanda;
-        protected override int attackFinishFrame => 28;
         protected override int applyDamageFrame => 4;
         protected override int deadFrame => 4;
     }
