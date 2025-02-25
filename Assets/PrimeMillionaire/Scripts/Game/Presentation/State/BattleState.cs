@@ -51,7 +51,7 @@ namespace PrimeMillionaire.Game.Presentation.State
                     case Side.Player:
                         _dollarUseCase.Add(_dropUseCase.GetDropDollar());
                         _battleView.DestroyEnemy();
-                        return GameState.Pick;
+                        return _dollarUseCase.IsClear() ? GameState.Clear : GameState.Pick;
                     case Side.Enemy:
                         return GameState.Fail;
                     default:
