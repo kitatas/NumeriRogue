@@ -53,6 +53,7 @@ namespace PrimeMillionaire.Game.Installer
 
             // State
             builder.Register<BaseState, BattleState>(Lifetime.Scoped);
+            builder.Register<BaseState, ClearState>(Lifetime.Scoped);
             builder.Register<BaseState, DealState>(Lifetime.Scoped);
             builder.Register<BaseState, FailState>(Lifetime.Scoped);
             builder.Register<BaseState, InitState>(Lifetime.Scoped);
@@ -78,6 +79,7 @@ namespace PrimeMillionaire.Game.Installer
             // View
             builder.RegisterComponentInHierarchy<BattleView>();
             builder.RegisterComponentInHierarchy<BattlePtView>();
+            builder.RegisterComponentInHierarchy<ClearView>();
             builder.RegisterComponentInHierarchy<DollarView>();
             builder.RegisterComponentInHierarchy<EnemyCountView>();
             builder.RegisterComponentInHierarchy<EnemyParameterView>();

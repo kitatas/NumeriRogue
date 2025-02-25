@@ -11,6 +11,7 @@ namespace PrimeMillionaire.Game
         Pick = 6,
         Load = 7,
         Fail = 8,
+        Clear = 9,
     }
 
     public enum Side
