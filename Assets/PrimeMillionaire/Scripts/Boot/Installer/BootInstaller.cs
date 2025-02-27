@@ -12,10 +12,12 @@ namespace PrimeMillionaire.Boot.Installer
         protected override void Configure(IContainerBuilder builder)
         {
             // UseCase
+            builder.Register<LoginUseCase>(Lifetime.Scoped);
             builder.Register<StateUseCase>(Lifetime.Scoped);
 
             // State
             builder.Register<BaseState, LoadState>(Lifetime.Scoped);
+            builder.Register<BaseState, LoginState>(Lifetime.Scoped);
 
             // Presenter
             builder.UseEntryPoints(Lifetime.Scoped, entryPoints =>
