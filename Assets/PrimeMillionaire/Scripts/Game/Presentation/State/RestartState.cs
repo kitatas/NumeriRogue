@@ -12,21 +12,25 @@ namespace PrimeMillionaire.Game.Presentation.State
         private readonly CharacterUseCase _characterUseCase;
         private readonly DealUseCase _dealUseCase;
         private readonly EnemyCountUseCase _enemyCountUseCase;
+        private readonly HandUseCase _handUseCase;
         private readonly ParameterUseCase _parameterUseCase;
         private readonly TurnUseCase _turnUseCase;
         private readonly BattleView _battleView;
+        private readonly TableView _tableView;
 
         public RestartState(InterruptUseCase interruptUseCase, CharacterUseCase characterUseCase,
-            DealUseCase dealUseCase, EnemyCountUseCase enemyCountUseCase, ParameterUseCase parameterUseCase,
-            TurnUseCase turnUseCase, BattleView battleView)
+            DealUseCase dealUseCase, EnemyCountUseCase enemyCountUseCase, HandUseCase handUseCase,
+            ParameterUseCase parameterUseCase, TurnUseCase turnUseCase, BattleView battleView, TableView tableView)
         {
             _interruptUseCase = interruptUseCase;
             _characterUseCase = characterUseCase;
             _dealUseCase = dealUseCase;
             _enemyCountUseCase = enemyCountUseCase;
+            _handUseCase = handUseCase;
             _parameterUseCase = parameterUseCase;
             _turnUseCase = turnUseCase;
             _battleView = battleView;
+            _tableView = tableView;
         }
 
         public override GameState state => GameState.Restart;
@@ -59,7 +63,12 @@ namespace PrimeMillionaire.Game.Presentation.State
 
             // Deal
             _dealUseCase.SetUpHands();
-            // TODO: render hands
+            await _tableView.SetUpAsync(token);
+
+            await (
+                _tableView.RenderPlayerHandsAsync(_handUseCase.GetPlayerHands(), token),
+                _tableView.RenderEnemyHandsAsync(_handUseCase.GetEnemyHands(), token)
+            );
 
             return GameState.Order;
         }
