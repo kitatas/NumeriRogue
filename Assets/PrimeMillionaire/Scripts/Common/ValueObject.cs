@@ -178,9 +178,10 @@ namespace PrimeMillionaire.Common
         public int enemyCount;
         public int turn;
         public DeckVO deck;
+        public int communityBattlePt;
 
         public InterruptVO(CharacterType playerCharacter, ParameterVO playerParameter, CharacterType enemyCharacter,
-            ParameterVO enemyParameter, int enemyCount, int turn, DeckVO deck)
+            ParameterVO enemyParameter, int enemyCount, int turn, DeckVO deck, int communityBattlePt)
         {
             this.playerCharacter = playerCharacter;
             this.playerParameter = playerParameter;
@@ -189,6 +190,7 @@ namespace PrimeMillionaire.Common
             this.enemyCount = enemyCount;
             this.turn = turn;
             this.deck = deck;
+            this.communityBattlePt = communityBattlePt;
         }
     }
 }

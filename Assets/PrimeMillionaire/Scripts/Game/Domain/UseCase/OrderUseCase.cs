@@ -89,6 +89,12 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _communityBattlePtEntity.Set(currentValueWithBonus);
         }
 
+        public async UniTask PublishCommunityBattlePtAsync(CancellationToken token)
+        {
+            var orderValue = new OrderValueVO(_communityBattlePtEntity.currentValue, _bonusEntity.ToVO());
+            await Router.Default.PublishAsync(orderValue, token);
+        }
+
         public async UniTask ShowOrderCardsAsync(float duration, CancellationToken token)
         {
             await FadeOrderCardsAsync(Fade.Out, duration, token);

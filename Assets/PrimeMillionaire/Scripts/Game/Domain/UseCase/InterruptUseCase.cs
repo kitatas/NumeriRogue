@@ -8,6 +8,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 {
     public sealed class InterruptUseCase
     {
+        private readonly CommunityBattlePtEntity _communityBattlePtEntity;
         private readonly DeckEntity _deckEntity;
         private readonly PlayerCharacterEntity _playerCharacterEntity;
         private readonly PlayerParameterEntity _playerParameterEntity;
@@ -17,11 +18,12 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         private readonly TurnEntity _turnEntity;
         private readonly SaveRepository _saveRepository;
 
-        public InterruptUseCase(DeckEntity deckEntity, PlayerCharacterEntity playerCharacterEntity,
-            PlayerParameterEntity playerParameterEntity, EnemyCharacterEntity enemyCharacterEntity,
-            EnemyParameterEntity enemyParameterEntity, EnemyCountEntity enemyCountEntity, TurnEntity turnEntity,
-            SaveRepository saveRepository)
+        public InterruptUseCase(CommunityBattlePtEntity communityBattlePtEntity, DeckEntity deckEntity,
+            PlayerCharacterEntity playerCharacterEntity, PlayerParameterEntity playerParameterEntity,
+            EnemyCharacterEntity enemyCharacterEntity, EnemyParameterEntity enemyParameterEntity,
+            EnemyCountEntity enemyCountEntity, TurnEntity turnEntity, SaveRepository saveRepository)
         {
+            _communityBattlePtEntity = communityBattlePtEntity;
             _deckEntity = deckEntity;
             _playerCharacterEntity = playerCharacterEntity;
             _playerParameterEntity = playerParameterEntity;
@@ -41,7 +43,8 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 enemyParameter: _enemyParameterEntity.ToVO(),
                 enemyCount: _enemyCountEntity.currentValue,
                 turn: _turnEntity.currentValue,
-                deck: _deckEntity.ToVO()
+                deck: _deckEntity.ToVO(),
+                communityBattlePt: _communityBattlePtEntity.currentValue
             );
 
             _saveRepository.Save(interrupt);
@@ -60,6 +63,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 _enemyCountEntity.Set(interrupt.enemyCount);
                 _turnEntity.Set(interrupt.turn);
                 _deckEntity.Init(interrupt.deck);
+                _communityBattlePtEntity.Set(interrupt.communityBattlePt);
             }
             else
             {

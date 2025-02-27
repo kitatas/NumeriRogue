@@ -13,6 +13,7 @@ namespace PrimeMillionaire.Game.Presentation.State
         private readonly DealUseCase _dealUseCase;
         private readonly EnemyCountUseCase _enemyCountUseCase;
         private readonly HandUseCase _handUseCase;
+        private readonly OrderUseCase _orderUseCase;
         private readonly ParameterUseCase _parameterUseCase;
         private readonly TurnUseCase _turnUseCase;
         private readonly BattleView _battleView;
@@ -20,13 +21,15 @@ namespace PrimeMillionaire.Game.Presentation.State
 
         public RestartState(InterruptUseCase interruptUseCase, CharacterUseCase characterUseCase,
             DealUseCase dealUseCase, EnemyCountUseCase enemyCountUseCase, HandUseCase handUseCase,
-            ParameterUseCase parameterUseCase, TurnUseCase turnUseCase, BattleView battleView, TableView tableView)
+            OrderUseCase orderUseCase, ParameterUseCase parameterUseCase, TurnUseCase turnUseCase,
+            BattleView battleView, TableView tableView)
         {
             _interruptUseCase = interruptUseCase;
             _characterUseCase = characterUseCase;
             _dealUseCase = dealUseCase;
             _enemyCountUseCase = enemyCountUseCase;
             _handUseCase = handUseCase;
+            _orderUseCase = orderUseCase;
             _parameterUseCase = parameterUseCase;
             _turnUseCase = turnUseCase;
             _battleView = battleView;
@@ -48,7 +51,8 @@ namespace PrimeMillionaire.Game.Presentation.State
             var player = _characterUseCase.GetPlayerCharacter();
             await (
                 _parameterUseCase.PublishPlayerParamAsync(token),
-                _battleView.CreatePlayerAsync(player, token)
+                _battleView.CreatePlayerAsync(player, token),
+                _orderUseCase.PublishCommunityBattlePtAsync(token)
             );
 
             // SetUp
