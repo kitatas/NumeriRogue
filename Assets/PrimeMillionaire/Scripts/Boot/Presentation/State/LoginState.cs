@@ -23,10 +23,16 @@ namespace PrimeMillionaire.Boot.Presentation.State
 
         public override async UniTask<BootState> TickAsync(CancellationToken token)
         {
-            var isSuccess = _loginUseCase.Login();
+            var (isSuccess, hasInterrupt) = _loginUseCase.Login();
             if (isSuccess == false)
             {
                 throw new Exception();
+            }
+
+            if (hasInterrupt)
+            {
+                // TODO: 再開する/しないの選択
+                return BootState.Restart;
             }
 
             await UniTask.Yield(token);

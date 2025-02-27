@@ -18,6 +18,7 @@ namespace PrimeMillionaire.Boot.Installer
             // State
             builder.Register<BaseState, LoadState>(Lifetime.Scoped);
             builder.Register<BaseState, LoginState>(Lifetime.Scoped);
+            builder.Register<BaseState, RestartState>(Lifetime.Scoped);
 
             // Presenter
             builder.UseEntryPoints(Lifetime.Scoped, entryPoints =>

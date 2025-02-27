@@ -5,5 +5,6 @@ namespace PrimeMillionaire.Boot
         None = 0,
         Load = 1,
         Login = 2,
+        Restart = 3,
     }
 }
