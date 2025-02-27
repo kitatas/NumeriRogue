@@ -38,6 +38,11 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             var character = _characterRepository.Find(_playerCharacterEntity.type);
             _playerParameterEntity.Init(character.parameter);
 
+            await PublishPlayerParamAsync(token);
+        }
+
+        public async UniTask PublishPlayerParamAsync(CancellationToken token)
+        {
             await Router.Default.PublishAsync(_playerParameterEntity.ToVO(), token);
         }
 
@@ -47,6 +52,11 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             var level = _levelRepository.FindClosest(_enemyCountEntity.currentValue);
             _enemyParameterEntity.Init(character.parameter, level);
 
+            await PublishEnemyParamAsync(token);
+        }
+
+        public async UniTask PublishEnemyParamAsync(CancellationToken token)
+        {
             await Router.Default.PublishAsync(_enemyParameterEntity.ToVO(), token);
         }
     }

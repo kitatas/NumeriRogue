@@ -22,6 +22,12 @@ namespace PrimeMillionaire.Game.Data.Entity
             SetHp(parameter.hp);
         }
 
+        public void InitForInterrupt(ParameterVO parameter)
+        {
+            SetParameter(parameter);
+            SetHp(parameter.currentHp);
+        }
+
         public void SetParameter(ParameterVO parameter) => _parameter = parameter;
         public void SetHp(int hp) => _hp = hp;
         public void SetAdditionalHp(float rate) => _additionalHp = Mathf.CeilToInt(maxHp * rate);

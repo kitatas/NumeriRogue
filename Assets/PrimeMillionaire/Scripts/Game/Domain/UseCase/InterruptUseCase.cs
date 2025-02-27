@@ -9,14 +9,19 @@ namespace PrimeMillionaire.Game.Domain.UseCase
     public sealed class InterruptUseCase
     {
         private readonly PlayerCharacterEntity _playerCharacterEntity;
+        private readonly PlayerParameterEntity _playerParameterEntity;
         private readonly EnemyCharacterEntity _enemyCharacterEntity;
+        private readonly EnemyParameterEntity _enemyParameterEntity;
         private readonly SaveRepository _saveRepository;
 
-        public InterruptUseCase(PlayerCharacterEntity playerCharacterEntity, EnemyCharacterEntity enemyCharacterEntity,
-            SaveRepository saveRepository)
+        public InterruptUseCase(PlayerCharacterEntity playerCharacterEntity,
+            PlayerParameterEntity playerParameterEntity, EnemyCharacterEntity enemyCharacterEntity,
+            EnemyParameterEntity enemyParameterEntity, SaveRepository saveRepository)
         {
             _playerCharacterEntity = playerCharacterEntity;
+            _playerParameterEntity = playerParameterEntity;
             _enemyCharacterEntity = enemyCharacterEntity;
+            _enemyParameterEntity = enemyParameterEntity;
             _saveRepository = saveRepository;
         }
 
@@ -24,7 +29,9 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         {
             var interrupt = new InterruptVO(
                 playerCharacter: _playerCharacterEntity.type,
-                enemyCharacter: _enemyCharacterEntity.type
+                playerParameter: _playerParameterEntity.ToVO(),
+                enemyCharacter: _enemyCharacterEntity.type,
+                enemyParameter: _enemyParameterEntity.ToVO()
             );
 
             _saveRepository.Save(interrupt);
@@ -37,7 +44,9 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             {
                 var interrupt = saveData.interrupt;
                 _playerCharacterEntity.SetType(interrupt.playerCharacter);
+                _playerParameterEntity.InitForInterrupt(interrupt.playerParameter);
                 _enemyCharacterEntity.SetType(interrupt.enemyCharacter);
+                _enemyParameterEntity.InitForInterrupt(interrupt.enemyParameter);
             }
             else
             {

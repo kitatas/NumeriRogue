@@ -1,3 +1,4 @@
+using System;
 using FastEnumUtility;
 using PrimeMillionaire.Common.Utility;
 using UnityEngine;
@@ -53,13 +54,14 @@ namespace PrimeMillionaire.Common
         public string imgPath => $"Assets/Externals/Sprites/Characters/boss_{name.ToLower()}.png[boss_{name.ToLower()}_101]";
     }
 
+    [Serializable]
     public class ParameterVO
     {
-        public readonly CharacterType type;
-        public readonly int hp;
-        public readonly int atk;
-        public readonly int def;
-        public readonly int currentHp;
+        public CharacterType type;
+        public int hp;
+        public int atk;
+        public int def;
+        public int currentHp;
 
         public ParameterVO(int type, int hp, int atk, int def)
         {
@@ -153,15 +155,20 @@ namespace PrimeMillionaire.Common
         }
     }
 
+    [Serializable]
     public sealed class InterruptVO
     {
-        public readonly CharacterType playerCharacter;
-        public readonly CharacterType enemyCharacter;
+        public CharacterType playerCharacter;
+        public ParameterVO playerParameter;
+        public CharacterType enemyCharacter;
+        public ParameterVO enemyParameter;
 
-        public InterruptVO(CharacterType playerCharacter, CharacterType enemyCharacter)
+        public InterruptVO(CharacterType playerCharacter, ParameterVO playerParameter, CharacterType enemyCharacter, ParameterVO enemyParameter)
         {
             this.playerCharacter = playerCharacter;
+            this.playerParameter = playerParameter;
             this.enemyCharacter = enemyCharacter;
+            this.enemyParameter = enemyParameter;
         }
     }
 }

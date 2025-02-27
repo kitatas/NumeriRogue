@@ -10,8 +10,19 @@ namespace PrimeMillionaire.Game.Presentation.State
         private readonly InterruptUseCase _interruptUseCase;
 
         private readonly CharacterUseCase _characterUseCase;
+        private readonly DealUseCase _dealUseCase;
         private readonly ParameterUseCase _parameterUseCase;
         private readonly BattleView _battleView;
+
+        public RestartState(InterruptUseCase interruptUseCase, CharacterUseCase characterUseCase,
+            DealUseCase dealUseCase, ParameterUseCase parameterUseCase, BattleView battleView)
+        {
+            _interruptUseCase = interruptUseCase;
+            _characterUseCase = characterUseCase;
+            _dealUseCase = dealUseCase;
+            _parameterUseCase = parameterUseCase;
+            _battleView = battleView;
+        }
 
         public override GameState state => GameState.Restart;
 
@@ -25,10 +36,11 @@ namespace PrimeMillionaire.Game.Presentation.State
             _interruptUseCase.Load();
 
             // Init
+            _dealUseCase.Init();
+
             var player = _characterUseCase.GetPlayerCharacter();
-            // TODO: player parameter
             await (
-                _parameterUseCase.InitPlayerParamAsync(token),
+                _parameterUseCase.PublishPlayerParamAsync(token),
                 _battleView.CreatePlayerAsync(player, token)
             );
 
@@ -36,9 +48,8 @@ namespace PrimeMillionaire.Game.Presentation.State
             // TODO: enemy count
             // TODO: turn count
             var enemy = _characterUseCase.GetEnemyCharacter();
-            // TODO: enemy parameter
             await (
-                _parameterUseCase.InitEnemyParamAsync(token),
+                _parameterUseCase.PublishEnemyParamAsync(token),
                 _battleView.CreateEnemyAsync(enemy, token)
             );
 
