@@ -26,6 +26,11 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public CharacterVO GetEnemyCharacter()
         {
+            return _characterRepository.Find(_enemyCharacterEntity.type);
+        }
+
+        public CharacterVO LotEnemyCharacter()
+        {
             var character = _characterRepository.FindOther(_playerCharacterEntity.type);
             _enemyCharacterEntity.SetType(character.type);
             return character;

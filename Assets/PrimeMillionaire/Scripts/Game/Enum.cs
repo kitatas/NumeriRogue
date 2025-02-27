@@ -12,6 +12,7 @@ namespace PrimeMillionaire.Game
         Load = 7,
         Fail = 8,
         Clear = 9,
+        Restart = 10,
     }
 
     public enum Side

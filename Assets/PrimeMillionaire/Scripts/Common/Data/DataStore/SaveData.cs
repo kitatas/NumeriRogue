@@ -18,5 +18,10 @@ namespace PrimeMillionaire.Common.Data.DataStore
         {
             return string.IsNullOrEmpty(uid);
         }
+
+        public bool HasInterrupt()
+        {
+            return interrupt != null;
+        }
     }
 }

@@ -61,6 +61,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.Register<BaseState, LoadState>(Lifetime.Scoped);
             builder.Register<BaseState, OrderState>(Lifetime.Scoped);
             builder.Register<BaseState, PickState>(Lifetime.Scoped);
+            builder.Register<BaseState, RestartState>(Lifetime.Scoped);
             builder.Register<BaseState, SetUpState>(Lifetime.Scoped);
 
             // Presenter

@@ -1,3 +1,4 @@
+using System;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Data.Entity;
 using PrimeMillionaire.Common.Domain.Repository;
@@ -27,6 +28,21 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             );
 
             _saveRepository.Save(interrupt);
+        }
+
+        public void Load()
+        {
+            var saveData = _saveRepository.Load();
+            if (saveData.HasInterrupt())
+            {
+                var interrupt = saveData.interrupt;
+                _playerCharacterEntity.SetType(interrupt.playerCharacter);
+                _enemyCharacterEntity.SetType(interrupt.enemyCharacter);
+            }
+            else
+            {
+                throw new Exception();
+            }
         }
     }
 }

@@ -35,7 +35,7 @@ namespace PrimeMillionaire.Game.Presentation.State
             _enemyCountUseCase.Increment();
             _turnUseCase.Reset();
 
-            var enemy = _characterUseCase.GetEnemyCharacter();
+            var enemy = _characterUseCase.LotEnemyCharacter();
             await (
                 _parameterUseCase.InitEnemyParamAsync(token),
                 _battleView.CreateEnemyAsync(enemy, token)
