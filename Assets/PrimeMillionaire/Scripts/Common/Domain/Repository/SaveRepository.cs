@@ -24,5 +24,12 @@ namespace PrimeMillionaire.Common.Domain.Repository
         {
             ES3.Save(SaveConfig.ES3_KEY, JsonUtility.ToJson(value));
         }
+
+        public void Save(InterruptVO interrupt)
+        {
+            var data = Load();
+            data.interrupt = interrupt;
+            Save(data);
+        }
     }
 }

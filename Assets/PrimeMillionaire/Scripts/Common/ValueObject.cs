@@ -152,4 +152,16 @@ namespace PrimeMillionaire.Common
             this.rate = rate;
         }
     }
+
+    public sealed class InterruptVO
+    {
+        public readonly CharacterType playerCharacter;
+        public readonly CharacterType enemyCharacter;
+
+        public InterruptVO(CharacterType playerCharacter, CharacterType enemyCharacter)
+        {
+            this.playerCharacter = playerCharacter;
+            this.enemyCharacter = enemyCharacter;
+        }
+    }
 }
