@@ -2,11 +2,6 @@ using PrimeMillionaire.Common;
 
 namespace PrimeMillionaire.Game
 {
-    public sealed class GameConfig
-    {
-        public const GameState INIT_STATE = GameState.Init;
-    }
-
     public sealed class BattleConfig
     {
         public const float TWEEN_DURATION = 0.25f;

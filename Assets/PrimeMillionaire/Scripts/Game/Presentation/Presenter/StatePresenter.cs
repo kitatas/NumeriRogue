@@ -30,7 +30,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
                 .Subscribe(x => ExecAsync(x, token).Forget())
                 .AddTo(token);
 
-            _stateUseCase.Set(GameConfig.INIT_STATE);
+            _stateUseCase.Init();
         }
 
         private async UniTaskVoid ExecAsync(GameState state, CancellationToken token)
