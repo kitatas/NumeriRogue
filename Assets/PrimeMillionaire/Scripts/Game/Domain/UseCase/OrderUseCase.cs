@@ -3,7 +3,6 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using ObservableCollections;
 using PrimeMillionaire.Common;
-using PrimeMillionaire.Common.Domain.Repository;
 using PrimeMillionaire.Common.Utility;
 using PrimeMillionaire.Game.Data.Entity;
 using PrimeMillionaire.Game.Domain.Repository;
@@ -14,13 +13,15 @@ namespace PrimeMillionaire.Game.Domain.UseCase
     public sealed class OrderUseCase
     {
         private readonly BonusEntity _bonusEntity;
+        private readonly CommunityBattlePtEntity _communityBattlePtEntity;
         private readonly PrimeNumberRepository _primeNumberRepository;
         private readonly ObservableList<OrderVO> _orders;
-        private int _prevValue;
 
-        public OrderUseCase(BonusEntity bonusEntity, PrimeNumberRepository primeNumberRepository)
+        public OrderUseCase(BonusEntity bonusEntity, CommunityBattlePtEntity communityBattlePtEntity,
+            PrimeNumberRepository primeNumberRepository)
         {
             _bonusEntity = bonusEntity;
+            _communityBattlePtEntity = communityBattlePtEntity;
             _primeNumberRepository = primeNumberRepository;
             _orders = new ObservableList<OrderVO>(HandConfig.ORDER_NUM)
             {
@@ -28,8 +29,6 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 new OrderVO(),
                 new OrderVO(),
             };
-
-            _prevValue = 0;
         }
 
         public ObservableList<OrderVO> orders => _orders;
@@ -75,7 +74,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         private bool isSuitMatch => _orders.Any(x => x.card != null) &&
                                     _orders.Select(x => x.card.suit).GroupBy(x => x).Count() == 1;
 
-        private bool isValueDown => _prevValue >= currentValue;
+        private bool isValueDown => _communityBattlePtEntity.currentValue >= currentValue;
 
         public async UniTask PushValueAsync(CancellationToken token)
         {
@@ -87,7 +86,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             await Router.Default.PublishAsync(new OrderValueVO(currentValue, _bonusEntity.ToVO()), token);
             await UniTaskHelper.DelayAsync(1.0f, token);
 
-            _prevValue = currentValueWithBonus;
+            _communityBattlePtEntity.Set(currentValueWithBonus);
         }
 
         public async UniTask ShowOrderCardsAsync(float duration, CancellationToken token)

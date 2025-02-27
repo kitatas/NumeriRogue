@@ -13,7 +13,7 @@ namespace PrimeMillionaire.Game.Data.Entity
 
         public int currentValue => _value;
 
-        private void Set(int value) => _value = value;
+        public void Set(int value) => _value = value;
 
         public void Add(int value) => Set(Mathf.Max(0, _value + value));
 

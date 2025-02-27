@@ -15,6 +15,7 @@ namespace PrimeMillionaire.Game.Installer
         {
             // Entity
             builder.Register<BonusEntity>(Lifetime.Scoped);
+            builder.Register<CommunityBattlePtEntity>(Lifetime.Scoped);
             builder.Register<DeckEntity>(Lifetime.Scoped);
             builder.Register<DollarEntity>(Lifetime.Scoped);
             builder.Register<EnemyBattlePtEntity>(Lifetime.Scoped);
