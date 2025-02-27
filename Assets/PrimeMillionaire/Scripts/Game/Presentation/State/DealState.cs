@@ -9,13 +9,16 @@ namespace PrimeMillionaire.Game.Presentation.State
     {
         private readonly DealUseCase _dealUseCase;
         private readonly HandUseCase _handUseCase;
+        private readonly InterruptUseCase _interruptUseCase;
         private readonly TurnUseCase _turnUseCase;
         private readonly TableView _tableView;
 
-        public DealState(DealUseCase dealUseCase, HandUseCase handUseCase, TurnUseCase turnUseCase, TableView tableView)
+        public DealState(DealUseCase dealUseCase, HandUseCase handUseCase, InterruptUseCase interruptUseCase,
+            TurnUseCase turnUseCase, TableView tableView)
         {
             _dealUseCase = dealUseCase;
             _handUseCase = handUseCase;
+            _interruptUseCase = interruptUseCase;
             _turnUseCase = turnUseCase;
             _tableView = tableView;
         }
@@ -39,6 +42,8 @@ namespace PrimeMillionaire.Game.Presentation.State
                 _tableView.RenderPlayerHandsAsync(_handUseCase.GetPlayerHands(), token),
                 _tableView.RenderEnemyHandsAsync(_handUseCase.GetEnemyHands(), token)
             );
+
+            _interruptUseCase.Save();
 
             return GameState.Order;
         }
