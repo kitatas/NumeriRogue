@@ -41,8 +41,6 @@ namespace PrimeMillionaire.Game.Presentation.State
             _interruptUseCase.Load();
 
             // Init
-            _dealUseCase.Init();
-
             var player = _characterUseCase.GetPlayerCharacter();
             await (
                 _parameterUseCase.PublishPlayerParamAsync(token),
@@ -60,7 +58,7 @@ namespace PrimeMillionaire.Game.Presentation.State
             );
 
             // Deal
-            // TODO: deal cards
+            _dealUseCase.SetUpHands();
             // TODO: render hands
 
             return GameState.Order;

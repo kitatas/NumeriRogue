@@ -8,6 +8,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 {
     public sealed class InterruptUseCase
     {
+        private readonly DeckEntity _deckEntity;
         private readonly PlayerCharacterEntity _playerCharacterEntity;
         private readonly PlayerParameterEntity _playerParameterEntity;
         private readonly EnemyCharacterEntity _enemyCharacterEntity;
@@ -16,11 +17,12 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         private readonly TurnEntity _turnEntity;
         private readonly SaveRepository _saveRepository;
 
-        public InterruptUseCase(PlayerCharacterEntity playerCharacterEntity,
+        public InterruptUseCase(DeckEntity deckEntity, PlayerCharacterEntity playerCharacterEntity,
             PlayerParameterEntity playerParameterEntity, EnemyCharacterEntity enemyCharacterEntity,
             EnemyParameterEntity enemyParameterEntity, EnemyCountEntity enemyCountEntity, TurnEntity turnEntity,
             SaveRepository saveRepository)
         {
+            _deckEntity = deckEntity;
             _playerCharacterEntity = playerCharacterEntity;
             _playerParameterEntity = playerParameterEntity;
             _enemyCharacterEntity = enemyCharacterEntity;
@@ -38,7 +40,8 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 enemyCharacter: _enemyCharacterEntity.type,
                 enemyParameter: _enemyParameterEntity.ToVO(),
                 enemyCount: _enemyCountEntity.currentValue,
-                turn: _turnEntity.currentValue
+                turn: _turnEntity.currentValue,
+                deck: _deckEntity.ToVO()
             );
 
             _saveRepository.Save(interrupt);
@@ -56,6 +59,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 _enemyParameterEntity.InitForInterrupt(interrupt.enemyParameter);
                 _enemyCountEntity.Set(interrupt.enemyCount);
                 _turnEntity.Set(interrupt.turn);
+                _deckEntity.Init(interrupt.deck);
             }
             else
             {

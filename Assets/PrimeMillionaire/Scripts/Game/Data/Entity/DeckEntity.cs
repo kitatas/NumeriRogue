@@ -19,6 +19,11 @@ namespace PrimeMillionaire.Game.Data.Entity
             _cards.AddRange(cards);
         }
 
+        public void Init(DeckVO deck)
+        {
+            _cards.AddRange(deck.cards);
+        }
+
         public void Refresh()
         {
             _index = 0;
@@ -44,5 +49,7 @@ namespace PrimeMillionaire.Game.Data.Entity
         public int Draw() => _index++;
 
         public CardVO GetCard(int index) => _cards[index];
+
+        public DeckVO ToVO() => new(_cards);
     }
 }

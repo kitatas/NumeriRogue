@@ -31,6 +31,11 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         public void SetUp()
         {
             _deckEntity.Refresh();
+            SetUpHands();
+        }
+
+        public void SetUpHands()
+        {
             _playerHandEntity.Clear();
             _enemyHandEntity.Clear();
 

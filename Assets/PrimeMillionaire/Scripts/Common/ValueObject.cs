@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using FastEnumUtility;
 using PrimeMillionaire.Common.Utility;
 using UnityEngine;
@@ -21,17 +22,29 @@ namespace PrimeMillionaire.Common
         public bool isFade => loadType == LoadType.Fade;
     }
 
+    [Serializable]
     public sealed class CardVO
     {
-        public readonly Suit suit;
-        public readonly int rank;
-        public readonly string imgPath;
+        public Suit suit;
+        public int rank;
+        public string imgPath;
 
         public CardVO(int suit, int rank)
         {
             this.suit = suit.ToSuit();
             this.rank = rank;
             this.imgPath = $"Assets/Externals/Sprites/Cards/cards.png[card_{this.suit.FastToString().ToLower()}s_{rank}]";
+        }
+    }
+
+    [Serializable]
+    public sealed class DeckVO
+    {
+        public List<CardVO> cards;
+
+        public DeckVO(List<CardVO> cards)
+        {
+            this.cards = cards;
         }
     }
 
@@ -164,9 +177,10 @@ namespace PrimeMillionaire.Common
         public ParameterVO enemyParameter;
         public int enemyCount;
         public int turn;
+        public DeckVO deck;
 
         public InterruptVO(CharacterType playerCharacter, ParameterVO playerParameter, CharacterType enemyCharacter,
-            ParameterVO enemyParameter, int enemyCount, int turn)
+            ParameterVO enemyParameter, int enemyCount, int turn, DeckVO deck)
         {
             this.playerCharacter = playerCharacter;
             this.playerParameter = playerParameter;
@@ -174,6 +188,7 @@ namespace PrimeMillionaire.Common
             this.enemyParameter = enemyParameter;
             this.enemyCount = enemyCount;
             this.turn = turn;
+            this.deck = deck;
         }
     }
 }
