@@ -27,7 +27,6 @@ namespace PrimeMillionaire.Game.Presentation.State
 
         public override async UniTask InitAsync(CancellationToken token)
         {
-            _dealUseCase.Init();
             await UniTask.Yield(token);
         }
 

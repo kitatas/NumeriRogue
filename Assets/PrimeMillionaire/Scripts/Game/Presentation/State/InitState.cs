@@ -8,12 +8,15 @@ namespace PrimeMillionaire.Game.Presentation.State
     public sealed class InitState : BaseState
     {
         private readonly CharacterUseCase _characterUseCase;
+        private readonly DealUseCase _dealUseCase;
         private readonly ParameterUseCase _parameterUseCase;
         private readonly BattleView _battleView;
 
-        public InitState(CharacterUseCase characterUseCase, ParameterUseCase parameterUseCase, BattleView battleView)
+        public InitState(CharacterUseCase characterUseCase, DealUseCase dealUseCase, ParameterUseCase parameterUseCase,
+            BattleView battleView)
         {
             _characterUseCase = characterUseCase;
+            _dealUseCase = dealUseCase;
             _parameterUseCase = parameterUseCase;
             _battleView = battleView;
         }
@@ -27,6 +30,8 @@ namespace PrimeMillionaire.Game.Presentation.State
 
         public override async UniTask<GameState> TickAsync(CancellationToken token)
         {
+            _dealUseCase.Init();
+
             var player = _characterUseCase.GetPlayerCharacter();
             await (
                 _parameterUseCase.InitPlayerParamAsync(token),
