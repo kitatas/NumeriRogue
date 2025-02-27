@@ -17,16 +17,21 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public Observable<int> turn => _turn.Where(x => x != 0);
 
+        public void Update()
+        {
+            _turn.Value = _turnEntity.currentValue;
+        }
+
         public void Increment()
         {
             _turnEntity.Add(1);
-            _turn.Value = _turnEntity.currentValue;
+            Update();
         }
 
         public void Reset()
         {
             _turnEntity.Reset();
-            _turn.Value = _turnEntity.currentValue;
+            Update();
         }
 
         public void Dispose()

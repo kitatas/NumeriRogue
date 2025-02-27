@@ -13,17 +13,20 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         private readonly EnemyCharacterEntity _enemyCharacterEntity;
         private readonly EnemyParameterEntity _enemyParameterEntity;
         private readonly EnemyCountEntity _enemyCountEntity;
+        private readonly TurnEntity _turnEntity;
         private readonly SaveRepository _saveRepository;
 
         public InterruptUseCase(PlayerCharacterEntity playerCharacterEntity,
             PlayerParameterEntity playerParameterEntity, EnemyCharacterEntity enemyCharacterEntity,
-            EnemyParameterEntity enemyParameterEntity, EnemyCountEntity enemyCountEntity, SaveRepository saveRepository)
+            EnemyParameterEntity enemyParameterEntity, EnemyCountEntity enemyCountEntity, TurnEntity turnEntity,
+            SaveRepository saveRepository)
         {
             _playerCharacterEntity = playerCharacterEntity;
             _playerParameterEntity = playerParameterEntity;
             _enemyCharacterEntity = enemyCharacterEntity;
             _enemyParameterEntity = enemyParameterEntity;
             _enemyCountEntity = enemyCountEntity;
+            _turnEntity = turnEntity;
             _saveRepository = saveRepository;
         }
 
@@ -34,7 +37,8 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 playerParameter: _playerParameterEntity.ToVO(),
                 enemyCharacter: _enemyCharacterEntity.type,
                 enemyParameter: _enemyParameterEntity.ToVO(),
-                enemyCount: _enemyCountEntity.currentValue
+                enemyCount: _enemyCountEntity.currentValue,
+                turn: _turnEntity.currentValue
             );
 
             _saveRepository.Save(interrupt);
@@ -51,6 +55,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 _enemyCharacterEntity.SetType(interrupt.enemyCharacter);
                 _enemyParameterEntity.InitForInterrupt(interrupt.enemyParameter);
                 _enemyCountEntity.Set(interrupt.enemyCount);
+                _turnEntity.Set(interrupt.turn);
             }
             else
             {
