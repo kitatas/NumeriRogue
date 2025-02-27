@@ -17,16 +17,21 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public Observable<int> enemyCount => _enemyCount.Where(x => x != 0);
 
+        public void Update()
+        {
+            _enemyCount.Value = _enemyCountEntity.currentValue;
+        }
+
         public void Increment()
         {
             _enemyCountEntity.Add(1);
-            _enemyCount.Value = _enemyCountEntity.currentValue;
+            Update();
         }
 
         public void Reset()
         {
             _enemyCountEntity.Reset();
-            _enemyCount.Value = _enemyCountEntity.currentValue;
+            Update();
         }
 
         public void Dispose()

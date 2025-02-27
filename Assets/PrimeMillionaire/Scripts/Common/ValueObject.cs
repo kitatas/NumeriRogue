@@ -162,13 +162,15 @@ namespace PrimeMillionaire.Common
         public ParameterVO playerParameter;
         public CharacterType enemyCharacter;
         public ParameterVO enemyParameter;
+        public int enemyCount;
 
-        public InterruptVO(CharacterType playerCharacter, ParameterVO playerParameter, CharacterType enemyCharacter, ParameterVO enemyParameter)
+        public InterruptVO(CharacterType playerCharacter, ParameterVO playerParameter, CharacterType enemyCharacter, ParameterVO enemyParameter, int enemyCount)
         {
             this.playerCharacter = playerCharacter;
             this.playerParameter = playerParameter;
             this.enemyCharacter = enemyCharacter;
             this.enemyParameter = enemyParameter;
+            this.enemyCount = enemyCount;
         }
     }
 }

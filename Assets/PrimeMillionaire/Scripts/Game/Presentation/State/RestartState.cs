@@ -11,15 +11,18 @@ namespace PrimeMillionaire.Game.Presentation.State
 
         private readonly CharacterUseCase _characterUseCase;
         private readonly DealUseCase _dealUseCase;
+        private readonly EnemyCountUseCase _enemyCountUseCase;
         private readonly ParameterUseCase _parameterUseCase;
         private readonly BattleView _battleView;
 
         public RestartState(InterruptUseCase interruptUseCase, CharacterUseCase characterUseCase,
-            DealUseCase dealUseCase, ParameterUseCase parameterUseCase, BattleView battleView)
+            DealUseCase dealUseCase, EnemyCountUseCase enemyCountUseCase, ParameterUseCase parameterUseCase,
+            BattleView battleView)
         {
             _interruptUseCase = interruptUseCase;
             _characterUseCase = characterUseCase;
             _dealUseCase = dealUseCase;
+            _enemyCountUseCase = enemyCountUseCase;
             _parameterUseCase = parameterUseCase;
             _battleView = battleView;
         }
@@ -45,7 +48,7 @@ namespace PrimeMillionaire.Game.Presentation.State
             );
 
             // SetUp
-            // TODO: enemy count
+            _enemyCountUseCase.Update();
             // TODO: turn count
             var enemy = _characterUseCase.GetEnemyCharacter();
             await (
