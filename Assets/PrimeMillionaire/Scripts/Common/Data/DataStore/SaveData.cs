@@ -11,5 +11,10 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 uid = "",
             };
         }
+
+        public bool IsEmptyUid()
+        {
+            return string.IsNullOrEmpty(uid);
+        }
     }
 }
