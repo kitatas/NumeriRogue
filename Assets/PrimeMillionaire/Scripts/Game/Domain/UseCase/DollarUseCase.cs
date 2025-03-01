@@ -22,16 +22,21 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         public bool IsClear() => _dollarEntity.IsEnough(1500);
         public bool IsConsume(int value) => _dollarEntity.IsEnough(value);
 
+        public void Update()
+        {
+            _dollar.Value = _dollarEntity.currentValue;
+        }
+
         public void Add(int value)
         {
             _dollarEntity.Add(value);
-            _dollar.Value = _dollarEntity.currentValue;
+            Update();
         }
 
         public void Consume(int value)
         {
             _dollarEntity.Subtract(value);
-            _dollar.Value = _dollarEntity.currentValue;
+            Update();
         }
 
         public void Dispose()

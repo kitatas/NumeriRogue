@@ -10,6 +10,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
     {
         private readonly CommunityBattlePtEntity _communityBattlePtEntity;
         private readonly DeckEntity _deckEntity;
+        private readonly DollarEntity  _dollarEntity;
         private readonly PlayerCharacterEntity _playerCharacterEntity;
         private readonly PlayerParameterEntity _playerParameterEntity;
         private readonly EnemyCharacterEntity _enemyCharacterEntity;
@@ -19,12 +20,14 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         private readonly SaveRepository _saveRepository;
 
         public InterruptUseCase(CommunityBattlePtEntity communityBattlePtEntity, DeckEntity deckEntity,
-            PlayerCharacterEntity playerCharacterEntity, PlayerParameterEntity playerParameterEntity,
-            EnemyCharacterEntity enemyCharacterEntity, EnemyParameterEntity enemyParameterEntity,
-            EnemyCountEntity enemyCountEntity, TurnEntity turnEntity, SaveRepository saveRepository)
+            DollarEntity dollarEntity, PlayerCharacterEntity playerCharacterEntity,
+            PlayerParameterEntity playerParameterEntity, EnemyCharacterEntity enemyCharacterEntity,
+            EnemyParameterEntity enemyParameterEntity, EnemyCountEntity enemyCountEntity, TurnEntity turnEntity,
+            SaveRepository saveRepository)
         {
             _communityBattlePtEntity = communityBattlePtEntity;
             _deckEntity = deckEntity;
+            _dollarEntity = dollarEntity;
             _playerCharacterEntity = playerCharacterEntity;
             _playerParameterEntity = playerParameterEntity;
             _enemyCharacterEntity = enemyCharacterEntity;
@@ -44,7 +47,8 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 enemyCount: _enemyCountEntity.currentValue,
                 turn: _turnEntity.currentValue,
                 deck: _deckEntity.ToVO(),
-                communityBattlePt: _communityBattlePtEntity.currentValue
+                communityBattlePt: _communityBattlePtEntity.currentValue,
+                dollar: _dollarEntity.currentValue
             );
 
             _saveRepository.Save(interrupt);
@@ -64,6 +68,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 _turnEntity.Set(interrupt.turn);
                 _deckEntity.Init(interrupt.deck);
                 _communityBattlePtEntity.Set(interrupt.communityBattlePt);
+                _dollarEntity.Set(interrupt.dollar);
             }
             else
             {
