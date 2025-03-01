@@ -21,8 +21,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public void Init()
         {
-            var saveData = _saveRepository.Load();
-            var loadState = saveData.HasInterrupt() ? GameState.Restart : GameState.Init;
+            var loadState = _saveRepository.TryLoadInterrupt(out _) ? GameState.Restart : GameState.Init;
             Set(loadState);
         }
 

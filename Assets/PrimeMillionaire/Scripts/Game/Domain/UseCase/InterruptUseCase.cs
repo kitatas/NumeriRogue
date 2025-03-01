@@ -59,10 +59,8 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public void Load()
         {
-            var saveData = _saveRepository.Load();
-            if (saveData.HasInterrupt())
+            if (_saveRepository.TryLoadInterrupt(out var interrupt))
             {
-                var interrupt = saveData.interrupt;
                 _playerCharacterEntity.SetType(interrupt.playerCharacter);
                 _playerParameterEntity.InitForInterrupt(interrupt.playerParameter);
                 _enemyCharacterEntity.SetType(interrupt.enemyCharacter);

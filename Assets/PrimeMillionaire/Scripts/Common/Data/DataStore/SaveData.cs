@@ -21,7 +21,9 @@ namespace PrimeMillionaire.Common.Data.DataStore
 
         public bool HasInterrupt()
         {
-            return interrupt != null;
+            if (interrupt == null) return false;
+            if (interrupt.playerCharacter == CharacterType.None) return false;
+            return true;
         }
     }
 }

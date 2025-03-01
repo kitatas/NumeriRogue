@@ -13,6 +13,13 @@ namespace PrimeMillionaire.Common.Domain.Repository
                 : JsonUtility.FromJson<SaveData>(data);
         }
 
+        public bool TryLoadInterrupt(out InterruptVO interrupt)
+        {
+            var data = Load();
+            interrupt = data.interrupt;
+            return data.HasInterrupt();
+        }
+
         private SaveData CreateNewData()
         {
             var data = SaveData.Create();
