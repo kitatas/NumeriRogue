@@ -1,30 +1,25 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using PrimeMillionaire.Common.Domain.Repository;
 using PrimeMillionaire.Game.Data.Entity;
 using PrimeMillionaire.Game.Domain.Repository;
-using UnityEngine;
 using VitalRouter;
 
 namespace PrimeMillionaire.Game.Domain.UseCase
 {
     public sealed class PickSkillUseCase
     {
-        private readonly LevelEntity _levelEntity;
+        private readonly EnemyCountEntity _enemyCountEntity;
         private readonly SkillRepository _skillRepository;
 
-        public PickSkillUseCase(LevelEntity levelEntity, SkillRepository skillRepository)
+        public PickSkillUseCase(EnemyCountEntity enemyCountEntity, SkillRepository skillRepository)
         {
-            _levelEntity = levelEntity;
+            _enemyCountEntity = enemyCountEntity;
             _skillRepository = skillRepository;
         }
 
         public async UniTask LotAsync(CancellationToken token)
         {
-            // TODO: master定義の最高levelベタ書き
-            var wrapLevel = Mathf.Min(3, _levelEntity.currentValue);
-            var skills = _skillRepository.FindLotteryTargets(wrapLevel);
-
+            var skills = _skillRepository.FindLotteryTargets(_enemyCountEntity.currentValue);
             await UniTask.WhenAll(skills
                 .Select((x, i) => Router.Default.PublishAsync(new PickSkillVO(i, x), token).AsUniTask())
             );

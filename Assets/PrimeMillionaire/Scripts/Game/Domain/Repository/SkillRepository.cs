@@ -17,7 +17,7 @@ namespace PrimeMillionaire.Game.Domain.Repository
         public List<SkillVO> FindLotteryTargets(int level)
         {
             var random = new System.Random();
-            return _memoryDatabase.SkillMasterTable.FindByLevel(level)
+            return _memoryDatabase.SkillMasterTable.FindClosestByLevel(level)
                 .OrderBy(_ => random.Next())
                 .Take(SkillConfig.LOT_NUM)
                 .Select(x => x.ToVO())
