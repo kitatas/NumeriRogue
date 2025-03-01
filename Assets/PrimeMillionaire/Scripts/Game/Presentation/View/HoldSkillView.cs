@@ -1,5 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using PrimeMillionaire.Common;
 using UnityEngine;
 
 namespace PrimeMillionaire.Game.Presentation.View

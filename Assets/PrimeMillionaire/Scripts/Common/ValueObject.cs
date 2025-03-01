@@ -107,12 +107,13 @@ namespace PrimeMillionaire.Common
         public float hpRate => (float)currentHp / hp;
     }
 
+    [Serializable]
     public sealed class SkillVO
     {
-        public readonly SkillType type;
-        public readonly int value;
-        public readonly string description;
-        public readonly int price;
+        public SkillType type;
+        public int value;
+        public string description;
+        public int price;
         public bool isHold;
 
         public SkillVO(int type, int value)
@@ -121,6 +122,21 @@ namespace PrimeMillionaire.Common
             this.value = value;
             this.description = this.type.ToDescription(value);
             this.price = this.type.ToPrice(value);
+        }
+    }
+
+    [Serializable]
+    public sealed class HoldSkillVO : ICommand
+    {
+        public List<SkillVO> skills;
+
+        public HoldSkillVO(List<SkillVO> skills)
+        {
+            this.skills = skills;
+            foreach (var skill in this.skills)
+            {
+                skill.isHold = true;
+            }
         }
     }
 
@@ -180,9 +196,11 @@ namespace PrimeMillionaire.Common
         public DeckVO deck;
         public int communityBattlePt;
         public int dollar;
+        public HoldSkillVO holdSkill;
 
         public InterruptVO(CharacterType playerCharacter, ParameterVO playerParameter, CharacterType enemyCharacter,
-            ParameterVO enemyParameter, int enemyCount, int turn, DeckVO deck, int communityBattlePt, int dollar)
+            ParameterVO enemyParameter, int enemyCount, int turn, DeckVO deck, int communityBattlePt, int dollar,
+            HoldSkillVO holdSkill)
         {
             this.playerCharacter = playerCharacter;
             this.playerParameter = playerParameter;
@@ -193,6 +211,7 @@ namespace PrimeMillionaire.Common
             this.deck = deck;
             this.communityBattlePt = communityBattlePt;
             this.dollar = dollar;
+            this.holdSkill = holdSkill;
         }
     }
 }

@@ -14,6 +14,7 @@ namespace PrimeMillionaire.Game.Presentation.State
         private readonly DollarUseCase _dollarUseCase;
         private readonly EnemyCountUseCase _enemyCountUseCase;
         private readonly HandUseCase _handUseCase;
+        private readonly HoldSkillUseCase _holdSkillUseCase;
         private readonly OrderUseCase _orderUseCase;
         private readonly ParameterUseCase _parameterUseCase;
         private readonly TurnUseCase _turnUseCase;
@@ -22,8 +23,8 @@ namespace PrimeMillionaire.Game.Presentation.State
 
         public RestartState(InterruptUseCase interruptUseCase, CharacterUseCase characterUseCase,
             DealUseCase dealUseCase, DollarUseCase dollarUseCase, EnemyCountUseCase enemyCountUseCase,
-            HandUseCase handUseCase, OrderUseCase orderUseCase, ParameterUseCase parameterUseCase,
-            TurnUseCase turnUseCase, BattleView battleView, TableView tableView)
+            HandUseCase handUseCase, HoldSkillUseCase holdSkillUseCase, OrderUseCase orderUseCase,
+            ParameterUseCase parameterUseCase, TurnUseCase turnUseCase, BattleView battleView, TableView tableView)
         {
             _interruptUseCase = interruptUseCase;
             _characterUseCase = characterUseCase;
@@ -31,6 +32,7 @@ namespace PrimeMillionaire.Game.Presentation.State
             _dollarUseCase = dollarUseCase;
             _enemyCountUseCase = enemyCountUseCase;
             _handUseCase = handUseCase;
+            _holdSkillUseCase = holdSkillUseCase;
             _orderUseCase = orderUseCase;
             _parameterUseCase = parameterUseCase;
             _turnUseCase = turnUseCase;
@@ -56,6 +58,8 @@ namespace PrimeMillionaire.Game.Presentation.State
                 _battleView.CreatePlayerAsync(player, token),
                 _orderUseCase.PublishCommunityBattlePtAsync(token)
             );
+
+            await _holdSkillUseCase.UpdateAsync(token);
 
             // SetUp
             _enemyCountUseCase.Update();
