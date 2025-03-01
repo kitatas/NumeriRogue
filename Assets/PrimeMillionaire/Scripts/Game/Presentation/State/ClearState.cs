@@ -1,16 +1,19 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common.Utility;
+using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.View;
 
 namespace PrimeMillionaire.Game.Presentation.State
 {
     public sealed class ClearState : BaseState
     {
+        private readonly InterruptUseCase _interruptUseCase;
         private readonly ClearView _clearView;
 
-        public ClearState(ClearView clearView)
+        public ClearState(InterruptUseCase interruptUseCase, ClearView clearView)
         {
+            _interruptUseCase = interruptUseCase;
             _clearView = clearView;
         }
 
@@ -24,6 +27,7 @@ namespace PrimeMillionaire.Game.Presentation.State
 
         public override async UniTask<GameState> TickAsync(CancellationToken token)
         {
+            _interruptUseCase.Delete();
             await _clearView.FadeIn(0.25f).WithCancellation(token);
 
             await UniTaskHelper.DelayAsync(1.0f, token);

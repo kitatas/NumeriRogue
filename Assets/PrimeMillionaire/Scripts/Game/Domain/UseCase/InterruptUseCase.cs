@@ -10,7 +10,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
     {
         private readonly CommunityBattlePtEntity _communityBattlePtEntity;
         private readonly DeckEntity _deckEntity;
-        private readonly DollarEntity  _dollarEntity;
+        private readonly DollarEntity _dollarEntity;
         private readonly HoldSkillEntity _holdSkillEntity;
         private readonly PlayerCharacterEntity _playerCharacterEntity;
         private readonly PlayerParameterEntity _playerParameterEntity;
@@ -76,6 +76,11 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             {
                 throw new Exception();
             }
+        }
+
+        public void Delete()
+        {
+            _saveRepository.DeleteInterrupt();
         }
     }
 }

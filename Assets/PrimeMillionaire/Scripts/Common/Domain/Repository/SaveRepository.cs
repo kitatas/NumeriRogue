@@ -38,5 +38,10 @@ namespace PrimeMillionaire.Common.Domain.Repository
             data.interrupt = interrupt;
             Save(data);
         }
+
+        public void DeleteInterrupt()
+        {
+            Save(interrupt: null);
+        }
     }
 }
