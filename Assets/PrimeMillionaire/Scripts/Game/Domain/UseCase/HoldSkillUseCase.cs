@@ -27,33 +27,35 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         {
             _holdSkillEntity.Add(skill);
             _holdCount.Value = _holdSkillEntity.count;
-            await ApplyViewAsync(token);
-
-            var rate = _holdSkillEntity.GetTotalRate(skill.type);
-            if (skill.type == SkillType.HpUp)
-            {
-                _playerParameterEntity.SetAdditionalHp(rate);
-                await Router.Default.PublishAsync(_playerParameterEntity.ToVO(), token);
-            }
+            await (
+                ApplyViewAsync(token),
+                ApplyParameterAsync(skill.type, token)
+            );
         }
 
         public async UniTaskVoid RemoveAsync(SkillVO skill, CancellationToken token)
         {
             _holdSkillEntity.Remove(skill);
             _holdCount.Value = _holdSkillEntity.count;
-            await ApplyViewAsync(token);
-
-            var rate = _holdSkillEntity.GetTotalRate(skill.type);
-            if (skill.type == SkillType.HpUp)
-            {
-                _playerParameterEntity.SetAdditionalHp(rate);
-                await Router.Default.PublishAsync(_playerParameterEntity.ToVO(), token);
-            }
+            await (
+                ApplyViewAsync(token),
+                ApplyParameterAsync(skill.type, token)
+            );
         }
 
         public async UniTask ApplyViewAsync(CancellationToken token)
         {
             await Router.Default.PublishAsync(_holdSkillEntity.ToVO(), token);
+        }
+
+        public async UniTask ApplyParameterAsync(SkillType type, CancellationToken token)
+        {
+            if (type == SkillType.HpUp)
+            {
+                var rate = _holdSkillEntity.GetTotalRate(type);
+                _playerParameterEntity.SetAdditionalHp(rate);
+                await Router.Default.PublishAsync(_playerParameterEntity.ToVO(), token);
+            }
         }
     }
 }
