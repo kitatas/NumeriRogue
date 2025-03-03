@@ -34,11 +34,11 @@ namespace PrimeMillionaire.Game
 
     public sealed class HandConfig
     {
-        public const int MAX_NUM = 12;
+        public const int MAX_NUM = 9;
         public const int ORDER_NUM = 3;
 
-        public const float HAND_INTERVAL = 140.0f;
-        public const float TWEEN_DURATION = 0.5f;
+        public const float HAND_INTERVAL = 130.0f;
+        public const float TWEEN_DURATION = 0.25f;
         public const float TRASH_DURATION = 0.05f;
     }
 
