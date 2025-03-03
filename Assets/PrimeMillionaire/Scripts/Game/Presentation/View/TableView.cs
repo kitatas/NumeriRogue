@@ -66,6 +66,7 @@ namespace PrimeMillionaire.Game.Presentation.View
         public async UniTask DealEnemyHandAsync(CardView card, CancellationToken token)
         {
             await enemyHandView.DealHandAsync(card, HandConfig.TWEEN_DURATION, token);
+            card.Open(CardConfig.ROTATE_SPEED).WithCancellation(token).Forget();
         }
 
         public async UniTask<(int index, int count)> OrderPlayerHandsAsync(CancellationToken token)
