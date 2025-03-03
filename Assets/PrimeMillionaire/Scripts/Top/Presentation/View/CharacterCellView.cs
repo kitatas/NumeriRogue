@@ -1,4 +1,5 @@
 using FancyScrollView;
+using FastEnumUtility;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Utility;
 using R3;
@@ -14,6 +15,7 @@ namespace PrimeMillionaire.Top.Presentation.View
         [SerializeField] private Animator animator = default;
         [SerializeField] private Image body = default;
         [SerializeField] private Image chara = default;
+        [SerializeField] private TextMeshProUGUI characterId = default;
         [SerializeField] private TextMeshProUGUI characterName = default;
 
         private float _currentPosition;
@@ -30,6 +32,7 @@ namespace PrimeMillionaire.Top.Presentation.View
         public override void UpdateContent(CharacterVO value)
         {
             this.LoadAsset<Sprite>(value.imgPath, x => chara.sprite = x);
+            characterId.text = $"No.{value.type.ToInt32():000}";
             characterName.text = value.name;
         }
 
