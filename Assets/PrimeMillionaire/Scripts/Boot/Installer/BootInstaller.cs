@@ -13,6 +13,7 @@ namespace PrimeMillionaire.Boot.Installer
         {
             // UseCase
             builder.Register<LoginUseCase>(Lifetime.Scoped);
+            builder.Register<ModalUseCase>(Lifetime.Scoped);
             builder.Register<StateUseCase>(Lifetime.Scoped);
 
             // State
@@ -23,6 +24,7 @@ namespace PrimeMillionaire.Boot.Installer
             // Presenter
             builder.UseEntryPoints(Lifetime.Scoped, entryPoints =>
             {
+                entryPoints.Add<ModalPresenter>();
                 entryPoints.Add<StatePresenter>();
             });
 

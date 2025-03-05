@@ -7,4 +7,9 @@ namespace PrimeMillionaire.Boot
         Login = 2,
         Restart = 3,
     }
+
+    public enum ModalType
+    {
+        None = 0,
+    }
 }
