@@ -2,6 +2,7 @@ using PrimeMillionaire.Boot.Domain.UseCase;
 using PrimeMillionaire.Boot.Presentation.Presenter;
 using PrimeMillionaire.Boot.Presentation.State;
 using PrimeMillionaire.Boot.Presentation.View;
+using PrimeMillionaire.Boot.Presentation.View.Modal;
 using VContainer;
 using VContainer.Unity;
 
@@ -17,6 +18,7 @@ namespace PrimeMillionaire.Boot.Installer
             builder.Register<StateUseCase>(Lifetime.Scoped);
 
             // State
+            builder.Register<BaseState, InterruptState>(Lifetime.Scoped);
             builder.Register<BaseState, LoadState>(Lifetime.Scoped);
             builder.Register<BaseState, LoginState>(Lifetime.Scoped);
             builder.Register<BaseState, RestartState>(Lifetime.Scoped);
@@ -30,6 +32,10 @@ namespace PrimeMillionaire.Boot.Installer
 
             // View
             builder.RegisterComponentInHierarchy<TitleView>();
+            builder.RegisterComponentInHierarchy<InterruptView>();
+
+            // Modal
+            builder.RegisterComponentInHierarchy<InterruptModalView>().As<BaseModalView>();
         }
     }
 }

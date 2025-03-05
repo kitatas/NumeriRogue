@@ -31,8 +31,7 @@ namespace PrimeMillionaire.Boot.Presentation.State
 
             if (hasInterrupt)
             {
-                // TODO: 再開する/しないの選択
-                return BootState.Restart;
+                return BootState.Interrupt;
             }
 
             await UniTask.Yield(token);

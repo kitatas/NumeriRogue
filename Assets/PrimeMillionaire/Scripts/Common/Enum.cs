@@ -1,5 +1,12 @@
 namespace PrimeMillionaire.Common
 {
+    public enum ButtonType
+    {
+        None = 0,
+        Decision = 1,
+        Cancel = 2,
+    }
+
     public enum SceneName
     {
         None = 0,
