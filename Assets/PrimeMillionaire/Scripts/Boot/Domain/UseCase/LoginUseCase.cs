@@ -12,7 +12,7 @@ namespace PrimeMillionaire.Boot.Domain.UseCase
             _saveRepository = saveRepository;
         }
 
-        public (bool isSuccess, bool hasInterrupt) Login()
+        public bool Login()
         {
             var saveData = _saveRepository.Load();
             if (saveData.IsEmptyUid())
@@ -21,7 +21,7 @@ namespace PrimeMillionaire.Boot.Domain.UseCase
                 _saveRepository.Save(saveData);
             }
 
-            return (isSuccess: true, hasInterrupt: saveData.HasInterrupt());
+            return true;
         }
     }
 }

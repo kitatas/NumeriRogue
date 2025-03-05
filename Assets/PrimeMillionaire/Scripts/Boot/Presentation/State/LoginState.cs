@@ -10,11 +10,13 @@ namespace PrimeMillionaire.Boot.Presentation.State
 {
     public sealed class LoginState : BaseState
     {
+        private readonly InterruptUseCase _interruptUseCase;
         private readonly LoginUseCase _loginUseCase;
         private readonly TitleView _titleView;
 
-        public LoginState(LoginUseCase loginUseCase, TitleView titleView)
+        public LoginState(InterruptUseCase interruptUseCase, LoginUseCase loginUseCase, TitleView titleView)
         {
+            _interruptUseCase = interruptUseCase;
             _loginUseCase = loginUseCase;
             _titleView = titleView;
         }
@@ -32,12 +34,13 @@ namespace PrimeMillionaire.Boot.Presentation.State
             // 他presenter初期化待ち
             await UniTaskHelper.DelayAsync(0.5f, token);
 
-            var (isSuccess, hasInterrupt) = _loginUseCase.Login();
+            var isSuccess = _loginUseCase.Login();
             if (isSuccess == false)
             {
                 throw new Exception();
             }
 
+            var hasInterrupt = _interruptUseCase.HasInterrupt();
             if (hasInterrupt)
             {
                 return BootState.Interrupt;

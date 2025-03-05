@@ -9,11 +9,13 @@ namespace PrimeMillionaire.Boot.Presentation.State
 {
     public sealed class InterruptState : BaseState
     {
+        private readonly InterruptUseCase _interruptUseCase;
         private readonly ModalUseCase _modalUseCase;
         private readonly InterruptView _interruptView;
 
-        public InterruptState(ModalUseCase modalUseCase, InterruptView interruptView)
+        public InterruptState(InterruptUseCase interruptUseCase, ModalUseCase modalUseCase, InterruptView interruptView)
         {
+            _interruptUseCase = interruptUseCase;
             _modalUseCase = modalUseCase;
             _interruptView = interruptView;
         }
@@ -30,6 +32,7 @@ namespace PrimeMillionaire.Boot.Presentation.State
                 case ButtonType.Decision:
                     return BootState.Restart;
                 case ButtonType.Cancel:
+                    _interruptUseCase.Delete();
                     return BootState.Load;
                 default:
                     throw new Exception();
