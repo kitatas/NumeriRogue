@@ -12,14 +12,16 @@ namespace PrimeMillionaire.Top.Domain.UseCase
         private readonly PlayerCharacterEntity _playerCharacterEntity;
         private readonly CharacterRepository _characterRepository;
         private readonly DeckRepository _deckRepository;
+        private readonly SaveRepository _saveRepository;
         private readonly Subject<OrderCharacterVO> _orderCharacter;
 
         public CharacterUseCase(PlayerCharacterEntity playerCharacterEntity, CharacterRepository characterRepository,
-            DeckRepository deckRepository)
+            DeckRepository deckRepository, SaveRepository saveRepository)
         {
             _playerCharacterEntity = playerCharacterEntity;
             _characterRepository = characterRepository;
             _deckRepository = deckRepository;
+            _saveRepository = saveRepository;
             _orderCharacter = new Subject<OrderCharacterVO>();
         }
 
@@ -27,7 +29,14 @@ namespace PrimeMillionaire.Top.Domain.UseCase
 
         public List<CharacterVO> GetAll()
         {
-            return _characterRepository.GetAll();
+            if (_saveRepository.TryLoadProgress(out var progress))
+            {
+                return _characterRepository.GetUpto(progress.characterNo);
+            }
+            else
+            {
+                throw new Exception();
+            }
         }
 
         public void Order(CharacterType type)

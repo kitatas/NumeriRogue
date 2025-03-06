@@ -24,6 +24,14 @@ namespace PrimeMillionaire.Common.Domain.Repository
                 .ToList();
         }
 
+        public List<CharacterVO> GetUpto(int characterNo)
+        {
+            return _memoryDatabase.CharacterMasterTable.All
+                .Where(x => x.Type <= characterNo)
+                .Select(x => x.ToVO())
+                .ToList();
+        }
+
         public CharacterVO FindOther(CharacterType type)
         {
             return _memoryDatabase.CharacterMasterTable.All
