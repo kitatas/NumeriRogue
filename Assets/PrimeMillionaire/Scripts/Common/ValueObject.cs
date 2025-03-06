@@ -214,4 +214,15 @@ namespace PrimeMillionaire.Common
             this.holdSkill = holdSkill;
         }
     }
+
+    [Serializable]
+    public sealed class ProgressVO
+    {
+        public int characterNo;
+
+        public ProgressVO(int characterNo)
+        {
+            this.characterNo = characterNo;
+        }
+    }
 }

@@ -13,6 +13,13 @@ namespace PrimeMillionaire.Common.Domain.Repository
                 : JsonUtility.FromJson<SaveData>(data);
         }
 
+        public bool TryLoadProgress(out ProgressVO progress)
+        {
+            var data = Load();
+            progress = data.progress;
+            return data.HasProgress();
+        }
+
         public bool TryLoadInterrupt(out InterruptVO interrupt)
         {
             var data = Load();
