@@ -49,6 +49,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.Register<OrderUseCase>(Lifetime.Scoped);
             builder.Register<ParameterUseCase>(Lifetime.Scoped);
             builder.Register<PickSkillUseCase>(Lifetime.Scoped);
+            builder.Register<ProgressUseCase>(Lifetime.Scoped);
             builder.Register<StateUseCase>(Lifetime.Scoped);
             builder.Register<TurnUseCase>(Lifetime.Scoped);
 

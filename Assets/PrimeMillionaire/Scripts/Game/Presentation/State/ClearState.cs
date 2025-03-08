@@ -9,11 +9,13 @@ namespace PrimeMillionaire.Game.Presentation.State
     public sealed class ClearState : BaseState
     {
         private readonly InterruptUseCase _interruptUseCase;
+        private readonly ProgressUseCase _progressUseCase;
         private readonly ClearView _clearView;
 
-        public ClearState(InterruptUseCase interruptUseCase, ClearView clearView)
+        public ClearState(InterruptUseCase interruptUseCase, ProgressUseCase progressUseCase, ClearView clearView)
         {
             _interruptUseCase = interruptUseCase;
+            _progressUseCase = progressUseCase;
             _clearView = clearView;
         }
 
@@ -28,6 +30,7 @@ namespace PrimeMillionaire.Game.Presentation.State
         public override async UniTask<GameState> TickAsync(CancellationToken token)
         {
             _interruptUseCase.Delete();
+            _progressUseCase.UpdateProgress();
             await _clearView.FadeIn(0.25f).WithCancellation(token);
 
             await UniTaskHelper.DelayAsync(1.0f, token);
