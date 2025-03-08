@@ -46,6 +46,13 @@ namespace PrimeMillionaire.Common.Domain.Repository
             Save(data);
         }
 
+        public void Save(ProgressVO progress)
+        {
+            var data = Load();
+            data.progress = progress;
+            Save(data);
+        }
+
         public void DeleteInterrupt()
         {
             Save(interrupt: null);

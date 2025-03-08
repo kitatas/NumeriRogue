@@ -1,4 +1,5 @@
 using System;
+using FastEnumUtility;
 
 namespace PrimeMillionaire.Common.Data.Entity
 {
@@ -13,5 +14,7 @@ namespace PrimeMillionaire.Common.Data.Entity
             if (value == CharacterType.None) throw new Exception();
             _type = value;
         }
+
+        public int typeToInt => type.ToInt32();
     }
 }
