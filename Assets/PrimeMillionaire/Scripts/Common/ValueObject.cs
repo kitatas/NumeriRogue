@@ -218,11 +218,24 @@ namespace PrimeMillionaire.Common
     [Serializable]
     public sealed class ProgressVO
     {
-        public int characterNo;
+        public List<ClearVO> clears;
 
-        public ProgressVO(int characterNo)
+        public ProgressVO(List<ClearVO> clears)
+        {
+            this.clears = clears;
+        }
+    }
+
+    [Serializable]
+    public sealed class ClearVO
+    {
+        public int characterNo;
+        public bool isClear;
+
+        public ClearVO(int characterNo, bool isClear)
         {
             this.characterNo = characterNo;
+            this.isClear = isClear;
         }
     }
 }
