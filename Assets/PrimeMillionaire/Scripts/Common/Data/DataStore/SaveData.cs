@@ -16,7 +16,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 progress = new ProgressVO(new List<ClearVO>
                 {
                     new(characterNo: 0, isClear: true),
-                    new(characterNo: 1, isClear: false),
                 }),
                 interrupt = null,
             };
