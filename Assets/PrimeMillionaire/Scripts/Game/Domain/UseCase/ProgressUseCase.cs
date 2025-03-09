@@ -1,7 +1,7 @@
-using FastEnumUtility;
+using System;
+using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Data.Entity;
 using PrimeMillionaire.Common.Domain.Repository;
-using UnityEngine;
 
 namespace PrimeMillionaire.Game.Domain.UseCase
 {
@@ -20,8 +20,23 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         {
             if (_saveRepository.TryLoadProgress(out var progress))
             {
-                progress.characterNo = Mathf.Max(progress.characterNo, _playerCharacterEntity.typeToInt);
+                var characterNo = _playerCharacterEntity.typeToInt;
+                var clear = progress.clears.Find(x => x.characterNo == characterNo);
+ 
+                if (clear == null)
+                {
+                    progress.clears.Add(new ClearVO(characterNo, true));
+                }
+                else
+                {
+                    clear.isClear = true;
+                }
+
                 _saveRepository.Save(progress);
+            }
+            else
+            {
+                throw new Exception();
             }
         }
     }
