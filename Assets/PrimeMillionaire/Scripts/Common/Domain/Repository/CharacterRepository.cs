@@ -32,6 +32,18 @@ namespace PrimeMillionaire.Common.Domain.Repository
                 .ToList();
         }
 
+        public List<CharacterVO> GetReleased(ProgressVO progress)
+        {
+            var released = progress.clears
+                .Where(x => x.isClear)
+                .Select(x => x.characterNo);
+
+            return _memoryDatabase.CharacterMasterTable.All
+                .Where(x => x.ReleaseConditions.All(y => released.Contains(y)))
+                .Select(x => x.ToVO())
+                .ToList();
+        }
+
         public CharacterVO FindOther(CharacterType type)
         {
             return _memoryDatabase.CharacterMasterTable.All

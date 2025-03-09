@@ -31,7 +31,7 @@ namespace PrimeMillionaire.Top.Domain.UseCase
         {
             if (_saveRepository.TryLoadProgress(out var progress))
             {
-                return _characterRepository.GetUpto(progress.characterNo);
+                return _characterRepository.GetReleased(progress);
             }
             else
             {
