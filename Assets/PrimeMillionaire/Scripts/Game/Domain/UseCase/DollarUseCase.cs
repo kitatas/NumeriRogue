@@ -18,8 +18,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         public Observable<int> dollar => _dollar;
         public int currentValue => _dollar.Value;
 
-        // TODO: クリア条件の仮値
-        public bool IsClear() => _dollarEntity.IsEnough(1500);
+        public bool IsClear() => _dollarEntity.IsEnough(DollarConfig.CLEAR_THRESHOLD);
         public bool IsConsume(int value) => _dollarEntity.IsEnough(value);
 
         public void Update()

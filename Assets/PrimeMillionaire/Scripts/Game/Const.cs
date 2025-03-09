@@ -30,6 +30,7 @@ namespace PrimeMillionaire.Game
     public sealed class DollarConfig
     {
         public const float TWEEN_DURATION = 0.25f;
+        public const int CLEAR_THRESHOLD = 1500;
     }
 
     public sealed class HandConfig
