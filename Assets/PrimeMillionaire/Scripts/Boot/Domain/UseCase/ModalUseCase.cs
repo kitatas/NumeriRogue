@@ -8,7 +8,7 @@ namespace PrimeMillionaire.Boot.Domain.UseCase
     {
         public async UniTask PopupAsync(ModalType type, CancellationToken token)
         {
-            await Router.Default.PublishAsync(new ModalVO(type), token);
+            await Router.Default.PublishAsync(new ModalVO(type, true), token);
         }
     }
 }

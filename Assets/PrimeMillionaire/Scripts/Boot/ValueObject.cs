@@ -1,14 +1,11 @@
-using VitalRouter;
+using PrimeMillionaire.Common;
 
 namespace PrimeMillionaire.Boot
 {
-    public sealed class ModalVO : ICommand
+    public sealed class ModalVO : BaseModalVO<ModalType>
     {
-        public readonly ModalType type;
-
-        public ModalVO(ModalType type)
+        public ModalVO(ModalType type, bool isActivate) : base(type, isActivate)
         {
-            this.type = type;
         }
     }
 }

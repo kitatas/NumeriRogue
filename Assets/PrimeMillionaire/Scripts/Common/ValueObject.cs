@@ -238,4 +238,16 @@ namespace PrimeMillionaire.Common
             this.isClear = isClear;
         }
     }
+
+    public abstract class BaseModalVO<T> : ICommand where T : Enum
+    {
+        public readonly T type;
+        public readonly bool isActivate;
+
+        public BaseModalVO(T type, bool isActivate)
+        {
+            this.type = type;
+            this.isActivate = isActivate;
+        }
+    }
 }

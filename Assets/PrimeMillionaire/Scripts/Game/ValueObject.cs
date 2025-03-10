@@ -113,15 +113,10 @@ namespace PrimeMillionaire.Game
         }
     }
 
-    public sealed class ModalVO : ICommand
+    public sealed class ModalVO : BaseModalVO<ModalType>
     {
-        public readonly ModalType type;
-        public readonly bool isActivate;
-
-        public ModalVO(ModalType type, bool isActivate)
+        public ModalVO(ModalType type, bool isActivate) : base(type, isActivate)
         {
-            this.type = type;
-            this.isActivate = isActivate;
         }
     }
 }
