@@ -4,6 +4,13 @@ using PrimeMillionaire.Common;
 
 namespace PrimeMillionaire.Top
 {
+    public sealed class ModalVO : BaseModalVO<ModalType>
+    {
+        public ModalVO(ModalType type, bool isActivate) : base(type, isActivate)
+        {
+        }
+    }
+
     public sealed class OrderCharacterVO
     {
         public readonly CharacterVO character;
