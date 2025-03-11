@@ -30,6 +30,7 @@ namespace PrimeMillionaire.Editor.Scripts
             databaseBuilder.Append(GetPrimeNumberMaster());
             databaseBuilder.Append(DeserializeJson<SkillMaster>("skill"));
             databaseBuilder.Append(DeserializeJson<LevelMaster>("level"));
+            databaseBuilder.Append(DeserializeJson<LicenseMaster>("license"));
             var binary = databaseBuilder.Build();
 
             var bytes = "Assets/Externals/Binary/MasterMemory.bytes";

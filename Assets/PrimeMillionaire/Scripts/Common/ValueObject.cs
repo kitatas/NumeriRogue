@@ -250,4 +250,16 @@ namespace PrimeMillionaire.Common
             this.isActivate = isActivate;
         }
     }
+
+    public sealed class LicenseVO
+    {
+        public readonly string title;
+        public readonly string content;
+
+        public LicenseVO(string title, string content)
+        {
+            this.title = title;
+            this.content = content;
+        }
+    }
 }
