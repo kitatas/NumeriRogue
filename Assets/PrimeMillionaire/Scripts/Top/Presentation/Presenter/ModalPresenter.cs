@@ -1,37 +1,56 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using PrimeMillionaire.Boot;
 using PrimeMillionaire.Common;
+using PrimeMillionaire.Top.Domain.UseCase;
+using PrimeMillionaire.Top.Presentation.View.Button;
 using PrimeMillionaire.Top.Presentation.View.Modal;
+using R3;
+using UnityEngine;
 using VContainer.Unity;
 using VitalRouter;
+using Object = UnityEngine.Object;
 
 namespace PrimeMillionaire.Top.Presentation.Presenter
 {
     public sealed class ModalPresenter : IAsyncStartable
     {
-        private readonly List<BaseModalView> _modalViews;
+        private readonly ModalUseCase _modalUseCase;
 
-        public ModalPresenter(IEnumerable<BaseModalView> modalViews)
+        public ModalPresenter(ModalUseCase modalUseCase)
         {
-            _modalViews = modalViews.ToList();
+            _modalUseCase = modalUseCase;
         }
 
         public async UniTask StartAsync(CancellationToken token)
         {
-            await UniTask.WhenAll(_modalViews
+            var modalViews = Object.FindObjectsByType<TopModalView>(FindObjectsSortMode.None).ToList();
+            await UniTask.WhenAll(modalViews
                 .Select(x => x.InitAsync(token)));
+
+            var modalButtons = Object.FindObjectsByType<TopModalButtonView>(FindObjectsSortMode.None).ToList();
+            foreach (var button in modalButtons)
+            {
+                button.push
+                    .Subscribe(_ => _modalUseCase.PopupAsync(button.type, button.isActivate, token).Forget())
+                    .AddTo(button);
+            }
 
             Router.Default
                 .SubscribeAwait<ModalVO>(async (v, context) =>
                 {
-                    var modalView = _modalViews.Find(x => x.type == v.type);
+                    var modalView = modalViews.Find(x => x.type == v.type);
                     if (modalView == null) throw new Exception();
 
-                    await modalView.PopupAsync(UiConfig.POPUP_DURATION, context.CancellationToken);
+                    if (v.isActivate)
+                    {
+                        await modalView.ShowAsync(UiConfig.POPUP_DURATION, context.CancellationToken);
+                    }
+                    else
+                    {
+                        await modalView.HideAsync(UiConfig.POPUP_DURATION, context.CancellationToken);
+                    }
                 })
                 .AddTo(token);
         }
