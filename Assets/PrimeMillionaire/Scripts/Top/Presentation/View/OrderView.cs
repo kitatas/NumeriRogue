@@ -1,15 +1,8 @@
-using R3;
-using R3.Triggers;
-using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
+using PrimeMillionaire.Common.Presentation.View.Button;
 
 namespace PrimeMillionaire.Top.Presentation.View
 {
-    public sealed class OrderView : MonoBehaviour
+    public sealed class OrderView : BaseButtonView
     {
-        [SerializeField] private Button button = default;
-
-        public Observable<PointerEventData> push => button.OnPointerDownAsObservable();
     }
 }
