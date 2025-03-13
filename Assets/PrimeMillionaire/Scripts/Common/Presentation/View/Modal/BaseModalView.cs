@@ -1,22 +1,29 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using PrimeMillionaire.Common.Utility;
 using UniEx;
 using UnityEngine;
 
-namespace PrimeMillionaire.Boot.Presentation.View.Modal
+namespace PrimeMillionaire.Common.Presentation.View.Modal
 {
     public abstract class BaseModalView : MonoBehaviour
     {
         [SerializeField] protected CanvasGroup canvasGroup = default;
         private Tween _tween;
 
-        public abstract ModalType type { get; }
-
-        public virtual async UniTask InitAsync(CancellationToken token)
+        public async UniTask InitAsync(CancellationToken token)
         {
-            await Hide(0.0f).WithCancellation(token);
+            await HideAsync(0.0f, token);
+        }
+
+        public virtual async UniTask ShowAsync(float duration, CancellationToken token)
+        {
+            await Show(duration).WithCancellation(token);
+        }
+
+        public virtual async UniTask HideAsync(float duration, CancellationToken token)
+        {
+            await Hide(duration).WithCancellation(token);
         }
 
         public virtual Tween Show(float duration)
@@ -49,13 +56,6 @@ namespace PrimeMillionaire.Boot.Presentation.View.Modal
                 .SetLink(gameObject);
 
             return _tween;
-        }
-
-        public virtual async UniTask PopupAsync(float duration, CancellationToken token)
-        {
-            await Show(duration).WithCancellation(cancellationToken: token);
-            await UniTaskHelper.DelayAsync(duration, token);
-            await Hide(duration).WithCancellation(cancellationToken: token);
         }
     }
 }
