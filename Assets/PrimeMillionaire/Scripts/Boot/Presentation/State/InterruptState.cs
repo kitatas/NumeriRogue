@@ -24,7 +24,7 @@ namespace PrimeMillionaire.Boot.Presentation.State
 
         public override async UniTask<BootState> TickAsync(CancellationToken token)
         {
-            await _modalUseCase.PopupAsync(ModalType.Interrupt, token);
+            await _modalUseCase.ShowAsync(ModalType.Interrupt, token);
 
             var action = await _interruptView.PushAnyAsync(token);
             switch (action)

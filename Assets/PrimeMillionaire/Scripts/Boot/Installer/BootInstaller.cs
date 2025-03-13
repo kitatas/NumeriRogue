@@ -36,7 +36,7 @@ namespace PrimeMillionaire.Boot.Installer
             builder.RegisterComponentInHierarchy<InterruptView>();
 
             // Modal
-            builder.RegisterComponentInHierarchy<InterruptModalView>().As<BaseModalView>();
+            builder.RegisterComponentInHierarchy<InterruptModalView>().As<BootModalView>();
         }
     }
 }

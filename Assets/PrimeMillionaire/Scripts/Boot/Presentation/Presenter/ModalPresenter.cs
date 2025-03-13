@@ -12,9 +12,9 @@ namespace PrimeMillionaire.Boot.Presentation.Presenter
 {
     public sealed class ModalPresenter : IAsyncStartable
     {
-        private readonly List<BaseModalView> _modalViews;
+        private readonly List<BootModalView> _modalViews;
 
-        public ModalPresenter(IEnumerable<BaseModalView> modalViews)
+        public ModalPresenter(IEnumerable<BootModalView> modalViews)
         {
             _modalViews = modalViews.ToList();
         }
@@ -30,7 +30,14 @@ namespace PrimeMillionaire.Boot.Presentation.Presenter
                     var modalView = _modalViews.Find(x => x.type == v.type);
                     if (modalView == null) throw new Exception();
 
-                    await modalView.PopupAsync(UiConfig.POPUP_DURATION, context.CancellationToken);
+                    if (v.isActivate)
+                    {
+                        await modalView.ShowAsync(UiConfig.POPUP_DURATION, context.CancellationToken);
+                    }
+                    else
+                    {
+                        await modalView.HideAsync(UiConfig.POPUP_DURATION, context.CancellationToken);
+                    }
                 })
                 .AddTo(token);
         }
