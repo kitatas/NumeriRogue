@@ -10,5 +10,7 @@ namespace PrimeMillionaire.Top
     public enum ModalType
     {
         None = 0,
+        Menu = 1,
+        License = 2,
     }
 }
