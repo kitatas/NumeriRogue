@@ -1,9 +1,12 @@
 using PrimeMillionaire.Common.Presentation.View.Modal;
+using UnityEngine;
 
 namespace PrimeMillionaire.Boot.Presentation.View.Modal
 {
-    public abstract class BootModalView : BaseModalView
+    public sealed class BootModalView : BaseModalView
     {
-        public abstract ModalType type { get; }
+        [SerializeField] private ModalType modalType = default;
+
+        public ModalType type => modalType;
     }
 }
