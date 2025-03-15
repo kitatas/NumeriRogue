@@ -1,7 +1,5 @@
 using System;
 using System.Threading;
-using Cysharp.Threading.Tasks;
-using PrimeMillionaire.Common;
 using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.View;
 using R3;
@@ -55,26 +53,6 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
                 {
                     var isConsume = _dollarUseCase.IsConsume(x.skill.price) && _holdSkillUseCase.hasEmpty;
                     await _pickSkillView.RenderAsync(x, isConsume, context.CancellationToken);
-                })
-                .AddTo(_pickSkillView);
-
-            Router.Default
-                .SubscribeAwait<ModalVO>(async (x, context) =>
-                {
-                    if (x.type != ModalType.PickSkill) return;
-
-                    if (x.isActivate)
-                    {
-                        await _pickSkillView.FadeIn(ModalConfig.TWEEN_DURATION)
-                            .WithCancellation(context.CancellationToken);
-
-                        await _pickSkillView.OnClickNextBattle(context.CancellationToken);
-                    }
-                    else
-                    {
-                        await _pickSkillView.FadeOut(ModalConfig.TWEEN_DURATION)
-                            .WithCancellation(context.CancellationToken);
-                    }
                 })
                 .AddTo(_pickSkillView);
         }

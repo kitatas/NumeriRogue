@@ -73,6 +73,7 @@ namespace PrimeMillionaire.Game.Installer
                 entryPoints.Add<DollarPresenter>();
                 entryPoints.Add<EnemyCountPresenter>();
                 entryPoints.Add<HoldSkillPresenter>();
+                entryPoints.Add<ModalPresenter>();
                 entryPoints.Add<OrderPresenter>();
                 entryPoints.Add<ParameterPresenter>();
                 entryPoints.Add<PickSkillPresenter>();
