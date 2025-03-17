@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using PrimeMillionaire.Common;
 using PrimeMillionaire.Game.Presentation.View;
 using R3;
 using VContainer.Unity;
@@ -22,7 +23,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
             Router.Default
                 .SubscribeAwait<PlayerParameterVO>(async (x, context) =>
                 {
-                    await _playerParameterView.Render(x, BattleConfig.TWEEN_DURATION)
+                    await _playerParameterView.Render(x, UiConfig.TWEEN_DURATION)
                         .WithCancellation(context.CancellationToken);
                 })
                 .AddTo(_playerParameterView);
@@ -30,7 +31,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
             Router.Default
                 .SubscribeAwait<EnemyParameterVO>(async (x, context) =>
                 {
-                    await _enemyParameterView.Render(x, BattleConfig.TWEEN_DURATION)
+                    await _enemyParameterView.Render(x, UiConfig.TWEEN_DURATION)
                         .WithCancellation(context.CancellationToken);
                 })
                 .AddTo(_enemyParameterView);

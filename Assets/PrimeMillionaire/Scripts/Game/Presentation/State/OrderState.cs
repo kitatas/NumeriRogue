@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using PrimeMillionaire.Common;
 using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.View;
 using PrimeMillionaire.Game.Utility;
@@ -32,7 +33,7 @@ namespace PrimeMillionaire.Game.Presentation.State
 
         public override async UniTask<GameState> TickAsync(CancellationToken token)
         {
-            await _orderUseCase.ShowOrderCardsAsync(OrderConfig.TWEEN_DURATION, token);
+            await _orderUseCase.ShowOrderCardsAsync(UiConfig.TWEEN_DURATION, token);
 
             while (true)
             {
@@ -79,7 +80,7 @@ namespace PrimeMillionaire.Game.Presentation.State
             var isPlayerHandsEmpty = _handUseCase.IsPlayerHandsEmpty();
             if (isPlayerHandsEmpty)
             {
-                await _orderUseCase.HideOrderCardsAsync(OrderConfig.TWEEN_DURATION, token);
+                await _orderUseCase.HideOrderCardsAsync(UiConfig.TWEEN_DURATION, token);
             }
 
             return isPlayerHandsEmpty

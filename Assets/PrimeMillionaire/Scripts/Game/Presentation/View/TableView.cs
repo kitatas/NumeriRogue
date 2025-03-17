@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Utility;
 using UnityEngine;
 
@@ -60,13 +61,13 @@ namespace PrimeMillionaire.Game.Presentation.View
         public async UniTask DealPlayerHandAsync(CardView card, CancellationToken token)
         {
             await playerHandView.DealHandAsync(card, HandConfig.TWEEN_DURATION, token);
-            card.Open(CardConfig.ROTATE_SPEED).WithCancellation(token).Forget();
+            card.Open(UiConfig.TWEEN_DURATION).WithCancellation(token).Forget();
         }
 
         public async UniTask DealEnemyHandAsync(CardView card, CancellationToken token)
         {
             await enemyHandView.DealHandAsync(card, HandConfig.TWEEN_DURATION, token);
-            card.Open(CardConfig.ROTATE_SPEED).WithCancellation(token).Forget();
+            card.Open(UiConfig.TWEEN_DURATION).WithCancellation(token).Forget();
         }
 
         public async UniTask<(int index, int count)> OrderPlayerHandsAsync(CancellationToken token)

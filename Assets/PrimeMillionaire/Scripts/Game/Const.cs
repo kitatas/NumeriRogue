@@ -7,11 +7,6 @@ namespace PrimeMillionaire.Game
         public const Side IS_FORCE_WIN = Side.None;
     }
 
-    public sealed class BattleConfig
-    {
-        public const float TWEEN_DURATION = 0.25f;
-    }
-
     public sealed class CardConfig
     {
         public const int MAX_RANK = 13;
@@ -23,18 +18,10 @@ namespace PrimeMillionaire.Game
             Suit.Heart,
             Suit.Spade,
         };
-
-        public const float ROTATE_SPEED = 0.25f;
-    }
-
-    public sealed class OrderConfig
-    {
-        public const float TWEEN_DURATION = 0.25f;
     }
 
     public sealed class DollarConfig
     {
-        public const float TWEEN_DURATION = 0.25f;
         public const int CLEAR_THRESHOLD = 1500;
     }
 

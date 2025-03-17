@@ -1,4 +1,5 @@
 using DG.Tweening;
+using PrimeMillionaire.Common;
 using TMPro;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ namespace PrimeMillionaire.Game.Presentation.View
                     () => prev,
                     x => dollarValue.text = $"{x:N0}",
                     current,
-                    DollarConfig.TWEEN_DURATION
+                    UiConfig.TWEEN_DURATION
                 )
                 .SetLink(gameObject);
         }

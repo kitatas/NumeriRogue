@@ -32,12 +32,12 @@ namespace PrimeMillionaire.Game.Presentation.View
             {
                 if (card == null)
                 {
-                    cardView.Close(CardConfig.ROTATE_SPEED).WithCancellation(token).Forget();
+                    cardView.Close(UiConfig.TWEEN_DURATION).WithCancellation(token).Forget();
                 }
                 else
                 {
                     await cardView.RenderAsync(card, token);
-                    cardView.Open(CardConfig.ROTATE_SPEED).WithCancellation(token).Forget();
+                    cardView.Open(UiConfig.TWEEN_DURATION).WithCancellation(token).Forget();
                 }
             }
         }
@@ -59,12 +59,12 @@ namespace PrimeMillionaire.Game.Presentation.View
         {
             return DOTween.Sequence()
                 .Append(currentValue
-                    .DOFade(1.0f, OrderConfig.TWEEN_DURATION))
+                    .DOFade(1.0f, UiConfig.TWEEN_DURATION))
                 .Append(DOTween.To(
                     () => int.Parse(currentValue.text),
                     x => currentValue.text = $"{x}",
                     value,
-                    OrderConfig.TWEEN_DURATION));
+                    UiConfig.TWEEN_DURATION));
         }
 
         public async UniTask FadeInCardsAsync(float duration, CancellationToken token)

@@ -1,4 +1,5 @@
 using DG.Tweening;
+using PrimeMillionaire.Common;
 using TMPro;
 using UnityEngine;
 
@@ -15,7 +16,7 @@ namespace PrimeMillionaire.Game.Presentation.View
                 () => int.Parse(player.text),
                 x => player.text = $"{x}",
                 value,
-                OrderConfig.TWEEN_DURATION);
+                UiConfig.TWEEN_DURATION);
         }
 
         public Tween RenderEnemy(int value)
@@ -24,7 +25,7 @@ namespace PrimeMillionaire.Game.Presentation.View
                 () => int.Parse(enemy.text),
                 x => enemy.text = $"{x}",
                 value,
-                OrderConfig.TWEEN_DURATION);
+                UiConfig.TWEEN_DURATION);
         }
     }
 }
