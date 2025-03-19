@@ -262,4 +262,32 @@ namespace PrimeMillionaire.Common
             this.content = content;
         }
     }
+
+    public abstract class ExceptionVO : Exception, ICommand
+    {
+        public ExceptionVO(string message) : base(message)
+        {
+        }
+    }
+
+    public sealed class RebootExceptionVO : ExceptionVO
+    {
+        public RebootExceptionVO(string message) : base(message)
+        {
+        }
+    }
+
+    public sealed class RetryExceptionVO : ExceptionVO
+    {
+        public RetryExceptionVO(string message) : base(message)
+        {
+        }
+    }
+
+    public sealed class QuitExceptionVO : ExceptionVO
+    {
+        public QuitExceptionVO(string message) : base(message)
+        {
+        }
+    }
 }
