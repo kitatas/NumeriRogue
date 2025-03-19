@@ -14,20 +14,26 @@ namespace PrimeMillionaire.Common
 
     public sealed class ExceptionConfig
     {
+        public const string UNKNOWN_ERROR = "UNKNOWN_ERROR";
+        public const string NOT_FOUND_BONUS = "NOT_FOUND_BONUS";
         public const string NOT_FOUND_BUTTON = "NOT_FOUND_BUTTON";
         public const string NOT_FOUND_CARD = "NOT_FOUND_CARD";
         public const string NOT_FOUND_CHARACTER = "NOT_FOUND_CHARACTER";
+        public const string NOT_FOUND_FADE = "NOT_FOUND_FADE";
         public const string NOT_FOUND_LOAD = "NOT_FOUND_LOAD";
         public const string NOT_FOUND_MODAL = "NOT_FOUND_MODAL";
         public const string NOT_FOUND_SCENE = "NOT_FOUND_SCENE";
+        public const string NOT_FOUND_SIDE = "NOT_FOUND_SIDE";
         public const string NOT_FOUND_SKILL = "NOT_FOUND_SKILL";
         public const string NOT_FOUND_SKILL_DESCRIPTION = "NOT_FOUND_SKILL_DESCRIPTION";
         public const string NOT_FOUND_SKILL_PRICE = "NOT_FOUND_SKILL_PRICE";
         public const string NOT_FOUND_STAGE = "NOT_FOUND_STAGE";
         public const string NOT_FOUND_STATE = "NOT_FOUND_STATE";
         public const string NOT_FOUND_SUIT = "NOT_FOUND_SUIT";
+        public const string FAILED_LOAD_INTERRUPT = "FAILED_LOAD_INTERRUPT";
         public const string FAILED_LOAD_PROGRESS = "FAILED_LOAD_PROGRESS";
         public const string FAILED_LOGIN = "FAILED_LOGIN";
+        public const string OUT_OF_RANGE = "OUT_OF_RANGE";
     }
 
     public sealed class UiConfig

@@ -1,4 +1,3 @@
-using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
@@ -69,7 +68,7 @@ namespace PrimeMillionaire.Game.Presentation.View
             {
                 Side.Player => (attackerView: _playerView, defenderView: _enemyView),
                 Side.Enemy => (attackerView: _enemyView, defenderView: _playerView),
-                _ => throw new Exception(),
+                _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE),
             };
         }
 
@@ -79,7 +78,7 @@ namespace PrimeMillionaire.Game.Presentation.View
             {
                 Side.Player => player.localPosition.x,
                 Side.Enemy => enemy.localPosition.x,
-                _ => throw new Exception(),
+                _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE),
             };
         }
 

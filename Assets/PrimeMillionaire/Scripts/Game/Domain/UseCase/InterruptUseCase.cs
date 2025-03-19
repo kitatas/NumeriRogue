@@ -1,4 +1,3 @@
-using System;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Data.Entity;
 using PrimeMillionaire.Common.Domain.Repository;
@@ -74,7 +73,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             }
             else
             {
-                throw new Exception();
+                throw new RebootExceptionVO(ExceptionConfig.FAILED_LOAD_INTERRUPT);
             }
         }
 

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using PrimeMillionaire.Common;
 using Random = UnityEngine.Random;
@@ -24,7 +23,7 @@ namespace PrimeMillionaire.Game.Data.Entity
                     { new(1, 13), new(1, 1), new(2, 13), new(2, 1), new(3, 13), new(3, 1), },
                 Side.Enemy => new List<CardVO>
                     { new(1, 1), new(1, 13), new(2, 1), new(2, 13), new(3, 1), new(3, 13), },
-                _ => throw new Exception()
+                _ => throw new QuitExceptionVO(ExceptionConfig.UNKNOWN_ERROR),
             };
 
             _cards.AddRange(c);

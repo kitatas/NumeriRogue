@@ -1,4 +1,4 @@
-using System;
+using PrimeMillionaire.Common;
 using UnityEngine;
 
 namespace PrimeMillionaire.Game.Data.Entity
@@ -26,7 +26,7 @@ namespace PrimeMillionaire.Game.Data.Entity
 
         public void Subtract(int value)
         {
-            if (!IsEnough(value)) throw new Exception();
+            if (!IsEnough(value)) throw new RebootExceptionVO(ExceptionConfig.OUT_OF_RANGE);
             Set(currentValue - value);
         }
 

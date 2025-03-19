@@ -1,5 +1,5 @@
-using System;
 using Cysharp.Threading.Tasks;
+using PrimeMillionaire.Common;
 using PrimeMillionaire.Game.Presentation.View;
 using R3;
 using VContainer.Unity;
@@ -26,7 +26,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
                     {
                         Side.Player => _battlePtView.RenderPlayer(x.value),
                         Side.Enemy => _battlePtView.RenderEnemy(x.value),
-                        _ => throw new Exception(),
+                        _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE),
                     };
                     await rendering.WithCancellation(context.CancellationToken);
                 })

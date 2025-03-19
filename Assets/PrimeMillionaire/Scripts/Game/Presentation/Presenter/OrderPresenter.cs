@@ -1,5 +1,5 @@
-using System;
 using ObservableCollections;
+using PrimeMillionaire.Common;
 using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.View;
 using R3;
@@ -48,7 +48,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
                             await _orderView.FadeOutCardsAsync(x.duration, context.CancellationToken);
                             break;
                         default:
-                            throw new Exception();
+                            throw new RebootExceptionVO(ExceptionConfig.NOT_FOUND_FADE);
                     }
                 })
                 .AddTo(_orderView);

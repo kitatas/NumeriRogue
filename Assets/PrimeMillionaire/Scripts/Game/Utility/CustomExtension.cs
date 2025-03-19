@@ -1,4 +1,4 @@
-using System;
+using PrimeMillionaire.Common;
 
 namespace PrimeMillionaire.Game.Utility
 {
@@ -10,7 +10,7 @@ namespace PrimeMillionaire.Game.Utility
             {
                 Side.Player => -1,
                 Side.Enemy => 1,
-                _ => throw new Exception(),
+                _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE),
             };
         }
 
@@ -21,7 +21,7 @@ namespace PrimeMillionaire.Game.Utility
                 BonusType.PrimeNumber => 2.0f,
                 BonusType.SuitMatch => 1.5f,
                 BonusType.ValueDown => 0.5f,
-                _ => throw new Exception(),
+                _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_BONUS),
             };
         }
     }

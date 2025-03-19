@@ -1,6 +1,6 @@
-using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using PrimeMillionaire.Common;
 using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.View;
 
@@ -55,7 +55,7 @@ namespace PrimeMillionaire.Game.Presentation.State
                     case Side.Enemy:
                         return GameState.Fail;
                     default:
-                        throw new Exception();
+                        throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE);
                 }
             }
 

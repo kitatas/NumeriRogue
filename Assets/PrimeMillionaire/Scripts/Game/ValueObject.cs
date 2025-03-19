@@ -74,6 +74,7 @@ namespace PrimeMillionaire.Game
 
         public OrderCardsFadeVO(Fade fade, float duration)
         {
+            if (fade == Fade.None) throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_FADE);
             this.fade = fade;
             this.duration = duration;
         }
@@ -96,6 +97,7 @@ namespace PrimeMillionaire.Game
 
         public BattlePtVO(Side side, int value)
         {
+            if (side == Side.None) throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_FADE);
             this.side = side;
             this.value = value;
         }
