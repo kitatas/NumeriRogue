@@ -1,4 +1,3 @@
-using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Boot.Domain.UseCase;
@@ -35,7 +34,7 @@ namespace PrimeMillionaire.Boot.Presentation.State
                     _interruptUseCase.Delete();
                     return BootState.Load;
                 default:
-                    throw new Exception();
+                    throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_BUTTON);
             }
         }
     }

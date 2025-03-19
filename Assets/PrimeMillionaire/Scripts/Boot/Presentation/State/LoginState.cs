@@ -1,8 +1,8 @@
-using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Boot.Domain.UseCase;
 using PrimeMillionaire.Boot.Presentation.View;
+using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Utility;
 using R3;
 
@@ -37,7 +37,7 @@ namespace PrimeMillionaire.Boot.Presentation.State
             var isSuccess = _loginUseCase.Login();
             if (isSuccess == false)
             {
-                throw new Exception();
+                throw new RebootExceptionVO(ExceptionConfig.FAILED_LOGIN);
             }
 
             var hasInterrupt = _interruptUseCase.HasInterrupt();

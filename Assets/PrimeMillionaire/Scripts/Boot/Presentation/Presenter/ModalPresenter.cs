@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
@@ -23,7 +22,10 @@ namespace PrimeMillionaire.Boot.Presentation.Presenter
                 .SubscribeAwait<ModalVO>(async (v, context) =>
                 {
                     var modalView = modalViews.Find(x => x.type == v.type);
-                    if (modalView == null) throw new Exception();
+                    if (modalView == null)
+                    {
+                        throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_MODAL);
+                    }
 
                     if (v.isActivate)
                     {
