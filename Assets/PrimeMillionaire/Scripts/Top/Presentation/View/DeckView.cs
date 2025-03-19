@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Game.Presentation.View;
@@ -25,7 +24,7 @@ namespace PrimeMillionaire.Top.Presentation.View
                     Suit.Diamond => diamonds,
                     Suit.Heart => hearts,
                     Suit.Spade => spades,
-                    _ => throw new Exception(),
+                    _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SUIT),
                 };
                 cardViews[card.rank - 1].ActivateMask(false);
             }

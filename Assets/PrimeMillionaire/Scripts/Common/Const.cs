@@ -26,6 +26,7 @@ namespace PrimeMillionaire.Common
         public const string NOT_FOUND_STAGE = "NOT_FOUND_STAGE";
         public const string NOT_FOUND_STATE = "NOT_FOUND_STATE";
         public const string NOT_FOUND_SUIT = "NOT_FOUND_SUIT";
+        public const string FAILED_LOAD_PROGRESS = "FAILED_LOAD_PROGRESS";
         public const string FAILED_LOGIN = "FAILED_LOGIN";
     }
 

@@ -35,7 +35,7 @@ namespace PrimeMillionaire.Top.Domain.UseCase
             }
             else
             {
-                throw new Exception();
+                throw new RebootExceptionVO(ExceptionConfig.FAILED_LOAD_PROGRESS);
             }
         }
 
