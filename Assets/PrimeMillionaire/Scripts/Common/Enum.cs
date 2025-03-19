@@ -10,6 +10,7 @@ namespace PrimeMillionaire.Common
     public enum SceneName
     {
         None = 0,
+        Boot = 1,
         Top = 2,
         Game = 3,
     }

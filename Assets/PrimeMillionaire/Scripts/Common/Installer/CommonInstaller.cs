@@ -4,6 +4,7 @@ using PrimeMillionaire.Common.Domain.Repository;
 using PrimeMillionaire.Common.Domain.UseCase;
 using PrimeMillionaire.Common.Presentation.Presenter;
 using PrimeMillionaire.Common.Presentation.View;
+using PrimeMillionaire.Common.Presentation.View.Modal;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -28,15 +29,18 @@ namespace PrimeMillionaire.Common.Installer
             builder.Register<SaveRepository>(Lifetime.Singleton);
 
             // UseCase
+            builder.Register<ExceptionUseCase>(Lifetime.Singleton);
             builder.Register<SceneUseCase>(Lifetime.Singleton);
 
             // Presenter
             builder.UseEntryPoints(Lifetime.Singleton, entryPoints =>
             {
+                entryPoints.Add<ExceptionPresenter>();
                 entryPoints.Add<ScenePresenter>();
             });
 
             // View
+            builder.RegisterInstance<ExceptionModalView>(FindFirstObjectByType<ExceptionModalView>());
             builder.RegisterInstance<TransitionView>(FindFirstObjectByType<TransitionView>());
         }
     }
