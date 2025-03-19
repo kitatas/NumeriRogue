@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using FastEnumUtility;
@@ -61,7 +60,7 @@ namespace PrimeMillionaire.Common.Domain.Repository
             }
             else
             {
-                throw new Exception();
+                throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_CHARACTER);
             }
         }
     }

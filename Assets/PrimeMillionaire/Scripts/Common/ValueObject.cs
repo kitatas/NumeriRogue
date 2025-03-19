@@ -14,6 +14,8 @@ namespace PrimeMillionaire.Common
 
         public LoadVO(SceneName sceneName, LoadType loadType)
         {
+            if (sceneName == SceneName.None) throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SCENE);
+            if (loadType == LoadType.None) throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_LOAD);
             this.sceneName = sceneName;
             this.loadType = loadType;
         }

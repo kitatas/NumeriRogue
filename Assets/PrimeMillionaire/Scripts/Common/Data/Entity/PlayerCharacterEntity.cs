@@ -1,4 +1,3 @@
-using System;
 using FastEnumUtility;
 
 namespace PrimeMillionaire.Common.Data.Entity
@@ -11,7 +10,7 @@ namespace PrimeMillionaire.Common.Data.Entity
 
         public void SetType(CharacterType value)
         {
-            if (value == CharacterType.None) throw new Exception();
+            if (value == CharacterType.None) throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_CHARACTER);
             _type = value;
         }
 

@@ -1,4 +1,3 @@
-using System;
 using FastEnumUtility;
 
 namespace PrimeMillionaire.Common.Utility
@@ -9,21 +8,21 @@ namespace PrimeMillionaire.Common.Utility
         {
             return FastEnum.IsDefined<Suit>(self)
                 ? (Suit)self
-                : throw new Exception();
+                : throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SUIT);
         }
 
         public static CharacterType ToCharacterType(this int self)
         {
             return FastEnum.IsDefined<CharacterType>(self)
                 ? (CharacterType)self
-                : throw new Exception();
+                : throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_CHARACTER);
         }
 
         public static SkillType ToSkillType(this int self)
         {
             return FastEnum.IsDefined<SkillType>(self)
                 ? (SkillType)self
-                : throw new Exception();
+                : throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SKILL);
         }
 
         public static string ToDescription(this SkillType self, int value)
@@ -33,7 +32,7 @@ namespace PrimeMillionaire.Common.Utility
                 SkillType.HpUp => $"HP {value}% UP",
                 SkillType.AtkUp => $"ATK {value}% UP",
                 SkillType.DefUp => $"DEF {value}% UP",
-                _ => throw new Exception(),
+                _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SKILL_DESCRIPTION),
             };
         }
 
@@ -44,7 +43,7 @@ namespace PrimeMillionaire.Common.Utility
                 SkillType.HpUp => value * 8,
                 SkillType.AtkUp => value * 7,
                 SkillType.DefUp => value * 5,
-                _ => throw new Exception(),
+                _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SKILL_PRICE),
             };
         }
 
@@ -52,7 +51,7 @@ namespace PrimeMillionaire.Common.Utility
         {
             return FastEnum.IsDefined<StageType>(self)
                 ? (StageType)self
-                : throw new Exception();
+                : throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_STAGE);
         }
     }
 }
