@@ -1717,7 +1717,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1687629659414884493, guid: 66ce232fa231440e0abcc61562ed706c, type: 3}
       propertyPath: m_text
-      value: 'ver: 0.14'
+      value: 'ver: x.x'
       objectReference: {fileID: 0}
     - target: {fileID: 1687629659414884493, guid: 66ce232fa231440e0abcc61562ed706c, type: 3}
       propertyPath: m_fontSize
@@ -1829,6 +1829,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6394775710441679856, guid: 66ce232fa231440e0abcc61562ed706c, type: 3}
   m_PrefabInstance: {fileID: 1516471397}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1516471399 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1687629659414884493, guid: 66ce232fa231440e0abcc61562ed706c, type: 3}
+  m_PrefabInstance: {fileID: 1516471397}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1645123739
 GameObject:
   m_ObjectHideFlags: 0
@@ -1911,6 +1922,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1677153442}
   - component: {fileID: 1677153443}
+  - component: {fileID: 1677153444}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -1949,6 +1961,19 @@ MonoBehaviour:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
+--- !u!114 &1677153444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677153440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b94da627839843998419f489e49f5b86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: {fileID: 1516471399}
 --- !u!114 &1820558830 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1687629659414884493, guid: 66ce232fa231440e0abcc61562ed706c, type: 3}
