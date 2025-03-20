@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common.Domain.UseCase;
 using PrimeMillionaire.Common.Presentation.View;
+using PrimeMillionaire.Common.Utility;
 using R3;
 using UnityEngine.SceneManagement;
 using VContainer.Unity;
@@ -25,6 +26,7 @@ namespace PrimeMillionaire.Common.Presentation.Presenter
                 {
                     if (x.isFade) await _transitionView.FadeIn(0.1f).WithCancellation(token);
                     await SceneManager.LoadSceneAsync(x.name).ToUniTask(cancellationToken: token);
+                    await UniTaskHelper.DelayAsync(1.0f, token);
                     if (x.isFade) await _transitionView.FadeOut(0.1f).WithCancellation(token);
                 })
                 .AddTo(_transitionView);
