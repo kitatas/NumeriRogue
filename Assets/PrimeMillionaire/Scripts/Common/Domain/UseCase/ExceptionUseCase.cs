@@ -23,7 +23,8 @@ namespace PrimeMillionaire.Common.Domain.UseCase
 
         public async UniTask ThrowQuitAsync(string message, CancellationToken token)
         {
-            await ThrowAsync(new QuitExceptionVO(message), token);
+            var text = string.IsNullOrEmpty(message) ? ExceptionConfig.UNKNOWN_ERROR : message;
+            await ThrowAsync(new QuitExceptionVO(text), token);
         }
     }
 }

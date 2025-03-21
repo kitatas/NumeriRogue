@@ -56,15 +56,12 @@ namespace PrimeMillionaire.Top.Presentation.Presenter
                 await _exceptionUseCase.ThrowAsync(e, token);
                 if (e is RetryExceptionVO)
                 {
-                    ExecAsync(state, token).Forget();
+                    _stateUseCase.Set(state);
                 }
-
-                throw;
             }
             catch (Exception e)
             {
                 await _exceptionUseCase.ThrowQuitAsync(e.Message, token);
-                throw;
             }
         }
     }
