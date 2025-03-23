@@ -1,14 +1,17 @@
 using System;
+using PrimeMillionaire.Common.Data.Entity;
 using R3;
 
 namespace PrimeMillionaire.Common.Domain.UseCase
 {
     public sealed class SceneUseCase : IDisposable
     {
+        private readonly RetryCountEntity _retryCountEntity;
         private readonly Subject<LoadVO> _load;
 
-        public SceneUseCase()
+        public SceneUseCase(RetryCountEntity retryCountEntity)
         {
+            _retryCountEntity = retryCountEntity;
             _load = new Subject<LoadVO>();
         }
 
@@ -16,6 +19,7 @@ namespace PrimeMillionaire.Common.Domain.UseCase
 
         public void Load(SceneName sceneName, LoadType type)
         {
+            _retryCountEntity.Reset();
             _load?.OnNext(new LoadVO(sceneName, type));
         }
 
