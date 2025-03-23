@@ -24,7 +24,7 @@ namespace PrimeMillionaire.Common.Presentation.Presenter
             Router.Default
                 .SubscribeAwait<ExceptionVO>(async (v, context) =>
                 {
-                    _exceptionModalView.Render(v.Message);
+                    _exceptionModalView.Render(v.message);
                     await _exceptionModalView.ShowAndClickAsync(UiConfig.POPUP_DURATION, context.CancellationToken);
                     switch (v)
                     {

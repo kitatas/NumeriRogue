@@ -270,6 +270,8 @@ namespace PrimeMillionaire.Common
         public ExceptionVO(string message) : base(message)
         {
         }
+        
+        public virtual string message => $"{base.Message}\n{ExceptionConfig.QUIT_MESSAGE}";
     }
 
     public sealed class RebootExceptionVO : ExceptionVO
@@ -277,6 +279,8 @@ namespace PrimeMillionaire.Common
         public RebootExceptionVO(string message) : base(message)
         {
         }
+
+        public override string message => $"{base.Message}\n{ExceptionConfig.REBOOT_MESSAGE}";
     }
 
     public sealed class RetryExceptionVO : ExceptionVO
@@ -284,6 +288,8 @@ namespace PrimeMillionaire.Common
         public RetryExceptionVO(string message) : base(message)
         {
         }
+
+        public override string message => $"{base.Message}\n{ExceptionConfig.RETRY_MESSAGE}";
     }
 
     public sealed class QuitExceptionVO : ExceptionVO
@@ -291,5 +297,7 @@ namespace PrimeMillionaire.Common
         public QuitExceptionVO(string message) : base(message)
         {
         }
+
+        public override string message => $"{base.Message}\n{ExceptionConfig.QUIT_MESSAGE}";
     }
 }

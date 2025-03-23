@@ -14,6 +14,10 @@ namespace PrimeMillionaire.Common
 
     public sealed class ExceptionConfig
     {
+        public const string REBOOT_MESSAGE = "Return to title.";
+        public const string RETRY_MESSAGE = "Retry.";
+        public const string QUIT_MESSAGE = "Exit this app.";
+
         public const string UNKNOWN_ERROR = "UNKNOWN_ERROR";
         public const string NOT_FOUND_BONUS = "NOT_FOUND_BONUS";
         public const string NOT_FOUND_BUTTON = "NOT_FOUND_BUTTON";
