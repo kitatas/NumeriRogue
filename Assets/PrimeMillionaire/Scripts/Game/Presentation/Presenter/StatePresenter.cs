@@ -53,10 +53,18 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
             }
             catch (ExceptionVO e)
             {
-                await _exceptionUseCase.ThrowAsync(e, token);
-                if (e is RetryExceptionVO)
+                var isRetry = e is RetryExceptionVO;
+                if (isRetry && _stateUseCase.IsMaxRetry(state))
                 {
-                    _stateUseCase.Set(state);
+                    await _exceptionUseCase.ThrowRebootAsync(ExceptionConfig.MAX_RETRY_COUNT, token);
+                }
+                else
+                {
+                    await _exceptionUseCase.ThrowAsync(e, token);
+                    if (isRetry)
+                    {
+                        _stateUseCase.Set(state);
+                    }
                 }
             }
             catch (Exception e)
