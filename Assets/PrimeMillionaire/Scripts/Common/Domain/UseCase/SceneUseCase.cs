@@ -14,7 +14,7 @@ namespace PrimeMillionaire.Common.Domain.UseCase
 
         public Observable<LoadVO> load => _load.Where(x => x.sceneName != SceneName.None);
 
-        public void Load(SceneName sceneName, LoadType type = LoadType.None)
+        public void Load(SceneName sceneName, LoadType type)
         {
             _load?.OnNext(new LoadVO(sceneName, type));
         }

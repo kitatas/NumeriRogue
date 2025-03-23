@@ -30,7 +30,7 @@ namespace PrimeMillionaire.Common.Presentation.Presenter
                     {
                         case RebootExceptionVO:
                             _exceptionModalView.Hide(UiConfig.POPUP_DURATION);
-                            _sceneUseCase.Load(SceneName.Boot);
+                            _sceneUseCase.Load(SceneName.Boot, LoadType.Fade);
                             break;
                         case RetryExceptionVO:
                             _exceptionModalView.Hide(UiConfig.POPUP_DURATION);
