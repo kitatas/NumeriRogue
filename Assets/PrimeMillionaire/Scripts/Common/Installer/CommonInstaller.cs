@@ -22,6 +22,7 @@ namespace PrimeMillionaire.Common.Installer
 
             // Entity
             builder.Register<PlayerCharacterEntity>(Lifetime.Singleton);
+            builder.Register<RetryCountEntity>(Lifetime.Singleton);
 
             // Repository
             builder.Register<CharacterRepository>(Lifetime.Singleton);
