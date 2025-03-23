@@ -34,6 +34,7 @@ namespace PrimeMillionaire.Common
         public const string FAILED_LOAD_PROGRESS = "FAILED_LOAD_PROGRESS";
         public const string FAILED_LOGIN = "FAILED_LOGIN";
         public const string OUT_OF_RANGE = "OUT_OF_RANGE";
+        public const string MAX_RETRY_COUNT = "MAX_RETRY_COUNT";
     }
 
     public sealed class UiConfig
