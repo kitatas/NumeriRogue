@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace PrimeMillionaire.Top.Presentation.View
 {
-    public sealed class CharacterScrollView : FancyScrollView<CharacterVO, ScrollContextVO>
+    public sealed class CharacterScrollView : FancyScrollView<StageCharacterVO, ScrollContextVO>
     {
         [SerializeField] private Scroller scroller = default;
         [SerializeField] private GameObject cell = default;
@@ -24,7 +24,7 @@ namespace PrimeMillionaire.Top.Presentation.View
             scroller.OnSelectionChanged(UpdateSelection);
         }
 
-        public void Init(IList<CharacterVO> characters, Action<CharacterType> order)
+        public void Init(IList<StageCharacterVO> characters, Action<CharacterType> order)
         {
             UpdateContents(characters);
             scroller.SetTotalCount(characters.Count);
@@ -44,7 +44,7 @@ namespace PrimeMillionaire.Top.Presentation.View
         {
             if (Context.index == index) return;
 
-            _order?.Invoke(ItemsSource[index].type);
+            _order?.Invoke(ItemsSource[index].character.type);
             Context.index = index;
             Refresh();
         }

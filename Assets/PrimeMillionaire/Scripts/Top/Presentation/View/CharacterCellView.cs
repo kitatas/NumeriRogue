@@ -1,6 +1,5 @@
 using FancyScrollView;
 using FastEnumUtility;
-using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Utility;
 using R3;
 using R3.Triggers;
@@ -10,7 +9,7 @@ using UnityEngine.UI;
 
 namespace PrimeMillionaire.Top.Presentation.View
 {
-    public sealed class CharacterCellView : FancyCell<CharacterVO, ScrollContextVO>
+    public sealed class CharacterCellView : FancyCell<StageCharacterVO, ScrollContextVO>
     {
         [SerializeField] private Animator animator = default;
         [SerializeField] private Image body = default;
@@ -29,11 +28,11 @@ namespace PrimeMillionaire.Top.Presentation.View
                 .AddTo(this);
         }
 
-        public override void UpdateContent(CharacterVO value)
+        public override void UpdateContent(StageCharacterVO value)
         {
-            this.LoadAsset<Sprite>(value.imgPath, x => chara.sprite = x);
-            characterId.text = $"No.{value.type.ToInt32():000}";
-            characterName.text = value.name;
+            this.LoadAsset<Sprite>(value.character.imgPath, x => chara.sprite = x);
+            characterId.text = $"No.{value.character.type.ToInt32():000}";
+            characterName.text = value.character.name;
         }
 
         public override void UpdatePosition(float position)

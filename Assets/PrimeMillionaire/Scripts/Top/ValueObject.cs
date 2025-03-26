@@ -11,6 +11,18 @@ namespace PrimeMillionaire.Top
         }
     }
 
+    public sealed class StageCharacterVO
+    {
+        public readonly CharacterVO character;
+        public readonly ClearVO clear;
+
+        public StageCharacterVO(CharacterVO character, ClearVO clear)
+        {
+            this.character = character;
+            this.clear = clear;
+        }
+    }
+
     public sealed class OrderCharacterVO
     {
         public readonly CharacterVO character;

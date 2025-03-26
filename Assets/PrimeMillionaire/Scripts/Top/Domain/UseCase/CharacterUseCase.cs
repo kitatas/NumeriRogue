@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using FastEnumUtility;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Data.Entity;
 using PrimeMillionaire.Common.Domain.Repository;
@@ -27,11 +29,16 @@ namespace PrimeMillionaire.Top.Domain.UseCase
 
         public Observable<OrderCharacterVO> orderCharacter => _orderCharacter;
 
-        public List<CharacterVO> GetAll()
+        public List<StageCharacterVO> GetAll()
         {
             if (_saveRepository.TryLoadProgress(out var progress))
             {
-                return _characterRepository.GetReleased(progress);
+                return _characterRepository.GetReleased(progress)
+                    .Join(progress.clears,
+                        x => x.type.ToInt32(),
+                        x => x.characterNo,
+                        (x, y) => new StageCharacterVO(x, y))
+                    .ToList();
             }
             else
             {
