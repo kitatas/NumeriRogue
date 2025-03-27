@@ -4,7 +4,11 @@ namespace PrimeMillionaire.Game
 {
     public sealed class DebugConfig
     {
+#if UNITY_EDITOR
         public const Side IS_FORCE_WIN = Side.None;
+#else
+        public const Side IS_FORCE_WIN = Side.None;
+#endif
     }
 
     public sealed class CardConfig
@@ -22,7 +26,7 @@ namespace PrimeMillionaire.Game
 
     public sealed class DollarConfig
     {
-        public const int CLEAR_THRESHOLD = 1500;
+        public const int CLEAR_THRESHOLD = DebugConfig.IS_FORCE_WIN == Side.None ? 1500 : 250;
     }
 
     public sealed class HandConfig
