@@ -14,6 +14,8 @@ namespace PrimeMillionaire.Top.Presentation.View
         [SerializeField] private Animator animator = default;
         [SerializeField] private Image body = default;
         [SerializeField] private Image chara = default;
+        [SerializeField] private GameObject newLabel = default;
+        [SerializeField] private GameObject clearLabel = default;
         [SerializeField] private TextMeshProUGUI characterId = default;
         [SerializeField] private TextMeshProUGUI characterName = default;
 
@@ -33,6 +35,9 @@ namespace PrimeMillionaire.Top.Presentation.View
             this.LoadAsset<Sprite>(value.character.imgPath, x => chara.sprite = x);
             characterId.text = $"No.{value.character.type.ToInt32():000}";
             characterName.text = value.character.name;
+
+            newLabel.SetActive(value.progress.isNew);
+            clearLabel.SetActive(value.progress.isClear);
         }
 
         public override void UpdatePosition(float position)
