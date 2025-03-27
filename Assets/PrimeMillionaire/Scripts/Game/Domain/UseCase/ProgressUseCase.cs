@@ -15,7 +15,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _saveRepository = saveRepository;
         }
 
-        public void UpdateProgress()
+        public void UpdateProgress(ProgressStatus status)
         {
             if (_saveRepository.TryLoadProgress(out var progress))
             {
@@ -23,11 +23,16 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 var characterProgress = progress.Find(type);
                 if (characterProgress == null)
                 {
-                    progress.characterProgress.Add(new CharacterProgressVO(type, ProgressStatus.Clear));
+                    progress.characterProgress.Add(new CharacterProgressVO(type, status));
+                }
+                else if (characterProgress.isClear)
+                {
+                    // クリア済みであれば更新不要
+                    return;
                 }
                 else
                 {
-                    characterProgress.status = ProgressStatus.Clear;
+                    characterProgress.status = status;
                 }
 
                 _saveRepository.Save(progress);
