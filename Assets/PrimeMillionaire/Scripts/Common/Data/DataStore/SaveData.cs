@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using PrimeMillionaire.Common.Utility;
 
 namespace PrimeMillionaire.Common.Data.DataStore
 {
@@ -13,9 +14,9 @@ namespace PrimeMillionaire.Common.Data.DataStore
             return new SaveData
             {
                 uid = "",
-                progress = new ProgressVO(new List<ClearVO>
+                progress = new ProgressVO(new List<CharacterProgressVO>
                 {
-                    new(characterNo: 0, isClear: true),
+                    new(0.ToCharacterType(), ProgressStatus.Clear),
                 }),
                 interrupt = null,
             };

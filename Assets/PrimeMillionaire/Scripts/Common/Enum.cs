@@ -45,6 +45,13 @@ namespace PrimeMillionaire.Common
         General = 9,
     }
 
+    public enum ProgressStatus
+    {
+        New = 0,
+        None = 1,
+        Clear = 2,
+    }
+
     public enum SkillType
     {
         None = 0,

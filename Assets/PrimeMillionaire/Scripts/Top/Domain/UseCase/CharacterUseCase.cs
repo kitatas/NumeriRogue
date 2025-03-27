@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using FastEnumUtility;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Data.Entity;
 using PrimeMillionaire.Common.Domain.Repository;
@@ -34,10 +33,12 @@ namespace PrimeMillionaire.Top.Domain.UseCase
             if (_saveRepository.TryLoadProgress(out var progress))
             {
                 return _characterRepository.GetReleased(progress)
-                    .Join(progress.clears,
-                        x => x.type.ToInt32(),
-                        x => x.characterNo,
-                        (x, y) => new StageCharacterVO(x, y))
+                    .Select(character =>
+                    {
+                        var characterProgress = progress.Find(character.type) ??
+                                                new CharacterProgressVO(character.type, ProgressStatus.New);
+                        return new StageCharacterVO(character, characterProgress);
+                    })
                     .ToList();
             }
             else

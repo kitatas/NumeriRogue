@@ -14,12 +14,12 @@ namespace PrimeMillionaire.Top
     public sealed class StageCharacterVO
     {
         public readonly CharacterVO character;
-        public readonly ClearVO clear;
+        public readonly CharacterProgressVO progress;
 
-        public StageCharacterVO(CharacterVO character, ClearVO clear)
+        public StageCharacterVO(CharacterVO character, CharacterProgressVO progress)
         {
             this.character = character;
-            this.clear = clear;
+            this.progress = progress;
         }
     }
 

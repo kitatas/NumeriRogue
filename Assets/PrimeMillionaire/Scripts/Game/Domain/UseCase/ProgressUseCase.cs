@@ -19,16 +19,15 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         {
             if (_saveRepository.TryLoadProgress(out var progress))
             {
-                var characterNo = _playerCharacterEntity.typeToInt;
-                var clear = progress.clears.Find(x => x.characterNo == characterNo);
- 
-                if (clear == null)
+                var type = _playerCharacterEntity.type;
+                var characterProgress = progress.Find(type);
+                if (characterProgress == null)
                 {
-                    progress.clears.Add(new ClearVO(characterNo, true));
+                    progress.characterProgress.Add(new CharacterProgressVO(type, ProgressStatus.Clear));
                 }
                 else
                 {
-                    clear.isClear = true;
+                    characterProgress.status = ProgressStatus.Clear;
                 }
 
                 _saveRepository.Save(progress);

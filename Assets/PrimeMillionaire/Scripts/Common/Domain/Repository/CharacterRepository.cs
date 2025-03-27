@@ -33,9 +33,9 @@ namespace PrimeMillionaire.Common.Domain.Repository
 
         public List<CharacterVO> GetReleased(ProgressVO progress)
         {
-            var released = progress.clears
+            var released = progress.characterProgress
                 .Where(x => x.isClear)
-                .Select(x => x.characterNo);
+                .Select(x => x.type.ToInt32());
 
             return _memoryDatabase.CharacterMasterTable.All
                 .Where(x => x.ReleaseConditions.All(y => released.Contains(y)))

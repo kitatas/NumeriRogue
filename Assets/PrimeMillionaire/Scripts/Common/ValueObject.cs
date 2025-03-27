@@ -220,25 +220,33 @@ namespace PrimeMillionaire.Common
     [Serializable]
     public sealed class ProgressVO
     {
-        public List<ClearVO> clears;
+        public List<CharacterProgressVO> characterProgress;
 
-        public ProgressVO(List<ClearVO> clears)
+        public ProgressVO(List<CharacterProgressVO> characterProgress)
         {
-            this.clears = clears;
+            this.characterProgress = characterProgress;
+        }
+
+        public CharacterProgressVO Find(CharacterType type)
+        {
+            return characterProgress.Find(x => x.type == type);
         }
     }
 
     [Serializable]
-    public sealed class ClearVO
+    public sealed class CharacterProgressVO
     {
-        public int characterNo;
-        public bool isClear;
+        public CharacterType type;
+        public ProgressStatus status;
 
-        public ClearVO(int characterNo, bool isClear)
+        public CharacterProgressVO(CharacterType type, ProgressStatus status)
         {
-            this.characterNo = characterNo;
-            this.isClear = isClear;
+            this.type = type;
+            this.status = status;
         }
+
+        public bool isNew => status == ProgressStatus.New;
+        public bool isClear => status == ProgressStatus.Clear;
     }
 
     public abstract class BaseModalVO<T> : ICommand where T : Enum
