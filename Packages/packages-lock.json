@@ -8,7 +8,7 @@
       "hash": "84fb71550bf28d2b5250adafac948e802ddd4b51"
     },
     "com.coffee.ui-effect": {
-      "version": "5.5.1",
+      "version": "5.6.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -224,7 +224,7 @@
       }
     },
     "com.unity.ide.rider": {
-      "version": "3.0.34",
+      "version": "3.0.35",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -402,7 +402,7 @@
       "url": "https://package.openupm.com"
     },
     "jp.hadashikick.vitalrouter": {
-      "version": "1.6.2",
+      "version": "1.6.5",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
