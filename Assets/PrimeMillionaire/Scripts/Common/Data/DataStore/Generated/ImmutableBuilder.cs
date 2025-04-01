@@ -35,7 +35,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
-                memory.LicenseMasterTable,
                 memory.PrimeNumberMasterTable,
                 memory.SkillMasterTable
             
@@ -53,7 +52,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
-                memory.LicenseMasterTable,
                 memory.PrimeNumberMasterTable,
                 memory.SkillMasterTable
             
@@ -71,7 +69,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
-                memory.LicenseMasterTable,
                 memory.PrimeNumberMasterTable,
                 memory.SkillMasterTable
             
@@ -88,7 +85,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
-                memory.LicenseMasterTable,
                 memory.PrimeNumberMasterTable,
                 memory.SkillMasterTable
             
@@ -106,7 +102,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
-                memory.LicenseMasterTable,
                 memory.PrimeNumberMasterTable,
                 memory.SkillMasterTable
             
@@ -124,7 +119,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
-                memory.LicenseMasterTable,
                 memory.PrimeNumberMasterTable,
                 memory.SkillMasterTable
             
@@ -141,7 +135,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 table,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
-                memory.LicenseMasterTable,
                 memory.PrimeNumberMasterTable,
                 memory.SkillMasterTable
             
@@ -159,7 +152,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 table,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
-                memory.LicenseMasterTable,
                 memory.PrimeNumberMasterTable,
                 memory.SkillMasterTable
             
@@ -177,7 +169,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 table,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
-                memory.LicenseMasterTable,
                 memory.PrimeNumberMasterTable,
                 memory.SkillMasterTable
             
@@ -194,7 +185,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DeckMasterTable,
                 table,
                 memory.LevelMasterTable,
-                memory.LicenseMasterTable,
                 memory.PrimeNumberMasterTable,
                 memory.SkillMasterTable
             
@@ -212,7 +202,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DeckMasterTable,
                 table,
                 memory.LevelMasterTable,
-                memory.LicenseMasterTable,
                 memory.PrimeNumberMasterTable,
                 memory.SkillMasterTable
             
@@ -230,7 +219,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DeckMasterTable,
                 table,
                 memory.LevelMasterTable,
-                memory.LicenseMasterTable,
                 memory.PrimeNumberMasterTable,
                 memory.SkillMasterTable
             
@@ -247,7 +235,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 table,
-                memory.LicenseMasterTable,
                 memory.PrimeNumberMasterTable,
                 memory.SkillMasterTable
             
@@ -265,7 +252,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 table,
-                memory.LicenseMasterTable,
                 memory.PrimeNumberMasterTable,
                 memory.SkillMasterTable
             
@@ -283,60 +269,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 table,
-                memory.LicenseMasterTable,
-                memory.PrimeNumberMasterTable,
-                memory.SkillMasterTable
-            
-            );
-        }
-
-        public void ReplaceAll(System.Collections.Generic.IList<LicenseMaster> data)
-        {
-            var newData = CloneAndSortBy(data, x => x.Title, System.StringComparer.Ordinal);
-            var table = new LicenseMasterTable(newData);
-            memory = new MemoryDatabase(
-                memory.CardMasterTable,
-                memory.CharacterMasterTable,
-                memory.DeckMasterTable,
-                memory.DropRateMasterTable,
-                memory.LevelMasterTable,
-                table,
-                memory.PrimeNumberMasterTable,
-                memory.SkillMasterTable
-            
-            );
-        }
-
-        public void RemoveLicenseMaster(string[] keys)
-        {
-            var data = RemoveCore(memory.LicenseMasterTable.GetRawDataUnsafe(), keys, x => x.Title, System.StringComparer.Ordinal);
-            var newData = CloneAndSortBy(data, x => x.Title, System.StringComparer.Ordinal);
-            var table = new LicenseMasterTable(newData);
-            memory = new MemoryDatabase(
-                memory.CardMasterTable,
-                memory.CharacterMasterTable,
-                memory.DeckMasterTable,
-                memory.DropRateMasterTable,
-                memory.LevelMasterTable,
-                table,
-                memory.PrimeNumberMasterTable,
-                memory.SkillMasterTable
-            
-            );
-        }
-
-        public void Diff(LicenseMaster[] addOrReplaceData)
-        {
-            var data = DiffCore(memory.LicenseMasterTable.GetRawDataUnsafe(), addOrReplaceData, x => x.Title, System.StringComparer.Ordinal);
-            var newData = CloneAndSortBy(data, x => x.Title, System.StringComparer.Ordinal);
-            var table = new LicenseMasterTable(newData);
-            memory = new MemoryDatabase(
-                memory.CardMasterTable,
-                memory.CharacterMasterTable,
-                memory.DeckMasterTable,
-                memory.DropRateMasterTable,
-                memory.LevelMasterTable,
-                table,
                 memory.PrimeNumberMasterTable,
                 memory.SkillMasterTable
             
@@ -353,7 +285,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
-                memory.LicenseMasterTable,
                 table,
                 memory.SkillMasterTable
             
@@ -371,7 +302,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
-                memory.LicenseMasterTable,
                 table,
                 memory.SkillMasterTable
             
@@ -389,7 +319,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
-                memory.LicenseMasterTable,
                 table,
                 memory.SkillMasterTable
             
@@ -406,7 +335,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
-                memory.LicenseMasterTable,
                 memory.PrimeNumberMasterTable,
                 table
             
@@ -424,7 +352,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
-                memory.LicenseMasterTable,
                 memory.PrimeNumberMasterTable,
                 table
             
@@ -442,7 +369,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
-                memory.LicenseMasterTable,
                 memory.PrimeNumberMasterTable,
                 table
             

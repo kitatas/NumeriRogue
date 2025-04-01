@@ -261,18 +261,6 @@ namespace PrimeMillionaire.Common
         }
     }
 
-    public sealed class LicenseVO
-    {
-        public readonly string title;
-        public readonly string content;
-
-        public LicenseVO(string title, string content)
-        {
-            this.title = title;
-            this.content = content;
-        }
-    }
-
     public abstract class ExceptionVO : Exception, ICommand
     {
         public ExceptionVO(string message) : base(message)
