@@ -7,6 +7,13 @@ namespace PrimeMillionaire.Common
         public static readonly string APP_VERSION = $"{MAJOR_VERSION.ToString()}.{MINOR_VERSION.ToString()}";
     }
 
+    public sealed class UrlConfig
+    {
+        // TODO: fix url
+        public const string URL_BASE = "https://kitatas.github.io/games/route_invent_puzzle/";
+        public const string URL_LICENSE = URL_BASE + "license";
+    }
+
     public sealed class SaveConfig
     {
         public const string ES3_KEY = "";

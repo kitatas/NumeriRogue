@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace PrimeMillionaire.Top.Presentation.View.Modal
 {
-    public sealed class TopModalView : BaseModalView
+    public class TopModalView : BaseModalView
     {
         [SerializeField] private ModalType modalType = default;
         [SerializeField] private ScrollRect scrollRect = default;
