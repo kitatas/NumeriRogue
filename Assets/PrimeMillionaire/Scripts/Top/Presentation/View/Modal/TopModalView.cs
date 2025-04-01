@@ -15,7 +15,10 @@ namespace PrimeMillionaire.Top.Presentation.View.Modal
         public override Tween Hide(float duration)
         {
             return base.Hide(duration)
-                .OnComplete(() => scrollRect.verticalNormalizedPosition = 1.0f);
+                .OnComplete(() =>
+                {
+                    if (scrollRect) scrollRect.verticalNormalizedPosition = 1.0f;
+                });
         }
     }
 }
