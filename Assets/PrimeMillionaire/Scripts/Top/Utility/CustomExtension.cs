@@ -10,6 +10,7 @@ namespace PrimeMillionaire.Top.Utility
             return self switch
             {
                 ModalType.License => UrlConfig.URL_LICENSE,
+                ModalType.Credit => UrlConfig.URL_CREDIT,
                 _ => throw new Exception()
             };
         }

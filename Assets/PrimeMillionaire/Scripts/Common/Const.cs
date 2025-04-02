@@ -12,6 +12,7 @@ namespace PrimeMillionaire.Common
         // TODO: fix url
         public const string URL_BASE = "https://kitatas.github.io/games/route_invent_puzzle/";
         public const string URL_LICENSE = URL_BASE + "license";
+        public const string URL_CREDIT = URL_BASE + "credit";
     }
 
     public sealed class SaveConfig

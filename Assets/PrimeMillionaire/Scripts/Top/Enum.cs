@@ -12,5 +12,6 @@ namespace PrimeMillionaire.Top
         None = 0,
         Menu = 1,
         License = 2,
+        Credit = 3,
     }
 }
