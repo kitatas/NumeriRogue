@@ -10,21 +10,23 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 {
     public sealed class BattleUseCase
     {
-        private readonly HoldSkillEntity _holdSkillEntity;
-        private readonly PlayerBattlePtEntity _playerBattlePtEntity;
-        private readonly PlayerParameterEntity _playerParameterEntity;
         private readonly EnemyBattlePtEntity _enemyBattlePtEntity;
         private readonly EnemyParameterEntity _enemyParameterEntity;
+        private readonly HoldSkillEntity _holdSkillEntity;
+        private readonly OrderEntity _orderEntity;
+        private readonly PlayerBattlePtEntity _playerBattlePtEntity;
+        private readonly PlayerParameterEntity _playerParameterEntity;
 
-        public BattleUseCase(HoldSkillEntity holdSkillEntity,
-            PlayerBattlePtEntity playerBattlePtEntity, PlayerParameterEntity playerParameterEntity,
-            EnemyBattlePtEntity enemyBattlePtEntity, EnemyParameterEntity enemyParameterEntity)
+        public BattleUseCase(EnemyBattlePtEntity enemyBattlePtEntity, EnemyParameterEntity enemyParameterEntity,
+            HoldSkillEntity holdSkillEntity, OrderEntity orderEntity, PlayerBattlePtEntity playerBattlePtEntity,
+            PlayerParameterEntity playerParameterEntity)
         {
-            _holdSkillEntity = holdSkillEntity;
-            _playerBattlePtEntity = playerBattlePtEntity;
-            _playerParameterEntity = playerParameterEntity;
             _enemyBattlePtEntity = enemyBattlePtEntity;
             _enemyParameterEntity = enemyParameterEntity;
+            _holdSkillEntity = holdSkillEntity;
+            _orderEntity = orderEntity;
+            _playerBattlePtEntity = playerBattlePtEntity;
+            _playerParameterEntity = playerParameterEntity;
         }
 
         public bool IsDestroy()
@@ -54,23 +56,41 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 _playerParameterEntity.Damage(GetPlayerDamage());
                 await Router.Default.PublishAsync(_playerParameterEntity.ToVO(), token);
             }
+
+            _orderEntity.Clear();
         }
 
         private int GetEnemyDamage()
         {
-            var rate = 1.0f;
+            var rate = GetAtkSkillRate() + 1.0f;
             var atk = _playerBattlePtEntity.currentValue + Mathf.CeilToInt(_playerParameterEntity.atk * rate);
             var def = _enemyBattlePtEntity.currentValue + _enemyParameterEntity.def;
             return CalcDamage(atk, def);
         }
 
-
         private int GetPlayerDamage()
         {
-            var rate = 1.0f;
+            var rate = GetDefSkillRate() + 1.0f;
             var atk = _enemyBattlePtEntity.currentValue + _enemyParameterEntity.atk;
             var def = _playerBattlePtEntity.currentValue + Mathf.CeilToInt(_playerParameterEntity.def * rate);
             return CalcDamage(atk, def);
+        }
+
+        private float GetAtkSkillRate()
+        {
+            return GetSkillRate(SkillType.OddAtk) +
+                   GetSkillRate(SkillType.EvenAtk);
+        }
+
+        private float GetDefSkillRate()
+        {
+            return GetSkillRate(SkillType.OddDef) +
+                   GetSkillRate(SkillType.EvenDef);
+        }
+
+        private float GetSkillRate(SkillType type)
+        {
+            return _holdSkillEntity.GetTotalRate(type) * _orderEntity.GetTotalCount(type);
         }
 
         private static int CalcDamage(float atk, float def)
