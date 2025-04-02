@@ -58,12 +58,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public async UniTask ApplyParameterAsync(SkillType type, CancellationToken token)
         {
-            if (type == SkillType.HpUp)
-            {
-                var rate = _holdSkillEntity.GetTotalRate(type);
-                _playerParameterEntity.SetAdditionalHp(rate);
-                await Router.Default.PublishAsync(_playerParameterEntity.ToVO(), token);
-            }
+            await UniTask.Yield(token);
         }
     }
 }

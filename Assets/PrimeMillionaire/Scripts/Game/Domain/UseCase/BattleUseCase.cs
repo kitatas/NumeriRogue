@@ -58,7 +58,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         private int GetEnemyDamage()
         {
-            var rate = _holdSkillEntity.GetTotalRate(SkillType.AtkUp) + 1.0f;
+            var rate = 1.0f;
             var atk = _playerBattlePtEntity.currentValue + Mathf.CeilToInt(_playerParameterEntity.atk * rate);
             var def = _enemyBattlePtEntity.currentValue + _enemyParameterEntity.def;
             return CalcDamage(atk, def);
@@ -67,7 +67,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         private int GetPlayerDamage()
         {
-            var rate = _holdSkillEntity.GetTotalRate(SkillType.DefUp) + 1.0f;
+            var rate = 1.0f;
             var atk = _enemyBattlePtEntity.currentValue + _enemyParameterEntity.atk;
             var def = _playerBattlePtEntity.currentValue + Mathf.CeilToInt(_playerParameterEntity.def * rate);
             return CalcDamage(atk, def);
