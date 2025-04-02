@@ -71,6 +71,8 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         private bool isPrimeNumber => _primeNumberRepository.IsExist(currentValue);
 
+        private bool isSameNumbers => _orders.GroupBy(x => x.card.rank).Count() == 1;
+
         private bool isSuitMatch => _orders.Any(x => x.card != null) &&
                                     _orders.Select(x => x.card.suit).GroupBy(x => x).Count() == 1;
 
@@ -80,6 +82,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         {
             _bonusEntity.Clear();
             if (isPrimeNumber) _bonusEntity.Add(BonusType.PrimeNumber);
+            if (isSameNumbers) _bonusEntity.Add(BonusType.SameNumbers);
             if (isSuitMatch) _bonusEntity.Add(BonusType.SuitMatch);
             if (isValueDown) _bonusEntity.Add(BonusType.ValueDown);
 

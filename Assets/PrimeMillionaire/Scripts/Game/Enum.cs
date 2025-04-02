@@ -26,8 +26,9 @@ namespace PrimeMillionaire.Game
     {
         None = 0,
         PrimeNumber = 1,
-        SuitMatch = 2,
-        ValueDown = 3,
+        SameNumbers = 2,
+        SuitMatch = 3,
+        ValueDown = 4,
     }
 
     public enum Fade
