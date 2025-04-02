@@ -13,5 +13,6 @@ namespace PrimeMillionaire.Top
         Menu = 1,
         License = 2,
         Credit = 3,
+        Policy = 4,
     }
 }

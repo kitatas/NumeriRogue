@@ -11,6 +11,7 @@ namespace PrimeMillionaire.Top.Utility
             {
                 ModalType.License => UrlConfig.URL_LICENSE,
                 ModalType.Credit => UrlConfig.URL_CREDIT,
+                ModalType.Policy => UrlConfig.URL_POLICY,
                 _ => throw new Exception()
             };
         }
