@@ -6,6 +6,7 @@ using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Utility;
 using PrimeMillionaire.Game.Data.Entity;
 using PrimeMillionaire.Game.Domain.Repository;
+using UniEx;
 using VitalRouter;
 
 namespace PrimeMillionaire.Game.Domain.UseCase
@@ -14,14 +15,16 @@ namespace PrimeMillionaire.Game.Domain.UseCase
     {
         private readonly BonusEntity _bonusEntity;
         private readonly CommunityBattlePtEntity _communityBattlePtEntity;
+        private readonly OrderEntity _orderEntity;
         private readonly PrimeNumberRepository _primeNumberRepository;
         private readonly ObservableList<OrderVO> _orders;
 
         public OrderUseCase(BonusEntity bonusEntity, CommunityBattlePtEntity communityBattlePtEntity,
-            PrimeNumberRepository primeNumberRepository)
+            OrderEntity orderEntity, PrimeNumberRepository primeNumberRepository)
         {
             _bonusEntity = bonusEntity;
             _communityBattlePtEntity = communityBattlePtEntity;
+            _orderEntity = orderEntity;
             _primeNumberRepository = primeNumberRepository;
             _orders = new ObservableList<OrderVO>(HandConfig.ORDER_NUM)
             {
@@ -77,6 +80,20 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                                     _orders.Select(x => x.card.suit).GroupBy(x => x).Count() == 1;
 
         private bool isValueDown => _communityBattlePtEntity.currentValue >= currentValue;
+
+        public void SetOrderSkills()
+        {
+            if (currentValue.IsEven())
+            {
+                _orderEntity.Add(SkillType.EvenAtk);
+                _orderEntity.Add(SkillType.EvenDef);
+            }
+            else
+            {
+                _orderEntity.Add(SkillType.OddAtk);
+                _orderEntity.Add(SkillType.OddDef);
+            }
+        }
 
         public async UniTask PushValueAsync(CancellationToken token)
         {
