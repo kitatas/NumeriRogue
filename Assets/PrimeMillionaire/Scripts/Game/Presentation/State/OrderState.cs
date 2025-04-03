@@ -49,7 +49,7 @@ namespace PrimeMillionaire.Game.Presentation.State
                 var index = await _tableView.TrashPlayerHandsAsync(token);
                 _handUseCase.RemovePlayerCards(index);
             }
-            _orderUseCase.SetOrderSkills();
+            _orderUseCase.StockBuff();
             await _orderUseCase.PushValueAsync(token);
 
             var playerPt = _orderUseCase.currentValueWithBonus;

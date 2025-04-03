@@ -14,17 +14,17 @@ namespace PrimeMillionaire.Game.Domain.UseCase
     public sealed class OrderUseCase
     {
         private readonly BonusEntity _bonusEntity;
+        private readonly BuffEntity _buffEntity;
         private readonly CommunityBattlePtEntity _communityBattlePtEntity;
-        private readonly OrderEntity _orderEntity;
         private readonly PrimeNumberRepository _primeNumberRepository;
         private readonly ObservableList<OrderVO> _orders;
 
-        public OrderUseCase(BonusEntity bonusEntity, CommunityBattlePtEntity communityBattlePtEntity,
-            OrderEntity orderEntity, PrimeNumberRepository primeNumberRepository)
+        public OrderUseCase(BonusEntity bonusEntity, BuffEntity buffEntity, CommunityBattlePtEntity communityBattlePtEntity,
+            PrimeNumberRepository primeNumberRepository)
         {
             _bonusEntity = bonusEntity;
+            _buffEntity = buffEntity;
             _communityBattlePtEntity = communityBattlePtEntity;
-            _orderEntity = orderEntity;
             _primeNumberRepository = primeNumberRepository;
             _orders = new ObservableList<OrderVO>(HandConfig.ORDER_NUM)
             {
@@ -81,17 +81,17 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         private bool isValueDown => _communityBattlePtEntity.currentValue >= currentValue;
 
-        public void SetOrderSkills()
+        public void StockBuff()
         {
             if (currentValue.IsEven())
             {
-                _orderEntity.Add(SkillType.EvenAtk);
-                _orderEntity.Add(SkillType.EvenDef);
+                _buffEntity.Add(SkillType.EvenAtk);
+                _buffEntity.Add(SkillType.EvenDef);
             }
             else
             {
-                _orderEntity.Add(SkillType.OddAtk);
-                _orderEntity.Add(SkillType.OddDef);
+                _buffEntity.Add(SkillType.OddAtk);
+                _buffEntity.Add(SkillType.OddDef);
             }
         }
 

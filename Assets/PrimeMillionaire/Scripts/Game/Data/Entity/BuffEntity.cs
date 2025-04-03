@@ -4,26 +4,26 @@ using PrimeMillionaire.Common;
 
 namespace PrimeMillionaire.Game.Data.Entity
 {
-    public sealed class OrderEntity
+    public sealed class BuffEntity
     {
-        private readonly List<SkillType> _targetSkills;
+        private readonly List<SkillType> _total;
 
-        public OrderEntity()
+        public BuffEntity()
         {
-            _targetSkills = new List<SkillType>();
+            _total = new List<SkillType>();
         }
 
         public void Add(SkillType type)
         {
             if (type == SkillType.None) throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SKILL);
-            _targetSkills.Add(type);
+            _total.Add(type);
         }
 
-        public void Clear() => _targetSkills.Clear();
+        public void Clear() => _total.Clear();
 
         public int GetTotalCount(SkillType type)
         {
-            return _targetSkills.Count(x => x == type);
+            return _total.Count(x => x == type);
         }
     }
 }

@@ -10,21 +10,21 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 {
     public sealed class BattleUseCase
     {
+        private readonly BuffEntity _buffEntity;
         private readonly EnemyBattlePtEntity _enemyBattlePtEntity;
         private readonly EnemyParameterEntity _enemyParameterEntity;
         private readonly HoldSkillEntity _holdSkillEntity;
-        private readonly OrderEntity _orderEntity;
         private readonly PlayerBattlePtEntity _playerBattlePtEntity;
         private readonly PlayerParameterEntity _playerParameterEntity;
 
-        public BattleUseCase(EnemyBattlePtEntity enemyBattlePtEntity, EnemyParameterEntity enemyParameterEntity,
-            HoldSkillEntity holdSkillEntity, OrderEntity orderEntity, PlayerBattlePtEntity playerBattlePtEntity,
-            PlayerParameterEntity playerParameterEntity)
+        public BattleUseCase(BuffEntity buffEntity, EnemyBattlePtEntity enemyBattlePtEntity,
+            EnemyParameterEntity enemyParameterEntity, HoldSkillEntity holdSkillEntity,
+            PlayerBattlePtEntity playerBattlePtEntity, PlayerParameterEntity playerParameterEntity)
         {
+            _buffEntity = buffEntity;
             _enemyBattlePtEntity = enemyBattlePtEntity;
             _enemyParameterEntity = enemyParameterEntity;
             _holdSkillEntity = holdSkillEntity;
-            _orderEntity = orderEntity;
             _playerBattlePtEntity = playerBattlePtEntity;
             _playerParameterEntity = playerParameterEntity;
         }
@@ -57,7 +57,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 await Router.Default.PublishAsync(_playerParameterEntity.ToVO(), token);
             }
 
-            _orderEntity.Clear();
+            _buffEntity.Clear();
         }
 
         private int GetEnemyDamage()
@@ -90,7 +90,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         private float GetSkillRate(SkillType type)
         {
-            return _holdSkillEntity.GetTotalRate(type) * _orderEntity.GetTotalCount(type);
+            return _holdSkillEntity.GetTotalRate(type) * _buffEntity.GetTotalCount(type);
         }
 
         private static int CalcDamage(float atk, float def)
