@@ -72,6 +72,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.UseEntryPoints(Lifetime.Scoped, entryPoints =>
             {
                 entryPoints.Add<BattlePtPresenter>();
+                entryPoints.Add<BuffPresenter>();
                 entryPoints.Add<DollarPresenter>();
                 entryPoints.Add<EnemyCountPresenter>();
                 entryPoints.Add<HoldSkillPresenter>();

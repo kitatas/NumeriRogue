@@ -12,6 +12,7 @@ namespace PrimeMillionaire.Game.Presentation.View
         [SerializeField] private Transform player = default;
         [SerializeField] private Transform enemy = default;
         [SerializeField] private StageView stageView = default;
+        [SerializeField] private GameObject buffFx = default;
 
         private CharacterView _playerView;
         private CharacterView _enemyView;
@@ -85,6 +86,12 @@ namespace PrimeMillionaire.Game.Presentation.View
         public void DestroyEnemy()
         {
             Destroy(_enemyView.gameObject);
+        }
+
+        public void PlayBuff()
+        {
+            var fx = Instantiate(buffFx, player);
+            Destroy(fx, 3.0f);
         }
     }
 }
