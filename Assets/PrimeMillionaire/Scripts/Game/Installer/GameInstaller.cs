@@ -39,6 +39,7 @@ namespace PrimeMillionaire.Game.Installer
             // UseCase
             builder.Register<BattlePtUseCase>(Lifetime.Scoped);
             builder.Register<BattleUseCase>(Lifetime.Scoped);
+            builder.Register<BuffUseCase>(Lifetime.Scoped);
             builder.Register<CharacterUseCase>(Lifetime.Scoped);
             builder.Register<DealUseCase>(Lifetime.Scoped);
             builder.Register<DollarUseCase>(Lifetime.Scoped);

@@ -13,6 +13,7 @@ namespace PrimeMillionaire.Game.Data.Entity
             _skills = new List<SkillVO>();
         }
 
+        public IEnumerable<SkillType> allTypes => _skills.Select(x => x.type);
         public int count => _skills.Count;
 
         public void Init(HoldSkillVO skills)

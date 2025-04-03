@@ -11,14 +11,16 @@ namespace PrimeMillionaire.Game.Presentation.State
     public sealed class OrderState : BaseState
     {
         private readonly BattlePtUseCase _battlePtUseCase;
+        private readonly BuffUseCase _buffUseCase;
         private readonly HandUseCase _handUseCase;
         private readonly OrderUseCase _orderUseCase;
         private readonly TableView _tableView;
 
-        public OrderState(BattlePtUseCase battlePtUseCase, HandUseCase handUseCase, OrderUseCase orderUseCase,
-            TableView tableView)
+        public OrderState(BattlePtUseCase battlePtUseCase, BuffUseCase buffUseCase, HandUseCase handUseCase,
+            OrderUseCase orderUseCase, TableView tableView)
         {
             _battlePtUseCase = battlePtUseCase;
+            _buffUseCase = buffUseCase;
             _handUseCase = handUseCase;
             _orderUseCase = orderUseCase;
             _tableView = tableView;
@@ -49,7 +51,12 @@ namespace PrimeMillionaire.Game.Presentation.State
                 var index = await _tableView.TrashPlayerHandsAsync(token);
                 _handUseCase.RemovePlayerCards(index);
             }
-            _orderUseCase.StockBuff();
+
+            {
+                _orderUseCase.StockBuff();
+                await _buffUseCase.ActivateBuffAsync(token);
+            }
+
             await _orderUseCase.PushValueAsync(token);
 
             var playerPt = _orderUseCase.currentValueWithBonus;

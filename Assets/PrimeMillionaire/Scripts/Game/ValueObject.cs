@@ -80,6 +80,16 @@ namespace PrimeMillionaire.Game
         }
     }
 
+    public sealed class BuffVO : ICommand
+    {
+        public readonly bool isActivate;
+
+        public BuffVO(bool isActivate)
+        {
+            this.isActivate = isActivate;
+        }
+    }
+
     public sealed class BonusVO
     {
         public readonly List<BonusType> types;
