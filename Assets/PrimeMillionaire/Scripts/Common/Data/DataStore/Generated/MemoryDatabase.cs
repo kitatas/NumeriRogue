@@ -135,7 +135,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             });
 
             ((ITableUniqueValidate)CardMasterTable).ValidateUnique(result);
-            ValidateTable(CardMasterTable.All, database, "Id", CardMasterTable.PrimaryKeySelector, result);
+            ValidateTable(CardMasterTable.All, database, "(Suit, Rank)", CardMasterTable.PrimaryKeySelector, result);
             ((ITableUniqueValidate)CharacterMasterTable).ValidateUnique(result);
             ValidateTable(CharacterMasterTable.All, database, "Type", CharacterMasterTable.PrimaryKeySelector, result);
             ((ITableUniqueValidate)DeckMasterTable).ValidateUnique(result);

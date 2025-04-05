@@ -18,8 +18,6 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
 {
     public sealed class CardMasterFormatter : global::MessagePack.Formatters.IMessagePackFormatter<global::PrimeMillionaire.Common.Data.DataStore.CardMaster>
     {
-        // Id
-        private static global::System.ReadOnlySpan<byte> GetSpan_Id() => new byte[1 + 2] { 162, 73, 100 };
         // Suit
         private static global::System.ReadOnlySpan<byte> GetSpan_Suit() => new byte[1 + 4] { 164, 83, 117, 105, 116 };
         // Rank
@@ -33,9 +31,7 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
                 return;
             }
 
-            writer.WriteMapHeader(3);
-            writer.WriteRaw(GetSpan_Id());
-            writer.Write(value.Id);
+            writer.WriteMapHeader(2);
             writer.WriteRaw(GetSpan_Suit());
             writer.Write(value.Suit);
             writer.WriteRaw(GetSpan_Rank());
@@ -51,7 +47,6 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
 
             options.Security.DepthStep(ref reader);
             var length = reader.ReadMapHeader();
-            var __Id__ = default(int);
             var __Suit__ = default(int);
             var __Rank__ = default(int);
 
@@ -64,11 +59,6 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
                     FAIL:
                       reader.Skip();
                       continue;
-                    case 2:
-                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 25673UL) { goto FAIL; }
-
-                        __Id__ = reader.ReadInt32();
-                        continue;
                     case 4:
                         switch (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey))
                         {
@@ -84,7 +74,7 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
                 }
             }
 
-            var ____result = new global::PrimeMillionaire.Common.Data.DataStore.CardMaster(__Id__, __Suit__, __Rank__);
+            var ____result = new global::PrimeMillionaire.Common.Data.DataStore.CardMaster(__Suit__, __Rank__);
             reader.Depth--;
             return ____result;
         }

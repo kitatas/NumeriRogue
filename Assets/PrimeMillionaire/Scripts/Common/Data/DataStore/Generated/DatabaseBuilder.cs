@@ -18,7 +18,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
 
         public DatabaseBuilder Append(System.Collections.Generic.IEnumerable<CardMaster> dataSource)
         {
-            AppendCore(dataSource, x => x.Id, System.Collections.Generic.Comparer<int>.Default);
+            AppendCore(dataSource, x => (x.Suit, x.Rank), System.Collections.Generic.Comparer<(int Suit, int Rank)>.Default);
             return this;
         }
 
