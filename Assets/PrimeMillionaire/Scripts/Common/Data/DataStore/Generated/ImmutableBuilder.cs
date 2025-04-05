@@ -327,7 +327,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
 
         public void ReplaceAll(System.Collections.Generic.IList<SkillMaster> data)
         {
-            var newData = CloneAndSortBy(data, x => x.Id, System.Collections.Generic.Comparer<int>.Default);
+            var newData = CloneAndSortBy(data, x => x.Level, System.Collections.Generic.Comparer<int>.Default);
             var table = new SkillMasterTable(newData);
             memory = new MemoryDatabase(
                 memory.CardMasterTable,
@@ -341,39 +341,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
             );
         }
 
-        public void RemoveSkillMaster(int[] keys)
-        {
-            var data = RemoveCore(memory.SkillMasterTable.GetRawDataUnsafe(), keys, x => x.Id, System.Collections.Generic.Comparer<int>.Default);
-            var newData = CloneAndSortBy(data, x => x.Id, System.Collections.Generic.Comparer<int>.Default);
-            var table = new SkillMasterTable(newData);
-            memory = new MemoryDatabase(
-                memory.CardMasterTable,
-                memory.CharacterMasterTable,
-                memory.DeckMasterTable,
-                memory.DropRateMasterTable,
-                memory.LevelMasterTable,
-                memory.PrimeNumberMasterTable,
-                table
-            
-            );
-        }
-
-        public void Diff(SkillMaster[] addOrReplaceData)
-        {
-            var data = DiffCore(memory.SkillMasterTable.GetRawDataUnsafe(), addOrReplaceData, x => x.Id, System.Collections.Generic.Comparer<int>.Default);
-            var newData = CloneAndSortBy(data, x => x.Id, System.Collections.Generic.Comparer<int>.Default);
-            var table = new SkillMasterTable(newData);
-            memory = new MemoryDatabase(
-                memory.CardMasterTable,
-                memory.CharacterMasterTable,
-                memory.DeckMasterTable,
-                memory.DropRateMasterTable,
-                memory.LevelMasterTable,
-                memory.PrimeNumberMasterTable,
-                table
-            
-            );
-        }
 
     }
 }

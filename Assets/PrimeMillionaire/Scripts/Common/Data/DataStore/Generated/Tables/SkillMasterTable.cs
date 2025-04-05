@@ -15,80 +15,30 @@ namespace PrimeMillionaire.Common.Data.DataStore.Tables
         public Func<SkillMaster, int> PrimaryKeySelector => primaryIndexSelector;
         readonly Func<SkillMaster, int> primaryIndexSelector;
 
-        readonly SkillMaster[] secondaryIndex0;
-        readonly Func<SkillMaster, int> secondaryIndex0Selector;
 
         public SkillMasterTable(SkillMaster[] sortedData)
             : base(sortedData)
         {
-            this.primaryIndexSelector = x => x.Id;
-            this.secondaryIndex0Selector = x => x.Level;
-            this.secondaryIndex0 = CloneAndSortBy(this.secondaryIndex0Selector, System.Collections.Generic.Comparer<int>.Default);
+            this.primaryIndexSelector = x => x.Level;
             OnAfterConstruct();
         }
 
         partial void OnAfterConstruct();
 
-        public RangeView<SkillMaster> SortByLevel => new RangeView<SkillMaster>(secondaryIndex0, 0, secondaryIndex0.Length - 1, true);
-
-        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public SkillMaster FindById(int key)
-        {
-            var lo = 0;
-            var hi = data.Length - 1;
-            while (lo <= hi)
-            {
-                var mid = (int)(((uint)hi + (uint)lo) >> 1);
-                var selected = data[mid].Id;
-                var found = (selected < key) ? -1 : (selected > key) ? 1 : 0;
-                if (found == 0) { return data[mid]; }
-                if (found < 0) { lo = mid + 1; }
-                else { hi = mid - 1; }
-            }
-            return ThrowKeyNotFound(key);
-        }
-
-        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public bool TryFindById(int key, out SkillMaster result)
-        {
-            var lo = 0;
-            var hi = data.Length - 1;
-            while (lo <= hi)
-            {
-                var mid = (int)(((uint)hi + (uint)lo) >> 1);
-                var selected = data[mid].Id;
-                var found = (selected < key) ? -1 : (selected > key) ? 1 : 0;
-                if (found == 0) { result = data[mid]; return true; }
-                if (found < 0) { lo = mid + 1; }
-                else { hi = mid - 1; }
-            }
-            result = default;
-            return false;
-        }
-
-        public SkillMaster FindClosestById(int key, bool selectLower = true)
-        {
-            return FindUniqueClosestCore(data, primaryIndexSelector, System.Collections.Generic.Comparer<int>.Default, key, selectLower);
-        }
-
-        public RangeView<SkillMaster> FindRangeById(int min, int max, bool ascendant = true)
-        {
-            return FindUniqueRangeCore(data, primaryIndexSelector, System.Collections.Generic.Comparer<int>.Default, min, max, ascendant);
-        }
 
         public RangeView<SkillMaster> FindByLevel(int key)
         {
-            return FindManyCore(secondaryIndex0, secondaryIndex0Selector, System.Collections.Generic.Comparer<int>.Default, key);
+            return FindManyCore(data, primaryIndexSelector, System.Collections.Generic.Comparer<int>.Default, key);
         }
 
         public RangeView<SkillMaster> FindClosestByLevel(int key, bool selectLower = true)
         {
-            return FindManyClosestCore(secondaryIndex0, secondaryIndex0Selector, System.Collections.Generic.Comparer<int>.Default, key, selectLower);
+            return FindManyClosestCore(data, primaryIndexSelector, System.Collections.Generic.Comparer<int>.Default, key, selectLower);
         }
 
         public RangeView<SkillMaster> FindRangeByLevel(int min, int max, bool ascendant = true)
         {
-            return FindManyRangeCore(secondaryIndex0, secondaryIndex0Selector, System.Collections.Generic.Comparer<int>.Default, min, max, ascendant);
+            return FindManyRangeCore(data, primaryIndexSelector, System.Collections.Generic.Comparer<int>.Default, min, max, ascendant);
         }
 
 
@@ -96,7 +46,6 @@ namespace PrimeMillionaire.Common.Data.DataStore.Tables
         {
 #if !DISABLE_MASTERMEMORY_VALIDATOR
 
-            ValidateUniqueCore(data, primaryIndexSelector, "Id", resultSet);       
 
 #endif
         }
@@ -108,7 +57,6 @@ namespace PrimeMillionaire.Common.Data.DataStore.Tables
             return new MasterMemory.Meta.MetaTable(typeof(SkillMaster), typeof(SkillMasterTable), "SkillMaster",
                 new MasterMemory.Meta.MetaProperty[]
                 {
-                    new MasterMemory.Meta.MetaProperty(typeof(SkillMaster).GetProperty("Id")),
                     new MasterMemory.Meta.MetaProperty(typeof(SkillMaster).GetProperty("Level")),
                     new MasterMemory.Meta.MetaProperty(typeof(SkillMaster).GetProperty("Type")),
                     new MasterMemory.Meta.MetaProperty(typeof(SkillMaster).GetProperty("Min")),
@@ -116,11 +64,8 @@ namespace PrimeMillionaire.Common.Data.DataStore.Tables
                 },
                 new MasterMemory.Meta.MetaIndex[]{
                     new MasterMemory.Meta.MetaIndex(new System.Reflection.PropertyInfo[] {
-                        typeof(SkillMaster).GetProperty("Id"),
-                    }, true, true, System.Collections.Generic.Comparer<int>.Default),
-                    new MasterMemory.Meta.MetaIndex(new System.Reflection.PropertyInfo[] {
                         typeof(SkillMaster).GetProperty("Level"),
-                    }, false, false, System.Collections.Generic.Comparer<int>.Default),
+                    }, true, false, System.Collections.Generic.Comparer<int>.Default),
                 });
         }
 

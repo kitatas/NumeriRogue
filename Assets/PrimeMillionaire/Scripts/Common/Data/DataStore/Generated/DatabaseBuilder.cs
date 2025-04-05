@@ -54,7 +54,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
 
         public DatabaseBuilder Append(System.Collections.Generic.IEnumerable<SkillMaster> dataSource)
         {
-            AppendCore(dataSource, x => x.Id, System.Collections.Generic.Comparer<int>.Default);
+            AppendCore(dataSource, x => x.Level, System.Collections.Generic.Comparer<int>.Default);
             return this;
         }
 

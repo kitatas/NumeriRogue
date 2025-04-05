@@ -147,7 +147,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             ((ITableUniqueValidate)PrimeNumberMasterTable).ValidateUnique(result);
             ValidateTable(PrimeNumberMasterTable.All, database, "Value", PrimeNumberMasterTable.PrimaryKeySelector, result);
             ((ITableUniqueValidate)SkillMasterTable).ValidateUnique(result);
-            ValidateTable(SkillMasterTable.All, database, "Id", SkillMasterTable.PrimaryKeySelector, result);
+            ValidateTable(SkillMasterTable.All, database, "Level", SkillMasterTable.PrimaryKeySelector, result);
 
             return result;
         }

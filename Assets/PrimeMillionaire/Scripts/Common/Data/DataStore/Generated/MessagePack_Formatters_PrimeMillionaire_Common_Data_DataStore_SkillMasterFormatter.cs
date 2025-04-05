@@ -18,8 +18,6 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
 {
     public sealed class SkillMasterFormatter : global::MessagePack.Formatters.IMessagePackFormatter<global::PrimeMillionaire.Common.Data.DataStore.SkillMaster>
     {
-        // Id
-        private static global::System.ReadOnlySpan<byte> GetSpan_Id() => new byte[1 + 2] { 162, 73, 100 };
         // Level
         private static global::System.ReadOnlySpan<byte> GetSpan_Level() => new byte[1 + 5] { 165, 76, 101, 118, 101, 108 };
         // Type
@@ -37,9 +35,7 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
                 return;
             }
 
-            writer.WriteMapHeader(5);
-            writer.WriteRaw(GetSpan_Id());
-            writer.Write(value.Id);
+            writer.WriteMapHeader(4);
             writer.WriteRaw(GetSpan_Level());
             writer.Write(value.Level);
             writer.WriteRaw(GetSpan_Type());
@@ -59,7 +55,6 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
 
             options.Security.DepthStep(ref reader);
             var length = reader.ReadMapHeader();
-            var __Id__ = default(int);
             var __Level__ = default(int);
             var __Type__ = default(int);
             var __Min__ = default(int);
@@ -74,11 +69,6 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
                     FAIL:
                       reader.Skip();
                       continue;
-                    case 2:
-                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 25673UL) { goto FAIL; }
-
-                        __Id__ = reader.ReadInt32();
-                        continue;
                     case 5:
                         if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 465558725964UL) { goto FAIL; }
 
@@ -104,7 +94,7 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
                 }
             }
 
-            var ____result = new global::PrimeMillionaire.Common.Data.DataStore.SkillMaster(__Id__, __Level__, __Type__, __Min__, __Max__);
+            var ____result = new global::PrimeMillionaire.Common.Data.DataStore.SkillMaster(__Level__, __Type__, __Min__, __Max__);
             reader.Depth--;
             return ____result;
         }
