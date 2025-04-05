@@ -1,4 +1,3 @@
-using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Utility;
 using PrimeMillionaire.Game.Presentation.View;
 using R3;
@@ -21,11 +20,8 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
             Router.Default
                 .SubscribeAwait<BuffVO>(async (x, context) =>
                 {
-                    if (x.isActivate)
-                    {
-                        await UniTaskHelper.DelayAsync(UiConfig.TWEEN_DURATION,  context.CancellationToken);
-                        _battleView.PlayBuff();
-                    }
+                    _battleView.PlayBuff(x);
+                    await UniTaskHelper.DelayFrameAsync(10, context.CancellationToken);
                 })
                 .AddTo(_battleView);
         }

@@ -46,6 +46,11 @@ namespace PrimeMillionaire.Common.Utility
         {
             return UniTask.Delay(TimeSpan.FromSeconds(duration), cancellationToken: token);
         }
+
+        public static UniTask DelayFrameAsync(int frame, CancellationToken token)
+        {
+            return UniTask.DelayFrame(frame, cancellationToken: token);
+        }
     }
 
     public static class RectTransformHelper

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using PrimeMillionaire.Common;
+using UnityEngine;
 using VitalRouter;
 
 namespace PrimeMillionaire.Game
@@ -82,11 +83,13 @@ namespace PrimeMillionaire.Game
 
     public sealed class BuffVO : ICommand
     {
-        public readonly bool isActivate;
+        public readonly Side side;
+        public readonly GameObject fxObject;
 
-        public BuffVO(bool isActivate)
+        public BuffVO(Side side, GameObject fxObject)
         {
-            this.isActivate = isActivate;
+            this.side = side;
+            this.fxObject = fxObject;
         }
     }
 
