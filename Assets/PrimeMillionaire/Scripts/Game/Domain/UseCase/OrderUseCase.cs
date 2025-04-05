@@ -95,6 +95,19 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 _buffEntity.Add(SkillType.OddAtk);
                 _buffEntity.Add(SkillType.OddDef);
             }
+
+            if (isSuitMatch)
+            {
+                _buffEntity.Add(SkillType.SuitMatch);
+                _buffEntity.Add(SkillType.SuitMatchAtk);
+                _buffEntity.Add(SkillType.SuitMatchDef);
+            }
+            else
+            {
+                _buffEntity.Add(SkillType.SuitUnmatch);
+                _buffEntity.Add(SkillType.SuitUnmatchAtk);
+                _buffEntity.Add(SkillType.SuitUnmatchDef);
+            }
         }
 
         public async UniTask PushValueAsync(CancellationToken token)

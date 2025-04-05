@@ -35,6 +35,12 @@ namespace PrimeMillionaire.Common.Utility
                 SkillType.Even => $"ATK & DEF +{value}%\n per even number",
                 SkillType.EvenAtk => $"ATK +{value}%\n per even number",
                 SkillType.EvenDef => $"DEF +{value}%\n per even number",
+                SkillType.SuitMatch => $"ATK & DEF +{value}%\n per suit match",
+                SkillType.SuitMatchAtk => $"ATK +{value}%\n per suit match",
+                SkillType.SuitMatchDef => $"DEF +{value}%\n per suit match",
+                SkillType.SuitUnmatch => $"ATK & DEF +{value}%\n per suit unmatch",
+                SkillType.SuitUnmatchAtk => $"ATK +{value}%\n per suit unmatch",
+                SkillType.SuitUnmatchDef => $"DEF +{value}%\n per suit unmatch",
                 _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SKILL_DESCRIPTION),
             };
         }
@@ -49,6 +55,12 @@ namespace PrimeMillionaire.Common.Utility
                 SkillType.Even => value * 5,
                 SkillType.EvenAtk => value * 5,
                 SkillType.EvenDef => value * 5,
+                SkillType.SuitMatch => value * 5,
+                SkillType.SuitMatchAtk => value * 5,
+                SkillType.SuitMatchDef => value * 5,
+                SkillType.SuitUnmatch => value * 5,
+                SkillType.SuitUnmatchAtk => value * 5,
+                SkillType.SuitUnmatchDef => value * 5,
                 _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SKILL_PRICE),
             };
         }

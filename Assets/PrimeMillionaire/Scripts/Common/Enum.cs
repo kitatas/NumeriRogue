@@ -61,6 +61,12 @@ namespace PrimeMillionaire.Common
         Even = 4,
         EvenAtk = 5,
         EvenDef = 6,
+        SuitMatch = 7,
+        SuitMatchAtk = 8,
+        SuitMatchDef = 9,
+        SuitUnmatch = 10,
+        SuitUnmatchAtk = 11,
+        SuitUnmatchDef = 12,
     }
 
     public enum StageType
