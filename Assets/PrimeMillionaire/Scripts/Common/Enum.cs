@@ -67,6 +67,10 @@ namespace PrimeMillionaire.Common
         SuitUnmatch = 10,
         SuitUnmatchAtk = 11,
         SuitUnmatchDef = 12,
+        SuitMatchClub = 13,
+        SuitMatchDiamond = 14,
+        SuitMatchHeart = 15,
+        SuitMatchSpade = 16,
     }
 
     public enum StageType

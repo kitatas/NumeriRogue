@@ -41,6 +41,10 @@ namespace PrimeMillionaire.Common.Utility
                 SkillType.SuitUnmatch => $"ATK & DEF +{value}%\n per suit unmatch",
                 SkillType.SuitUnmatchAtk => $"ATK +{value}%\n per suit unmatch",
                 SkillType.SuitUnmatchDef => $"DEF +{value}%\n per suit unmatch",
+                SkillType.SuitMatchClub => $"DEF +{value}%\n per club suit match",
+                SkillType.SuitMatchDiamond => $"Get ${value}\n per diamond suit match",
+                SkillType.SuitMatchHeart => $"Heal {value}\n per heart suit match",
+                SkillType.SuitMatchSpade => $"ATK +{value}%\n per spade suit match",
                 _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SKILL_DESCRIPTION),
             };
         }
@@ -61,6 +65,10 @@ namespace PrimeMillionaire.Common.Utility
                 SkillType.SuitUnmatch => value * 5,
                 SkillType.SuitUnmatchAtk => value * 5,
                 SkillType.SuitUnmatchDef => value * 5,
+                SkillType.SuitMatchClub => value * 5,
+                SkillType.SuitMatchDiamond => value * 5,
+                SkillType.SuitMatchHeart => value * 5,
+                SkillType.SuitMatchSpade => value * 5,
                 _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SKILL_PRICE),
             };
         }

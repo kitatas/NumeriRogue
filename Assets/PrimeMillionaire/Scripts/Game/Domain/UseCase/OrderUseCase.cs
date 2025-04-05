@@ -101,6 +101,16 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 _buffEntity.Add(SkillType.SuitMatch);
                 _buffEntity.Add(SkillType.SuitMatchAtk);
                 _buffEntity.Add(SkillType.SuitMatchDef);
+
+                var suitMatchSkill = _orders[0].card.suit switch
+                {
+                    Suit.Club => SkillType.SuitMatchClub,
+                    Suit.Diamond => SkillType.SuitMatchDiamond,
+                    Suit.Heart => SkillType.SuitMatchHeart,
+                    Suit.Spade => SkillType.SuitMatchSpade,
+                    _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SUIT),
+                };
+                _buffEntity.Add(suitMatchSkill);
             }
             else
             {
