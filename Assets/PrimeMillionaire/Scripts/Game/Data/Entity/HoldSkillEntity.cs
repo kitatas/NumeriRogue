@@ -26,13 +26,16 @@ namespace PrimeMillionaire.Game.Data.Entity
 
         public HoldSkillVO ToVO() => new(_skills);
 
-        public float GetTotalRate(SkillType type)
+        public int GetTotalValue(SkillType type)
         {
-            var totalValue = _skills
+            return _skills
                 .Where(x => x.type == type)
                 .Sum(x => x.value);
+        }
 
-            return totalValue / 100.0f;
+        public float GetTotalRate(SkillType type)
+        {
+            return GetTotalValue(type) / 100.0f;
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
@@ -12,17 +13,20 @@ namespace PrimeMillionaire.Game.Domain.UseCase
     public sealed class BuffUseCase
     {
         private readonly BuffEntity _buffEntity;
+        private readonly DollarEntity _dollarEntity;
         private readonly HoldSkillEntity _holdSkillEntity;
         private readonly BuffRepository _buffRepository;
 
-        public BuffUseCase(BuffEntity buffEntity, HoldSkillEntity holdSkillEntity, BuffRepository buffRepository)
+        public BuffUseCase(BuffEntity buffEntity, DollarEntity dollarEntity, HoldSkillEntity holdSkillEntity,
+            BuffRepository buffRepository)
         {
             _buffEntity = buffEntity;
+            _dollarEntity = dollarEntity;
             _holdSkillEntity = holdSkillEntity;
             _buffRepository = buffRepository;
         }
 
-        public async UniTask ActivateBuffAsync(CancellationToken token)
+        public async UniTask ActivateBuffAsync(Action update, CancellationToken token)
         {
             var activateBuffs = _holdSkillEntity.allTypes
                 .Where(x => _buffEntity.HasAnyCurrent(x))
@@ -36,10 +40,25 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 {
                     var fx = _buffRepository.FindFxObject(type);
                     await Router.Default.PublishAsync(new BuffVO(Side.Player, fx), token);
+
+                    ApplySkillEffect(type);
+                    update?.Invoke();
                 }
             }
 
             _buffEntity.ApplyTotal();
+        }
+
+        private void ApplySkillEffect(SkillType type)
+        {
+            switch (type)
+            {
+                case SkillType.SuitMatchDiamond:
+                {
+                    _dollarEntity.Add(_holdSkillEntity.GetTotalValue(type));
+                    break;
+                }
+            }
         }
     }
 }
