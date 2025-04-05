@@ -1,9 +1,11 @@
+using PrimeMillionaire.Game.Data.DataStore;
 using PrimeMillionaire.Game.Data.Entity;
 using PrimeMillionaire.Game.Domain.Repository;
 using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.Presenter;
 using PrimeMillionaire.Game.Presentation.State;
 using PrimeMillionaire.Game.Presentation.View;
+using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
@@ -11,8 +13,13 @@ namespace PrimeMillionaire.Game.Installer
 {
     public sealed class GameInstaller : LifetimeScope
     {
+        [SerializeField] private BuffTable buffTable = default;
+
         protected override void Configure(IContainerBuilder builder)
         {
+            // DataStore
+            builder.RegisterInstance<BuffTable>(buffTable);
+
             // Entity
             builder.Register<BonusEntity>(Lifetime.Scoped);
             builder.Register<BuffEntity>(Lifetime.Scoped);
