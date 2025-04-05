@@ -85,11 +85,13 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         {
             if (currentValue.IsEven())
             {
+                _buffEntity.Add(SkillType.Even);
                 _buffEntity.Add(SkillType.EvenAtk);
                 _buffEntity.Add(SkillType.EvenDef);
             }
             else
             {
+                _buffEntity.Add(SkillType.Odd);
                 _buffEntity.Add(SkillType.OddAtk);
                 _buffEntity.Add(SkillType.OddDef);
             }

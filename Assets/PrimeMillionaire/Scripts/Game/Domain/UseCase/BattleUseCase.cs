@@ -78,13 +78,17 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         private float GetAtkSkillRate()
         {
-            return GetSkillRate(SkillType.OddAtk) +
+            return GetSkillRate(SkillType.Odd) +
+                   GetSkillRate(SkillType.OddAtk) +
+                   GetSkillRate(SkillType.Even) +
                    GetSkillRate(SkillType.EvenAtk);
         }
 
         private float GetDefSkillRate()
         {
-            return GetSkillRate(SkillType.OddDef) +
+            return GetSkillRate(SkillType.Odd) +
+                   GetSkillRate(SkillType.OddDef) +
+                   GetSkillRate(SkillType.Even) +
                    GetSkillRate(SkillType.EvenDef);
         }
 

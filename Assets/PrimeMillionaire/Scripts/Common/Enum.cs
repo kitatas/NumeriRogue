@@ -55,10 +55,12 @@ namespace PrimeMillionaire.Common
     public enum SkillType
     {
         None = 0,
-        OddAtk = 1,
-        OddDef = 2,
-        EvenAtk = 3,
-        EvenDef = 4,
+        Odd = 1,
+        OddAtk = 2,
+        OddDef = 3,
+        Even = 4,
+        EvenAtk = 5,
+        EvenDef = 6,
     }
 
     public enum StageType

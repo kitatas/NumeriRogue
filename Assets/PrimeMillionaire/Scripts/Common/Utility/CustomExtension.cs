@@ -29,10 +29,12 @@ namespace PrimeMillionaire.Common.Utility
         {
             return self switch
             {
-                SkillType.OddAtk => $"ATK +{value}% per odd number",
-                SkillType.OddDef => $"DEF +{value}% per odd number",
-                SkillType.EvenAtk => $"ATK +{value}% per even number",
-                SkillType.EvenDef => $"DEF +{value}% per even number",
+                SkillType.Odd => $"ATK & DEF +{value}%\n per odd number",
+                SkillType.OddAtk => $"ATK +{value}%\n per odd number",
+                SkillType.OddDef => $"DEF +{value}%\n per odd number",
+                SkillType.Even => $"ATK & DEF +{value}%\n per even number",
+                SkillType.EvenAtk => $"ATK +{value}%\n per even number",
+                SkillType.EvenDef => $"DEF +{value}%\n per even number",
                 _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SKILL_DESCRIPTION),
             };
         }
@@ -41,8 +43,10 @@ namespace PrimeMillionaire.Common.Utility
         {
             return self switch
             {
+                SkillType.Odd => value * 5,
                 SkillType.OddAtk => value * 5,
                 SkillType.OddDef => value * 5,
+                SkillType.Even => value * 5,
                 SkillType.EvenAtk => value * 5,
                 SkillType.EvenDef => value * 5,
                 _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SKILL_PRICE),

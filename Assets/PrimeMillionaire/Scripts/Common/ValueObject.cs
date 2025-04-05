@@ -114,17 +114,16 @@ namespace PrimeMillionaire.Common
     {
         public SkillType type;
         public int value;
-        public string description;
-        public int price;
         public bool isHold;
 
         public SkillVO(int type, int value)
         {
             this.type = type.ToSkillType();
             this.value = value;
-            this.description = this.type.ToDescription(value);
-            this.price = this.type.ToPrice(value);
         }
+
+        public string description => type.ToDescription(value);
+        public int price => type.ToPrice(value);
     }
 
     [Serializable]
