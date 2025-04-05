@@ -15,14 +15,16 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         private readonly BuffEntity _buffEntity;
         private readonly DollarEntity _dollarEntity;
         private readonly HoldSkillEntity _holdSkillEntity;
+        private readonly PlayerParameterEntity _playerParameterEntity;
         private readonly BuffRepository _buffRepository;
 
         public BuffUseCase(BuffEntity buffEntity, DollarEntity dollarEntity, HoldSkillEntity holdSkillEntity,
-            BuffRepository buffRepository)
+            PlayerParameterEntity playerParameterEntity, BuffRepository buffRepository)
         {
             _buffEntity = buffEntity;
             _dollarEntity = dollarEntity;
             _holdSkillEntity = holdSkillEntity;
+            _playerParameterEntity = playerParameterEntity;
             _buffRepository = buffRepository;
         }
 
@@ -56,6 +58,11 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 case SkillType.SuitMatchDiamond:
                 {
                     _dollarEntity.Add(_holdSkillEntity.GetTotalValue(type));
+                    break;
+                }
+                case SkillType.SuitMatchHeart:
+                {
+                    _playerParameterEntity.Heal(_holdSkillEntity.GetTotalValue(type));
                     break;
                 }
             }

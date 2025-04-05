@@ -15,16 +15,18 @@ namespace PrimeMillionaire.Game.Presentation.State
         private readonly DollarUseCase _dollarUseCase;
         private readonly HandUseCase _handUseCase;
         private readonly OrderUseCase _orderUseCase;
+        private readonly ParameterUseCase _parameterUseCase;
         private readonly TableView _tableView;
 
         public OrderState(BattlePtUseCase battlePtUseCase, BuffUseCase buffUseCase, DollarUseCase dollarUseCase,
-            HandUseCase handUseCase, OrderUseCase orderUseCase, TableView tableView)
+            HandUseCase handUseCase, OrderUseCase orderUseCase, ParameterUseCase parameterUseCase, TableView tableView)
         {
             _battlePtUseCase = battlePtUseCase;
             _buffUseCase = buffUseCase;
             _dollarUseCase = dollarUseCase;
             _handUseCase = handUseCase;
             _orderUseCase = orderUseCase;
+            _parameterUseCase = parameterUseCase;
             _tableView = tableView;
         }
 
@@ -59,6 +61,7 @@ namespace PrimeMillionaire.Game.Presentation.State
                 await _buffUseCase.ActivateBuffAsync(() =>
                 {
                     _dollarUseCase.Update();
+                    _parameterUseCase.PublishPlayerParamAsync(token).Forget();
                 }, token);
             }
 
