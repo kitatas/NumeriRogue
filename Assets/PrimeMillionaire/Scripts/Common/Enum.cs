@@ -71,6 +71,11 @@ namespace PrimeMillionaire.Common
         SuitMatchDiamond = 14,
         SuitMatchHeart = 15,
         SuitMatchSpade = 16,
+        PrimeNumber = 17,
+        PrimeNumberAtk = 18,
+        PrimeNumberDef = 19,
+        PrimeNumberDollar = 20,
+        PrimeNumberHeal = 21,
     }
 
     public enum StageType

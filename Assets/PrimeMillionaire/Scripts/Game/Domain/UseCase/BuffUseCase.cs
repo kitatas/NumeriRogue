@@ -56,11 +56,13 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             switch (type)
             {
                 case SkillType.SuitMatchDiamond:
+                case SkillType.PrimeNumberDollar:
                 {
                     _dollarEntity.Add(_holdSkillEntity.GetTotalValue(type));
                     break;
                 }
                 case SkillType.SuitMatchHeart:
+                case SkillType.PrimeNumberHeal:
                 {
                     _playerParameterEntity.Heal(_holdSkillEntity.GetTotalValue(type));
                     break;

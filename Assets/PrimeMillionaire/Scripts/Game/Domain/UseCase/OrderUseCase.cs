@@ -96,6 +96,15 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 _buffEntity.Add(SkillType.OddDef);
             }
 
+            if (isPrimeNumber)
+            {
+                _buffEntity.Add(SkillType.PrimeNumber);
+                _buffEntity.Add(SkillType.PrimeNumberAtk);
+                _buffEntity.Add(SkillType.PrimeNumberDef);
+                _buffEntity.Add(SkillType.PrimeNumberDollar);
+                _buffEntity.Add(SkillType.PrimeNumberHeal);
+            }
+
             if (isSuitMatch)
             {
                 _buffEntity.Add(SkillType.SuitMatch);

@@ -45,6 +45,11 @@ namespace PrimeMillionaire.Common.Utility
                 SkillType.SuitMatchDiamond => $"Get ${value}\n per diamond suit match",
                 SkillType.SuitMatchHeart => $"Heal {value}\n per heart suit match",
                 SkillType.SuitMatchSpade => $"ATK +{value}%\n per spade suit match",
+                SkillType.PrimeNumber => $"ATK & DEF +{value}%\n per prime number",
+                SkillType.PrimeNumberAtk => $"ATK +{value}%\n per prime number",
+                SkillType.PrimeNumberDef => $"DEF +{value}%\n per prime number",
+                SkillType.PrimeNumberDollar => $"Get ${value}\n per prime number",
+                SkillType.PrimeNumberHeal => $"Heal {value}\n per prime number",
                 _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SKILL_DESCRIPTION),
             };
         }
@@ -69,6 +74,11 @@ namespace PrimeMillionaire.Common.Utility
                 SkillType.SuitMatchDiamond => value * 5,
                 SkillType.SuitMatchHeart => value * 5,
                 SkillType.SuitMatchSpade => value * 5,
+                SkillType.PrimeNumber => value * 5,
+                SkillType.PrimeNumberAtk => value * 5,
+                SkillType.PrimeNumberDef => value * 5,
+                SkillType.PrimeNumberDollar => value * 5,
+                SkillType.PrimeNumberHeal => value * 5,
                 _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SKILL_PRICE),
             };
         }
