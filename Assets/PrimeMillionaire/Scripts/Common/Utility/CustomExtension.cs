@@ -50,6 +50,9 @@ namespace PrimeMillionaire.Common.Utility
                 SkillType.PrimeNumberDef => $"DEF +{value}%\n per prime number",
                 SkillType.PrimeNumberDollar => $"Get ${value}\n per prime number",
                 SkillType.PrimeNumberHeal => $"Heal {value}\n per prime number",
+                SkillType.NotPrimeNumber => $"ATK & DEF +{value}%\n per not prime number",
+                SkillType.NotPrimeNumberAtk => $"ATK +{value}%\n per not prime number",
+                SkillType.NotPrimeNumberDef => $"DEF +{value}%\n per not prime number",
                 _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SKILL_DESCRIPTION),
             };
         }
@@ -79,6 +82,9 @@ namespace PrimeMillionaire.Common.Utility
                 SkillType.PrimeNumberDef => value * 5,
                 SkillType.PrimeNumberDollar => value * 5,
                 SkillType.PrimeNumberHeal => value * 5,
+                SkillType.NotPrimeNumber => value * 5,
+                SkillType.NotPrimeNumberAtk => value * 5,
+                SkillType.NotPrimeNumberDef => value * 5,
                 _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SKILL_PRICE),
             };
         }

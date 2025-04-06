@@ -88,7 +88,9 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                    GetSkillRate(SkillType.SuitUnmatchAtk) +
                    GetSkillRate(SkillType.SuitMatchSpade) +
                    GetSkillRate(SkillType.PrimeNumber) +
-                   GetSkillRate(SkillType.PrimeNumberAtk);
+                   GetSkillRate(SkillType.PrimeNumberAtk) +
+                   GetSkillRate(SkillType.NotPrimeNumber) +
+                   GetSkillRate(SkillType.NotPrimeNumberAtk);
         }
 
         private float GetDefSkillRate()
@@ -103,7 +105,9 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                    GetSkillRate(SkillType.SuitUnmatchDef) +
                    GetSkillRate(SkillType.SuitMatchClub) +
                    GetSkillRate(SkillType.PrimeNumber) +
-                   GetSkillRate(SkillType.PrimeNumberDef);
+                   GetSkillRate(SkillType.PrimeNumberDef) +
+                   GetSkillRate(SkillType.NotPrimeNumber) +
+                   GetSkillRate(SkillType.NotPrimeNumberDef);
         }
 
         private float GetSkillRate(SkillType type)
