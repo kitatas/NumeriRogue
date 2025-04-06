@@ -97,6 +97,7 @@ namespace PrimeMillionaire.Game
             SkillType.SuitMatchDiamond,
             SkillType.PrimeNumberDollar,
             SkillType.SameNumbersDollar,
+            SkillType.ValueDownDollar,
         };
 
         public static readonly SkillType[] HEAL_SKILLS =
@@ -104,6 +105,7 @@ namespace PrimeMillionaire.Game
             SkillType.SuitMatchHeart,
             SkillType.PrimeNumberHeal,
             SkillType.SameNumbersHeal,
+            SkillType.ValueDownHeal,
         };
     }
 }

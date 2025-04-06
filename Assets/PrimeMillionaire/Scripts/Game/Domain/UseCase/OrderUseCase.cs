@@ -148,6 +148,12 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 _buffEntity.Add(SkillType.SuitUnmatchAtk);
                 _buffEntity.Add(SkillType.SuitUnmatchDef);
             }
+
+            if (isValueDown)
+            {
+                _buffEntity.Add(SkillType.ValueDownDollar);
+                _buffEntity.Add(SkillType.ValueDownHeal);
+            }
         }
 
         public async UniTask PushValueAsync(CancellationToken token)
