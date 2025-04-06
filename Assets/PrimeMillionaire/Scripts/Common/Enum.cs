@@ -84,6 +84,9 @@ namespace PrimeMillionaire.Common
         SameNumbersDef = 27,
         SameNumbersDollar = 28,
         SameNumbersHeal = 29,
+        NotSameNumbers = 30,
+        NotSameNumbersAtk = 31,
+        NotSameNumbersDef = 32,
     }
 
     public enum StageType

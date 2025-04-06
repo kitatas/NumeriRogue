@@ -58,6 +58,9 @@ namespace PrimeMillionaire.Common.Utility
                 SkillType.SameNumbersDef => $"DEF +{value}%\n per same numbers",
                 SkillType.SameNumbersDollar => $"Get ${value}\n per same numbers",
                 SkillType.SameNumbersHeal => $"Heal {value}\n per same numbers",
+                SkillType.NotSameNumbers => $"ATK & DEF +{value}%\n per not same numbers",
+                SkillType.NotSameNumbersAtk => $"ATK +{value}%\n per not same numbers",
+                SkillType.NotSameNumbersDef => $"DEF +{value}%\n per not same numbers",
                 _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SKILL_DESCRIPTION),
             };
         }
@@ -95,6 +98,9 @@ namespace PrimeMillionaire.Common.Utility
                 SkillType.SameNumbersDef => value * 5,
                 SkillType.SameNumbersDollar => value * 5,
                 SkillType.SameNumbersHeal => value * 5,
+                SkillType.NotSameNumbers => value * 5,
+                SkillType.NotSameNumbersAtk => value * 5,
+                SkillType.NotSameNumbersDef => value * 5,
                 _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SKILL_PRICE),
             };
         }
