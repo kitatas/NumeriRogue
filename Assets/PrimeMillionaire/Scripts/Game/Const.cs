@@ -65,6 +65,8 @@ namespace PrimeMillionaire.Game
             SkillType.PrimeNumberAtk,
             SkillType.NotPrimeNumber,
             SkillType.NotPrimeNumberAtk,
+            SkillType.SameNumbers,
+            SkillType.SameNumbersAtk,
         };
 
         public static readonly SkillType[] DEF_SKILLS =
@@ -82,18 +84,22 @@ namespace PrimeMillionaire.Game
             SkillType.PrimeNumberDef,
             SkillType.NotPrimeNumber,
             SkillType.NotPrimeNumberDef,
+            SkillType.SameNumbers,
+            SkillType.SameNumbersDef,
         };
 
         public static readonly SkillType[] DOLLAR_SKILLS =
         {
             SkillType.SuitMatchDiamond,
             SkillType.PrimeNumberDollar,
+            SkillType.SameNumbersDollar,
         };
 
         public static readonly SkillType[] HEAL_SKILLS =
         {
             SkillType.SuitMatchHeart,
             SkillType.PrimeNumberHeal,
+            SkillType.SameNumbersHeal,
         };
     }
 }
