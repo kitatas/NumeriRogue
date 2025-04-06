@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
@@ -78,36 +79,14 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         private float GetAtkSkillRate()
         {
-            return GetSkillRate(SkillType.Odd) +
-                   GetSkillRate(SkillType.OddAtk) +
-                   GetSkillRate(SkillType.Even) +
-                   GetSkillRate(SkillType.EvenAtk) +
-                   GetSkillRate(SkillType.SuitMatch) +
-                   GetSkillRate(SkillType.SuitMatchAtk) +
-                   GetSkillRate(SkillType.SuitUnmatch) +
-                   GetSkillRate(SkillType.SuitUnmatchAtk) +
-                   GetSkillRate(SkillType.SuitMatchSpade) +
-                   GetSkillRate(SkillType.PrimeNumber) +
-                   GetSkillRate(SkillType.PrimeNumberAtk) +
-                   GetSkillRate(SkillType.NotPrimeNumber) +
-                   GetSkillRate(SkillType.NotPrimeNumberAtk);
+            return SkillConfig.ATK_SKILLS
+                .Sum(GetSkillRate);
         }
 
         private float GetDefSkillRate()
         {
-            return GetSkillRate(SkillType.Odd) +
-                   GetSkillRate(SkillType.OddDef) +
-                   GetSkillRate(SkillType.Even) +
-                   GetSkillRate(SkillType.EvenDef) +
-                   GetSkillRate(SkillType.SuitMatch) +
-                   GetSkillRate(SkillType.SuitMatchDef) +
-                   GetSkillRate(SkillType.SuitUnmatch) +
-                   GetSkillRate(SkillType.SuitUnmatchDef) +
-                   GetSkillRate(SkillType.SuitMatchClub) +
-                   GetSkillRate(SkillType.PrimeNumber) +
-                   GetSkillRate(SkillType.PrimeNumberDef) +
-                   GetSkillRate(SkillType.NotPrimeNumber) +
-                   GetSkillRate(SkillType.NotPrimeNumberDef);
+            return SkillConfig.DEF_SKILLS
+                .Sum(GetSkillRate);
         }
 
         private float GetSkillRate(SkillType type)

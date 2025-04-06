@@ -53,20 +53,13 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         private void ApplySkillEffect(SkillType type)
         {
-            switch (type)
+            if (SkillConfig.DOLLAR_SKILLS.Any(x => x == type))
             {
-                case SkillType.SuitMatchDiamond:
-                case SkillType.PrimeNumberDollar:
-                {
-                    _dollarEntity.Add(_holdSkillEntity.GetTotalValue(type));
-                    break;
-                }
-                case SkillType.SuitMatchHeart:
-                case SkillType.PrimeNumberHeal:
-                {
-                    _playerParameterEntity.Heal(_holdSkillEntity.GetTotalValue(type));
-                    break;
-                }
+                _dollarEntity.Add(_holdSkillEntity.GetTotalValue(type));
+            }
+            else if (SkillConfig.HEAL_SKILLS.Any(x => x == type))
+            {
+                _playerParameterEntity.Heal(_holdSkillEntity.GetTotalValue(type));
             }
         }
     }

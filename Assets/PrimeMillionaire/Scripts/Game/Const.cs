@@ -49,5 +49,51 @@ namespace PrimeMillionaire.Game
         public const int LOT_NUM = 3;
 
         public const int HOLD_NUM = 5;
+
+        public static readonly SkillType[] ATK_SKILLS =
+        {
+            SkillType.Odd,
+            SkillType.OddAtk,
+            SkillType.Even,
+            SkillType.EvenAtk,
+            SkillType.SuitMatch,
+            SkillType.SuitMatchAtk,
+            SkillType.SuitUnmatch,
+            SkillType.SuitUnmatchAtk,
+            SkillType.SuitMatchSpade,
+            SkillType.PrimeNumber,
+            SkillType.PrimeNumberAtk,
+            SkillType.NotPrimeNumber,
+            SkillType.NotPrimeNumberAtk,
+        };
+
+        public static readonly SkillType[] DEF_SKILLS =
+        {
+            SkillType.Odd,
+            SkillType.OddDef,
+            SkillType.Even,
+            SkillType.EvenDef,
+            SkillType.SuitMatch,
+            SkillType.SuitMatchDef,
+            SkillType.SuitUnmatch,
+            SkillType.SuitUnmatchDef,
+            SkillType.SuitMatchClub,
+            SkillType.PrimeNumber,
+            SkillType.PrimeNumberDef,
+            SkillType.NotPrimeNumber,
+            SkillType.NotPrimeNumberDef,
+        };
+
+        public static readonly SkillType[] DOLLAR_SKILLS =
+        {
+            SkillType.SuitMatchDiamond,
+            SkillType.PrimeNumberDollar,
+        };
+
+        public static readonly SkillType[] HEAL_SKILLS =
+        {
+            SkillType.SuitMatchHeart,
+            SkillType.PrimeNumberHeal,
+        };
     }
 }
