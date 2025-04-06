@@ -89,6 +89,8 @@ namespace PrimeMillionaire.Common
         NotSameNumbersDef = 32,
         ValueDownDollar = 33,
         ValueDownHeal = 34,
+        ValueUpAtk = 35,
+        ValueUpDef = 36,
     }
 
     public enum StageType

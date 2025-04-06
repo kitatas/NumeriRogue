@@ -69,6 +69,7 @@ namespace PrimeMillionaire.Game
             SkillType.SameNumbersAtk,
             SkillType.NotSameNumbers,
             SkillType.NotSameNumbersAtk,
+            SkillType.ValueUpAtk,
         };
 
         public static readonly SkillType[] DEF_SKILLS =
@@ -90,6 +91,7 @@ namespace PrimeMillionaire.Game
             SkillType.SameNumbersDef,
             SkillType.NotSameNumbers,
             SkillType.NotSameNumbersDef,
+            SkillType.ValueUpDef,
         };
 
         public static readonly SkillType[] DOLLAR_SKILLS =

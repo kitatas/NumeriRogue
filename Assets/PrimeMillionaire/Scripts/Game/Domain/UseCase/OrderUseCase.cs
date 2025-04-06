@@ -154,6 +154,11 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 _buffEntity.Add(SkillType.ValueDownDollar);
                 _buffEntity.Add(SkillType.ValueDownHeal);
             }
+            else
+            {
+                _buffEntity.Add(SkillType.ValueUpAtk);
+                _buffEntity.Add(SkillType.ValueUpDef);
+            }
         }
 
         public async UniTask PushValueAsync(CancellationToken token)
