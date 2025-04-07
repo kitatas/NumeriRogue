@@ -56,16 +56,15 @@ namespace PrimeMillionaire.Game.Presentation.State
                 _handUseCase.RemovePlayerCards(index);
             }
 
-            {
-                _orderUseCase.StockBuff();
-                await _buffUseCase.ActivateBuffAsync(() =>
+            _orderUseCase.StockBuff();
+            await (
+                _buffUseCase.ActivateBuffAsync(() =>
                 {
                     _dollarUseCase.Update();
                     _parameterUseCase.PublishPlayerParamAsync(token).Forget();
-                }, token);
-            }
-
-            await _orderUseCase.PushValueAsync(token);
+                }, token),
+                _orderUseCase.PushValueAsync(token)
+            );
 
             var playerPt = _orderUseCase.currentValueWithBonus;
             await (

@@ -21,7 +21,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
                 .SubscribeAwait<BuffVO>(async (x, context) =>
                 {
                     _battleView.PlayBuff(x);
-                    await UniTaskHelper.DelayFrameAsync(10, context.CancellationToken);
+                    await UniTaskHelper.DelayFrameAsync(20, context.CancellationToken);
                 })
                 .AddTo(_battleView);
         }
