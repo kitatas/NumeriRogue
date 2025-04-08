@@ -55,7 +55,7 @@ namespace MessagePack.Resolvers
                 { typeof(global::PrimeMillionaire.Common.Data.DataStore.DropRateMaster), 3 },
                 { typeof(global::PrimeMillionaire.Common.Data.DataStore.LevelMaster), 4 },
                 { typeof(global::PrimeMillionaire.Common.Data.DataStore.PrimeNumberMaster), 5 },
-                { typeof(global::PrimeMillionaire.Common.Data.DataStore.SkillMaster), 6 },
+                { typeof(global::PrimeMillionaire.Common.Data.DataStore.SkillEffectMaster), 6 },
             };
         }
 
@@ -75,7 +75,7 @@ namespace MessagePack.Resolvers
                 case 3: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.DropRateMasterFormatter();
                 case 4: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.LevelMasterFormatter();
                 case 5: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.PrimeNumberMasterFormatter();
-                case 6: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.SkillMasterFormatter();
+                case 6: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.SkillEffectMasterFormatter();
                 default: return null;
             }
         }

@@ -16,18 +16,18 @@
 
 namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
 {
-    public sealed class SkillMasterFormatter : global::MessagePack.Formatters.IMessagePackFormatter<global::PrimeMillionaire.Common.Data.DataStore.SkillMaster>
+    public sealed class SkillEffectMasterFormatter : global::MessagePack.Formatters.IMessagePackFormatter<global::PrimeMillionaire.Common.Data.DataStore.SkillEffectMaster>
     {
-        // Level
-        private static global::System.ReadOnlySpan<byte> GetSpan_Level() => new byte[1 + 5] { 165, 76, 101, 118, 101, 108 };
         // Type
         private static global::System.ReadOnlySpan<byte> GetSpan_Type() => new byte[1 + 4] { 164, 84, 121, 112, 101 };
+        // Level
+        private static global::System.ReadOnlySpan<byte> GetSpan_Level() => new byte[1 + 5] { 165, 76, 101, 118, 101, 108 };
         // Min
         private static global::System.ReadOnlySpan<byte> GetSpan_Min() => new byte[1 + 3] { 163, 77, 105, 110 };
         // Max
         private static global::System.ReadOnlySpan<byte> GetSpan_Max() => new byte[1 + 3] { 163, 77, 97, 120 };
 
-        public void Serialize(ref global::MessagePack.MessagePackWriter writer, global::PrimeMillionaire.Common.Data.DataStore.SkillMaster value, global::MessagePack.MessagePackSerializerOptions options)
+        public void Serialize(ref global::MessagePack.MessagePackWriter writer, global::PrimeMillionaire.Common.Data.DataStore.SkillEffectMaster value, global::MessagePack.MessagePackSerializerOptions options)
         {
             if (value is null)
             {
@@ -36,17 +36,17 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
             }
 
             writer.WriteMapHeader(4);
-            writer.WriteRaw(GetSpan_Level());
-            writer.Write(value.Level);
             writer.WriteRaw(GetSpan_Type());
             writer.Write(value.Type);
+            writer.WriteRaw(GetSpan_Level());
+            writer.Write(value.Level);
             writer.WriteRaw(GetSpan_Min());
             writer.Write(value.Min);
             writer.WriteRaw(GetSpan_Max());
             writer.Write(value.Max);
         }
 
-        public global::PrimeMillionaire.Common.Data.DataStore.SkillMaster Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)
+        public global::PrimeMillionaire.Common.Data.DataStore.SkillEffectMaster Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)
         {
             if (reader.TryReadNil())
             {
@@ -55,8 +55,8 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
 
             options.Security.DepthStep(ref reader);
             var length = reader.ReadMapHeader();
-            var __Level__ = default(int);
             var __Type__ = default(int);
+            var __Level__ = default(int);
             var __Min__ = default(int);
             var __Max__ = default(int);
 
@@ -69,15 +69,15 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
                     FAIL:
                       reader.Skip();
                       continue;
-                    case 5:
-                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 465558725964UL) { goto FAIL; }
-
-                        __Level__ = reader.ReadInt32();
-                        continue;
                     case 4:
                         if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 1701869908UL) { goto FAIL; }
 
                         __Type__ = reader.ReadInt32();
+                        continue;
+                    case 5:
+                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 465558725964UL) { goto FAIL; }
+
+                        __Level__ = reader.ReadInt32();
                         continue;
                     case 3:
                         switch (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey))
@@ -94,7 +94,7 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
                 }
             }
 
-            var ____result = new global::PrimeMillionaire.Common.Data.DataStore.SkillMaster(__Level__, __Type__, __Min__, __Max__);
+            var ____result = new global::PrimeMillionaire.Common.Data.DataStore.SkillEffectMaster(__Type__, __Level__, __Min__, __Max__);
             reader.Depth--;
             return ____result;
         }

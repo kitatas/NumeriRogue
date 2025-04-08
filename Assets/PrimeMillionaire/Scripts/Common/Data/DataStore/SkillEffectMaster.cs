@@ -4,19 +4,19 @@ using UnityEngine;
 
 namespace PrimeMillionaire.Common.Data.DataStore
 {
-    [MemoryTable(nameof(SkillMaster)), MessagePackObject(true)]
-    public sealed class SkillMaster
+    [MemoryTable(nameof(SkillEffectMaster)), MessagePackObject(true)]
+    public sealed class SkillEffectMaster
     {
-        public SkillMaster(int level, int type, int min, int max)
+        public SkillEffectMaster(int type, int level, int min, int max)
         {
-            Level = level;
             Type = type;
+            Level = level;
             Min = min;
             Max = max;
         }
 
-        [PrimaryKey, NonUnique] public int Level { get; }
-        public int Type { get; }
+        [PrimaryKey, NonUnique] public int Type { get; }
+        [SecondaryKey(0), NonUnique] public int Level { get; }
         public int Min { get; }
         public int Max { get; }
 

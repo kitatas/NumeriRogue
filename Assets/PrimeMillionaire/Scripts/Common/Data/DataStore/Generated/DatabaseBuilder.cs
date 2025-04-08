@@ -6,7 +6,6 @@ using MessagePack;
 using PrimeMillionaire.Common.Data.DataStore;
 using System.Collections.Generic;
 using System;
-using UnityEngine;
 using PrimeMillionaire.Common.Data.DataStore.Tables;
 
 namespace PrimeMillionaire.Common.Data.DataStore
@@ -52,9 +51,9 @@ namespace PrimeMillionaire.Common.Data.DataStore
             return this;
         }
 
-        public DatabaseBuilder Append(System.Collections.Generic.IEnumerable<SkillMaster> dataSource)
+        public DatabaseBuilder Append(System.Collections.Generic.IEnumerable<SkillEffectMaster> dataSource)
         {
-            AppendCore(dataSource, x => x.Level, System.Collections.Generic.Comparer<int>.Default);
+            AppendCore(dataSource, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
             return this;
         }
 

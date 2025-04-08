@@ -6,7 +6,6 @@ using MessagePack;
 using PrimeMillionaire.Common.Data.DataStore;
 using System.Collections.Generic;
 using System;
-using UnityEngine;
 using PrimeMillionaire.Common.Data.DataStore.Tables;
 
 namespace PrimeMillionaire.Common.Data.DataStore
@@ -54,7 +53,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 {typeof(DropRateMaster[]), 3 },
                 {typeof(LevelMaster[]), 4 },
                 {typeof(PrimeNumberMaster[]), 5 },
-                {typeof(SkillMaster[]), 6 },
+                {typeof(SkillEffectMaster[]), 6 },
             };
         }
 
@@ -71,7 +70,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 case 3: return new MessagePack.Formatters.ArrayFormatter<DropRateMaster>();
                 case 4: return new MessagePack.Formatters.ArrayFormatter<LevelMaster>();
                 case 5: return new MessagePack.Formatters.ArrayFormatter<PrimeNumberMaster>();
-                case 6: return new MessagePack.Formatters.ArrayFormatter<SkillMaster>();
+                case 6: return new MessagePack.Formatters.ArrayFormatter<SkillEffectMaster>();
                 default: return null;
             }
         }

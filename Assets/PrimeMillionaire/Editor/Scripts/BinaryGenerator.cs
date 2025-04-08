@@ -28,7 +28,7 @@ namespace PrimeMillionaire.Editor.Scripts
             databaseBuilder.Append(DeserializeJson<DeckMaster>("deck"));
             databaseBuilder.Append(DeserializeJson<DropRateMaster>("drop_rate"));
             databaseBuilder.Append(GetPrimeNumberMaster());
-            databaseBuilder.Append(DeserializeJson<SkillMaster>("skill"));
+            databaseBuilder.Append(DeserializeJson<SkillEffectMaster>("skill_effect"));
             databaseBuilder.Append(DeserializeJson<LevelMaster>("level"));
             var binary = databaseBuilder.Build();
 
