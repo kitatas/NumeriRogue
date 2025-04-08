@@ -113,17 +113,31 @@ namespace PrimeMillionaire.Common
     public sealed class SkillVO
     {
         public SkillType type;
-        public int value;
+        public int price;
+        public string description;
+        public SkillEffectVO effect;
         public bool isHold;
 
-        public SkillVO(int type, int value)
+        public SkillVO(int type, int priceRate, string description, SkillEffectVO effect)
+        {
+            this.type = type.ToSkillType();
+            this.price = effect.value * priceRate;
+            this.description = string.Format(description, effect.value);
+            this.effect = effect;
+        }
+    }
+
+    [Serializable]
+    public sealed class SkillEffectVO
+    {
+        public SkillType type;
+        public int value;
+
+        public SkillEffectVO(int type, int value)
         {
             this.type = type.ToSkillType();
             this.value = value;
         }
-
-        public string description => type.ToDescription(value);
-        public int price => type.ToPrice(value);
     }
 
     [Serializable]

@@ -20,6 +20,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
         public int Min { get; }
         public int Max { get; }
 
-        public SkillVO ToVO() => new(Type, Random.Range(Min, Max));
+        public SkillEffectVO ToVO() => new(Type, Random.Range(Min, Max));
     }
 }

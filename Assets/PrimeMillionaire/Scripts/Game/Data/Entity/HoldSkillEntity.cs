@@ -30,7 +30,7 @@ namespace PrimeMillionaire.Game.Data.Entity
         {
             return _skills
                 .Where(x => x.type == type)
-                .Sum(x => x.value);
+                .Sum(x => x.effect.value);
         }
 
         public float GetTotalRate(SkillType type)
