@@ -6,6 +6,7 @@ using MessagePack;
 using PrimeMillionaire.Common.Data.DataStore;
 using System.Collections.Generic;
 using System;
+using UnityEngine;
 using PrimeMillionaire.Common.Data.DataStore.Tables;
 
 namespace PrimeMillionaire.Common.Data.DataStore
@@ -35,7 +36,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.PrimeNumberMasterTable,
-                memory.SkillEffectMasterTable
+                memory.SkillEffectMasterTable,
+                memory.SkillMasterTable
             
             );
         }
@@ -52,7 +54,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.PrimeNumberMasterTable,
-                memory.SkillEffectMasterTable
+                memory.SkillEffectMasterTable,
+                memory.SkillMasterTable
             
             );
         }
@@ -69,7 +72,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.PrimeNumberMasterTable,
-                memory.SkillEffectMasterTable
+                memory.SkillEffectMasterTable,
+                memory.SkillMasterTable
             
             );
         }
@@ -85,7 +89,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.PrimeNumberMasterTable,
-                memory.SkillEffectMasterTable
+                memory.SkillEffectMasterTable,
+                memory.SkillMasterTable
             
             );
         }
@@ -102,7 +107,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.PrimeNumberMasterTable,
-                memory.SkillEffectMasterTable
+                memory.SkillEffectMasterTable,
+                memory.SkillMasterTable
             
             );
         }
@@ -119,7 +125,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.PrimeNumberMasterTable,
-                memory.SkillEffectMasterTable
+                memory.SkillEffectMasterTable,
+                memory.SkillMasterTable
             
             );
         }
@@ -135,7 +142,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.PrimeNumberMasterTable,
-                memory.SkillEffectMasterTable
+                memory.SkillEffectMasterTable,
+                memory.SkillMasterTable
             
             );
         }
@@ -152,7 +160,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.PrimeNumberMasterTable,
-                memory.SkillEffectMasterTable
+                memory.SkillEffectMasterTable,
+                memory.SkillMasterTable
             
             );
         }
@@ -169,7 +178,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.PrimeNumberMasterTable,
-                memory.SkillEffectMasterTable
+                memory.SkillEffectMasterTable,
+                memory.SkillMasterTable
             
             );
         }
@@ -185,7 +195,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 table,
                 memory.LevelMasterTable,
                 memory.PrimeNumberMasterTable,
-                memory.SkillEffectMasterTable
+                memory.SkillEffectMasterTable,
+                memory.SkillMasterTable
             
             );
         }
@@ -202,7 +213,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 table,
                 memory.LevelMasterTable,
                 memory.PrimeNumberMasterTable,
-                memory.SkillEffectMasterTable
+                memory.SkillEffectMasterTable,
+                memory.SkillMasterTable
             
             );
         }
@@ -219,7 +231,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 table,
                 memory.LevelMasterTable,
                 memory.PrimeNumberMasterTable,
-                memory.SkillEffectMasterTable
+                memory.SkillEffectMasterTable,
+                memory.SkillMasterTable
             
             );
         }
@@ -235,7 +248,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DropRateMasterTable,
                 table,
                 memory.PrimeNumberMasterTable,
-                memory.SkillEffectMasterTable
+                memory.SkillEffectMasterTable,
+                memory.SkillMasterTable
             
             );
         }
@@ -252,7 +266,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DropRateMasterTable,
                 table,
                 memory.PrimeNumberMasterTable,
-                memory.SkillEffectMasterTable
+                memory.SkillEffectMasterTable,
+                memory.SkillMasterTable
             
             );
         }
@@ -269,7 +284,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DropRateMasterTable,
                 table,
                 memory.PrimeNumberMasterTable,
-                memory.SkillEffectMasterTable
+                memory.SkillEffectMasterTable,
+                memory.SkillMasterTable
             
             );
         }
@@ -285,7 +301,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 table,
-                memory.SkillEffectMasterTable
+                memory.SkillEffectMasterTable,
+                memory.SkillMasterTable
             
             );
         }
@@ -302,7 +319,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 table,
-                memory.SkillEffectMasterTable
+                memory.SkillEffectMasterTable,
+                memory.SkillMasterTable
             
             );
         }
@@ -319,7 +337,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 table,
-                memory.SkillEffectMasterTable
+                memory.SkillEffectMasterTable,
+                memory.SkillMasterTable
             
             );
         }
@@ -335,11 +354,65 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.PrimeNumberMasterTable,
+                table,
+                memory.SkillMasterTable
+            
+            );
+        }
+
+
+        public void ReplaceAll(System.Collections.Generic.IList<SkillMaster> data)
+        {
+            var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
+            var table = new SkillMasterTable(newData);
+            memory = new MemoryDatabase(
+                memory.CardMasterTable,
+                memory.CharacterMasterTable,
+                memory.DeckMasterTable,
+                memory.DropRateMasterTable,
+                memory.LevelMasterTable,
+                memory.PrimeNumberMasterTable,
+                memory.SkillEffectMasterTable,
                 table
             
             );
         }
 
+        public void RemoveSkillMaster(int[] keys)
+        {
+            var data = RemoveCore(memory.SkillMasterTable.GetRawDataUnsafe(), keys, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
+            var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
+            var table = new SkillMasterTable(newData);
+            memory = new MemoryDatabase(
+                memory.CardMasterTable,
+                memory.CharacterMasterTable,
+                memory.DeckMasterTable,
+                memory.DropRateMasterTable,
+                memory.LevelMasterTable,
+                memory.PrimeNumberMasterTable,
+                memory.SkillEffectMasterTable,
+                table
+            
+            );
+        }
+
+        public void Diff(SkillMaster[] addOrReplaceData)
+        {
+            var data = DiffCore(memory.SkillMasterTable.GetRawDataUnsafe(), addOrReplaceData, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
+            var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
+            var table = new SkillMasterTable(newData);
+            memory = new MemoryDatabase(
+                memory.CardMasterTable,
+                memory.CharacterMasterTable,
+                memory.DeckMasterTable,
+                memory.DropRateMasterTable,
+                memory.LevelMasterTable,
+                memory.PrimeNumberMasterTable,
+                memory.SkillEffectMasterTable,
+                table
+            
+            );
+        }
 
     }
 }

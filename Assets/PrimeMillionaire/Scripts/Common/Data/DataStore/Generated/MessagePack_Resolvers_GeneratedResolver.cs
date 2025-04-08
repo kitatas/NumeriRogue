@@ -47,7 +47,7 @@ namespace MessagePack.Resolvers
 
         static GeneratedResolverGetFormatterHelper()
         {
-            lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(7)
+            lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(8)
             {
                 { typeof(global::PrimeMillionaire.Common.Data.DataStore.CardMaster), 0 },
                 { typeof(global::PrimeMillionaire.Common.Data.DataStore.CharacterMaster), 1 },
@@ -56,6 +56,7 @@ namespace MessagePack.Resolvers
                 { typeof(global::PrimeMillionaire.Common.Data.DataStore.LevelMaster), 4 },
                 { typeof(global::PrimeMillionaire.Common.Data.DataStore.PrimeNumberMaster), 5 },
                 { typeof(global::PrimeMillionaire.Common.Data.DataStore.SkillEffectMaster), 6 },
+                { typeof(global::PrimeMillionaire.Common.Data.DataStore.SkillMaster), 7 },
             };
         }
 
@@ -76,6 +77,7 @@ namespace MessagePack.Resolvers
                 case 4: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.LevelMasterFormatter();
                 case 5: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.PrimeNumberMasterFormatter();
                 case 6: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.SkillEffectMasterFormatter();
+                case 7: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.SkillMasterFormatter();
                 default: return null;
             }
         }

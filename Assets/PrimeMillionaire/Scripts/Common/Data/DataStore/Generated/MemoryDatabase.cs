@@ -6,6 +6,7 @@ using MessagePack;
 using PrimeMillionaire.Common.Data.DataStore;
 using System.Collections.Generic;
 using System;
+using UnityEngine;
 using PrimeMillionaire.Common.Data.DataStore.Tables;
 
 namespace PrimeMillionaire.Common.Data.DataStore
@@ -19,6 +20,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
         public LevelMasterTable LevelMasterTable { get; private set; }
         public PrimeNumberMasterTable PrimeNumberMasterTable { get; private set; }
         public SkillEffectMasterTable SkillEffectMasterTable { get; private set; }
+        public SkillMasterTable SkillMasterTable { get; private set; }
 
         public MemoryDatabase(
             CardMasterTable CardMasterTable,
@@ -27,7 +29,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
             DropRateMasterTable DropRateMasterTable,
             LevelMasterTable LevelMasterTable,
             PrimeNumberMasterTable PrimeNumberMasterTable,
-            SkillEffectMasterTable SkillEffectMasterTable
+            SkillEffectMasterTable SkillEffectMasterTable,
+            SkillMasterTable SkillMasterTable
         )
         {
             this.CardMasterTable = CardMasterTable;
@@ -37,6 +40,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             this.LevelMasterTable = LevelMasterTable;
             this.PrimeNumberMasterTable = PrimeNumberMasterTable;
             this.SkillEffectMasterTable = SkillEffectMasterTable;
+            this.SkillMasterTable = SkillMasterTable;
         }
 
         public MemoryDatabase(byte[] databaseBinary, bool internString = true, MessagePack.IFormatterResolver formatterResolver = null, int maxDegreeOfParallelism = 1)
@@ -65,6 +69,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             this.LevelMasterTable = ExtractTableData<LevelMaster, LevelMasterTable>(header, databaseBinary, options, xs => new LevelMasterTable(xs));
             this.PrimeNumberMasterTable = ExtractTableData<PrimeNumberMaster, PrimeNumberMasterTable>(header, databaseBinary, options, xs => new PrimeNumberMasterTable(xs));
             this.SkillEffectMasterTable = ExtractTableData<SkillEffectMaster, SkillEffectMasterTable>(header, databaseBinary, options, xs => new SkillEffectMasterTable(xs));
+            this.SkillMasterTable = ExtractTableData<SkillMaster, SkillMasterTable>(header, databaseBinary, options, xs => new SkillMasterTable(xs));
         }
 
         void InitParallel(Dictionary<string, (int offset, int count)> header, System.ReadOnlyMemory<byte> databaseBinary, MessagePack.MessagePackSerializerOptions options, int maxDegreeOfParallelism)
@@ -78,6 +83,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 () => this.LevelMasterTable = ExtractTableData<LevelMaster, LevelMasterTable>(header, databaseBinary, options, xs => new LevelMasterTable(xs)),
                 () => this.PrimeNumberMasterTable = ExtractTableData<PrimeNumberMaster, PrimeNumberMasterTable>(header, databaseBinary, options, xs => new PrimeNumberMasterTable(xs)),
                 () => this.SkillEffectMasterTable = ExtractTableData<SkillEffectMaster, SkillEffectMasterTable>(header, databaseBinary, options, xs => new SkillEffectMasterTable(xs)),
+                () => this.SkillMasterTable = ExtractTableData<SkillMaster, SkillMasterTable>(header, databaseBinary, options, xs => new SkillMasterTable(xs)),
             };
             
             System.Threading.Tasks.Parallel.Invoke(new System.Threading.Tasks.ParallelOptions
@@ -101,6 +107,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             builder.Append(this.LevelMasterTable.GetRawDataUnsafe());
             builder.Append(this.PrimeNumberMasterTable.GetRawDataUnsafe());
             builder.Append(this.SkillEffectMasterTable.GetRawDataUnsafe());
+            builder.Append(this.SkillMasterTable.GetRawDataUnsafe());
             return builder;
         }
 
@@ -114,6 +121,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             builder.Append(this.LevelMasterTable.GetRawDataUnsafe());
             builder.Append(this.PrimeNumberMasterTable.GetRawDataUnsafe());
             builder.Append(this.SkillEffectMasterTable.GetRawDataUnsafe());
+            builder.Append(this.SkillMasterTable.GetRawDataUnsafe());
             return builder;
         }
 
@@ -131,6 +139,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 LevelMasterTable,
                 PrimeNumberMasterTable,
                 SkillEffectMasterTable,
+                SkillMasterTable,
             });
 
             ((ITableUniqueValidate)CardMasterTable).ValidateUnique(result);
@@ -147,6 +156,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
             ValidateTable(PrimeNumberMasterTable.All, database, "Value", PrimeNumberMasterTable.PrimaryKeySelector, result);
             ((ITableUniqueValidate)SkillEffectMasterTable).ValidateUnique(result);
             ValidateTable(SkillEffectMasterTable.All, database, "Type", SkillEffectMasterTable.PrimaryKeySelector, result);
+            ((ITableUniqueValidate)SkillMasterTable).ValidateUnique(result);
+            ValidateTable(SkillMasterTable.All, database, "Type", SkillMasterTable.PrimaryKeySelector, result);
 
             return result;
         }
@@ -173,6 +184,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
                     return db.PrimeNumberMasterTable;
                 case "SkillEffectMaster":
                     return db.SkillEffectMasterTable;
+                case "SkillMaster":
+                    return db.SkillMasterTable;
                 
                 default:
                     return null;
@@ -193,6 +206,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             dict.Add("LevelMaster", PrimeMillionaire.Common.Data.DataStore.Tables.LevelMasterTable.CreateMetaTable());
             dict.Add("PrimeNumberMaster", PrimeMillionaire.Common.Data.DataStore.Tables.PrimeNumberMasterTable.CreateMetaTable());
             dict.Add("SkillEffectMaster", PrimeMillionaire.Common.Data.DataStore.Tables.SkillEffectMasterTable.CreateMetaTable());
+            dict.Add("SkillMaster", PrimeMillionaire.Common.Data.DataStore.Tables.SkillMasterTable.CreateMetaTable());
 
             metaTable = new MasterMemory.Meta.MetaDatabase(dict);
             return metaTable;
