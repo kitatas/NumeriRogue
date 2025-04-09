@@ -20,6 +20,8 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
     {
         // Type
         private static global::System.ReadOnlySpan<byte> GetSpan_Type() => new byte[1 + 4] { 164, 84, 121, 112, 101 };
+        // Icon
+        private static global::System.ReadOnlySpan<byte> GetSpan_Icon() => new byte[1 + 4] { 164, 73, 99, 111, 110 };
         // PriceRate
         private static global::System.ReadOnlySpan<byte> GetSpan_PriceRate() => new byte[1 + 9] { 169, 80, 114, 105, 99, 101, 82, 97, 116, 101 };
         // Description
@@ -34,9 +36,11 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
             }
 
             var formatterResolver = options.Resolver;
-            writer.WriteMapHeader(3);
+            writer.WriteMapHeader(4);
             writer.WriteRaw(GetSpan_Type());
             writer.Write(value.Type);
+            writer.WriteRaw(GetSpan_Icon());
+            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Serialize(ref writer, value.Icon, options);
             writer.WriteRaw(GetSpan_PriceRate());
             writer.Write(value.PriceRate);
             writer.WriteRaw(GetSpan_Description());
@@ -54,6 +58,7 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
             var formatterResolver = options.Resolver;
             var length = reader.ReadMapHeader();
             var __Type__ = default(int);
+            var __Icon__ = default(string);
             var __PriceRate__ = default(int);
             var __Description__ = default(string);
 
@@ -67,10 +72,16 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
                       reader.Skip();
                       continue;
                     case 4:
-                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 1701869908UL) { goto FAIL; }
-
-                        __Type__ = reader.ReadInt32();
-                        continue;
+                        switch (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey))
+                        {
+                            default: goto FAIL;
+                            case 1701869908UL:
+                                __Type__ = reader.ReadInt32();
+                                continue;
+                            case 1852793673UL:
+                                __Icon__ = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Deserialize(ref reader, options);
+                                continue;
+                        }
                     case 9:
                         if (!global::System.MemoryExtensions.SequenceEqual(stringKey, GetSpan_PriceRate().Slice(1))) { goto FAIL; }
 
@@ -85,7 +96,7 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
                 }
             }
 
-            var ____result = new global::PrimeMillionaire.Common.Data.DataStore.SkillMaster(__Type__, __PriceRate__, __Description__);
+            var ____result = new global::PrimeMillionaire.Common.Data.DataStore.SkillMaster(__Type__, __Icon__, __PriceRate__, __Description__);
             reader.Depth--;
             return ____result;
         }
