@@ -113,14 +113,16 @@ namespace PrimeMillionaire.Common
     public sealed class SkillVO
     {
         public SkillType type;
+        public string icon;
         public int price;
         public string description;
         public SkillEffectVO effect;
         public bool isHold;
 
-        public SkillVO(int type, int priceRate, string description, SkillEffectVO effect)
+        public SkillVO(int type, string icon, int priceRate, string description, SkillEffectVO effect)
         {
             this.type = type.ToSkillType();
+            this.icon = $"Assets/Externals/Sprites/Skills/{icon}.png[{icon}]";
             this.price = effect.value * priceRate;
             this.description = string.Format(description, effect.value);
             this.effect = effect;

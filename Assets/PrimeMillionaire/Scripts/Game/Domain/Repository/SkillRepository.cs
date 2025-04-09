@@ -24,7 +24,7 @@ namespace PrimeMillionaire.Game.Domain.Repository
                 {
                     if (_memoryDatabase.SkillMasterTable.TryFindByType(x.Type, out var skill))
                     {
-                        return new SkillVO(skill.Type, skill.PriceRate, skill.Description, x.ToVO());
+                        return new SkillVO(skill.Type, skill.Icon, skill.PriceRate, skill.Description, x.ToVO());
                     }
                     else
                     {
