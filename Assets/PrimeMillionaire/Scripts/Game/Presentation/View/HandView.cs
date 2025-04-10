@@ -35,7 +35,7 @@ namespace PrimeMillionaire.Game.Presentation.View
             for (int i = 0; i < _cardViews.Count; i++)
             {
                 if (_cardViews[i].isActive == false) continue;
-                _cardViews[i].TweenX(pointX, duration);
+                _cardViews[i].TweenX(pointX, duration).WithCancellation(token).Forget();
                 pointX += HandConfig.HAND_INTERVAL;
             }
 
@@ -49,7 +49,9 @@ namespace PrimeMillionaire.Game.Presentation.View
             for (int i = 0; i < _cardViews.Count; i++)
             {
                 _cardViews[i].TweenX(-1300.0f, duration)
-                    .SetDelay(0.05f * i);
+                    .SetDelay(0.05f * i)
+                    .WithCancellation(token)
+                    .Forget();
             }
 
             await UniTaskHelper.DelayAsync(duration + 0.5f, token);
