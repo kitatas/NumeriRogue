@@ -30,20 +30,20 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public async UniTask ActivateBuffAsync(Action update, CancellationToken token)
         {
-            var activateBuffs = _holdSkillEntity.allTypes
-                .Where(x => _buffEntity.HasAnyCurrent(x))
+            var activateSkills = _holdSkillEntity.all
+                .Where(x => _buffEntity.HasAnyCurrent(x.type))
                 .ToList();
 
-            if (activateBuffs.Count > 0)
+            if (activateSkills.Count > 0)
             {
                 await UniTaskHelper.DelayAsync(UiConfig.TWEEN_DURATION, token);
 
-                foreach (var type in activateBuffs)
+                foreach (var skill in activateSkills)
                 {
-                    var fx = _buffRepository.FindFxObject(type);
+                    var fx = _buffRepository.FindFxObject(skill.type);
                     await Router.Default.PublishAsync(new BuffVO(Side.Player, fx), token);
 
-                    ApplySkillEffect(type);
+                    ApplySkillEffect(skill);
                     update?.Invoke();
                 }
             }
@@ -51,15 +51,15 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _buffEntity.ApplyTotal();
         }
 
-        private void ApplySkillEffect(SkillType type)
+        private void ApplySkillEffect(SkillVO skill)
         {
-            if (SkillConfig.DOLLAR_SKILLS.Any(x => x == type))
+            if (SkillConfig.DOLLAR_SKILLS.Any(x => x == skill.type))
             {
-                _dollarEntity.Add(_holdSkillEntity.GetTotalValue(type));
+                _dollarEntity.Add(skill.effect.value);
             }
-            else if (SkillConfig.HEAL_SKILLS.Any(x => x == type))
+            else if (SkillConfig.HEAL_SKILLS.Any(x => x == skill.type))
             {
-                _playerParameterEntity.Heal(_holdSkillEntity.GetTotalValue(type));
+                _playerParameterEntity.Heal(skill.effect.value);
             }
         }
     }
