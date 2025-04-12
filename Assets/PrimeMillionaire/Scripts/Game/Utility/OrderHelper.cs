@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Text;
 
 namespace PrimeMillionaire.Game.Utility
 {
@@ -8,7 +9,7 @@ namespace PrimeMillionaire.Game.Utility
         public static (int[] index, int value) GetOrder(IEnumerable<HandVO> hands, int value)
         {
             var cards = hands
-                .Select(x => x.card)
+                .Select(x => x.card.rank)
                 .ToArray();
 
             var orders = new List<(int[] index, int value)>();
@@ -22,8 +23,7 @@ namespace PrimeMillionaire.Game.Utility
                     {
                         if (k == i || k == j) continue;
 
-                        orders.Add((new[] { i, j, k },
-                            int.Parse($"{cards[i].rank}{cards[j].rank}{cards[k].rank}")));
+                        orders.Add((new[] { i, j, k }, int.Parse(ZString.Concat(cards[i], cards[j], cards[k]))));
                     }
                 }
             }

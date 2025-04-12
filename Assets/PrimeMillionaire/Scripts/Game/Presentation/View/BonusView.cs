@@ -1,4 +1,5 @@
 using System.Threading;
+using Cysharp.Text;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using FastEnumUtility;
@@ -18,8 +19,8 @@ namespace PrimeMillionaire.Game.Presentation.View
 
         public async UniTask TweenAsync(BonusType type, CancellationToken token)
         {
-            bonusType.text = $"{type.FastToString()}";
-            bonusValue.text = $"x {type.ToBonus():0.0}";
+            bonusType.text = ZString.Format("{0}", type.FastToString());
+            bonusValue.text = ZString.Format("x {0:0.0}", type.ToBonus());
 
             await Show(0.25f).WithCancellation(token);
             await UniTaskHelper.DelayAsync(0.25f, token);

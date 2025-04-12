@@ -1,3 +1,4 @@
+using Cysharp.Text;
 using DG.Tweening;
 using PrimeMillionaire.Common;
 using TMPro;
@@ -29,27 +30,27 @@ namespace PrimeMillionaire.Game.Presentation.View
 
         public Tween Render(ParameterVO parameter, float duration)
         {
-            characterName.text = $"{parameter.name}";
+            characterName.text = ZString.Format("{0}", parameter.name);
 
             return DOTween.Sequence()
                 .Append(DOTween.To(
                     () => int.Parse(hp.text),
-                    x => hp.text = $"{x}",
+                    x => hp.text = ZString.Format("{0}", x),
                     parameter.hp,
                     duration))
                 .Join(DOTween.To(
                     () => int.Parse(atk.text),
-                    x => atk.text = $"{x}",
+                    x => atk.text = ZString.Format("{0}", x),
                     parameter.atk,
                     duration))
                 .Join(DOTween.To(
                     () => int.Parse(def.text),
-                    x => def.text = $"{x}",
+                    x => def.text = ZString.Format("{0}", x),
                     parameter.def,
                     duration))
                 .Join(DOTween.To(
                     () => int.Parse(currentHp.text),
-                    x => currentHp.text = $"{x}",
+                    x => currentHp.text = ZString.Format("{0}", x),
                     parameter.currentHp,
                     duration))
                 .Join(DOTween.To(

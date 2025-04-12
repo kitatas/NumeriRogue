@@ -1,4 +1,5 @@
 using System.Threading;
+using Cysharp.Text;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using PrimeMillionaire.Common;
@@ -62,7 +63,7 @@ namespace PrimeMillionaire.Game.Presentation.View
                     .DOFade(1.0f, UiConfig.TWEEN_DURATION))
                 .Append(DOTween.To(
                     () => int.Parse(currentValue.text),
-                    x => currentValue.text = $"{x}",
+                    x => currentValue.text = ZString.Format("{0}", x),
                     value,
                     UiConfig.TWEEN_DURATION));
         }

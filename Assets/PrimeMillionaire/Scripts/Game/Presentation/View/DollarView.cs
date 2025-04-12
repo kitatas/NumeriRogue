@@ -1,3 +1,4 @@
+using Cysharp.Text;
 using DG.Tweening;
 using PrimeMillionaire.Common;
 using TMPro;
@@ -13,7 +14,7 @@ namespace PrimeMillionaire.Game.Presentation.View
         {
             DOTween.To(
                     () => prev,
-                    x => dollarValue.text = $"{x:N0}",
+                    x => dollarValue.text = ZString.Format("{0:N0}", x),
                     current,
                     UiConfig.TWEEN_DURATION
                 )

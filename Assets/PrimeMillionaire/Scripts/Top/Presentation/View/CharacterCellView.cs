@@ -1,3 +1,4 @@
+using Cysharp.Text;
 using FancyScrollView;
 using FastEnumUtility;
 using PrimeMillionaire.Common.Utility;
@@ -33,7 +34,7 @@ namespace PrimeMillionaire.Top.Presentation.View
         public override void UpdateContent(StageCharacterVO value)
         {
             this.LoadAsset<Sprite>(value.character.imgPath, x => chara.sprite = x);
-            characterId.text = $"No.{value.character.type.ToInt32():000}";
+            characterId.text = ZString.Format("No.{0:000}", value.character.type.ToInt32());
             characterName.text = value.character.name;
 
             newLabel.SetActive(value.progress.isNew);

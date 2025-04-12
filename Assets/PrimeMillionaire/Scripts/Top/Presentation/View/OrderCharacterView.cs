@@ -1,4 +1,5 @@
 using System.Threading;
+using Cysharp.Text;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common.Utility;
 using TMPro;
@@ -21,9 +22,9 @@ namespace PrimeMillionaire.Top.Presentation.View
             var img = await ResourceHelper.LoadAsync<Sprite>(value.character.imgPath, token);
             chara.sprite = img;
             charaName.text = value.character.name;
-            hp.text = $"{value.character.parameter.hp}";
-            atk.text = $"{value.character.parameter.atk}";
-            def.text = $"{value.character.parameter.def}";
+            hp.text = ZString.Format("{0}", value.character.parameter.hp);
+            atk.text = ZString.Format("{0}", value.character.parameter.atk);
+            def.text = ZString.Format("{0}", value.character.parameter.def);
             deckView.Render(value.deck);
         }
     }

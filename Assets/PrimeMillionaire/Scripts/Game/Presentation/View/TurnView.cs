@@ -1,3 +1,4 @@
+using Cysharp.Text;
 using TMPro;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace PrimeMillionaire.Game.Presentation.View
 
         public void Render(int value)
         {
-            turnValue.text = $"{value}";
+            turnValue.text = ZString.Format("{0}", value);
         }
     }
 }

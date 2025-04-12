@@ -1,4 +1,5 @@
 using System.Threading;
+using Cysharp.Text;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Utility;
@@ -27,9 +28,9 @@ namespace PrimeMillionaire.Game.Presentation.View
             description.text = skill.description;
             button.gameObject.SetActive(true);
             button.interactable = isInteractable;
-            buttonText.text = skill.isHold ? "Trash" : $"${skill.price}";
+            buttonText.text = skill.isHold ? "Trash" : ZString.Format("${0}", skill.price);
 
-            icon.sprite = await ResourceHelper.LoadAsync<Sprite>(skill.icon, token);
+            icon.sprite = await ResourceHelper.LoadAsync<Sprite>(skill.iconPath, token);
         }
 
         public async UniTask RenderEmptyAsync(CancellationToken token)

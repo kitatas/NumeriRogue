@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Cysharp.Text;
 using FastEnumUtility;
 using PrimeMillionaire.Common.Utility;
 using UnityEngine;
@@ -29,14 +30,14 @@ namespace PrimeMillionaire.Common
     {
         public Suit suit;
         public int rank;
-        public string imgPath;
 
         public CardVO(int suit, int rank)
         {
             this.suit = suit.ToSuit();
             this.rank = rank;
-            this.imgPath = $"Assets/Externals/Sprites/Cards/cards.png[card_{this.suit.FastToString().ToLower()}s_{rank}]";
         }
+
+        public string imgPath => ZString.Format("Assets/Externals/Sprites/Cards/cards.png[card_{0}s_{1}]", suit.FastToString().ToLower(), rank);
     }
 
     [Serializable]
@@ -65,8 +66,8 @@ namespace PrimeMillionaire.Common
             this.parameter = new ParameterVO(type, hp, atk, def);
         }
 
-        public string objPath => $"Assets/PrimeMillionaire/Prefabs/Characters/Character - {name}.prefab";
-        public string imgPath => $"Assets/Externals/Sprites/Characters/boss_{name.ToLower()}.png[boss_{name.ToLower()}_101]";
+        public string objPath => ZString.Format("Assets/PrimeMillionaire/Prefabs/Characters/Character - {0}.prefab", name);
+        public string imgPath => ZString.Format("Assets/Externals/Sprites/Characters/boss_{0}.png[boss_{0}_101]", name.ToLower());
     }
 
     [Serializable]
@@ -122,11 +123,13 @@ namespace PrimeMillionaire.Common
         public SkillVO(int type, string icon, int priceRate, string description, SkillEffectVO effect)
         {
             this.type = type.ToSkillType();
-            this.icon = $"Assets/Externals/Sprites/Skills/{icon}.png[{icon}]";
+            this.icon = icon;
             this.price = effect.value * priceRate;
-            this.description = string.Format(description, effect.value);
+            this.description = ZString.Format(description, effect.value);
             this.effect = effect;
         }
+
+        public string iconPath => ZString.Format("Assets/Externals/Sprites/Skills/{0}.png[{0}]", icon);
     }
 
     [Serializable]
@@ -172,9 +175,9 @@ namespace PrimeMillionaire.Common
 
         public bool hasGlow => type is StageType.Abyssian or StageType.Redrock;
 
-        public string bgPath => $"Assets/Externals/Sprites/Stages/{lowerName}/background@2x.jpg[background@2x_0]";
-        public string mgPath => $"Assets/Externals/Sprites/Stages/{lowerName}/midground@2x.png[midground@2x_0]";
-        public string glowPath => $"Assets/Externals/Sprites/Stages/{lowerName}/midground_glow@2x.png[midground_glow@2x_0]";
+        public string bgPath => ZString.Format("Assets/Externals/Sprites/Stages/{0}/background@2x.jpg[background@2x_0]", lowerName);
+        public string mgPath => ZString.Format("Assets/Externals/Sprites/Stages/{0}/midground@2x.png[midground@2x_0]", lowerName);
+        public string glowPath => ZString.Format("Assets/Externals/Sprites/Stages/{0}/midground_glow@2x.png[midground_glow@2x_0]", lowerName);
     }
 
     public sealed class DropRateVO
@@ -281,8 +284,9 @@ namespace PrimeMillionaire.Common
         public ExceptionVO(string message) : base(message)
         {
         }
-        
-        public virtual string message => $"{base.Message}\n{ExceptionConfig.QUIT_MESSAGE}";
+
+        public virtual string exceptionMessage => ExceptionConfig.QUIT_MESSAGE;
+        public string message => ZString.Format("{0}\n{1}", base.Message, exceptionMessage);
     }
 
     public sealed class RebootExceptionVO : ExceptionVO
@@ -291,7 +295,7 @@ namespace PrimeMillionaire.Common
         {
         }
 
-        public override string message => $"{base.Message}\n{ExceptionConfig.REBOOT_MESSAGE}";
+        public override string exceptionMessage => ExceptionConfig.REBOOT_MESSAGE;
     }
 
     public sealed class RetryExceptionVO : ExceptionVO
@@ -300,7 +304,7 @@ namespace PrimeMillionaire.Common
         {
         }
 
-        public override string message => $"{base.Message}\n{ExceptionConfig.RETRY_MESSAGE}";
+        public override string exceptionMessage => ExceptionConfig.RETRY_MESSAGE;
     }
 
     public sealed class QuitExceptionVO : ExceptionVO
@@ -308,7 +312,5 @@ namespace PrimeMillionaire.Common
         public QuitExceptionVO(string message) : base(message)
         {
         }
-
-        public override string message => $"{base.Message}\n{ExceptionConfig.QUIT_MESSAGE}";
     }
 }

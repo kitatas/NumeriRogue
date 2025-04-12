@@ -1,3 +1,4 @@
+using Cysharp.Text;
 using DG.Tweening;
 using PrimeMillionaire.Common;
 using TMPro;
@@ -14,7 +15,7 @@ namespace PrimeMillionaire.Game.Presentation.View
         {
             return DOTween.To(
                 () => int.Parse(player.text),
-                x => player.text = $"{x}",
+                x => player.text = ZString.Format("{0}", x),
                 value,
                 UiConfig.TWEEN_DURATION);
         }
@@ -23,7 +24,7 @@ namespace PrimeMillionaire.Game.Presentation.View
         {
             return DOTween.To(
                 () => int.Parse(enemy.text),
-                x => enemy.text = $"{x}",
+                x => enemy.text = ZString.Format("{0}", x),
                 value,
                 UiConfig.TWEEN_DURATION);
         }

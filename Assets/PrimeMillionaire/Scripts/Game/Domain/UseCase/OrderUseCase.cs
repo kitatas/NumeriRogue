@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Threading;
+using Cysharp.Text;
 using Cysharp.Threading.Tasks;
 using ObservableCollections;
 using PrimeMillionaire.Common;
@@ -68,7 +69,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public int currentValue => _orders.Any(x => x.card == null)
             ? 0
-            : int.Parse(string.Join("", _orders.Select(x => x.card.rank)));
+            : int.Parse(ZString.Concat(_orders.Select(x => x.card.rank)));
 
         public int currentValueWithBonus => _bonusEntity.CalcOrderValue(currentValue);
 

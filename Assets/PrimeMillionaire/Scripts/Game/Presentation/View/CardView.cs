@@ -1,4 +1,5 @@
 using System.Threading;
+using Cysharp.Text;
 using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Triggers;
 using DG.Tweening;
@@ -39,14 +40,7 @@ namespace PrimeMillionaire.Game.Presentation.View
 
         public void RenderOrderNo(int no)
         {
-            if (isOrder)
-            {
-                orderNo.text = $"{no}";
-            }
-            else
-            {
-                orderNo.text = $"";
-            }
+            orderNo.text = isOrder ? ZString.Format("{0}", no) : "";
         }
 
         public Tween TweenX(float value, float duration)
