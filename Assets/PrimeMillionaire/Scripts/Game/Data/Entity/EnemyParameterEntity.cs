@@ -6,6 +6,6 @@ namespace PrimeMillionaire.Game.Data.Entity
     {
         public void Init(ParameterVO parameter, LevelVO level) => Init(new ParameterVO(parameter, level));
 
-        public EnemyParameterVO ToVO() => new(_parameter, currentHp, additionalHp);
+        public EnemyParameterVO ToVO() => new(_parameter, currentHp);
     }
 }

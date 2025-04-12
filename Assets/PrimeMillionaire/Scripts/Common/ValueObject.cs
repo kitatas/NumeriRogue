@@ -88,13 +88,13 @@ namespace PrimeMillionaire.Common
             this.currentHp = hp;
         }
 
-        public ParameterVO(ParameterVO parameter, int currentHp, int additionalHp)
+        public ParameterVO(ParameterVO parameter, int currentHp)
         {
             this.type = parameter.type;
-            this.hp = parameter.hp + additionalHp;
+            this.hp = parameter.hp;
             this.atk = parameter.atk;
             this.def = parameter.def;
-            this.currentHp = currentHp + additionalHp;
+            this.currentHp = currentHp;
         }
 
         public ParameterVO(ParameterVO parameter, LevelVO level)

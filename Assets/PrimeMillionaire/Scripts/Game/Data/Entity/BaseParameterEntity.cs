@@ -7,14 +7,11 @@ namespace PrimeMillionaire.Game.Data.Entity
     {
         protected ParameterVO _parameter;
         private int _hp;
-        private int _additionalHp;
 
         public virtual int maxHp => _parameter.hp;
         public virtual int atk => _parameter.atk;
         public virtual int def => _parameter.def;
         public virtual int currentHp => _hp;
-        public virtual int additionalHp => _additionalHp;
-        public virtual int currentHpWithAdditional => currentHp + additionalHp;
 
         public void Init(ParameterVO parameter)
         {

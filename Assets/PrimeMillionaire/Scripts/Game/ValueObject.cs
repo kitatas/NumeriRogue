@@ -11,8 +11,7 @@ namespace PrimeMillionaire.Game
         {
         }
 
-        public PlayerParameterVO(ParameterVO parameter, int currentHp, int additionalHp) : base(parameter, currentHp,
-            additionalHp)
+        public PlayerParameterVO(ParameterVO parameter, int currentHp) : base(parameter, currentHp)
         {
         }
     }
@@ -23,8 +22,7 @@ namespace PrimeMillionaire.Game
         {
         }
 
-        public EnemyParameterVO(ParameterVO parameter, int currentHp, int additionalHp) : base(parameter, currentHp,
-            additionalHp)
+        public EnemyParameterVO(ParameterVO parameter, int currentHp) : base(parameter, currentHp)
         {
         }
     }

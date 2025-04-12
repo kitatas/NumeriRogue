@@ -34,11 +34,11 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         {
             if (_playerBattlePtEntity.currentValue >= _enemyBattlePtEntity.currentValue)
             {
-                return _enemyParameterEntity.currentHpWithAdditional <= GetEnemyDamage();
+                return _enemyParameterEntity.currentHp <= GetEnemyDamage();
             }
             else
             {
-                return _playerParameterEntity.currentHpWithAdditional <= GetPlayerDamage();
+                return _playerParameterEntity.currentHp <= GetPlayerDamage();
             }
         }
 
