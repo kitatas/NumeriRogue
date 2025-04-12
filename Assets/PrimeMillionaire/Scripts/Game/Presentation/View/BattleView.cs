@@ -57,7 +57,7 @@ namespace PrimeMillionaire.Game.Presentation.View
             });
             await UniTaskHelper.DelayAsync(1.5f, token);
 
-            var x = GetDefaultPositionX(attacker);
+            var x = GetTransform(attacker).localPosition.x;
             await attackerView.TweenPositionX(x, CharacterConfig.MOVE_TIME)
                 .WithCancellation(token);
         }
@@ -72,12 +72,12 @@ namespace PrimeMillionaire.Game.Presentation.View
             };
         }
 
-        private float GetDefaultPositionX(Side side)
+        private Transform GetTransform(Side side)
         {
             return side switch
             {
-                Side.Player => player.localPosition.x,
-                Side.Enemy => enemy.localPosition.x,
+                Side.Player => player,
+                Side.Enemy => enemy,
                 _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE),
             };
         }
@@ -89,14 +89,7 @@ namespace PrimeMillionaire.Game.Presentation.View
 
         public void PlayBuff(BuffVO buff)
         {
-            var parent = buff.side switch
-            {
-                Side.Player => player,
-                Side.Enemy => enemy,
-                _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE)
-            };
-
-            var fx = Instantiate(buff.fxObject, parent);
+            var fx = Instantiate(buff.fxObject, GetTransform(buff.side));
             Destroy(fx, 3.0f);
         }
     }
