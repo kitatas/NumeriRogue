@@ -2,7 +2,6 @@ using PrimeMillionaire.Boot.Domain.UseCase;
 using PrimeMillionaire.Boot.Presentation.Presenter;
 using PrimeMillionaire.Boot.Presentation.State;
 using PrimeMillionaire.Boot.Presentation.View;
-using PrimeMillionaire.Boot.Presentation.View.Modal;
 using VContainer;
 using VContainer.Unity;
 

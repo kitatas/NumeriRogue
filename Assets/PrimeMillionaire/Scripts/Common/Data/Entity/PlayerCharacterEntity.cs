@@ -1,5 +1,3 @@
-using FastEnumUtility;
-
 namespace PrimeMillionaire.Common.Data.Entity
 {
     public sealed class PlayerCharacterEntity
@@ -13,7 +11,5 @@ namespace PrimeMillionaire.Common.Data.Entity
             if (value == CharacterType.None) throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_CHARACTER);
             _type = value;
         }
-
-        public int typeToInt => type.ToInt32();
     }
 }

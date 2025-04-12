@@ -16,21 +16,6 @@ namespace PrimeMillionaire.Common.Domain.Repository
             _memoryDatabase = memoryDatabase;
         }
 
-        public List<CharacterVO> GetAll()
-        {
-            return _memoryDatabase.CharacterMasterTable.All
-                .Select(x => x.ToVO())
-                .ToList();
-        }
-
-        public List<CharacterVO> GetUpto(int characterNo)
-        {
-            return _memoryDatabase.CharacterMasterTable.All
-                .Where(x => x.Type <= characterNo)
-                .Select(x => x.ToVO())
-                .ToList();
-        }
-
         public List<CharacterVO> GetReleased(ProgressVO progress)
         {
             var released = progress.characterProgress

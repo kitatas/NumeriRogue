@@ -13,7 +13,7 @@ namespace PrimeMillionaire.Game.Domain.Repository
 
         public bool IsExist(int value)
         {
-            return _memoryDatabase.PrimeNumberMasterTable.TryFindByValue(value, out var master);
+            return _memoryDatabase.PrimeNumberMasterTable.TryFindByValue(value, out _);
         }
     }
 }

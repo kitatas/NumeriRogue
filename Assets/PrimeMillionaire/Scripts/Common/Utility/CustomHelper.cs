@@ -33,11 +33,6 @@ namespace PrimeMillionaire.Common.Utility
         {
             return await Addressables.LoadAssetAsync<T>(path).WithCancellation(token);
         }
-
-        public static async UniTask<T> LoadExternalsAsync<T>(string path, CancellationToken token) where T : Object
-        {
-            return await LoadAsync<T>($"Assets/Externals/{path}", token);
-        }
     }
 
     public static class UniTaskHelper

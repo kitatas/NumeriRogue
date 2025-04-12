@@ -10,13 +10,11 @@ namespace PrimeMillionaire.Game.Domain.UseCase
     public sealed class HoldSkillUseCase
     {
         private readonly HoldSkillEntity _holdSkillEntity;
-        private readonly PlayerParameterEntity _playerParameterEntity;
         private readonly ReactiveProperty<int> _holdCount;
 
-        public HoldSkillUseCase(HoldSkillEntity holdSkillEntity, PlayerParameterEntity playerParameterEntity)
+        public HoldSkillUseCase(HoldSkillEntity holdSkillEntity)
         {
             _holdSkillEntity = holdSkillEntity;
-            _playerParameterEntity = playerParameterEntity;
             _holdCount = new ReactiveProperty<int>(_holdSkillEntity.count);
         }
 
@@ -36,8 +34,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _holdSkillEntity.Add(skill);
             _holdCount.Value = _holdSkillEntity.count;
             await (
-                ApplyViewAsync(token),
-                ApplyParameterAsync(skill.type, token)
+                ApplyViewAsync(token)
             );
         }
 
@@ -46,19 +43,13 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _holdSkillEntity.Remove(skill);
             _holdCount.Value = _holdSkillEntity.count;
             await (
-                ApplyViewAsync(token),
-                ApplyParameterAsync(skill.type, token)
+                ApplyViewAsync(token)
             );
         }
 
         public async UniTask ApplyViewAsync(CancellationToken token)
         {
             await Router.Default.PublishAsync(_holdSkillEntity.ToVO(), token);
-        }
-
-        public async UniTask ApplyParameterAsync(SkillType type, CancellationToken token)
-        {
-            await UniTask.Yield(token);
         }
     }
 }

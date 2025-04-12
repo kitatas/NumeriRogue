@@ -29,9 +29,9 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _primeNumberRepository = primeNumberRepository;
             _orders = new ObservableList<OrderVO>(HandConfig.ORDER_NUM)
             {
-                new OrderVO(),
-                new OrderVO(),
-                new OrderVO(),
+                new(),
+                new(),
+                new(),
             };
         }
 
