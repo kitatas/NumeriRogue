@@ -6,7 +6,6 @@ using ObservableCollections;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Utility;
 using PrimeMillionaire.Game.Data.Entity;
-using PrimeMillionaire.Game.Domain.Repository;
 using UniEx;
 using VitalRouter;
 
@@ -17,16 +16,14 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         private readonly BonusEntity _bonusEntity;
         private readonly BuffEntity _buffEntity;
         private readonly CommunityBattlePtEntity _communityBattlePtEntity;
-        private readonly PrimeNumberRepository _primeNumberRepository;
         private readonly ObservableList<OrderVO> _orders;
 
-        public OrderUseCase(BonusEntity bonusEntity, BuffEntity buffEntity, CommunityBattlePtEntity communityBattlePtEntity,
-            PrimeNumberRepository primeNumberRepository)
+        public OrderUseCase(BonusEntity bonusEntity, BuffEntity buffEntity,
+            CommunityBattlePtEntity communityBattlePtEntity)
         {
             _bonusEntity = bonusEntity;
             _buffEntity = buffEntity;
             _communityBattlePtEntity = communityBattlePtEntity;
-            _primeNumberRepository = primeNumberRepository;
             _orders = new ObservableList<OrderVO>(HandConfig.ORDER_NUM)
             {
                 new(),
@@ -73,7 +70,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public int currentValueWithBonus => _bonusEntity.CalcOrderValue(currentValue);
 
-        private bool isPrimeNumber => _primeNumberRepository.IsExist(currentValue);
+        private bool isPrimeNumber => false;
 
         private bool isSameNumbers => _orders.GroupBy(x => x.card.rank).Count() == 1;
 

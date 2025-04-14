@@ -27,7 +27,6 @@ namespace PrimeMillionaire.Editor.Scripts
             databaseBuilder.Append(DeserializeJson<CharacterMaster>("character"));
             databaseBuilder.Append(DeserializeJson<DeckMaster>("deck"));
             databaseBuilder.Append(DeserializeJson<DropRateMaster>("drop_rate"));
-            databaseBuilder.Append(GetPrimeNumberMaster());
             databaseBuilder.Append(DeserializeJson<SkillEffectMaster>("skill_effect"));
             databaseBuilder.Append(DeserializeJson<SkillMaster>("skill"));
             databaseBuilder.Append(DeserializeJson<LevelMaster>("level"));
@@ -48,27 +47,6 @@ namespace PrimeMillionaire.Editor.Scripts
         {
             var json = File.ReadAllText($"Master/Jsons/{fileName}.json");
             return JsonConvert.DeserializeObject<List<T>>(json);
-        }
-
-        private static List<PrimeNumberMaster> GetPrimeNumberMaster()
-        {
-            var primeNumberMaster = new List<PrimeNumberMaster>();
-            for (int i = 111; i < 131313; i += 2)
-            {
-                if (IsPrime(i)) primeNumberMaster.Add(new PrimeNumberMaster(i));
-            }
-
-            return primeNumberMaster;
-        }
-
-        private static bool IsPrime(int value)
-        {
-            for (int i = 3; i * i <= value; i += 2)
-            {
-                if (value % i == 0) return false;
-            }
-
-            return true;
         }
     }
 }
