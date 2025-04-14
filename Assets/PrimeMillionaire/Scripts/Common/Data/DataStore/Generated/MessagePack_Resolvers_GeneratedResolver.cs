@@ -47,15 +47,16 @@ namespace MessagePack.Resolvers
 
         static GeneratedResolverGetFormatterHelper()
         {
-            lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(7)
+            lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(8)
             {
                 { typeof(global::PrimeMillionaire.Common.Data.DataStore.CardMaster), 0 },
                 { typeof(global::PrimeMillionaire.Common.Data.DataStore.CharacterMaster), 1 },
                 { typeof(global::PrimeMillionaire.Common.Data.DataStore.DeckMaster), 2 },
                 { typeof(global::PrimeMillionaire.Common.Data.DataStore.DropRateMaster), 3 },
                 { typeof(global::PrimeMillionaire.Common.Data.DataStore.LevelMaster), 4 },
-                { typeof(global::PrimeMillionaire.Common.Data.DataStore.SkillEffectMaster), 5 },
-                { typeof(global::PrimeMillionaire.Common.Data.DataStore.SkillMaster), 6 },
+                { typeof(global::PrimeMillionaire.Common.Data.DataStore.NumericMaster), 5 },
+                { typeof(global::PrimeMillionaire.Common.Data.DataStore.SkillEffectMaster), 6 },
+                { typeof(global::PrimeMillionaire.Common.Data.DataStore.SkillMaster), 7 },
             };
         }
 
@@ -74,8 +75,9 @@ namespace MessagePack.Resolvers
                 case 2: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.DeckMasterFormatter();
                 case 3: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.DropRateMasterFormatter();
                 case 4: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.LevelMasterFormatter();
-                case 5: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.SkillEffectMasterFormatter();
-                case 6: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.SkillMasterFormatter();
+                case 5: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.NumericMasterFormatter();
+                case 6: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.SkillEffectMasterFormatter();
+                case 7: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.SkillMasterFormatter();
                 default: return null;
             }
         }
