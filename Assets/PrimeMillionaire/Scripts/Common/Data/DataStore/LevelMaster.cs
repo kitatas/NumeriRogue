@@ -6,14 +6,14 @@ namespace PrimeMillionaire.Common.Data.DataStore
     [MemoryTable(nameof(LevelMaster)), MessagePackObject(true)]
     public sealed class LevelMaster
     {
-        public LevelMaster(int level, float rate)
+        public LevelMaster(int level, int rate)
         {
             Level = level;
             Rate = rate;
         }
 
         [PrimaryKey] public int Level { get; }
-        public float Rate { get; }
+        public int Rate { get; }
 
         public LevelVO ToVO() => new(Level, Rate);
     }

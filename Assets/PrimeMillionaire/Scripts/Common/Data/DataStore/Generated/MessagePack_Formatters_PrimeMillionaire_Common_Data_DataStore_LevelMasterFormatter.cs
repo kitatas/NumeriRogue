@@ -48,7 +48,7 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
             options.Security.DepthStep(ref reader);
             var length = reader.ReadMapHeader();
             var __Level__ = default(int);
-            var __Rate__ = default(float);
+            var __Rate__ = default(int);
 
             for (int i = 0; i < length; i++)
             {
@@ -67,7 +67,7 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
                     case 4:
                         if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 1702125906UL) { goto FAIL; }
 
-                        __Rate__ = reader.ReadSingle();
+                        __Rate__ = reader.ReadInt32();
                         continue;
 
                 }

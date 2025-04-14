@@ -197,10 +197,10 @@ namespace PrimeMillionaire.Common
         public readonly int level;
         public readonly float rate;
 
-        public LevelVO(int level, float rate)
+        public LevelVO(int level, int rate)
         {
             this.level = level;
-            this.rate = rate;
+            this.rate = rate / 100.0f;
         }
     }
 
