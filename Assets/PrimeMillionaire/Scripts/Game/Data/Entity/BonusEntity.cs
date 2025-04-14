@@ -1,32 +1,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using PrimeMillionaire.Common;
-using PrimeMillionaire.Game.Utility;
 
 namespace PrimeMillionaire.Game.Data.Entity
 {
     public sealed class BonusEntity
     {
-        private readonly List<BonusType> _bonusTypes;
+        private readonly List<BonusVO> _bonusList;
 
         public BonusEntity()
         {
-            _bonusTypes = new List<BonusType>();
+            _bonusList = new List<BonusVO>();
         }
 
-        public void Add(BonusType type)
+        public void Add(BonusVO value)
         {
-            if (type == BonusType.None) throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_BONUS);
-            _bonusTypes.Add(type);
+            if (value.type == BonusType.None) throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_BONUS);
+            _bonusList.Add(value);
         }
 
-        public void Clear() => _bonusTypes.Clear();
+        public void Clear() => _bonusList.Clear();
 
         public int CalcOrderValue(int value)
         {
-            return _bonusTypes.Aggregate(value, (current, type) => (int)(current * type.ToBonus()));
+            return _bonusList.Aggregate(value, (current, bonus) => (int)(current * bonus.value));
         }
 
-        public BonusVO ToVO() => new(_bonusTypes);
+        public List<BonusVO> ToVO() => _bonusList;
     }
 }

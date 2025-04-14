@@ -3,8 +3,8 @@ using Cysharp.Text;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using FastEnumUtility;
+using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Utility;
-using PrimeMillionaire.Game.Utility;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,10 +17,10 @@ namespace PrimeMillionaire.Game.Presentation.View
         [SerializeField] private TextMeshProUGUI bonusType = default;
         [SerializeField] private TextMeshProUGUI bonusValue = default;
 
-        public async UniTask TweenAsync(BonusType type, CancellationToken token)
+        public async UniTask TweenAsync(BonusVO bonus, CancellationToken token)
         {
-            bonusType.text = ZString.Format("{0}", type.FastToString());
-            bonusValue.text = ZString.Format("x {0:0.0}", type.ToBonus());
+            bonusType.text = ZString.Format("{0}", bonus.type.FastToString());
+            bonusValue.text = ZString.Format("x {0:0.0}", bonus.value);
 
             await Show(0.25f).WithCancellation(token);
             await UniTaskHelper.DelayAsync(0.25f, token);

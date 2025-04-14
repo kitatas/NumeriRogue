@@ -3,7 +3,6 @@ using Cysharp.Text;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using PrimeMillionaire.Common;
-using PrimeMillionaire.Game.Utility;
 using TMPro;
 using UniEx;
 using UnityEngine;
@@ -48,10 +47,10 @@ namespace PrimeMillionaire.Game.Presentation.View
             var value = orderValue.value;
             await TweenOrderValue(value).WithCancellation(token);
 
-            foreach (var type in orderValue.bonus.types)
+            foreach (var bonus in orderValue.bonus)
             {
-                value = (int)(value * type.ToBonus());
-                await bonusView.TweenAsync(type, token);
+                value = (int)(value * bonus.value);
+                await bonusView.TweenAsync(bonus, token);
                 await TweenOrderValue(value).WithCancellation(token);
             }
         }

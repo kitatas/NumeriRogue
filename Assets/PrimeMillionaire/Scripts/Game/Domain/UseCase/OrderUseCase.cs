@@ -73,10 +73,6 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public int currentValueWithBonus => _bonusEntity.CalcOrderValue(currentValue);
 
-        private bool isPrimeNumber => _numericRepository.IsExistPrimeNumber(currentValue);
-
-        private bool isSameNumbers => _numericRepository.IsExistSameNumbers(currentValue);
-
         private bool isSuitMatch => _orders.GroupBy(x => x.card.suit).Count() == 1;
 
         private bool isValueDown => _communityBattlePtEntity.currentValue >= currentValue;
@@ -96,7 +92,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 _buffEntity.Add(SkillType.OddDef);
             }
 
-            if (isPrimeNumber)
+            if (_numericRepository.IsExistPrimeNumber(currentValue))
             {
                 _buffEntity.Add(SkillType.PrimeNumber);
                 _buffEntity.Add(SkillType.PrimeNumberAtk);
@@ -111,7 +107,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 _buffEntity.Add(SkillType.NotPrimeNumberDef);
             }
 
-            if (isSameNumbers)
+            if (_numericRepository.IsExistSameNumbers(currentValue))
             {
                 _buffEntity.Add(SkillType.SameNumbers);
                 _buffEntity.Add(SkillType.SameNumbersAtk);
@@ -164,10 +160,10 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         public async UniTask PushValueAsync(CancellationToken token)
         {
             _bonusEntity.Clear();
-            if (isPrimeNumber) _bonusEntity.Add(BonusType.PrimeNumber);
-            if (isSameNumbers) _bonusEntity.Add(BonusType.SameNumbers);
-            if (isSuitMatch) _bonusEntity.Add(BonusType.SuitMatch);
-            if (isValueDown) _bonusEntity.Add(BonusType.ValueDown);
+
+            foreach (var bonus in _numericRepository.Finds(currentValue)) _bonusEntity.Add(bonus);
+            if (isSuitMatch) _bonusEntity.Add(_numericRepository.Find(BonusType.SuitMatch));
+            if (isValueDown) _bonusEntity.Add(_numericRepository.Find(BonusType.ValueDown));
 
             await Router.Default.PublishAsync(new OrderValueVO(currentValue, _bonusEntity.ToVO()), token);
             await UniTaskHelper.DelayAsync(1.0f, token);

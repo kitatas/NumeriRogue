@@ -1,6 +1,9 @@
+using System.Collections.Generic;
 using System.Linq;
+using FastEnumUtility;
+using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Data.DataStore;
-using PrimeMillionaire.Game.Utility;
+using PrimeMillionaire.Common.Utility;
 
 namespace PrimeMillionaire.Game.Domain.Repository
 {
@@ -20,6 +23,25 @@ namespace PrimeMillionaire.Game.Domain.Repository
         {
             return _memoryDatabase.NumericMasterTable.FindByValue(value)
                 .Any(x => x.Bonus.ToBonusType() == type);
+        }
+
+        public BonusVO Find(BonusType type)
+        {
+            if (_memoryDatabase.NumericBonusMasterTable.TryFindByType(type.ToInt32(), out var master))
+            {
+                return master.ToVO();
+            }
+            else
+            {
+                throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_BONUS);
+            }
+        }
+
+        public IEnumerable<BonusVO> Finds(int value)
+        {
+            return _memoryDatabase.NumericMasterTable.FindByValue(value)
+                .Select(x => Find(x.Bonus.ToBonusType()))
+                .OrderBy(x => x.type);
         }
     }
 }

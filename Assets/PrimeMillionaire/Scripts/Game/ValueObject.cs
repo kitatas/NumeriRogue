@@ -57,9 +57,9 @@ namespace PrimeMillionaire.Game
     public sealed class OrderValueVO : ICommand
     {
         public readonly int value;
-        public readonly BonusVO bonus;
+        public readonly List<BonusVO> bonus;
 
-        public OrderValueVO(int value, BonusVO bonus)
+        public OrderValueVO(int value, List<BonusVO> bonus)
         {
             this.value = value;
             this.bonus = bonus;
@@ -88,16 +88,6 @@ namespace PrimeMillionaire.Game
         {
             this.side = side;
             this.fxObject = fxObject;
-        }
-    }
-
-    public sealed class BonusVO
-    {
-        public readonly List<BonusType> types;
-
-        public BonusVO(List<BonusType> types)
-        {
-            this.types = types;
         }
     }
 
