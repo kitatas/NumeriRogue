@@ -41,6 +41,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.Register<BuffRepository>(Lifetime.Scoped);
             builder.Register<DropRepository>(Lifetime.Scoped);
             builder.Register<LevelRepository>(Lifetime.Scoped);
+            builder.Register<NumericRepository>(Lifetime.Scoped);
             builder.Register<SkillRepository>(Lifetime.Scoped);
 
             // UseCase

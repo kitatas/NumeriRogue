@@ -6,6 +6,7 @@ using ObservableCollections;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Utility;
 using PrimeMillionaire.Game.Data.Entity;
+using PrimeMillionaire.Game.Domain.Repository;
 using UniEx;
 using VitalRouter;
 
@@ -16,14 +17,16 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         private readonly BonusEntity _bonusEntity;
         private readonly BuffEntity _buffEntity;
         private readonly CommunityBattlePtEntity _communityBattlePtEntity;
+        private readonly NumericRepository _numericRepository;
         private readonly ObservableList<OrderVO> _orders;
 
         public OrderUseCase(BonusEntity bonusEntity, BuffEntity buffEntity,
-            CommunityBattlePtEntity communityBattlePtEntity)
+            CommunityBattlePtEntity communityBattlePtEntity, NumericRepository numericRepository)
         {
             _bonusEntity = bonusEntity;
             _buffEntity = buffEntity;
             _communityBattlePtEntity = communityBattlePtEntity;
+            _numericRepository = numericRepository;
             _orders = new ObservableList<OrderVO>(HandConfig.ORDER_NUM)
             {
                 new(),
@@ -70,12 +73,11 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public int currentValueWithBonus => _bonusEntity.CalcOrderValue(currentValue);
 
-        private bool isPrimeNumber => false;
+        private bool isPrimeNumber => _numericRepository.IsExistPrimeNumber(currentValue);
 
-        private bool isSameNumbers => _orders.GroupBy(x => x.card.rank).Count() == 1;
+        private bool isSameNumbers => _numericRepository.IsExistSameNumbers(currentValue);
 
-        private bool isSuitMatch => _orders.Any(x => x.card != null) &&
-                                    _orders.Select(x => x.card.suit).GroupBy(x => x).Count() == 1;
+        private bool isSuitMatch => _orders.GroupBy(x => x.card.suit).Count() == 1;
 
         private bool isValueDown => _communityBattlePtEntity.currentValue >= currentValue;
 

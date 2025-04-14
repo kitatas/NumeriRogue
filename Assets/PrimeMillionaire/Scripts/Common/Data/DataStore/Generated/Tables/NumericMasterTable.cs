@@ -57,7 +57,7 @@ namespace PrimeMillionaire.Common.Data.DataStore.Tables
                 new MasterMemory.Meta.MetaProperty[]
                 {
                     new MasterMemory.Meta.MetaProperty(typeof(NumericMaster).GetProperty("Value")),
-                    new MasterMemory.Meta.MetaProperty(typeof(NumericMaster).GetProperty("Target")),
+                    new MasterMemory.Meta.MetaProperty(typeof(NumericMaster).GetProperty("Bonus")),
                 },
                 new MasterMemory.Meta.MetaIndex[]{
                     new MasterMemory.Meta.MetaIndex(new System.Reflection.PropertyInfo[] {

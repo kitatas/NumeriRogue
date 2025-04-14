@@ -6,13 +6,13 @@ namespace PrimeMillionaire.Common.Data.DataStore
     [MemoryTable(nameof(NumericMaster)), MessagePackObject(true)]
     public sealed class NumericMaster
     {
-        public NumericMaster(int value, int target)
+        public NumericMaster(int value, int bonus)
         {
             Value = value;
-            Target = target;
+            Bonus = bonus;
         }
 
         [PrimaryKey, NonUnique] public int Value { get; }
-        public int Target { get; }
+        public int Bonus { get; }
     }
 }

@@ -20,8 +20,8 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
     {
         // Value
         private static global::System.ReadOnlySpan<byte> GetSpan_Value() => new byte[1 + 5] { 165, 86, 97, 108, 117, 101 };
-        // Target
-        private static global::System.ReadOnlySpan<byte> GetSpan_Target() => new byte[1 + 6] { 166, 84, 97, 114, 103, 101, 116 };
+        // Bonus
+        private static global::System.ReadOnlySpan<byte> GetSpan_Bonus() => new byte[1 + 5] { 165, 66, 111, 110, 117, 115 };
 
         public void Serialize(ref global::MessagePack.MessagePackWriter writer, global::PrimeMillionaire.Common.Data.DataStore.NumericMaster value, global::MessagePack.MessagePackSerializerOptions options)
         {
@@ -34,8 +34,8 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
             writer.WriteMapHeader(2);
             writer.WriteRaw(GetSpan_Value());
             writer.Write(value.Value);
-            writer.WriteRaw(GetSpan_Target());
-            writer.Write(value.Target);
+            writer.WriteRaw(GetSpan_Bonus());
+            writer.Write(value.Bonus);
         }
 
         public global::PrimeMillionaire.Common.Data.DataStore.NumericMaster Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)
@@ -48,7 +48,7 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
             options.Security.DepthStep(ref reader);
             var length = reader.ReadMapHeader();
             var __Value__ = default(int);
-            var __Target__ = default(int);
+            var __Bonus__ = default(int);
 
             for (int i = 0; i < length; i++)
             {
@@ -60,20 +60,21 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
                       reader.Skip();
                       continue;
                     case 5:
-                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 435761733974UL) { goto FAIL; }
-
-                        __Value__ = reader.ReadInt32();
-                        continue;
-                    case 6:
-                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 127978876068180UL) { goto FAIL; }
-
-                        __Target__ = reader.ReadInt32();
-                        continue;
+                        switch (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey))
+                        {
+                            default: goto FAIL;
+                            case 435761733974UL:
+                                __Value__ = reader.ReadInt32();
+                                continue;
+                            case 495891410754UL:
+                                __Bonus__ = reader.ReadInt32();
+                                continue;
+                        }
 
                 }
             }
 
-            var ____result = new global::PrimeMillionaire.Common.Data.DataStore.NumericMaster(__Value__, __Target__);
+            var ____result = new global::PrimeMillionaire.Common.Data.DataStore.NumericMaster(__Value__, __Bonus__);
             reader.Depth--;
             return ____result;
         }

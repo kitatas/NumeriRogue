@@ -1,3 +1,4 @@
+using FastEnumUtility;
 using PrimeMillionaire.Common;
 
 namespace PrimeMillionaire.Game.Utility
@@ -24,6 +25,13 @@ namespace PrimeMillionaire.Game.Utility
                 BonusType.ValueDown => 0.5f,
                 _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_BONUS),
             };
+        }
+
+        public static BonusType ToBonusType(this int self)
+        {
+            return FastEnum.IsDefined<BonusType>(self)
+                ? (BonusType)self
+                : throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_BONUS);
         }
     }
 }
