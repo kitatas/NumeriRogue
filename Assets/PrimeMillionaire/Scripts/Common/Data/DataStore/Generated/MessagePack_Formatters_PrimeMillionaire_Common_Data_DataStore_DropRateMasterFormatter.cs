@@ -48,7 +48,7 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
             options.Security.DepthStep(ref reader);
             var length = reader.ReadMapHeader();
             var __Turn__ = default(int);
-            var __Rate__ = default(float);
+            var __Rate__ = default(int);
 
             for (int i = 0; i < length; i++)
             {
@@ -67,7 +67,7 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
                                 __Turn__ = reader.ReadInt32();
                                 continue;
                             case 1702125906UL:
-                                __Rate__ = reader.ReadSingle();
+                                __Rate__ = reader.ReadInt32();
                                 continue;
                         }
 

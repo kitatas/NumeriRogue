@@ -24,7 +24,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         {
             var level = _levelRepository.FindClosest(_enemyCountEntity.currentValue);
             var dropRate = _dropRepository.FindClosest(_turnEntity.currentValue);
-            return Mathf.CeilToInt(DollarConfig.DROP_VALUE * level.rate * dropRate.dropRate);
+            return Mathf.CeilToInt(DollarConfig.DROP_VALUE * level.rate * dropRate.rate);
         }
     }
 }

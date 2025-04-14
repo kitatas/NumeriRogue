@@ -183,12 +183,12 @@ namespace PrimeMillionaire.Common
     public sealed class DropRateVO
     {
         public readonly int turn;
-        public readonly float dropRate;
+        public readonly float rate;
 
-        public DropRateVO(int turn, float dropRate)
+        public DropRateVO(int turn, int rate)
         {
             this.turn = turn;
-            this.dropRate = dropRate;
+            this.rate = rate / 100.0f;
         }
     }
 
