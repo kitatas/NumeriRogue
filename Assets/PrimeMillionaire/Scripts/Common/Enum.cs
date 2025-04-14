@@ -31,6 +31,16 @@ namespace PrimeMillionaire.Common
         Spade = 4,
     }
 
+    public enum BonusType
+    {
+        None = 0,
+        PrimeNumber = 1,
+        SameNumbers = 2,
+        SuitMatch = 3,
+        ValueDown = 4,
+        PalindromicNumber = 5,
+    }
+
     public enum CharacterType
     {
         None = 0,

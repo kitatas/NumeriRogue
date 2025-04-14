@@ -18,6 +18,13 @@ namespace PrimeMillionaire.Common.Utility
                 : throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_CHARACTER);
         }
 
+        public static BonusType ToBonusType(this int self)
+        {
+            return FastEnum.IsDefined<BonusType>(self)
+                ? (BonusType)self
+                : throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_BONUS);
+        }
+
         public static SkillType ToSkillType(this int self)
         {
             return FastEnum.IsDefined<SkillType>(self)

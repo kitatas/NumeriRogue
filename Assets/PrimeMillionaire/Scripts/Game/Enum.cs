@@ -22,15 +22,6 @@ namespace PrimeMillionaire.Game
         Enemy = 2,
     }
 
-    public enum BonusType
-    {
-        None = 0,
-        PrimeNumber = 1,
-        SameNumbers = 2,
-        SuitMatch = 3,
-        ValueDown = 4,
-    }
-
     public enum Fade
     {
         None = 0,

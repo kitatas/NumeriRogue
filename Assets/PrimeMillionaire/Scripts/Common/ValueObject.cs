@@ -204,6 +204,18 @@ namespace PrimeMillionaire.Common
         }
     }
 
+    public sealed class BonusVO
+    {
+        public readonly BonusType type;
+        public readonly float value;
+
+        public BonusVO(int type, int rate)
+        {
+            this.type = type.ToBonusType();
+            this.value = rate / 100.0f;
+        }
+    }
+
     [Serializable]
     public sealed class InterruptVO
     {
