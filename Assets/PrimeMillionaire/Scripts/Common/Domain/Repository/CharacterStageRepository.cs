@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FastEnumUtility;
 using PrimeMillionaire.Common.Data.DataStore;
+using PrimeMillionaire.Common.Utility;
 
 namespace PrimeMillionaire.Common.Domain.Repository
 {
@@ -26,6 +27,17 @@ namespace PrimeMillionaire.Common.Domain.Repository
             {
                 throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_CARD);
             }
+        }
+
+        public IEnumerable<CharacterType> GetReleased(ProgressVO progress)
+        {
+            var released = progress.characterProgress
+                .Where(x => x.isClear)
+                .Select(x => x.type.ToInt32());
+
+            return _memoryDatabase.CharacterStageMasterTable.All
+                .Where(x => x.ReleaseConditions.All(y => released.Contains(y)))
+                .Select(x => x.Type.ToCharacterType());
         }
     }
 }

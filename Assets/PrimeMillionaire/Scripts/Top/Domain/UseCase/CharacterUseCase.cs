@@ -32,11 +32,11 @@ namespace PrimeMillionaire.Top.Domain.UseCase
         {
             if (_saveRepository.TryLoadProgress(out var progress))
             {
-                return _characterRepository.GetReleased(progress)
-                    .Select(character =>
+                return _characterStageRepository.GetReleased(progress)
+                    .Select(x =>
                     {
-                        var characterProgress = progress.Find(character.type) ??
-                                                new CharacterProgressVO(character.type, ProgressStatus.New);
+                        var character = _characterRepository.Find(x);
+                        var characterProgress = progress.Find(x) ?? new CharacterProgressVO(x, ProgressStatus.New);
                         return new StageCharacterVO(character, characterProgress);
                     })
                     .ToList();
