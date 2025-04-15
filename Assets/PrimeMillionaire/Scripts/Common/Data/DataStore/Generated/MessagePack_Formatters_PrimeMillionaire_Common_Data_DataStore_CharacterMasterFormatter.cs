@@ -20,8 +20,6 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
     {
         // Type
         private static global::System.ReadOnlySpan<byte> GetSpan_Type() => new byte[1 + 4] { 164, 84, 121, 112, 101 };
-        // Stage
-        private static global::System.ReadOnlySpan<byte> GetSpan_Stage() => new byte[1 + 5] { 165, 83, 116, 97, 103, 101 };
         // Hp
         private static global::System.ReadOnlySpan<byte> GetSpan_Hp() => new byte[1 + 2] { 162, 72, 112 };
         // Atk
@@ -40,11 +38,9 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
             }
 
             var formatterResolver = options.Resolver;
-            writer.WriteMapHeader(6);
+            writer.WriteMapHeader(5);
             writer.WriteRaw(GetSpan_Type());
             writer.Write(value.Type);
-            writer.WriteRaw(GetSpan_Stage());
-            writer.Write(value.Stage);
             writer.WriteRaw(GetSpan_Hp());
             writer.Write(value.Hp);
             writer.WriteRaw(GetSpan_Atk());
@@ -66,7 +62,6 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
             var formatterResolver = options.Resolver;
             var length = reader.ReadMapHeader();
             var __Type__ = default(int);
-            var __Stage__ = default(int);
             var __Hp__ = default(int);
             var __Atk__ = default(int);
             var __Def__ = default(int);
@@ -85,11 +80,6 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
                         if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 1701869908UL) { goto FAIL; }
 
                         __Type__ = reader.ReadInt32();
-                        continue;
-                    case 5:
-                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 435526136915UL) { goto FAIL; }
-
-                        __Stage__ = reader.ReadInt32();
                         continue;
                     case 2:
                         if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 28744UL) { goto FAIL; }
@@ -116,7 +106,7 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
                 }
             }
 
-            var ____result = new global::PrimeMillionaire.Common.Data.DataStore.CharacterMaster(__Type__, __Stage__, __Hp__, __Atk__, __Def__, __ReleaseConditions__);
+            var ____result = new global::PrimeMillionaire.Common.Data.DataStore.CharacterMaster(__Type__, __Hp__, __Atk__, __Def__, __ReleaseConditions__);
             reader.Depth--;
             return ____result;
         }

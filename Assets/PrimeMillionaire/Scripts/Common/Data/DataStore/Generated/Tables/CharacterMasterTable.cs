@@ -88,7 +88,6 @@ namespace PrimeMillionaire.Common.Data.DataStore.Tables
                 new MasterMemory.Meta.MetaProperty[]
                 {
                     new MasterMemory.Meta.MetaProperty(typeof(CharacterMaster).GetProperty("Type")),
-                    new MasterMemory.Meta.MetaProperty(typeof(CharacterMaster).GetProperty("Stage")),
                     new MasterMemory.Meta.MetaProperty(typeof(CharacterMaster).GetProperty("Hp")),
                     new MasterMemory.Meta.MetaProperty(typeof(CharacterMaster).GetProperty("Atk")),
                     new MasterMemory.Meta.MetaProperty(typeof(CharacterMaster).GetProperty("Def")),
