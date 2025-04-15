@@ -10,21 +10,22 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         private readonly DeckEntity _deckEntity;
         private readonly PlayerHandEntity _playerHandEntity;
         private readonly EnemyHandEntity _enemyHandEntity;
-        private readonly DeckRepository _deckRepository;
+        private readonly CharacterStageRepository _characterStageRepository;
 
         public DealUseCase(PlayerCharacterEntity playerCharacterEntity, DeckEntity deckEntity,
-            PlayerHandEntity playerHandEntity, EnemyHandEntity enemyHandEntity, DeckRepository deckRepository)
+            PlayerHandEntity playerHandEntity, EnemyHandEntity enemyHandEntity,
+            CharacterStageRepository characterStageRepository)
         {
             _playerCharacterEntity = playerCharacterEntity;
             _deckEntity = deckEntity;
             _playerHandEntity = playerHandEntity;
             _enemyHandEntity = enemyHandEntity;
-            _deckRepository = deckRepository;
+            _characterStageRepository = characterStageRepository;
         }
 
         public void Init()
         {
-            var deck = _deckRepository.GetCards(_playerCharacterEntity.type);
+            var deck = _characterStageRepository.GetCards(_playerCharacterEntity.type);
             _deckEntity.Init(deck);
         }
 
