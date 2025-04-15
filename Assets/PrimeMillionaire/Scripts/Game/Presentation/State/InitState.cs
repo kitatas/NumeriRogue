@@ -33,9 +33,11 @@ namespace PrimeMillionaire.Game.Presentation.State
             _dealUseCase.Init();
 
             var player = _characterUseCase.GetPlayerCharacter();
+            var stage = _characterUseCase.GetStage();
             await (
                 _parameterUseCase.InitPlayerParamAsync(token),
-                _battleView.CreatePlayerAsync(player, token)
+                _battleView.CreatePlayerAsync(player, token),
+                _battleView.RenderStageAsync(stage, token)
             );
 
             return GameState.SetUp;

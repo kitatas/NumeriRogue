@@ -39,5 +39,17 @@ namespace PrimeMillionaire.Common.Domain.Repository
                 .Where(x => x.ReleaseConditions.All(y => released.Contains(y)))
                 .Select(x => x.Type.ToCharacterType());
         }
+
+        public StageVO GetStage(CharacterType type)
+        {
+            if (_memoryDatabase.CharacterStageMasterTable.TryFindByType(type.ToInt32(), out var master))
+            {
+                return new StageVO(master.Stage);
+            }
+            else
+            {
+                throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_STAGE);
+            }
+        }
     }
 }

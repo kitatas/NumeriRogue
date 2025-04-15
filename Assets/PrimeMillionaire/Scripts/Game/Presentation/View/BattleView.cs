@@ -21,8 +21,11 @@ namespace PrimeMillionaire.Game.Presentation.View
             var playerObj = await ResourceHelper.LoadAsync<GameObject>(character.objPath, token);
             _playerView = Instantiate(playerObj, player.position, Quaternion.identity).GetComponent<CharacterView>();
             _playerView.FlipX(Side.Player);
+        }
 
-            await stageView.LoadAsync(character.stage, token);
+        public async UniTask RenderStageAsync(StageVO stage, CancellationToken token)
+        {
+            await stageView.LoadAsync(stage, token);
         }
 
         public async UniTask CreateEnemyAsync(CharacterVO character, CancellationToken token)

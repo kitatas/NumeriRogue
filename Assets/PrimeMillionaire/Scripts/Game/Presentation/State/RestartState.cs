@@ -53,9 +53,11 @@ namespace PrimeMillionaire.Game.Presentation.State
 
             // Init
             var player = _characterUseCase.GetPlayerCharacter();
+            var stage = _characterUseCase.GetStage();
             await (
                 _parameterUseCase.PublishPlayerParamAsync(token),
                 _battleView.CreatePlayerAsync(player, token),
+                _battleView.RenderStageAsync(stage, token),
                 _orderUseCase.PublishCommunityBattlePtAsync(token)
             );
 
