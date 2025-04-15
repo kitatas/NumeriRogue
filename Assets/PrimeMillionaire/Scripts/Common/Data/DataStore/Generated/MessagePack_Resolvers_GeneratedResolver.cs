@@ -47,17 +47,18 @@ namespace MessagePack.Resolvers
 
         static GeneratedResolverGetFormatterHelper()
         {
-            lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(9)
+            lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(10)
             {
                 { typeof(global::PrimeMillionaire.Common.Data.DataStore.CardMaster), 0 },
                 { typeof(global::PrimeMillionaire.Common.Data.DataStore.CharacterMaster), 1 },
-                { typeof(global::PrimeMillionaire.Common.Data.DataStore.DeckMaster), 2 },
-                { typeof(global::PrimeMillionaire.Common.Data.DataStore.DropRateMaster), 3 },
-                { typeof(global::PrimeMillionaire.Common.Data.DataStore.LevelMaster), 4 },
-                { typeof(global::PrimeMillionaire.Common.Data.DataStore.NumericBonusMaster), 5 },
-                { typeof(global::PrimeMillionaire.Common.Data.DataStore.NumericMaster), 6 },
-                { typeof(global::PrimeMillionaire.Common.Data.DataStore.SkillEffectMaster), 7 },
-                { typeof(global::PrimeMillionaire.Common.Data.DataStore.SkillMaster), 8 },
+                { typeof(global::PrimeMillionaire.Common.Data.DataStore.CharacterStageMaster), 2 },
+                { typeof(global::PrimeMillionaire.Common.Data.DataStore.DeckMaster), 3 },
+                { typeof(global::PrimeMillionaire.Common.Data.DataStore.DropRateMaster), 4 },
+                { typeof(global::PrimeMillionaire.Common.Data.DataStore.LevelMaster), 5 },
+                { typeof(global::PrimeMillionaire.Common.Data.DataStore.NumericBonusMaster), 6 },
+                { typeof(global::PrimeMillionaire.Common.Data.DataStore.NumericMaster), 7 },
+                { typeof(global::PrimeMillionaire.Common.Data.DataStore.SkillEffectMaster), 8 },
+                { typeof(global::PrimeMillionaire.Common.Data.DataStore.SkillMaster), 9 },
             };
         }
 
@@ -73,13 +74,14 @@ namespace MessagePack.Resolvers
             {
                 case 0: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.CardMasterFormatter();
                 case 1: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.CharacterMasterFormatter();
-                case 2: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.DeckMasterFormatter();
-                case 3: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.DropRateMasterFormatter();
-                case 4: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.LevelMasterFormatter();
-                case 5: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.NumericBonusMasterFormatter();
-                case 6: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.NumericMasterFormatter();
-                case 7: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.SkillEffectMasterFormatter();
-                case 8: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.SkillMasterFormatter();
+                case 2: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.CharacterStageMasterFormatter();
+                case 3: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.DeckMasterFormatter();
+                case 4: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.DropRateMasterFormatter();
+                case 5: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.LevelMasterFormatter();
+                case 6: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.NumericBonusMasterFormatter();
+                case 7: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.NumericMasterFormatter();
+                case 8: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.SkillEffectMasterFormatter();
+                case 9: return new MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore.SkillMasterFormatter();
                 default: return null;
             }
         }

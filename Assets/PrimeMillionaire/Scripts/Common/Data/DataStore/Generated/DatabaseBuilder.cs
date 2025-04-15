@@ -28,6 +28,12 @@ namespace PrimeMillionaire.Common.Data.DataStore
             return this;
         }
 
+        public DatabaseBuilder Append(System.Collections.Generic.IEnumerable<CharacterStageMaster> dataSource)
+        {
+            AppendCore(dataSource, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
+            return this;
+        }
+
         public DatabaseBuilder Append(System.Collections.Generic.IEnumerable<DeckMaster> dataSource)
         {
             AppendCore(dataSource, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
