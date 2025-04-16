@@ -108,33 +108,44 @@ namespace PrimeMillionaire.Common
         public float hpRate => (float)currentHp / hp;
     }
 
-    [Serializable]
-    public sealed class SkillVO
+    public sealed class SkillBaseVO
     {
-        public SkillType type;
-        public string icon;
-        public int price;
-        public string description;
-        public SkillEffectVO effect;
-        public bool isHold;
+        public readonly SkillType type;
+        public readonly SkillTarget target;
+        public readonly int priceRate;
+        public readonly string description;
 
-        public SkillVO(int type, string icon, int priceRate, string description, SkillEffectVO effect)
+        public SkillBaseVO(int type, int target, int priceRate, string description)
         {
             this.type = type.ToSkillType();
-            this.icon = icon;
-            this.price = effect.value * priceRate;
-            this.description = ZString.Format(description, effect.value);
-            this.effect = effect;
+            this.target = target.ToSkillTarget();
+            this.priceRate = priceRate;
+            this.description = description;
         }
 
-        public string iconPath => ZString.Format("Assets/Externals/Sprites/Skills/{0}.png[{0}]", icon);
+        public string iconPath => ZString.Format("Assets/Externals/Sprites/Skills/{0}.png[{0}]", target.FastToString());
     }
 
-    [Serializable]
+    public sealed class SkillVO
+    {
+        public readonly SkillBaseVO skillBase;
+        public readonly SkillEffectVO skillEffect;
+        public bool isHold;
+
+        public SkillVO(SkillBaseVO skillBase, SkillEffectVO skillEffect)
+        {
+            this.skillBase = skillBase;
+            this.skillEffect = skillEffect;
+        }
+
+        public int price => skillEffect.value * skillBase.priceRate;
+        public string description => ZString.Format(skillBase.description, skillEffect.value);
+    }
+
     public sealed class SkillEffectVO
     {
-        public SkillType type;
-        public int value;
+        public readonly SkillType type;
+        public readonly int value;
 
         public SkillEffectVO(int type, int value)
         {

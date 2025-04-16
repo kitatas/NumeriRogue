@@ -29,8 +29,8 @@ namespace PrimeMillionaire.Game.Data.Entity
         public int GetTotalValue(SkillType type)
         {
             return _skills
-                .Where(x => x.type == type)
-                .Sum(x => x.effect.value);
+                .Where(x => x.skillBase.type == type)
+                .Sum(x => x.skillEffect.value);
         }
 
         public float GetTotalRate(SkillType type)

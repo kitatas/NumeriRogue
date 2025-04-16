@@ -30,7 +30,7 @@ namespace PrimeMillionaire.Game.Presentation.View
             button.interactable = isInteractable;
             buttonText.text = skill.isHold ? "Trash" : ZString.Format("${0}", skill.price);
 
-            icon.sprite = await ResourceHelper.LoadAsync<Sprite>(skill.iconPath, token);
+            icon.sprite = await ResourceHelper.LoadAsync<Sprite>(skill.skillBase.iconPath, token);
         }
 
         public async UniTask RenderEmptyAsync(CancellationToken token)

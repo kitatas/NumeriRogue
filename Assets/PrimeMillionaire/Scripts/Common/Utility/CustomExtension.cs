@@ -25,6 +25,13 @@ namespace PrimeMillionaire.Common.Utility
                 : throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_BONUS);
         }
 
+        public static SkillTarget ToSkillTarget(this int self)
+        {
+            return FastEnum.IsDefined<SkillTarget>(self)
+                ? (SkillTarget)self
+                : throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SKILL);
+        }
+
         public static SkillType ToSkillType(this int self)
         {
             return FastEnum.IsDefined<SkillType>(self)

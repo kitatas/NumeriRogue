@@ -20,11 +20,11 @@ namespace PrimeMillionaire.Game.Domain.Repository
             return _memoryDatabase.SkillEffectMasterTable.FindClosestByLevel(level)
                 .OrderBy(_ => random.Next())
                 .Take(SkillConfig.LOT_NUM)
-                .Select(x =>
+                .Select(skillEffect =>
                 {
-                    if (_memoryDatabase.SkillMasterTable.TryFindByType(x.Type, out var skill))
+                    if (_memoryDatabase.SkillBaseMasterTable.TryFindByType(skillEffect.Type, out var skillBase))
                     {
-                        return new SkillVO(skill.Type, skill.Icon, skill.PriceRate, skill.Description, x.ToVO());
+                        return new SkillVO(skillBase.ToVO(), skillEffect.ToVO());
                     }
                     else
                     {

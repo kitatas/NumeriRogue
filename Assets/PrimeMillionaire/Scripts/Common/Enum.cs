@@ -62,6 +62,16 @@ namespace PrimeMillionaire.Common
         Clear = 2,
     }
 
+    public enum SkillTarget
+    {
+        None = 0,
+        Atk = 1,
+        Def = 2,
+        Dollar = 3,
+        Heal = 4,
+        AtkDef = 5,
+    }
+
     public enum SkillType
     {
         None = 0,
