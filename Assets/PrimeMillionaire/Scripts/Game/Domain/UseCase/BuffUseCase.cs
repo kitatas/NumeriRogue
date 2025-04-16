@@ -17,15 +17,17 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         private readonly HoldSkillEntity _holdSkillEntity;
         private readonly PlayerParameterEntity _playerParameterEntity;
         private readonly BuffRepository _buffRepository;
+        private readonly SkillRepository _skillRepository;
 
         public BuffUseCase(BuffEntity buffEntity, DollarEntity dollarEntity, HoldSkillEntity holdSkillEntity,
-            PlayerParameterEntity playerParameterEntity, BuffRepository buffRepository)
+            PlayerParameterEntity playerParameterEntity, BuffRepository buffRepository, SkillRepository skillRepository)
         {
             _buffEntity = buffEntity;
             _dollarEntity = dollarEntity;
             _holdSkillEntity = holdSkillEntity;
             _playerParameterEntity = playerParameterEntity;
             _buffRepository = buffRepository;
+            _skillRepository = skillRepository;
         }
 
         public async UniTask ActivateBuffAsync(Action update, CancellationToken token)
@@ -53,11 +55,12 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         private void ApplySkillEffect(SkillVO skill)
         {
-            if (SkillConfig.DOLLAR_SKILLS.Any(x => x == skill.skillBase.type))
+            if (_skillRepository.IsExistTarget(skill.skillBase.target, SkillTarget.Dollar))
             {
                 _dollarEntity.Add(skill.skillEffect.value);
             }
-            else if (SkillConfig.HEAL_SKILLS.Any(x => x == skill.skillBase.type))
+
+            if (_skillRepository.IsExistTarget(skill.skillBase.target, SkillTarget.Heal))
             {
                 _playerParameterEntity.Heal(skill.skillEffect.value);
             }

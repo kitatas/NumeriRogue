@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
+using FastEnumUtility;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Data.DataStore;
+using PrimeMillionaire.Common.Utility;
 
 namespace PrimeMillionaire.Game.Domain.Repository
 {
@@ -32,6 +34,29 @@ namespace PrimeMillionaire.Game.Domain.Repository
                     }
                 })
                 .ToList();
+        }
+
+        public bool IsExistTarget(SkillTarget target, SkillTarget containTarget)
+        {
+            if (_memoryDatabase.SkillTargetMasterTable.TryFindByTarget(target.ToInt32(), out var skillTarget))
+            {
+                return skillTarget.Targets.Any(x => x == containTarget.ToInt32());
+            }
+            else
+            {
+                throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SKILL);
+            }
+        }
+
+        public IEnumerable<SkillType> FindsSkillType(SkillTarget target)
+        {
+            var targets = _memoryDatabase.SkillTargetMasterTable.All
+                .Where(x => x.Targets.Contains(target.ToInt32()))
+                .Select(x => x.Target);
+
+            return _memoryDatabase.SkillBaseMasterTable.All
+                .Where(x => targets.Contains(x.Target))
+                .Select(x => x.Type.ToSkillType());
         }
     }
 }

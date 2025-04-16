@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Utility;
 using PrimeMillionaire.Game.Data.Entity;
+using PrimeMillionaire.Game.Domain.Repository;
 using UnityEngine;
 using VitalRouter;
 
@@ -17,10 +18,12 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         private readonly HoldSkillEntity _holdSkillEntity;
         private readonly PlayerBattlePtEntity _playerBattlePtEntity;
         private readonly PlayerParameterEntity _playerParameterEntity;
+        private readonly SkillRepository _skillRepository;
 
         public BattleUseCase(BuffEntity buffEntity, EnemyBattlePtEntity enemyBattlePtEntity,
             EnemyParameterEntity enemyParameterEntity, HoldSkillEntity holdSkillEntity,
-            PlayerBattlePtEntity playerBattlePtEntity, PlayerParameterEntity playerParameterEntity)
+            PlayerBattlePtEntity playerBattlePtEntity, PlayerParameterEntity playerParameterEntity,
+            SkillRepository skillRepository)
         {
             _buffEntity = buffEntity;
             _enemyBattlePtEntity = enemyBattlePtEntity;
@@ -28,6 +31,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _holdSkillEntity = holdSkillEntity;
             _playerBattlePtEntity = playerBattlePtEntity;
             _playerParameterEntity = playerParameterEntity;
+            _skillRepository = skillRepository;
         }
 
         public bool IsDestroy()
@@ -79,13 +83,13 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         private float GetAtkSkillRate()
         {
-            return SkillConfig.ATK_SKILLS
+            return _skillRepository.FindsSkillType(SkillTarget.Atk)
                 .Sum(GetSkillRate);
         }
 
         private float GetDefSkillRate()
         {
-            return SkillConfig.DEF_SKILLS
+            return _skillRepository.FindsSkillType(SkillTarget.Atk)
                 .Sum(GetSkillRate);
         }
 
