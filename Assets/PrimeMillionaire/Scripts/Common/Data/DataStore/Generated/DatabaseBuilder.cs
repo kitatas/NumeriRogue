@@ -64,15 +64,21 @@ namespace PrimeMillionaire.Common.Data.DataStore
             return this;
         }
 
+        public DatabaseBuilder Append(System.Collections.Generic.IEnumerable<SkillBaseMaster> dataSource)
+        {
+            AppendCore(dataSource, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
+            return this;
+        }
+
         public DatabaseBuilder Append(System.Collections.Generic.IEnumerable<SkillEffectMaster> dataSource)
         {
             AppendCore(dataSource, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
             return this;
         }
 
-        public DatabaseBuilder Append(System.Collections.Generic.IEnumerable<SkillMaster> dataSource)
+        public DatabaseBuilder Append(System.Collections.Generic.IEnumerable<SkillTargetMaster> dataSource)
         {
-            AppendCore(dataSource, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
+            AppendCore(dataSource, x => x.Target, System.Collections.Generic.Comparer<int>.Default);
             return this;
         }
 

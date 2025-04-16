@@ -9,16 +9,16 @@ using System;
 
 namespace PrimeMillionaire.Common.Data.DataStore.Tables
 {
-   public sealed partial class SkillMasterTable : TableBase<SkillMaster>, ITableUniqueValidate
+   public sealed partial class SkillTargetMasterTable : TableBase<SkillTargetMaster>, ITableUniqueValidate
    {
-        public Func<SkillMaster, int> PrimaryKeySelector => primaryIndexSelector;
-        readonly Func<SkillMaster, int> primaryIndexSelector;
+        public Func<SkillTargetMaster, int> PrimaryKeySelector => primaryIndexSelector;
+        readonly Func<SkillTargetMaster, int> primaryIndexSelector;
 
 
-        public SkillMasterTable(SkillMaster[] sortedData)
+        public SkillTargetMasterTable(SkillTargetMaster[] sortedData)
             : base(sortedData)
         {
-            this.primaryIndexSelector = x => x.Type;
+            this.primaryIndexSelector = x => x.Target;
             OnAfterConstruct();
         }
 
@@ -26,14 +26,14 @@ namespace PrimeMillionaire.Common.Data.DataStore.Tables
 
 
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public SkillMaster FindByType(int key)
+        public SkillTargetMaster FindByTarget(int key)
         {
             var lo = 0;
             var hi = data.Length - 1;
             while (lo <= hi)
             {
                 var mid = (int)(((uint)hi + (uint)lo) >> 1);
-                var selected = data[mid].Type;
+                var selected = data[mid].Target;
                 var found = (selected < key) ? -1 : (selected > key) ? 1 : 0;
                 if (found == 0) { return data[mid]; }
                 if (found < 0) { lo = mid + 1; }
@@ -43,14 +43,14 @@ namespace PrimeMillionaire.Common.Data.DataStore.Tables
         }
 
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public bool TryFindByType(int key, out SkillMaster result)
+        public bool TryFindByTarget(int key, out SkillTargetMaster result)
         {
             var lo = 0;
             var hi = data.Length - 1;
             while (lo <= hi)
             {
                 var mid = (int)(((uint)hi + (uint)lo) >> 1);
-                var selected = data[mid].Type;
+                var selected = data[mid].Target;
                 var found = (selected < key) ? -1 : (selected > key) ? 1 : 0;
                 if (found == 0) { result = data[mid]; return true; }
                 if (found < 0) { lo = mid + 1; }
@@ -60,12 +60,12 @@ namespace PrimeMillionaire.Common.Data.DataStore.Tables
             return false;
         }
 
-        public SkillMaster FindClosestByType(int key, bool selectLower = true)
+        public SkillTargetMaster FindClosestByTarget(int key, bool selectLower = true)
         {
             return FindUniqueClosestCore(data, primaryIndexSelector, System.Collections.Generic.Comparer<int>.Default, key, selectLower);
         }
 
-        public RangeView<SkillMaster> FindRangeByType(int min, int max, bool ascendant = true)
+        public RangeView<SkillTargetMaster> FindRangeByTarget(int min, int max, bool ascendant = true)
         {
             return FindUniqueRangeCore(data, primaryIndexSelector, System.Collections.Generic.Comparer<int>.Default, min, max, ascendant);
         }
@@ -75,7 +75,7 @@ namespace PrimeMillionaire.Common.Data.DataStore.Tables
         {
 #if !DISABLE_MASTERMEMORY_VALIDATOR
 
-            ValidateUniqueCore(data, primaryIndexSelector, "Type", resultSet);       
+            ValidateUniqueCore(data, primaryIndexSelector, "Target", resultSet);       
 
 #endif
         }
@@ -84,17 +84,15 @@ namespace PrimeMillionaire.Common.Data.DataStore.Tables
 
         public static MasterMemory.Meta.MetaTable CreateMetaTable()
         {
-            return new MasterMemory.Meta.MetaTable(typeof(SkillMaster), typeof(SkillMasterTable), "SkillMaster",
+            return new MasterMemory.Meta.MetaTable(typeof(SkillTargetMaster), typeof(SkillTargetMasterTable), "SkillTargetMaster",
                 new MasterMemory.Meta.MetaProperty[]
                 {
-                    new MasterMemory.Meta.MetaProperty(typeof(SkillMaster).GetProperty("Type")),
-                    new MasterMemory.Meta.MetaProperty(typeof(SkillMaster).GetProperty("Icon")),
-                    new MasterMemory.Meta.MetaProperty(typeof(SkillMaster).GetProperty("PriceRate")),
-                    new MasterMemory.Meta.MetaProperty(typeof(SkillMaster).GetProperty("Description")),
+                    new MasterMemory.Meta.MetaProperty(typeof(SkillTargetMaster).GetProperty("Target")),
+                    new MasterMemory.Meta.MetaProperty(typeof(SkillTargetMaster).GetProperty("Targets")),
                 },
                 new MasterMemory.Meta.MetaIndex[]{
                     new MasterMemory.Meta.MetaIndex(new System.Reflection.PropertyInfo[] {
-                        typeof(SkillMaster).GetProperty("Type"),
+                        typeof(SkillTargetMaster).GetProperty("Target"),
                     }, true, true, System.Collections.Generic.Comparer<int>.Default),
                 });
         }

@@ -3,20 +3,22 @@ using MessagePack;
 
 namespace PrimeMillionaire.Common.Data.DataStore
 {
-    [MemoryTable(nameof(SkillMaster)), MessagePackObject(true)]
-    public sealed class SkillMaster
+    [MemoryTable(nameof(SkillBaseMaster)), MessagePackObject(true)]
+    public sealed class SkillBaseMaster
     {
-        public SkillMaster(int type, string icon, int priceRate, string description)
+        public SkillBaseMaster(int type, int target, int priceRate, string description)
         {
             Type = type;
-            Icon = icon;
+            Target = target;
             PriceRate = priceRate;
             Description = description;
         }
 
         [PrimaryKey] public int Type { get; }
-        public string Icon { get; }
+        public int Target { get; }
         public int PriceRate { get; }
         public string Description { get; }
+
+        public SkillBaseVO ToVO() => new(Type, Target, PriceRate, Description);
     }
 }
