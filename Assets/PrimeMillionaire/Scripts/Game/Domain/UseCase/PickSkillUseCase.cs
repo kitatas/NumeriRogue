@@ -8,18 +8,18 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 {
     public sealed class PickSkillUseCase
     {
-        private readonly EnemyCountEntity _enemyCountEntity;
+        private readonly LevelEntity _levelEntity;
         private readonly SkillRepository _skillRepository;
 
-        public PickSkillUseCase(EnemyCountEntity enemyCountEntity, SkillRepository skillRepository)
+        public PickSkillUseCase(LevelEntity levelEntity, SkillRepository skillRepository)
         {
-            _enemyCountEntity = enemyCountEntity;
+            _levelEntity = levelEntity;
             _skillRepository = skillRepository;
         }
 
         public async UniTask LotAsync(CancellationToken token)
         {
-            var skills = _skillRepository.FindLotteryTargets(_enemyCountEntity.currentValue);
+            var skills = _skillRepository.FindLotteryTargets(_levelEntity.currentValue);
             await UniTask.WhenAll(skills
                 .Select((x, i) => Router.Default.PublishAsync(new PickSkillVO(i, x), token).AsUniTask())
             );

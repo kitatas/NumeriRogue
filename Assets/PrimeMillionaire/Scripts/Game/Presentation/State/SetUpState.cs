@@ -8,16 +8,16 @@ namespace PrimeMillionaire.Game.Presentation.State
     public sealed class SetUpState : BaseState
     {
         private readonly CharacterUseCase _characterUseCase;
-        private readonly EnemyCountUseCase _enemyCountUseCase;
+        private readonly LevelUseCase _levelUseCase;
         private readonly ParameterUseCase _parameterUseCase;
         private readonly TurnUseCase _turnUseCase;
         private readonly BattleView _battleView;
 
-        public SetUpState(CharacterUseCase characterUseCase, EnemyCountUseCase enemyCountUseCase,
+        public SetUpState(CharacterUseCase characterUseCase, LevelUseCase levelUseCase,
             ParameterUseCase parameterUseCase, TurnUseCase turnUseCase, BattleView battleView)
         {
             _characterUseCase = characterUseCase;
-            _enemyCountUseCase = enemyCountUseCase;
+            _levelUseCase = levelUseCase;
             _parameterUseCase = parameterUseCase;
             _turnUseCase = turnUseCase;
             _battleView = battleView;
@@ -32,7 +32,7 @@ namespace PrimeMillionaire.Game.Presentation.State
 
         public override async UniTask<GameState> TickAsync(CancellationToken token)
         {
-            _enemyCountUseCase.Increment();
+            _levelUseCase.Increment();
             _turnUseCase.Reset();
 
             var enemy = _characterUseCase.LotEnemyCharacter();

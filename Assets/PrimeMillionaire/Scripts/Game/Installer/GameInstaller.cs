@@ -28,7 +28,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.Register<DollarEntity>(Lifetime.Scoped);
             builder.Register<EnemyBattlePtEntity>(Lifetime.Scoped);
             builder.Register<EnemyCharacterEntity>(Lifetime.Scoped);
-            builder.Register<EnemyCountEntity>(Lifetime.Scoped);
+            builder.Register<LevelEntity>(Lifetime.Scoped);
             builder.Register<EnemyHandEntity>(Lifetime.Scoped);
             builder.Register<EnemyParameterEntity>(Lifetime.Scoped);
             builder.Register<HoldSkillEntity>(Lifetime.Scoped);
@@ -52,7 +52,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.Register<DealUseCase>(Lifetime.Scoped);
             builder.Register<DollarUseCase>(Lifetime.Scoped);
             builder.Register<DropUseCase>(Lifetime.Scoped);
-            builder.Register<EnemyCountUseCase>(Lifetime.Scoped);
+            builder.Register<LevelUseCase>(Lifetime.Scoped);
             builder.Register<HandUseCase>(Lifetime.Scoped);
             builder.Register<HoldSkillUseCase>(Lifetime.Scoped);
             builder.Register<InterruptUseCase>(Lifetime.Scoped);
@@ -82,7 +82,7 @@ namespace PrimeMillionaire.Game.Installer
                 entryPoints.Add<BattlePtPresenter>();
                 entryPoints.Add<BuffPresenter>();
                 entryPoints.Add<DollarPresenter>();
-                entryPoints.Add<EnemyCountPresenter>();
+                entryPoints.Add<LevelPresenter>();
                 entryPoints.Add<HoldSkillPresenter>();
                 entryPoints.Add<ModalPresenter>();
                 entryPoints.Add<OrderPresenter>();
@@ -97,7 +97,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.RegisterComponentInHierarchy<BattlePtView>();
             builder.RegisterComponentInHierarchy<ClearView>();
             builder.RegisterComponentInHierarchy<DollarView>();
-            builder.RegisterComponentInHierarchy<EnemyCountView>();
+            builder.RegisterComponentInHierarchy<LevelView>();
             builder.RegisterComponentInHierarchy<EnemyParameterView>();
             builder.RegisterComponentInHierarchy<FailView>();
             builder.RegisterComponentInHierarchy<HoldSkillView>();

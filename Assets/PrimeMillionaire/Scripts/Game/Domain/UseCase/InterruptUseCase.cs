@@ -15,14 +15,14 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         private readonly PlayerParameterEntity _playerParameterEntity;
         private readonly EnemyCharacterEntity _enemyCharacterEntity;
         private readonly EnemyParameterEntity _enemyParameterEntity;
-        private readonly EnemyCountEntity _enemyCountEntity;
+        private readonly LevelEntity _levelEntity;
         private readonly TurnEntity _turnEntity;
         private readonly SaveRepository _saveRepository;
 
         public InterruptUseCase(CommunityBattlePtEntity communityBattlePtEntity, DeckEntity deckEntity,
             DollarEntity dollarEntity, HoldSkillEntity holdSkillEntity, PlayerCharacterEntity playerCharacterEntity,
             PlayerParameterEntity playerParameterEntity, EnemyCharacterEntity enemyCharacterEntity,
-            EnemyParameterEntity enemyParameterEntity, EnemyCountEntity enemyCountEntity, TurnEntity turnEntity,
+            EnemyParameterEntity enemyParameterEntity, LevelEntity levelEntity, TurnEntity turnEntity,
             SaveRepository saveRepository)
         {
             _communityBattlePtEntity = communityBattlePtEntity;
@@ -33,7 +33,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _playerParameterEntity = playerParameterEntity;
             _enemyCharacterEntity = enemyCharacterEntity;
             _enemyParameterEntity = enemyParameterEntity;
-            _enemyCountEntity = enemyCountEntity;
+            _levelEntity = levelEntity;
             _turnEntity = turnEntity;
             _saveRepository = saveRepository;
         }
@@ -46,7 +46,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 _deckEntity.ToVO(),
                 _holdSkillEntity.ToVO(),
                 _dollarEntity.currentValue,
-                _enemyCountEntity.currentValue,
+                _levelEntity.currentValue,
                 _turnEntity.currentValue,
                 _communityBattlePtEntity.currentValue
             );
@@ -62,7 +62,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 _playerParameterEntity.InitForInterrupt(interrupt.player);
                 _enemyCharacterEntity.SetType(interrupt.enemy.type);
                 _enemyParameterEntity.InitForInterrupt(interrupt.enemy);
-                _enemyCountEntity.Set(interrupt.level);
+                _levelEntity.Set(interrupt.level);
                 _turnEntity.Set(interrupt.turn);
                 _deckEntity.Init(interrupt.deck);
                 _communityBattlePtEntity.Set(interrupt.communityBattlePt);

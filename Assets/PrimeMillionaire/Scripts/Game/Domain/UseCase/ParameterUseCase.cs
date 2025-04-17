@@ -14,20 +14,20 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         private readonly PlayerParameterEntity _playerParameterEntity;
         private readonly EnemyCharacterEntity _enemyCharacterEntity;
         private readonly EnemyParameterEntity _enemyParameterEntity;
-        private readonly EnemyCountEntity _enemyCountEntity;
+        private readonly LevelEntity _levelEntity;
         private readonly CharacterRepository _characterRepository;
         private readonly LevelRepository _levelRepository;
 
         public ParameterUseCase(PlayerCharacterEntity playerCharacterEntity,
             PlayerParameterEntity playerParameterEntity, EnemyCharacterEntity enemyCharacterEntity,
-            EnemyParameterEntity enemyParameterEntity, EnemyCountEntity enemyCountEntity,
+            EnemyParameterEntity enemyParameterEntity, LevelEntity levelEntity,
             CharacterRepository characterRepository, LevelRepository levelRepository)
         {
             _playerCharacterEntity = playerCharacterEntity;
             _playerParameterEntity = playerParameterEntity;
             _enemyCharacterEntity = enemyCharacterEntity;
             _enemyParameterEntity = enemyParameterEntity;
-            _enemyCountEntity = enemyCountEntity;
+            _levelEntity = levelEntity;
             _characterRepository = characterRepository;
             _levelRepository = levelRepository;
         }
@@ -48,7 +48,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         public async UniTask InitEnemyParamAsync(CancellationToken token)
         {
             var character = _characterRepository.Find(_enemyCharacterEntity.type);
-            var level = _levelRepository.FindClosest(_enemyCountEntity.currentValue);
+            var level = _levelRepository.FindClosest(_levelEntity.currentValue);
             _enemyParameterEntity.Init(character.parameter, level);
 
             await PublishEnemyParamAsync(token);

@@ -1,6 +1,6 @@
 namespace PrimeMillionaire.Game.Data.Entity
 {
-    public sealed class EnemyCountEntity
+    public sealed class LevelEntity
     {
         private int _value;
 
