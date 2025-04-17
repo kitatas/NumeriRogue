@@ -33,7 +33,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 table,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
-                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.NumericBonusMasterTable,
@@ -54,7 +53,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 table,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
-                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.NumericBonusMasterTable,
@@ -75,7 +73,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 table,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
-                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.NumericBonusMasterTable,
@@ -95,7 +92,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.CardMasterTable,
                 table,
                 memory.CharacterStageMasterTable,
-                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.NumericBonusMasterTable,
@@ -116,7 +112,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.CardMasterTable,
                 table,
                 memory.CharacterStageMasterTable,
-                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.NumericBonusMasterTable,
@@ -137,7 +132,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.CardMasterTable,
                 table,
                 memory.CharacterStageMasterTable,
-                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.NumericBonusMasterTable,
@@ -157,7 +151,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 table,
-                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.NumericBonusMasterTable,
@@ -178,7 +171,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 table,
-                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.NumericBonusMasterTable,
@@ -199,69 +191,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 table,
-                memory.DeckMasterTable,
-                memory.DropRateMasterTable,
-                memory.LevelMasterTable,
-                memory.NumericBonusMasterTable,
-                memory.NumericMasterTable,
-                memory.SkillBaseMasterTable,
-                memory.SkillEffectMasterTable,
-                memory.SkillTargetMasterTable
-            
-            );
-        }
-
-        public void ReplaceAll(System.Collections.Generic.IList<DeckMaster> data)
-        {
-            var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
-            var table = new DeckMasterTable(newData);
-            memory = new MemoryDatabase(
-                memory.CardMasterTable,
-                memory.CharacterMasterTable,
-                memory.CharacterStageMasterTable,
-                table,
-                memory.DropRateMasterTable,
-                memory.LevelMasterTable,
-                memory.NumericBonusMasterTable,
-                memory.NumericMasterTable,
-                memory.SkillBaseMasterTable,
-                memory.SkillEffectMasterTable,
-                memory.SkillTargetMasterTable
-            
-            );
-        }
-
-        public void RemoveDeckMaster(int[] keys)
-        {
-            var data = RemoveCore(memory.DeckMasterTable.GetRawDataUnsafe(), keys, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
-            var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
-            var table = new DeckMasterTable(newData);
-            memory = new MemoryDatabase(
-                memory.CardMasterTable,
-                memory.CharacterMasterTable,
-                memory.CharacterStageMasterTable,
-                table,
-                memory.DropRateMasterTable,
-                memory.LevelMasterTable,
-                memory.NumericBonusMasterTable,
-                memory.NumericMasterTable,
-                memory.SkillBaseMasterTable,
-                memory.SkillEffectMasterTable,
-                memory.SkillTargetMasterTable
-            
-            );
-        }
-
-        public void Diff(DeckMaster[] addOrReplaceData)
-        {
-            var data = DiffCore(memory.DeckMasterTable.GetRawDataUnsafe(), addOrReplaceData, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
-            var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
-            var table = new DeckMasterTable(newData);
-            memory = new MemoryDatabase(
-                memory.CardMasterTable,
-                memory.CharacterMasterTable,
-                memory.CharacterStageMasterTable,
-                table,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.NumericBonusMasterTable,
@@ -281,7 +210,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
-                memory.DeckMasterTable,
                 table,
                 memory.LevelMasterTable,
                 memory.NumericBonusMasterTable,
@@ -302,7 +230,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
-                memory.DeckMasterTable,
                 table,
                 memory.LevelMasterTable,
                 memory.NumericBonusMasterTable,
@@ -323,7 +250,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
-                memory.DeckMasterTable,
                 table,
                 memory.LevelMasterTable,
                 memory.NumericBonusMasterTable,
@@ -343,7 +269,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
-                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 table,
                 memory.NumericBonusMasterTable,
@@ -364,7 +289,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
-                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 table,
                 memory.NumericBonusMasterTable,
@@ -385,7 +309,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
-                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 table,
                 memory.NumericBonusMasterTable,
@@ -405,7 +328,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
-                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 table,
@@ -426,7 +348,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
-                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 table,
@@ -447,7 +368,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
-                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 table,
@@ -467,7 +387,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
-                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.NumericBonusMasterTable,
@@ -488,7 +407,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
-                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.NumericBonusMasterTable,
@@ -509,7 +427,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
-                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.NumericBonusMasterTable,
@@ -530,7 +447,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
-                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.NumericBonusMasterTable,
@@ -550,7 +466,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
-                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.NumericBonusMasterTable,
@@ -571,7 +486,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
-                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.NumericBonusMasterTable,
@@ -592,7 +506,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
-                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.NumericBonusMasterTable,
@@ -613,7 +526,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
-                memory.DeckMasterTable,
                 memory.DropRateMasterTable,
                 memory.LevelMasterTable,
                 memory.NumericBonusMasterTable,
