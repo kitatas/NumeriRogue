@@ -23,7 +23,7 @@ namespace PrimeMillionaire.Common.Domain.Repository
         public bool TryLoadInterrupt(out InterruptVO interrupt)
         {
             var data = Load();
-            interrupt = data.interrupt;
+            interrupt = data.interrupt.ToVO();
             return data.HasInterrupt();
         }
 
@@ -42,7 +42,7 @@ namespace PrimeMillionaire.Common.Domain.Repository
         public void Save(InterruptVO interrupt)
         {
             var data = Load();
-            data.interrupt = interrupt;
+            data.interrupt = new InterruptDTO(interrupt);
             Save(data);
         }
 

@@ -7,7 +7,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
     {
         public string uid;
         public ProgressVO progress;
-        public InterruptVO interrupt;
+        public InterruptDTO interrupt;
 
         public static SaveData Create()
         {
@@ -35,7 +35,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
         public bool HasInterrupt()
         {
             if (interrupt == null) return false;
-            if (interrupt.playerCharacter == CharacterType.None) return false;
+            if (interrupt.player.type == CharacterType.None) return false;
             return true;
         }
     }

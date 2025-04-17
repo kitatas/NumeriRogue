@@ -41,16 +41,14 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         public void Save()
         {
             var interrupt = new InterruptVO(
-                playerCharacter: _playerCharacterEntity.type,
-                playerParameter: _playerParameterEntity.ToVO(),
-                enemyCharacter: _enemyCharacterEntity.type,
-                enemyParameter: _enemyParameterEntity.ToVO(),
-                enemyCount: _enemyCountEntity.currentValue,
-                turn: _turnEntity.currentValue,
-                deck: _deckEntity.ToVO(),
-                communityBattlePt: _communityBattlePtEntity.currentValue,
-                dollar: _dollarEntity.currentValue,
-                holdSkill: _holdSkillEntity.ToVO()
+                _playerParameterEntity.ToVO(),
+                _enemyParameterEntity.ToVO(),
+                _deckEntity.ToVO(),
+                _holdSkillEntity.ToVO(),
+                _dollarEntity.currentValue,
+                _enemyCountEntity.currentValue,
+                _turnEntity.currentValue,
+                _communityBattlePtEntity.currentValue
             );
 
             _saveRepository.Save(interrupt);
@@ -60,11 +58,11 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         {
             if (_saveRepository.TryLoadInterrupt(out var interrupt))
             {
-                _playerCharacterEntity.SetType(interrupt.playerCharacter);
-                _playerParameterEntity.InitForInterrupt(interrupt.playerParameter);
-                _enemyCharacterEntity.SetType(interrupt.enemyCharacter);
-                _enemyParameterEntity.InitForInterrupt(interrupt.enemyParameter);
-                _enemyCountEntity.Set(interrupt.enemyCount);
+                _playerCharacterEntity.SetType(interrupt.player.type);
+                _playerParameterEntity.InitForInterrupt(interrupt.player);
+                _enemyCharacterEntity.SetType(interrupt.enemy.type);
+                _enemyParameterEntity.InitForInterrupt(interrupt.enemy);
+                _enemyCountEntity.Set(interrupt.level);
                 _turnEntity.Set(interrupt.turn);
                 _deckEntity.Init(interrupt.deck);
                 _communityBattlePtEntity.Set(interrupt.communityBattlePt);

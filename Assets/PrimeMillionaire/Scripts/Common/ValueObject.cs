@@ -25,11 +25,10 @@ namespace PrimeMillionaire.Common
         public bool isFade => loadType == LoadType.Fade;
     }
 
-    [Serializable]
     public sealed class CardVO
     {
-        public Suit suit;
-        public int rank;
+        public readonly Suit suit;
+        public readonly int rank;
 
         public CardVO(int suit, int rank)
         {
@@ -40,10 +39,9 @@ namespace PrimeMillionaire.Common
         public string imgPath => ZString.Format("Assets/Externals/Sprites/Cards/cards.png[card_{0}s_{1}]", suit.FastToString().ToLower(), rank);
     }
 
-    [Serializable]
     public sealed class DeckVO
     {
-        public List<CardVO> cards;
+        public readonly List<CardVO> cards;
 
         public DeckVO(List<CardVO> cards)
         {
@@ -68,14 +66,13 @@ namespace PrimeMillionaire.Common
         public string imgPath => ZString.Format("Assets/Externals/Sprites/Characters/boss_{0}.png[boss_{0}_101]", name.ToLower());
     }
 
-    [Serializable]
     public class ParameterVO
     {
-        public CharacterType type;
-        public int hp;
-        public int atk;
-        public int def;
-        public int currentHp;
+        public readonly CharacterType type;
+        public readonly int hp;
+        public readonly int atk;
+        public readonly int def;
+        public readonly int currentHp;
 
         public ParameterVO(int type, int hp, int atk, int def)
         {
@@ -84,6 +81,15 @@ namespace PrimeMillionaire.Common
             this.atk = atk;
             this.def = def;
             this.currentHp = hp;
+        }
+
+        public ParameterVO(int type, int hp, int atk, int def, int currentHp)
+        {
+            this.type = type.ToCharacterType();
+            this.hp = hp;
+            this.atk = atk;
+            this.def = def;
+            this.currentHp = currentHp;
         }
 
         public ParameterVO(ParameterVO parameter, int currentHp)
@@ -154,10 +160,9 @@ namespace PrimeMillionaire.Common
         }
     }
 
-    [Serializable]
     public sealed class HoldSkillVO : ICommand
     {
-        public List<SkillVO> skills;
+        public readonly List<SkillVO> skills;
 
         public HoldSkillVO(List<SkillVO> skills)
         {
@@ -225,34 +230,28 @@ namespace PrimeMillionaire.Common
         }
     }
 
-    [Serializable]
     public sealed class InterruptVO
     {
-        public CharacterType playerCharacter;
-        public ParameterVO playerParameter;
-        public CharacterType enemyCharacter;
-        public ParameterVO enemyParameter;
-        public int enemyCount;
-        public int turn;
-        public DeckVO deck;
-        public int communityBattlePt;
-        public int dollar;
-        public HoldSkillVO holdSkill;
+        public readonly ParameterVO player;
+        public readonly ParameterVO enemy;
+        public readonly DeckVO deck;
+        public readonly HoldSkillVO holdSkill;
+        public readonly int dollar;
+        public readonly int level;
+        public readonly int turn;
+        public readonly int communityBattlePt;
 
-        public InterruptVO(CharacterType playerCharacter, ParameterVO playerParameter, CharacterType enemyCharacter,
-            ParameterVO enemyParameter, int enemyCount, int turn, DeckVO deck, int communityBattlePt, int dollar,
-            HoldSkillVO holdSkill)
+        public InterruptVO(ParameterVO player, ParameterVO enemy, DeckVO deck, HoldSkillVO holdSkill, int dollar,
+            int level, int turn, int communityBattlePt)
         {
-            this.playerCharacter = playerCharacter;
-            this.playerParameter = playerParameter;
-            this.enemyCharacter = enemyCharacter;
-            this.enemyParameter = enemyParameter;
-            this.enemyCount = enemyCount;
-            this.turn = turn;
+            this.player = player;
+            this.enemy = enemy;
             this.deck = deck;
-            this.communityBattlePt = communityBattlePt;
-            this.dollar = dollar;
             this.holdSkill = holdSkill;
+            this.dollar = dollar;
+            this.level = level;
+            this.turn = turn;
+            this.communityBattlePt = communityBattlePt;
         }
     }
 
