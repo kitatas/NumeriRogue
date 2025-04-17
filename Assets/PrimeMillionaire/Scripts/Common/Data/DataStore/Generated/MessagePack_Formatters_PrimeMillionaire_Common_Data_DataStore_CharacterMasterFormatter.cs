@@ -26,8 +26,6 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
         private static global::System.ReadOnlySpan<byte> GetSpan_Atk() => new byte[1 + 3] { 163, 65, 116, 107 };
         // Def
         private static global::System.ReadOnlySpan<byte> GetSpan_Def() => new byte[1 + 3] { 163, 68, 101, 102 };
-        // ReleaseConditions
-        private static global::System.ReadOnlySpan<byte> GetSpan_ReleaseConditions() => new byte[1 + 17] { 177, 82, 101, 108, 101, 97, 115, 101, 67, 111, 110, 100, 105, 116, 105, 111, 110, 115 };
 
         public void Serialize(ref global::MessagePack.MessagePackWriter writer, global::PrimeMillionaire.Common.Data.DataStore.CharacterMaster value, global::MessagePack.MessagePackSerializerOptions options)
         {
@@ -37,8 +35,7 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
                 return;
             }
 
-            var formatterResolver = options.Resolver;
-            writer.WriteMapHeader(5);
+            writer.WriteMapHeader(4);
             writer.WriteRaw(GetSpan_Type());
             writer.Write(value.Type);
             writer.WriteRaw(GetSpan_Hp());
@@ -47,8 +44,6 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
             writer.Write(value.Atk);
             writer.WriteRaw(GetSpan_Def());
             writer.Write(value.Def);
-            writer.WriteRaw(GetSpan_ReleaseConditions());
-            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<int[]>(formatterResolver).Serialize(ref writer, value.ReleaseConditions, options);
         }
 
         public global::PrimeMillionaire.Common.Data.DataStore.CharacterMaster Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)
@@ -59,13 +54,11 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
             }
 
             options.Security.DepthStep(ref reader);
-            var formatterResolver = options.Resolver;
             var length = reader.ReadMapHeader();
             var __Type__ = default(int);
             var __Hp__ = default(int);
             var __Atk__ = default(int);
             var __Def__ = default(int);
-            var __ReleaseConditions__ = default(int[]);
 
             for (int i = 0; i < length; i++)
             {
@@ -97,16 +90,11 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
                                 __Def__ = reader.ReadInt32();
                                 continue;
                         }
-                    case 17:
-                        if (!global::System.MemoryExtensions.SequenceEqual(stringKey, GetSpan_ReleaseConditions().Slice(1))) { goto FAIL; }
-
-                        __ReleaseConditions__ = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<int[]>(formatterResolver).Deserialize(ref reader, options);
-                        continue;
 
                 }
             }
 
-            var ____result = new global::PrimeMillionaire.Common.Data.DataStore.CharacterMaster(__Type__, __Hp__, __Atk__, __Def__, __ReleaseConditions__);
+            var ____result = new global::PrimeMillionaire.Common.Data.DataStore.CharacterMaster(__Type__, __Hp__, __Atk__, __Def__);
             reader.Depth--;
             return ____result;
         }
