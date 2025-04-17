@@ -32,7 +32,8 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 }
                 else
                 {
-                    characterProgress.status = status;
+                    progress.characterProgress.Remove(characterProgress);
+                    progress.characterProgress.Add(new CharacterProgressVO(type, status));
                 }
 
                 _saveRepository.Save(progress);

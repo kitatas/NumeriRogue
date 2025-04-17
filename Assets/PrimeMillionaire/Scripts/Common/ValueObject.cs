@@ -255,10 +255,9 @@ namespace PrimeMillionaire.Common
         }
     }
 
-    [Serializable]
     public sealed class ProgressVO
     {
-        public List<CharacterProgressVO> characterProgress;
+        public readonly List<CharacterProgressVO> characterProgress;
 
         public ProgressVO(List<CharacterProgressVO> characterProgress)
         {
@@ -271,11 +270,10 @@ namespace PrimeMillionaire.Common
         }
     }
 
-    [Serializable]
     public sealed class CharacterProgressVO
     {
-        public CharacterType type;
-        public ProgressStatus status;
+        public readonly CharacterType type;
+        public readonly ProgressStatus status;
 
         public CharacterProgressVO(CharacterType type, ProgressStatus status)
         {

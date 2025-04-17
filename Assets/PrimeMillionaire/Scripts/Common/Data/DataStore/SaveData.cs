@@ -1,12 +1,9 @@
-using System.Collections.Generic;
-using PrimeMillionaire.Common.Utility;
-
 namespace PrimeMillionaire.Common.Data.DataStore
 {
     public sealed class SaveData
     {
         public string uid;
-        public ProgressVO progress;
+        public ProgressDTO progress;
         public InterruptDTO interrupt;
 
         public static SaveData Create()
@@ -14,10 +11,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             return new SaveData
             {
                 uid = "",
-                progress = new ProgressVO(new List<CharacterProgressVO>
-                {
-                    new(0.ToCharacterType(), ProgressStatus.Clear),
-                }),
+                progress = new ProgressDTO(),
                 interrupt = null,
             };
         }
