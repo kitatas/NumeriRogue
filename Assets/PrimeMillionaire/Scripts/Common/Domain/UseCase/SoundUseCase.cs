@@ -45,11 +45,13 @@ namespace PrimeMillionaire.Common.Domain.UseCase
         public void SetBgmVolume(float value)
         {
             _bgmVolume.Value = value;
+            _saveRepository.SaveBgm(new VolumeVO(value));
         }
 
         public void SetSeVolume(float value)
         {
             _seVolume.Value = value;
+            _saveRepository.SaveSe(new VolumeVO(value));
         }
 
         public void Dispose()

@@ -27,6 +27,11 @@ namespace PrimeMillionaire.Common.Data.DataStore
             volume = 0.5f;
         }
 
+        public VolumeDTO(VolumeVO volume)
+        {
+            this.volume = volume.volume;
+        }
+
         public VolumeVO ToVO() => new(volume);
     }
 }
