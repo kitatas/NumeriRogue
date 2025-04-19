@@ -27,6 +27,7 @@ namespace PrimeMillionaire.Common
         public const string QUIT_MESSAGE = "Exit this app.";
 
         public const string UNKNOWN_ERROR = "UNKNOWN_ERROR";
+        public const string NOT_FOUND_BGM = "NOT_FOUND_BGM";
         public const string NOT_FOUND_BONUS = "NOT_FOUND_BONUS";
         public const string NOT_FOUND_BUTTON = "NOT_FOUND_BUTTON";
         public const string NOT_FOUND_CARD = "NOT_FOUND_CARD";
@@ -44,6 +45,7 @@ namespace PrimeMillionaire.Common
         public const string FAILED_LOAD_INTERRUPT = "FAILED_LOAD_INTERRUPT";
         public const string FAILED_LOAD_PROGRESS = "FAILED_LOAD_PROGRESS";
         public const string FAILED_LOGIN = "FAILED_LOGIN";
+        public const string INVALID_SOUND_DURATION = "INVALID_SOUND_DURATION";
         public const string OUT_OF_RANGE = "OUT_OF_RANGE";
         public const string MAX_RETRY_COUNT = "MAX_RETRY_COUNT";
     }

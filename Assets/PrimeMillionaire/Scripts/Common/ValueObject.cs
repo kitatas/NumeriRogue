@@ -285,6 +285,19 @@ namespace PrimeMillionaire.Common
         public bool isClear => status == ProgressStatus.Clear;
     }
 
+    public sealed class SoundVO
+    {
+        public readonly AudioClip clip;
+        public readonly float duration;
+
+        public SoundVO(AudioClip clip, float duration)
+        {
+            if (duration < 0.0f) throw new QuitExceptionVO(ExceptionConfig.INVALID_SOUND_DURATION);
+            this.clip = clip;
+            this.duration = duration;
+        }
+    }
+
     public abstract class BaseModalVO<T> : ICommand where T : Enum
     {
         public readonly T type;
