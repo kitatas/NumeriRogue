@@ -14,11 +14,13 @@ namespace PrimeMillionaire.Common.Installer
     public sealed class CommonInstaller : LifetimeScope
     {
         [SerializeField] private TextAsset memoryFile = default;
+        [SerializeField] private BgmTable bgmTable = default;
 
         protected override void Configure(IContainerBuilder builder)
         {
             // DataStore
             builder.RegisterInstance<MemoryDatabase>(new MemoryDatabase(memoryFile.bytes));
+            builder.RegisterInstance<BgmTable>(bgmTable);
 
             // Entity
             builder.Register<PlayerCharacterEntity>(Lifetime.Singleton);
@@ -28,20 +30,24 @@ namespace PrimeMillionaire.Common.Installer
             builder.Register<CharacterRepository>(Lifetime.Singleton);
             builder.Register<CharacterStageRepository>(Lifetime.Singleton);
             builder.Register<SaveRepository>(Lifetime.Singleton);
+            builder.Register<SoundRepository>(Lifetime.Singleton);
 
             // UseCase
             builder.Register<ExceptionUseCase>(Lifetime.Singleton);
             builder.Register<SceneUseCase>(Lifetime.Singleton);
+            builder.Register<SoundUseCase>(Lifetime.Singleton);
 
             // Presenter
             builder.UseEntryPoints(Lifetime.Singleton, entryPoints =>
             {
                 entryPoints.Add<ExceptionPresenter>();
                 entryPoints.Add<ScenePresenter>();
+                entryPoints.Add<SoundPresenter>();
             });
 
             // View
             builder.RegisterInstance<ExceptionModalView>(FindFirstObjectByType<ExceptionModalView>());
+            builder.RegisterInstance<SoundView>(FindFirstObjectByType<SoundView>());
             builder.RegisterInstance<TransitionView>(FindFirstObjectByType<TransitionView>());
         }
     }
