@@ -8,14 +8,17 @@ namespace PrimeMillionaire.Common.Domain.UseCase
     {
         private readonly SoundRepository _soundRepository;
         private readonly Subject<SoundVO> _playBgm;
+        private readonly Subject<SoundVO> _playSe;
 
         public SoundUseCase(SoundRepository soundRepository)
         {
             _soundRepository = soundRepository;
             _playBgm = new Subject<SoundVO>();
+            _playSe = new Subject<SoundVO>();
         }
 
         public Observable<SoundVO> playBgm => _playBgm;
+        public Observable<SoundVO> playSe => _playSe;
 
         public void Play(Bgm bgm, float duration = 0.0f)
         {
@@ -23,9 +26,16 @@ namespace PrimeMillionaire.Common.Domain.UseCase
             _playBgm?.OnNext(new SoundVO(clip, duration));
         }
 
+        public void Play(Se se, float duration = 0.0f)
+        {
+            var clip = _soundRepository.Find(se);
+            _playSe?.OnNext(new SoundVO(clip, duration));
+        }
+
         public void Dispose()
         {
             _playBgm?.Dispose();
+            _playSe?.Dispose();
         }
     }
 }
