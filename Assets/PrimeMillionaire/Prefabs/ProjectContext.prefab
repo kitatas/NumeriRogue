@@ -49,3 +49,5 @@ MonoBehaviour:
   autoRun: 1
   autoInjectGameObjects: []
   memoryFile: {fileID: 4900000, guid: f19550290786b4a56b801d51074fa119, type: 3}
+  bgmTable: {fileID: 11400000, guid: 0e3737be12ad54a3fa31a8bc42741448, type: 2}
+  seTable: {fileID: 11400000, guid: d09a9a095c17e4390957a254f06169f9, type: 2}
