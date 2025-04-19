@@ -10,10 +10,10 @@ namespace PrimeMillionaire.Top.Presentation.View
         [SerializeField] private Slider bgm = default;
         [SerializeField] private Slider se = default;
 
-        public void Init(VolumeVO volume)
+        public void Init(SoundVO sound)
         {
-            bgm.value = volume.bgm;
-            se.value = volume.se;
+            bgm.value = sound.bgm.volume;
+            se.value = sound.se.volume;
         }
 
         public Observable<float> bgmVolume => bgm.OnValueChangedAsObservable();

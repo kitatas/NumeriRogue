@@ -27,7 +27,7 @@ namespace PrimeMillionaire.Common.Domain.UseCase
         public Observable<AudioVO> playSe => _playSe;
         public Observable<float> bgmVolume => _bgmVolume;
         public Observable<float> seVolume => _seVolume;
-        public VolumeVO volume => new(_bgmVolume.Value, _seVolume.Value);
+        public SoundVO sound => new(new VolumeVO(0.5f), new VolumeVO(0.5f));
 
         public void Play(Bgm bgm, float duration = 0.0f)
         {

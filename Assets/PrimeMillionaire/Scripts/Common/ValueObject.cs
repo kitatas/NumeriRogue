@@ -36,7 +36,8 @@ namespace PrimeMillionaire.Common
             this.rank = rank;
         }
 
-        public string imgPath => ZString.Format("Assets/Externals/Sprites/Cards/cards.png[card_{0}s_{1}]", suit.FastToString().ToLower(), rank);
+        public string imgPath => ZString.Format("Assets/Externals/Sprites/Cards/cards.png[card_{0}s_{1}]",
+            suit.FastToString().ToLower(), rank);
     }
 
     public sealed class DeckVO
@@ -62,8 +63,11 @@ namespace PrimeMillionaire.Common
             this.parameter = new ParameterVO(type, hp, atk, def);
         }
 
-        public string objPath => ZString.Format("Assets/PrimeMillionaire/Prefabs/Characters/Character - {0}.prefab", name);
-        public string imgPath => ZString.Format("Assets/Externals/Sprites/Characters/boss_{0}.png[boss_{0}_101]", name.ToLower());
+        public string objPath =>
+            ZString.Format("Assets/PrimeMillionaire/Prefabs/Characters/Character - {0}.prefab", name);
+
+        public string imgPath =>
+            ZString.Format("Assets/Externals/Sprites/Characters/boss_{0}.png[boss_{0}_101]", name.ToLower());
     }
 
     public class ParameterVO
@@ -189,9 +193,14 @@ namespace PrimeMillionaire.Common
 
         public bool hasGlow => type is StageType.Abyssian or StageType.Redrock;
 
-        public string bgPath => ZString.Format("Assets/Externals/Sprites/Stages/{0}/background@2x.jpg[background@2x_0]", lowerName);
-        public string mgPath => ZString.Format("Assets/Externals/Sprites/Stages/{0}/midground@2x.png[midground@2x_0]", lowerName);
-        public string glowPath => ZString.Format("Assets/Externals/Sprites/Stages/{0}/midground_glow@2x.png[midground_glow@2x_0]", lowerName);
+        public string bgPath => ZString.Format("Assets/Externals/Sprites/Stages/{0}/background@2x.jpg[background@2x_0]",
+            lowerName);
+
+        public string mgPath =>
+            ZString.Format("Assets/Externals/Sprites/Stages/{0}/midground@2x.png[midground@2x_0]", lowerName);
+
+        public string glowPath =>
+            ZString.Format("Assets/Externals/Sprites/Stages/{0}/midground_glow@2x.png[midground_glow@2x_0]", lowerName);
     }
 
     public sealed class DropRateVO
@@ -298,15 +307,25 @@ namespace PrimeMillionaire.Common
         }
     }
 
-    public sealed class VolumeVO
+    public sealed class SoundVO
     {
-        public readonly float bgm;
-        public readonly float se;
+        public readonly VolumeVO bgm;
+        public readonly VolumeVO se;
 
-        public VolumeVO(float bgm, float se)
+        public SoundVO(VolumeVO bgm, VolumeVO se)
         {
             this.bgm = bgm;
             this.se = se;
+        }
+    }
+
+    public sealed class VolumeVO
+    {
+        public readonly float volume;
+
+        public VolumeVO(float volume)
+        {
+            this.volume = volume;
         }
     }
 
