@@ -298,6 +298,18 @@ namespace PrimeMillionaire.Common
         }
     }
 
+    public sealed class VolumeVO
+    {
+        public readonly float bgm;
+        public readonly float se;
+
+        public VolumeVO(float bgm, float se)
+        {
+            this.bgm = bgm;
+            this.se = se;
+        }
+    }
+
     public abstract class BaseModalVO<T> : ICommand where T : Enum
     {
         public readonly T type;
