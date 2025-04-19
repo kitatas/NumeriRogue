@@ -32,6 +32,14 @@ namespace PrimeMillionaire.Common.Domain.UseCase
             _playSe?.OnNext(new SoundVO(clip, duration));
         }
 
+        public void SetBgmVolume(float value)
+        {
+        }
+
+        public void SetSeVolume(float value)
+        {
+        }
+
         public void Dispose()
         {
             _playBgm?.Dispose();

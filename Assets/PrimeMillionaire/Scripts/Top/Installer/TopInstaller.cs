@@ -26,12 +26,14 @@ namespace PrimeMillionaire.Top.Installer
                 entryPoints.Add<CharacterPresenter>();
                 entryPoints.Add<ModalPresenter>();
                 entryPoints.Add<StatePresenter>();
+                entryPoints.Add<VolumePresenter>();
             });
 
             // View
             builder.RegisterComponentInHierarchy<CharacterScrollView>();
             builder.RegisterComponentInHierarchy<OrderCharacterView>();
             builder.RegisterComponentInHierarchy<OrderView>();
+            builder.RegisterComponentInHierarchy<VolumeView>();
         }
     }
 }
