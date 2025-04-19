@@ -27,6 +27,11 @@ namespace PrimeMillionaire.Common
         None = 0,
     }
 
+    public enum Se
+    {
+        None = 0,
+    }
+
     public enum Suit
     {
         None = 0,
