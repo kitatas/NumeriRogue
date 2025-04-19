@@ -15,12 +15,14 @@ namespace PrimeMillionaire.Common.Installer
     {
         [SerializeField] private TextAsset memoryFile = default;
         [SerializeField] private BgmTable bgmTable = default;
+        [SerializeField] private SeTable seTable = default;
 
         protected override void Configure(IContainerBuilder builder)
         {
             // DataStore
             builder.RegisterInstance<MemoryDatabase>(new MemoryDatabase(memoryFile.bytes));
             builder.RegisterInstance<BgmTable>(bgmTable);
+            builder.RegisterInstance<SeTable>(seTable);
 
             // Entity
             builder.Register<PlayerCharacterEntity>(Lifetime.Singleton);
