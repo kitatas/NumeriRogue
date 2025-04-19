@@ -8,21 +8,21 @@ namespace PrimeMillionaire.Common.Presentation.View
         [SerializeField] private AudioSource bgmSource = default;
         [SerializeField] private AudioSource seSource = default;
 
-        public void PlayBgm(SoundVO sound)
+        public void PlayBgm(AudioVO value)
         {
-            this.Delay(sound.duration, () =>
+            this.Delay(value.duration, () =>
             {
-                bgmSource.clip = sound.clip;
+                bgmSource.clip = value.clip;
                 bgmSource.Play();
             });
         }
 
-        public void PlaySe(SoundVO sound)
+        public void PlaySe(AudioVO value)
         {
-            this.Delay(sound.duration, () =>
+            this.Delay(value.duration, () =>
             {
                 //
-                seSource.PlayOneShot(sound.clip);
+                seSource.PlayOneShot(value.clip);
             });
         }
 
