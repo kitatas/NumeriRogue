@@ -22,6 +22,11 @@ namespace PrimeMillionaire.Common
         Fade = 2,
     }
 
+    public enum Bgm
+    {
+        None = 0,
+    }
+
     public enum Suit
     {
         None = 0,
