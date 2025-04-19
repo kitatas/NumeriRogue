@@ -25,5 +25,15 @@ namespace PrimeMillionaire.Common.Presentation.View
                 seSource.PlayOneShot(sound.clip);
             });
         }
+
+        public void SetBgmVolume(float value)
+        {
+            bgmSource.volume = value;
+        }
+
+        public void SetSeVolume(float value)
+        {
+            seSource.volume = value;
+        }
     }
 }
