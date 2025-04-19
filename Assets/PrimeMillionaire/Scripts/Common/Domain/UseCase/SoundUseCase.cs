@@ -6,28 +6,29 @@ namespace PrimeMillionaire.Common.Domain.UseCase
 {
     public sealed class SoundUseCase : IDisposable
     {
+        private readonly SaveRepository _saveRepository;
         private readonly SoundRepository _soundRepository;
         private readonly Subject<AudioVO> _playBgm;
         private readonly Subject<AudioVO> _playSe;
         private readonly ReactiveProperty<float> _bgmVolume;
         private readonly ReactiveProperty<float> _seVolume;
 
-        public SoundUseCase(SoundRepository soundRepository)
+        public SoundUseCase(SaveRepository saveRepository, SoundRepository soundRepository)
         {
+            _saveRepository = saveRepository;
             _soundRepository = soundRepository;
             _playBgm = new Subject<AudioVO>();
             _playSe = new Subject<AudioVO>();
 
-            // TODO: load save data
-            _bgmVolume = new ReactiveProperty<float>();
-            _seVolume = new ReactiveProperty<float>();
+            _bgmVolume = new ReactiveProperty<float>(sound.bgm.volume);
+            _seVolume = new ReactiveProperty<float>(sound.se.volume);
         }
 
         public Observable<AudioVO> playBgm => _playBgm;
         public Observable<AudioVO> playSe => _playSe;
         public Observable<float> bgmVolume => _bgmVolume;
         public Observable<float> seVolume => _seVolume;
-        public SoundVO sound => new(new VolumeVO(0.5f), new VolumeVO(0.5f));
+        public SoundVO sound => _saveRepository.Load().sound.ToVO();
 
         public void Play(Bgm bgm, float duration = 0.0f)
         {

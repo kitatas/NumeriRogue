@@ -5,6 +5,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
         public string uid;
         public ProgressDTO progress;
         public InterruptDTO interrupt;
+        public SoundDTO sound;
 
         public static SaveData Create()
         {
@@ -13,6 +14,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
                 uid = "",
                 progress = new ProgressDTO(),
                 interrupt = null,
+                sound = new SoundDTO(),
             };
         }
 
