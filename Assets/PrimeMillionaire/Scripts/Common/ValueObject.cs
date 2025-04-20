@@ -322,10 +322,12 @@ namespace PrimeMillionaire.Common
     public sealed class VolumeVO
     {
         public readonly float volume;
+        public readonly bool isMute;
 
-        public VolumeVO(float volume)
+        public VolumeVO(float volume, bool isMute)
         {
             this.volume = volume;
+            this.isMute = isMute;
         }
     }
 

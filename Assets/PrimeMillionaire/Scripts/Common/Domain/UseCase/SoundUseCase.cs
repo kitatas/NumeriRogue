@@ -32,12 +32,16 @@ namespace PrimeMillionaire.Common.Domain.UseCase
 
         public void Play(Bgm bgm, float duration = 0.0f)
         {
+            if (sound.bgm.isMute) return;
+
             var clip = _soundRepository.Find(bgm);
             _playBgm?.OnNext(new AudioVO(clip, duration));
         }
 
         public void Play(Se se, float duration = 0.0f)
         {
+            if (sound.se.isMute) return;
+
             var clip = _soundRepository.Find(se);
             _playSe?.OnNext(new AudioVO(clip, duration));
         }

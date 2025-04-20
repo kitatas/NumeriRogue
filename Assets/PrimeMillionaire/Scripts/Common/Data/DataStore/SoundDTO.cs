@@ -21,17 +21,20 @@ namespace PrimeMillionaire.Common.Data.DataStore
     public sealed class VolumeDTO
     {
         public float volume;
+        public bool isMute;
 
         public VolumeDTO()
         {
             volume = 0.5f;
+            isMute = false;
         }
 
         public VolumeDTO(VolumeVO volume)
         {
             this.volume = volume.volume;
+            this.isMute = volume.isMute;
         }
 
-        public VolumeVO ToVO() => new(volume);
+        public VolumeVO ToVO() => new(volume, isMute);
     }
 }

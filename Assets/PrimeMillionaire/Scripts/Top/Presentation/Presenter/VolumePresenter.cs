@@ -1,4 +1,3 @@
-using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Domain.UseCase;
 using PrimeMillionaire.Top.Presentation.View;
 using R3;
@@ -22,12 +21,10 @@ namespace PrimeMillionaire.Top.Presentation.Presenter
             _volumeView.Init(_soundUseCase.sound);
 
             _volumeView.bgmVolume
-                .Select(x => new VolumeVO(x))
                 .Subscribe(_soundUseCase.SetBgmVolume)
                 .AddTo(_volumeView);
 
             _volumeView.seVolume
-                .Select(x => new VolumeVO(x))
                 .Subscribe(_soundUseCase.SetSeVolume)
                 .AddTo(_volumeView);
         }
