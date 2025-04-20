@@ -10,8 +10,8 @@ namespace PrimeMillionaire.Common.Domain.UseCase
         private readonly SoundRepository _soundRepository;
         private readonly Subject<AudioVO> _playBgm;
         private readonly Subject<AudioVO> _playSe;
-        private readonly ReactiveProperty<float> _bgmVolume;
-        private readonly ReactiveProperty<float> _seVolume;
+        private readonly ReactiveProperty<VolumeVO> _bgmVolume;
+        private readonly ReactiveProperty<VolumeVO> _seVolume;
 
         public SoundUseCase(SaveRepository saveRepository, SoundRepository soundRepository)
         {
@@ -20,14 +20,14 @@ namespace PrimeMillionaire.Common.Domain.UseCase
             _playBgm = new Subject<AudioVO>();
             _playSe = new Subject<AudioVO>();
 
-            _bgmVolume = new ReactiveProperty<float>(sound.bgm.volume);
-            _seVolume = new ReactiveProperty<float>(sound.se.volume);
+            _bgmVolume = new ReactiveProperty<VolumeVO>(sound.bgm);
+            _seVolume = new ReactiveProperty<VolumeVO>(sound.se);
         }
 
         public Observable<AudioVO> playBgm => _playBgm;
         public Observable<AudioVO> playSe => _playSe;
-        public Observable<float> bgmVolume => _bgmVolume;
-        public Observable<float> seVolume => _seVolume;
+        public Observable<VolumeVO> bgmVolume => _bgmVolume;
+        public Observable<VolumeVO> seVolume => _seVolume;
         public SoundVO sound => _saveRepository.Load().sound.ToVO();
 
         public void Play(Bgm bgm, float duration = 0.0f)
@@ -42,16 +42,16 @@ namespace PrimeMillionaire.Common.Domain.UseCase
             _playSe?.OnNext(new AudioVO(clip, duration));
         }
 
-        public void SetBgmVolume(float value)
+        public void SetBgmVolume(VolumeVO value)
         {
             _bgmVolume.Value = value;
-            _saveRepository.SaveBgm(new VolumeVO(value));
+            _saveRepository.SaveBgm(value);
         }
 
-        public void SetSeVolume(float value)
+        public void SetSeVolume(VolumeVO value)
         {
             _seVolume.Value = value;
-            _saveRepository.SaveSe(new VolumeVO(value));
+            _saveRepository.SaveSe(value);
         }
 
         public void Dispose()

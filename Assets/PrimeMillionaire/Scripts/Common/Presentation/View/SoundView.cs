@@ -26,14 +26,14 @@ namespace PrimeMillionaire.Common.Presentation.View
             });
         }
 
-        public void SetBgmVolume(float value)
+        public void SetBgmVolume(VolumeVO value)
         {
-            bgmSource.volume = value;
+            bgmSource.volume = value.volume;
         }
 
-        public void SetSeVolume(float value)
+        public void SetSeVolume(VolumeVO value)
         {
-            seSource.volume = value;
+            seSource.volume = value.volume;
         }
     }
 }
