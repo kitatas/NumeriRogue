@@ -24,10 +24,11 @@ namespace PrimeMillionaire.Top.Presentation.View
             scroller.OnSelectionChanged(UpdateSelection);
         }
 
-        public void Init(IList<StageCharacterVO> characters, Action<CharacterType> order)
+        public void Init(IList<StageCharacterVO> characters, int index, Action<CharacterType> order)
         {
             UpdateContents(characters);
             scroller.SetTotalCount(characters.Count);
+            SelectCell(index);
             _order = order;
         }
 

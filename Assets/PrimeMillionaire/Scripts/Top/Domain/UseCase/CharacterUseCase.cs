@@ -28,7 +28,7 @@ namespace PrimeMillionaire.Top.Domain.UseCase
 
         public Observable<OrderCharacterVO> orderCharacter => _orderCharacter;
 
-        public List<StageCharacterVO> GetAll()
+        private List<StageCharacterVO> GetAll()
         {
             if (_saveRepository.TryLoadProgress(out var progress))
             {
@@ -45,6 +45,20 @@ namespace PrimeMillionaire.Top.Domain.UseCase
             {
                 throw new RebootExceptionVO(ExceptionConfig.FAILED_LOAD_PROGRESS);
             }
+        }
+
+        public (List<StageCharacterVO>, int) GetAllAndIndex()
+        {
+            var characters = GetAll();
+            var type = _playerCharacterEntity.type == CharacterType.None
+                ? characters.OrderBy(x => x.character.type).Last().character.type
+                : _playerCharacterEntity.type;
+
+            // 初期選択されているキャラ
+            Order(type);
+
+            var index = characters.FindIndex(x => x.character.type == type);
+            return (characters, index);
         }
 
         public void Order(CharacterType type)

@@ -21,14 +21,15 @@ namespace PrimeMillionaire.Top.Presentation.Presenter
 
         public void Start()
         {
-            _characterScrollView.Init(_characterUseCase.GetAll(), _characterUseCase.Order);
-
             _characterUseCase.orderCharacter
                 .SubscribeAwait(async (x, token) =>
                 {
                     await _orderCharacterView.RenderAsync(x, token);
                 })
                 .AddTo(_orderCharacterView);
+
+            var (characters, index) = _characterUseCase.GetAllAndIndex();
+            _characterScrollView.Init(characters, index, _characterUseCase.Order);
         }
     }
 }
