@@ -36,6 +36,7 @@ namespace PrimeMillionaire.Common.Installer
 
             // UseCase
             builder.Register<ExceptionUseCase>(Lifetime.Singleton);
+            builder.Register<LoadingUseCase>(Lifetime.Singleton);
             builder.Register<SceneUseCase>(Lifetime.Singleton);
             builder.Register<SoundUseCase>(Lifetime.Singleton);
 
@@ -43,12 +44,14 @@ namespace PrimeMillionaire.Common.Installer
             builder.UseEntryPoints(Lifetime.Singleton, entryPoints =>
             {
                 entryPoints.Add<ExceptionPresenter>();
+                entryPoints.Add<LoadingPresenter>();
                 entryPoints.Add<ScenePresenter>();
                 entryPoints.Add<SoundPresenter>();
             });
 
             // View
             builder.RegisterInstance<ExceptionModalView>(FindFirstObjectByType<ExceptionModalView>());
+            builder.RegisterInstance<LoadingView>(FindFirstObjectByType<LoadingView>());
             builder.RegisterInstance<SoundView>(FindFirstObjectByType<SoundView>());
             builder.RegisterInstance<TransitionView>(FindFirstObjectByType<TransitionView>());
         }
