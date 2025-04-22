@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Cysharp.Text;
+using UniEx;
 using UnityEditor;
 
 namespace PrimeMillionaire.Editor.Scripts
@@ -11,40 +12,42 @@ namespace PrimeMillionaire.Editor.Scripts
         [MenuItem("Tools/Numeric/" + nameof(DumpPrimeNumber))]
         private static void DumpPrimeNumber()
         {
-            var list = new List<int>();
-            for (int i = 1; i <= 13; i++)
-            {
-                for (int j = 1; j <= 13; j++)
-                {
-                    // NOTE: 偶数は見ない
-                    for (int k = 1; k <= 13; k += 2)
-                    {
-                        var value = int.Parse(ZString.Concat(i, j, k));
-                        if (!IsPrime(value)) continue;
-                        if (list.Any(x => x == value)) continue;
+            var list = GetNumbers()
+                .Select(int.Parse)
+                .Where(IsPrime);
 
-                        list.Add(value);
-                    }
-                }
-            }
+            DumpCsv(list, "PrimeNumber");
+        }
 
-            using var sb = ZString.CreateStringBuilder();
-            foreach (int i in list.OrderBy(x => x))
-            {
-                sb.AppendLine(i);
-            }
-
-            File.WriteAllText("Assets/Externals/Csv/PrimeNumber.csv", sb.ToString());
+        private static IEnumerable<string> GetNumbers()
+        {
+            return Enumerable.Range(1, 13)
+                .SelectMany(_ => Enumerable.Range(1, 13), (i, j) => (i, j))
+                .SelectMany(_ => Enumerable.Range(1, 13), (t, k) => ZString.Concat(t.i, t.j, k))
+                .Distinct();
         }
 
         private static bool IsPrime(int value)
         {
+            if (value.IsEven()) return false;
+
             for (int i = 3; i * i <= value; i += 2)
             {
                 if (value % i == 0) return false;
             }
 
             return true;
+        }
+
+        private static void DumpCsv(IEnumerable<int> list, string fileName)
+        {
+            using var sb = ZString.CreateStringBuilder();
+            foreach (var i in list.OrderBy(x => x))
+            {
+                sb.AppendLine(i);
+            }
+
+            File.WriteAllText(ZString.Format("../PrimeMillionaire/Master/Csv/{0}.csv", fileName), sb.ToString());
         }
     }
 }
