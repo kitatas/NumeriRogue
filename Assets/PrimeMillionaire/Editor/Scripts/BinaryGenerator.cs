@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using Cysharp.Text;
 using MessagePack;
 using MessagePack.Resolvers;
 using Newtonsoft.Json;
@@ -10,8 +11,8 @@ namespace PrimeMillionaire.Editor.Scripts
 {
     public static class BinaryGenerator
     {
-        [MenuItem("Tools/MasterMemory/CreateBinary")]
-        private static void GenerateCardMaster()
+        [MenuItem("Tools/MasterMemory/" + nameof(CreateBinary))]
+        private static void CreateBinary()
         {
             StaticCompositeResolver.Instance.Register(
                 MasterMemoryResolver.Instance,
@@ -48,7 +49,7 @@ namespace PrimeMillionaire.Editor.Scripts
 
         private static List<T> DeserializeJson<T>(string fileName)
         {
-            var json = File.ReadAllText($"Master/Jsons/{fileName}.json");
+            var json = File.ReadAllText(ZString.Format("Master/Jsons/{0}.json", fileName));
             return JsonConvert.DeserializeObject<List<T>>(json);
         }
     }
