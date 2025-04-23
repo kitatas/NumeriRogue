@@ -1,5 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using PrimeMillionaire.Common.Domain.UseCase;
 using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.View;
 
@@ -8,6 +9,7 @@ namespace PrimeMillionaire.Game.Presentation.State
     public sealed class RestartState : BaseState
     {
         private readonly InterruptUseCase _interruptUseCase;
+        private readonly LoadingUseCase _loadingUseCase;
 
         private readonly CharacterUseCase _characterUseCase;
         private readonly DealUseCase _dealUseCase;
@@ -21,12 +23,14 @@ namespace PrimeMillionaire.Game.Presentation.State
         private readonly BattleView _battleView;
         private readonly TableView _tableView;
 
-        public RestartState(InterruptUseCase interruptUseCase, CharacterUseCase characterUseCase,
-            DealUseCase dealUseCase, DollarUseCase dollarUseCase, LevelUseCase levelUseCase,
-            HandUseCase handUseCase, HoldSkillUseCase holdSkillUseCase, OrderUseCase orderUseCase,
-            ParameterUseCase parameterUseCase, TurnUseCase turnUseCase, BattleView battleView, TableView tableView)
+        public RestartState(InterruptUseCase interruptUseCase, LoadingUseCase loadingUseCase,
+            CharacterUseCase characterUseCase, DealUseCase dealUseCase, DollarUseCase dollarUseCase,
+            LevelUseCase levelUseCase, HandUseCase handUseCase, HoldSkillUseCase holdSkillUseCase,
+            OrderUseCase orderUseCase, ParameterUseCase parameterUseCase, TurnUseCase turnUseCase,
+            BattleView battleView, TableView tableView)
         {
             _interruptUseCase = interruptUseCase;
+            _loadingUseCase = loadingUseCase;
             _characterUseCase = characterUseCase;
             _dealUseCase = dealUseCase;
             _dollarUseCase = dollarUseCase;
@@ -82,6 +86,8 @@ namespace PrimeMillionaire.Game.Presentation.State
                 _tableView.RenderPlayerHandsAsync(_handUseCase.GetPlayerHands(), token),
                 _tableView.RenderEnemyHandsAsync(_handUseCase.GetEnemyHands(), token)
             );
+
+            _loadingUseCase.Set(false);
 
             return GameState.Order;
         }

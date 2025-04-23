@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Boot.Domain.UseCase;
 using PrimeMillionaire.Boot.Presentation.View;
 using PrimeMillionaire.Common;
+using PrimeMillionaire.Common.Domain.UseCase;
 using PrimeMillionaire.Common.Utility;
 using R3;
 
@@ -11,12 +12,15 @@ namespace PrimeMillionaire.Boot.Presentation.State
     public sealed class LoginState : BaseState
     {
         private readonly InterruptUseCase _interruptUseCase;
+        private readonly LoadingUseCase _loadingUseCase;
         private readonly LoginUseCase _loginUseCase;
         private readonly TitleView _titleView;
 
-        public LoginState(InterruptUseCase interruptUseCase, LoginUseCase loginUseCase, TitleView titleView)
+        public LoginState(InterruptUseCase interruptUseCase, LoadingUseCase loadingUseCase, LoginUseCase loginUseCase,
+            TitleView titleView)
         {
             _interruptUseCase = interruptUseCase;
+            _loadingUseCase = loadingUseCase;
             _loginUseCase = loginUseCase;
             _titleView = titleView;
         }
@@ -33,6 +37,7 @@ namespace PrimeMillionaire.Boot.Presentation.State
         {
             // 他presenter初期化待ち
             await UniTaskHelper.DelayAsync(0.5f, token);
+            _loadingUseCase.Set(false);
 
             var isSuccess = _loginUseCase.Login();
             if (isSuccess == false)
