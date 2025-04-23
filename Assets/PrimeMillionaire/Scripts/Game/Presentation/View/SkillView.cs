@@ -2,6 +2,7 @@ using System.Threading;
 using Cysharp.Text;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
+using PrimeMillionaire.Common.Presentation.View.Button;
 using PrimeMillionaire.Common.Utility;
 using R3;
 using TMPro;
@@ -15,7 +16,7 @@ namespace PrimeMillionaire.Game.Presentation.View
         [SerializeField] private Image background = default;
         [SerializeField] private Image icon = default;
         [SerializeField] private TextMeshProUGUI description = default;
-        [SerializeField] private Button button = default;
+        [SerializeField] private CommonButtonView button = default;
         [SerializeField] private TextMeshProUGUI buttonText = default;
 
         public SkillVO skill { get; private set; }
@@ -27,7 +28,7 @@ namespace PrimeMillionaire.Game.Presentation.View
             icon.color = new Color(1.0f, 1.0f, 1.0f);
             description.text = skill.description;
             button.gameObject.SetActive(true);
-            button.interactable = isInteractable;
+            button.SetInteractable(isInteractable);
             buttonText.text = skill.isHold ? "Trash" : ZString.Format("${0}", skill.price);
 
             icon.sprite = await ResourceHelper.LoadAsync<Sprite>(skill.skillBase.iconPath, token);
@@ -48,14 +49,14 @@ namespace PrimeMillionaire.Game.Presentation.View
 
         public Observable<SkillVO> OnClickAsObservable()
         {
-            return button.OnClickAsObservable().Select(_ => skill);
+            return button.push.Select(_ => skill);
         }
 
         public void Repaint(int value)
         {
             if (skill == null) return;
 
-            button.interactable = value >= skill.price && buttonText.text != "SoldOut";
+            button.SetInteractable(value >= skill.price && buttonText.text != "SoldOut");
         }
 
         public void SoldOut()

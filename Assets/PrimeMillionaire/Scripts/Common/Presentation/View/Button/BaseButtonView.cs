@@ -32,5 +32,7 @@ namespace PrimeMillionaire.Common.Presentation.View.Button
                 .DOScale(target, duration)
                 .SetLink(button.gameObject);
         }
+
+        public void SetInteractable(bool value) => button.interactable = value;
     }
 }

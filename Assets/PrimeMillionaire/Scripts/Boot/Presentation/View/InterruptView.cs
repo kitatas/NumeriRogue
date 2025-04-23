@@ -2,15 +2,15 @@ using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
+using PrimeMillionaire.Common.Presentation.View.Button;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace PrimeMillionaire.Boot.Presentation.View
 {
     public sealed class InterruptView : MonoBehaviour
     {
-        [SerializeField] private Button decision = default;
-        [SerializeField] private Button cancel = default;
+        [SerializeField] private CommonButtonView decision = default;
+        [SerializeField] private CommonButtonView cancel = default;
 
         public async UniTask<ButtonType> PushAnyAsync(CancellationToken token)
         {
