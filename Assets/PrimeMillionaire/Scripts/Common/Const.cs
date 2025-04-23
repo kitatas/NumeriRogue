@@ -56,5 +56,6 @@ namespace PrimeMillionaire.Common
         public const float POPUP_DURATION = 0.25f;
         public const float FLASH_DURATION = 1.0f;
         public const float TWEEN_DURATION = 0.25f;
+        public const float BUTTON_DURATION = 0.1f;
     }
 }
