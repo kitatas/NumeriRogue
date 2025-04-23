@@ -10,11 +10,13 @@ namespace PrimeMillionaire.Common.Presentation.Presenter
 {
     public sealed class ScenePresenter : IInitializable
     {
+        private readonly LoadingUseCase _loadingUseCase;
         private readonly SceneUseCase _sceneUseCase;
         private readonly TransitionView _transitionView;
 
-        public ScenePresenter(SceneUseCase sceneUseCase, TransitionView transitionView)
+        public ScenePresenter(LoadingUseCase loadingUseCase, SceneUseCase sceneUseCase, TransitionView transitionView)
         {
+            _loadingUseCase = loadingUseCase;
             _sceneUseCase = sceneUseCase;
             _transitionView = transitionView;
         }
@@ -26,7 +28,13 @@ namespace PrimeMillionaire.Common.Presentation.Presenter
                 {
                     if (x.isFade) await _transitionView.FadeIn(0.1f).WithCancellation(token);
                     await SceneManager.LoadSceneAsync(x.name).ToUniTask(cancellationToken: token);
-                    await UniTaskHelper.DelayAsync(1.0f, token);
+
+                    _loadingUseCase.Set(true);
+                    await UniTaskHelper.DelayAsync(0.5f, token);
+
+                    await UniTask.WaitWhile(() => _loadingUseCase.isLoading, cancellationToken: token);
+                    await UniTaskHelper.DelayAsync(0.5f, token);
+
                     if (x.isFade) await _transitionView.FadeOut(0.1f).WithCancellation(token);
                 })
                 .AddTo(_transitionView);

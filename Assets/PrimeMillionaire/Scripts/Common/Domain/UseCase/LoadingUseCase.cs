@@ -14,6 +14,8 @@ namespace PrimeMillionaire.Common.Domain.UseCase
 
         public Observable<bool> isLoad => _isLoad;
 
+        public bool isLoading => _isLoad.Value;
+
         public void Set(bool value)
         {
             _isLoad.Value = value;
