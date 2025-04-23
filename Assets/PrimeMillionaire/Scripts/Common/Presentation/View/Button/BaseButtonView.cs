@@ -12,7 +12,7 @@ namespace PrimeMillionaire.Common.Presentation.View.Button
     {
         [SerializeField] private UnityEngine.UI.Button button = default;
 
-        public Observable<PointerEventData> push => button.OnPointerClickAsObservable();
+        public Observable<PointerEventData> push => button.OnPointerClickAsObservable().Where(_ => button.interactable);
         public UniTask OnClickAsync(CancellationToken token) => button.OnClickAsync(token);
 
         private void Awake()
