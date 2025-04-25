@@ -8,15 +8,19 @@ namespace PrimeMillionaire.Top.Presentation.View
 {
     public sealed class VolumeView : MonoBehaviour
     {
+        [SerializeField] private Slider master = default;
         [SerializeField] private Slider bgm = default;
         [SerializeField] private Slider se = default;
+        [SerializeField] private MuteButtonView masterMute = default;
         [SerializeField] private MuteButtonView bgmMute = default;
         [SerializeField] private MuteButtonView seMute = default;
 
         public void Init(SoundVO sound)
         {
+            master.value = sound.master.volume;
             bgm.value = sound.bgm.volume;
             se.value = sound.se.volume;
+            masterMute.Init(sound.master);
             bgmMute.Init(sound.bgm);
             seMute.Init(sound.se);
         }

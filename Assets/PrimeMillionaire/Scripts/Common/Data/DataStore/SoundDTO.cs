@@ -5,16 +5,18 @@ namespace PrimeMillionaire.Common.Data.DataStore
     [Serializable]
     public sealed class SoundDTO
     {
+        public VolumeDTO master;
         public VolumeDTO bgm;
         public VolumeDTO se;
 
         public SoundDTO()
         {
+            master = new VolumeDTO();
             bgm = new VolumeDTO();
             se = new VolumeDTO();
         }
 
-        public SoundVO ToVO() => new(bgm.ToVO(), se.ToVO());
+        public SoundVO ToVO() => new(master.ToVO(), bgm.ToVO(), se.ToVO());
     }
 
     [Serializable]
@@ -25,7 +27,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
 
         public VolumeDTO()
         {
-            volume = 0.5f;
+            volume = 0.7f;
             isMute = false;
         }
 

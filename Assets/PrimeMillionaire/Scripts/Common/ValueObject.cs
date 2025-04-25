@@ -309,11 +309,13 @@ namespace PrimeMillionaire.Common
 
     public sealed class SoundVO
     {
+        public readonly VolumeVO master;
         public readonly VolumeVO bgm;
         public readonly VolumeVO se;
 
-        public SoundVO(VolumeVO bgm, VolumeVO se)
+        public SoundVO(VolumeVO master, VolumeVO bgm, VolumeVO se)
         {
+            this.master = master;
             this.bgm = bgm;
             this.se = se;
         }
