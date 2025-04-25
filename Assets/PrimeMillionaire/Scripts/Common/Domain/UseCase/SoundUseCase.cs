@@ -12,6 +12,7 @@ namespace PrimeMillionaire.Common.Domain.UseCase
         private readonly Subject<AudioVO> _playSe;
         private readonly ReactiveProperty<VolumeVO> _bgmVolume;
         private readonly ReactiveProperty<VolumeVO> _seVolume;
+        private VolumeVO _master;
 
         public SoundUseCase(SaveRepository saveRepository, SoundRepository soundRepository)
         {
@@ -20,8 +21,10 @@ namespace PrimeMillionaire.Common.Domain.UseCase
             _playBgm = new Subject<AudioVO>();
             _playSe = new Subject<AudioVO>();
 
-            _bgmVolume = new ReactiveProperty<VolumeVO>(sound.bgm);
-            _seVolume = new ReactiveProperty<VolumeVO>(sound.se);
+            var vo = sound;
+            _bgmVolume = new ReactiveProperty<VolumeVO>(vo.bgm);
+            _seVolume = new ReactiveProperty<VolumeVO>(vo.se);
+            _master = vo.master;
         }
 
         public Observable<AudioVO> playBgm => _playBgm;
@@ -48,18 +51,23 @@ namespace PrimeMillionaire.Common.Domain.UseCase
 
         public void SetMasterVolume(VolumeVO value)
         {
+            _master = value;
             _saveRepository.SaveMaster(value);
+
+            var vo = sound;
+            SetBgmVolume(vo.bgm);
+            SetSeVolume(vo.se);
         }
 
         public void SetBgmVolume(VolumeVO value)
         {
-            _bgmVolume.Value = value;
+            _bgmVolume.Value = value.Multiply(_master);
             _saveRepository.SaveBgm(value);
         }
 
         public void SetSeVolume(VolumeVO value)
         {
-            _seVolume.Value = value;
+            _seVolume.Value = value.Multiply(_master);
             _saveRepository.SaveSe(value);
         }
 

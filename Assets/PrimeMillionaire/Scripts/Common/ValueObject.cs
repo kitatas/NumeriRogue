@@ -331,6 +331,11 @@ namespace PrimeMillionaire.Common
             this.volume = volume;
             this.isMute = isMute;
         }
+
+        public VolumeVO Multiply(VolumeVO other)
+        {
+            return new VolumeVO(volume * other.volume, isMute || other.isMute);
+        }
     }
 
     public abstract class BaseModalVO<T> : ICommand where T : Enum
