@@ -20,6 +20,10 @@ namespace PrimeMillionaire.Top.Presentation.Presenter
         {
             _volumeView.Init(_soundUseCase.sound);
 
+            _volumeView.masterVolume
+                .Subscribe(_soundUseCase.SetMasterVolume)
+                .AddTo(_volumeView);
+
             _volumeView.bgmVolume
                 .Subscribe(_soundUseCase.SetBgmVolume)
                 .AddTo(_volumeView);

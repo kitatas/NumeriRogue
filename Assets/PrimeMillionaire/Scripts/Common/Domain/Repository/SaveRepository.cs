@@ -53,6 +53,13 @@ namespace PrimeMillionaire.Common.Domain.Repository
             Save(data);
         }
 
+        public void SaveMaster(VolumeVO master)
+        {
+            var data = Load();
+            data.sound.master = new VolumeDTO(master);
+            Save(data);
+        }
+
         public void SaveBgm(VolumeVO bgm)
         {
             var data = Load();

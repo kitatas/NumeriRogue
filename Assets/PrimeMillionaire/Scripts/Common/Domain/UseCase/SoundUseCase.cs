@@ -46,6 +46,11 @@ namespace PrimeMillionaire.Common.Domain.UseCase
             _playSe?.OnNext(new AudioVO(clip, duration));
         }
 
+        public void SetMasterVolume(VolumeVO value)
+        {
+            _saveRepository.SaveMaster(value);
+        }
+
         public void SetBgmVolume(VolumeVO value)
         {
             _bgmVolume.Value = value;

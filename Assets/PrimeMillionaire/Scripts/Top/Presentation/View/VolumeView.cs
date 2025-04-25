@@ -25,6 +25,21 @@ namespace PrimeMillionaire.Top.Presentation.View
             seMute.Init(sound.se);
         }
 
+        public Observable<VolumeVO> masterVolume => master.OnValueChangedAsObservable()
+            .Skip(1)
+            .Select(x =>
+            {
+                masterMute.Set(true);
+                return new VolumeVO(x, masterMute.isMute);
+            })
+            .Merge(masterMute.push
+                .Select(_ =>
+                {
+                    masterMute.Switch();
+                    return new VolumeVO(master.value, masterMute.isMute);
+                })
+            );
+
         public Observable<VolumeVO> bgmVolume => bgm.OnValueChangedAsObservable()
             .Skip(1)
             .Select(x =>
