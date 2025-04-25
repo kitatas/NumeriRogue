@@ -26,6 +26,16 @@ namespace PrimeMillionaire.Common.Presentation.View
             });
         }
 
+        public void UnPauseBgm()
+        {
+            bgmSource.UnPause();
+        }
+
+        public void PauseBgm()
+        {
+            bgmSource.Pause();
+        }
+
         public void SetBgmVolume(VolumeVO value)
         {
             bgmSource.volume = value.volume;

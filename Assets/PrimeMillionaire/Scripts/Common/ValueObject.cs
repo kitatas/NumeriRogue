@@ -319,6 +319,9 @@ namespace PrimeMillionaire.Common
             this.bgm = bgm;
             this.se = se;
         }
+
+        public bool isMuteBgm => master.isMute || bgm.isMute;
+        public bool isMuteSe => master.isMute || se.isMute;
     }
 
     public sealed class VolumeVO

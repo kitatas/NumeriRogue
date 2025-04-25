@@ -26,6 +26,20 @@ namespace PrimeMillionaire.Common.Presentation.Presenter
                 .Subscribe(_soundView.PlaySe)
                 .AddTo(_soundView);
 
+            _soundUseCase.isMuteBgm
+                .Subscribe(x =>
+                {
+                    if (x)
+                    {
+                        _soundView.PauseBgm();
+                    }
+                    else
+                    {
+                        _soundView.UnPauseBgm();
+                    }
+                })
+                .AddTo(_soundView);
+
             _soundUseCase.bgmVolume
                 .Subscribe(_soundView.SetBgmVolume)
                 .AddTo(_soundView);

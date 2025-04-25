@@ -10,6 +10,7 @@ namespace PrimeMillionaire.Common.Domain.UseCase
         private readonly SoundRepository _soundRepository;
         private readonly Subject<AudioVO> _playBgm;
         private readonly Subject<AudioVO> _playSe;
+        private readonly ReactiveProperty<bool> _isMuteBgm;
         private readonly ReactiveProperty<VolumeVO> _bgmVolume;
         private readonly ReactiveProperty<VolumeVO> _seVolume;
         private VolumeVO _master;
@@ -22,6 +23,8 @@ namespace PrimeMillionaire.Common.Domain.UseCase
             _playSe = new Subject<AudioVO>();
 
             var vo = sound;
+            _isMuteBgm = new ReactiveProperty<bool>(vo.isMuteBgm);
+
             _bgmVolume = new ReactiveProperty<VolumeVO>(vo.bgm);
             _seVolume = new ReactiveProperty<VolumeVO>(vo.se);
             _master = vo.master;
@@ -29,13 +32,14 @@ namespace PrimeMillionaire.Common.Domain.UseCase
 
         public Observable<AudioVO> playBgm => _playBgm;
         public Observable<AudioVO> playSe => _playSe;
+        public Observable<bool> isMuteBgm => _isMuteBgm;
         public Observable<VolumeVO> bgmVolume => _bgmVolume;
         public Observable<VolumeVO> seVolume => _seVolume;
         public SoundVO sound => _saveRepository.Load().sound.ToVO();
 
         public void Play(Bgm bgm, float duration = 0.0f)
         {
-            if (sound.bgm.isMute) return;
+            if (sound.isMuteBgm) return;
 
             var clip = _soundRepository.Find(bgm);
             _playBgm?.OnNext(new AudioVO(clip, duration));
@@ -43,7 +47,7 @@ namespace PrimeMillionaire.Common.Domain.UseCase
 
         public void Play(Se se, float duration = 0.0f)
         {
-            if (sound.se.isMute) return;
+            if (sound.isMuteSe) return;
 
             var clip = _soundRepository.Find(se);
             _playSe?.OnNext(new AudioVO(clip, duration));
@@ -63,6 +67,8 @@ namespace PrimeMillionaire.Common.Domain.UseCase
         {
             _bgmVolume.Value = value.Multiply(_master);
             _saveRepository.SaveBgm(value);
+
+            _isMuteBgm.Value = sound.isMuteBgm;
         }
 
         public void SetSeVolume(VolumeVO value)
