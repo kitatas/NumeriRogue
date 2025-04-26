@@ -13,6 +13,7 @@ namespace PrimeMillionaire.Top.Domain.UseCase
 
         public void Delete()
         {
+            _saveRepository.Delete();
         }
     }
 }

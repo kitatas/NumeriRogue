@@ -74,6 +74,13 @@ namespace PrimeMillionaire.Common.Domain.Repository
             Save(data);
         }
 
+        public void Delete()
+        {
+            var data = SaveData.Create();
+            data.sound = Load().sound;
+            Save(data);
+        }
+
         public void DeleteInterrupt()
         {
             Save(interrupt: null);
