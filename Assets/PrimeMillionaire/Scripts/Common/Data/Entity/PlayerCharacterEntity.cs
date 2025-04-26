@@ -6,6 +6,11 @@ namespace PrimeMillionaire.Common.Data.Entity
 
         public CharacterType type => _type;
 
+        public void Reset()
+        {
+            _type = CharacterType.None;
+        }
+
         public void SetType(CharacterType value)
         {
             if (value == CharacterType.None) throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_CHARACTER);
