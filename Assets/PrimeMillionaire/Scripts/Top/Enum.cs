@@ -15,5 +15,7 @@ namespace PrimeMillionaire.Top
         Credit = 3,
         Policy = 4,
         Sound = 5,
+        DeleteConfirm = 6,
+        DeleteComplete = 7,
     }
 }

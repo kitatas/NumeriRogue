@@ -15,6 +15,7 @@ namespace PrimeMillionaire.Top.Installer
             builder.Register<CharacterUseCase>(Lifetime.Scoped);
             builder.Register<ModalUseCase>(Lifetime.Scoped);
             builder.Register<StateUseCase>(Lifetime.Scoped);
+            builder.Register<UserDataUseCase>(Lifetime.Scoped);
 
             // State
             builder.Register<BaseState, InitState>(Lifetime.Scoped);
@@ -24,6 +25,7 @@ namespace PrimeMillionaire.Top.Installer
             builder.UseEntryPoints(Lifetime.Scoped, entryPoints =>
             {
                 entryPoints.Add<CharacterPresenter>();
+                entryPoints.Add<DeletePresenter>();
                 entryPoints.Add<ModalPresenter>();
                 entryPoints.Add<StatePresenter>();
                 entryPoints.Add<VolumePresenter>();
@@ -31,6 +33,7 @@ namespace PrimeMillionaire.Top.Installer
 
             // View
             builder.RegisterComponentInHierarchy<CharacterScrollView>();
+            builder.RegisterComponentInHierarchy<DeleteView>();
             builder.RegisterComponentInHierarchy<OrderCharacterView>();
             builder.RegisterComponentInHierarchy<OrderView>();
             builder.RegisterComponentInHierarchy<VolumeView>();
