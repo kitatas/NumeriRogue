@@ -14,5 +14,6 @@ namespace PrimeMillionaire.Top
         License = 2,
         Credit = 3,
         Policy = 4,
+        Sound = 5,
     }
 }
