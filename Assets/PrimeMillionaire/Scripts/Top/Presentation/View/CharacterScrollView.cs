@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using EasingCore;
 using FancyScrollView;
 using PrimeMillionaire.Common;
+using PrimeMillionaire.Common.Utility;
 using UniEx;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ namespace PrimeMillionaire.Top.Presentation.View
 {
     public sealed class CharacterScrollView : FancyScrollView<StageCharacterVO, ScrollContextVO>
     {
-        [SerializeField] private Scroller scroller = default;
+        [SerializeField] private CustomScroller scroller = default;
         [SerializeField] private GameObject cell = default;
 
         private Action<CharacterType> _order;
