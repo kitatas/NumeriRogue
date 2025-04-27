@@ -29,7 +29,7 @@ namespace PrimeMillionaire.Top.Presentation.View
             .Skip(1)
             .Select(x =>
             {
-                masterMute.Set(true);
+                masterMute.Set(false);
                 return new VolumeVO(x, masterMute.isMute);
             })
             .Merge(masterMute.push
@@ -44,7 +44,7 @@ namespace PrimeMillionaire.Top.Presentation.View
             .Skip(1)
             .Select(x =>
             {
-                bgmMute.Set(true);
+                bgmMute.Set(false);
                 return new VolumeVO(x, bgmMute.isMute);
             })
             .Merge(bgmMute.push
@@ -59,7 +59,7 @@ namespace PrimeMillionaire.Top.Presentation.View
             .Skip(1)
             .Select(x =>
             {
-                seMute.Set(true);
+                seMute.Set(false);
                 return new VolumeVO(x, seMute.isMute);
             })
             .Merge(seMute.push
