@@ -23,6 +23,7 @@ namespace PrimeMillionaire.Top.Presentation.View
             masterMute.Init(sound.master);
             bgmMute.Init(sound.bgm);
             seMute.Init(sound.se);
+            SetInteractable(!masterMute.isMute);
         }
 
         public Observable<VolumeVO> masterVolume => master.OnValueChangedAsObservable()
@@ -30,12 +31,14 @@ namespace PrimeMillionaire.Top.Presentation.View
             .Select(x =>
             {
                 masterMute.Set(false);
+                SetInteractable(!masterMute.isMute);
                 return new VolumeVO(x, masterMute.isMute);
             })
             .Merge(masterMute.push
                 .Select(_ =>
                 {
                     masterMute.Switch();
+                    SetInteractable(!masterMute.isMute);
                     return new VolumeVO(master.value, masterMute.isMute);
                 })
             );
@@ -69,5 +72,13 @@ namespace PrimeMillionaire.Top.Presentation.View
                     return new VolumeVO(se.value, seMute.isMute);
                 })
             );
+
+        private void SetInteractable(bool value)
+        {
+            bgm.interactable = value;
+            se.interactable = value;
+            bgmMute.SetInteractable(value);
+            seMute.SetInteractable(value);
+        }
     }
 }
