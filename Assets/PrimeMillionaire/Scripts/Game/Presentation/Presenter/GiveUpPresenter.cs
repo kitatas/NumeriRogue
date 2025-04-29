@@ -10,12 +10,15 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
     public sealed class GiveUpPresenter : IStartable
     {
         private readonly SceneUseCase _sceneUseCase;
+        private readonly InterruptUseCase _interruptUseCase;
         private readonly ModalUseCase _modalUseCase;
         private readonly GiveUpView _giveUpView;
 
-        public GiveUpPresenter(SceneUseCase sceneUseCase, ModalUseCase modalUseCase, GiveUpView giveUpView)
+        public GiveUpPresenter(SceneUseCase sceneUseCase, InterruptUseCase interruptUseCase, ModalUseCase modalUseCase,
+            GiveUpView giveUpView)
         {
             _sceneUseCase = sceneUseCase;
+            _interruptUseCase = interruptUseCase;
             _modalUseCase = modalUseCase;
             _giveUpView = giveUpView;
         }
@@ -25,7 +28,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
             _giveUpView.giveUp
                 .SubscribeAwait(async (_, token) =>
                 {
-                    // delete interrupt
+                    _interruptUseCase.Delete();
                     await _modalUseCase.ShowAsync(ModalType.GiveUpComplete, token);
                 })
                 .AddTo(_giveUpView);
