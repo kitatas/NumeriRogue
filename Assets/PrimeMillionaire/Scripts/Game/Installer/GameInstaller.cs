@@ -90,6 +90,7 @@ namespace PrimeMillionaire.Game.Installer
                 entryPoints.Add<PickSkillPresenter>();
                 entryPoints.Add<StatePresenter>();
                 entryPoints.Add<TurnPresenter>();
+                entryPoints.Add<VolumePresenter>();
             });
 
             // View
@@ -106,6 +107,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.RegisterComponentInHierarchy<PlayerParameterView>();
             builder.RegisterComponentInHierarchy<TableView>();
             builder.RegisterComponentInHierarchy<TurnView>();
+            builder.RegisterComponentInHierarchy<VolumeView>();
         }
     }
 }
