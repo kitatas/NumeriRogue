@@ -29,6 +29,16 @@ namespace PrimeMillionaire.Editor.Scripts
             DumpCsv(list, "PalindromicNumber");
         }
 
+        [MenuItem("Tools/Numeric/" + nameof(DumpHarshadNumber))]
+        private static void DumpHarshadNumber()
+        {
+            var list = GetNumbers()
+                .Select(int.Parse)
+                .Where(IsHarshad);
+
+            DumpCsv(list, "HarshadNumber");
+        }
+
         private static IEnumerable<string> GetNumbers()
         {
             return Enumerable.Range(1, 13)
@@ -47,6 +57,18 @@ namespace PrimeMillionaire.Editor.Scripts
             }
 
             return true;
+        }
+
+        private static bool IsHarshad(int value)
+        {
+            int sum = 0, m = value;
+            while (m > 0)
+            {
+                sum += m % 10;
+                m /= 10;
+            }
+
+            return sum != 0 && value % sum == 0;
         }
 
         private static void DumpCsv(IEnumerable<int> list, string fileName)
