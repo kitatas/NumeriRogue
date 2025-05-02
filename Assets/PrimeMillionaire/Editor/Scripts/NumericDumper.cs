@@ -19,6 +19,16 @@ namespace PrimeMillionaire.Editor.Scripts
             DumpCsv(list, "PrimeNumber");
         }
 
+        [MenuItem("Tools/Numeric/" + nameof(DumpPalindromicNumber))]
+        private static void DumpPalindromicNumber()
+        {
+            var list = GetNumbers()
+                .Where(s => s.SequenceEqual(s.Reverse()))
+                .Select(int.Parse);
+
+            DumpCsv(list, "PalindromicNumber");
+        }
+
         private static IEnumerable<string> GetNumbers()
         {
             return Enumerable.Range(1, 13)
