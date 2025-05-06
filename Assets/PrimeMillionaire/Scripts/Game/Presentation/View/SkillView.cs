@@ -13,7 +13,6 @@ namespace PrimeMillionaire.Game.Presentation.View
 {
     public sealed class SkillView : MonoBehaviour
     {
-        [SerializeField] private Image background = default;
         [SerializeField] private Image icon = default;
         [SerializeField] private TextMeshProUGUI description = default;
         [SerializeField] private CommonButtonView button = default;
@@ -24,8 +23,6 @@ namespace PrimeMillionaire.Game.Presentation.View
         public async UniTask RenderAsync(SkillVO value, bool isInteractable, CancellationToken token)
         {
             skill = value;
-            background.color = new Color(0.5f, 1.0f, 0.5f);
-            icon.color = new Color(1.0f, 1.0f, 1.0f);
             description.text = skill.description;
             button.gameObject.SetActive(true);
             button.SetInteractable(isInteractable);
@@ -36,15 +33,11 @@ namespace PrimeMillionaire.Game.Presentation.View
 
         public async UniTask RenderEmptyAsync(CancellationToken token)
         {
-            background.color = new Color(0.5f, 0.5f, 0.5f);
-            icon.color = new Color(0.2f, 0.2f, 0.2f);
-            icon.sprite = null;
             description.text = "---";
             button.gameObject.SetActive(false);
             buttonText.text = "";
 
-            icon.sprite = null;
-            await UniTask.Yield(token);
+            icon.sprite = await ResourceHelper.LoadAsync<Sprite>("Assets/Externals/Sprites/Skills/Empty.png", token);
         }
 
         public Observable<SkillVO> OnClickAsObservable()
