@@ -1,6 +1,7 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common.Domain.UseCase;
+using PrimeMillionaire.Common.Utility;
 using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.View;
 
@@ -39,11 +40,14 @@ namespace PrimeMillionaire.Game.Presentation.State
             var stage = _characterUseCase.GetStage();
             await (
                 _parameterUseCase.InitPlayerParamAsync(token),
-                _battleView.CreatePlayerAsync(player, token),
                 _battleView.RenderStageAsync(stage, token)
             );
 
             _loadingUseCase.Set(false);
+            await UniTaskHelper.DelayAsync(1.0f, token);
+
+            await _battleView.CreatePlayerAsync(player, token);
+            await UniTaskHelper.DelayAsync(0.5f, token);
 
             return GameState.SetUp;
         }

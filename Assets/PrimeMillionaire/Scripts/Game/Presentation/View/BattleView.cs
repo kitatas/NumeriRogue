@@ -12,6 +12,8 @@ namespace PrimeMillionaire.Game.Presentation.View
         [SerializeField] private Transform player = default;
         [SerializeField] private Transform enemy = default;
         [SerializeField] private StageView stageView = default;
+        [SerializeField] private GameObject playerEntryFx = default;
+        [SerializeField] private GameObject enemyEntryFx = default;
 
         private CharacterView _playerView;
         private CharacterView _enemyView;
@@ -19,8 +21,14 @@ namespace PrimeMillionaire.Game.Presentation.View
         public async UniTask CreatePlayerAsync(CharacterVO character, CancellationToken token)
         {
             var playerObj = await ResourceHelper.LoadAsync<GameObject>(character.objPath, token);
-            _playerView = Instantiate(playerObj, player.position, Quaternion.identity).GetComponent<CharacterView>();
-            _playerView.FlipX(Side.Player);
+
+            var entryFx = Instantiate(playerEntryFx, player);
+            this.Delay(8.0f / 12.0f, () =>
+            {
+                _playerView = Instantiate(playerObj, player.position, Quaternion.identity).GetComponent<CharacterView>();
+                _playerView.FlipX(Side.Player);
+            });
+            Destroy(entryFx, 3.0f);
         }
 
         public async UniTask RenderStageAsync(StageVO stage, CancellationToken token)
@@ -31,8 +39,14 @@ namespace PrimeMillionaire.Game.Presentation.View
         public async UniTask CreateEnemyAsync(CharacterVO character, CancellationToken token)
         {
             var enemyObj = await ResourceHelper.LoadAsync<GameObject>(character.objPath, token);
-            _enemyView = Instantiate(enemyObj, enemy.position, Quaternion.identity).GetComponent<CharacterView>();
-            _enemyView.FlipX(Side.Enemy);
+
+            var entryFx = Instantiate(enemyEntryFx, enemy);
+            this.Delay(8.0f / 12.0f, () =>
+            {
+                _enemyView = Instantiate(enemyObj, enemy.position, Quaternion.identity).GetComponent<CharacterView>();
+                _enemyView.FlipX(Side.Enemy);
+            });
+            Destroy(entryFx, 3.0f);
         }
 
         public async UniTask PlayAttackAnimAsync(Side attacker, CancellationToken token)
