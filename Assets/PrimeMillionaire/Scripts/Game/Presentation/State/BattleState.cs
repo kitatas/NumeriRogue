@@ -42,24 +42,28 @@ namespace PrimeMillionaire.Game.Presentation.State
                 _battleUseCase.ExecBattleAsync(token)
             );
 
-            await _battlePtUseCase.ResetAsync(token);
-
-            if (isDestroy)
+            if (!isDestroy)
             {
-                switch (attacker)
-                {
-                    case Side.Player:
-                        _dollarUseCase.Add(_dropUseCase.GetDropDollar());
-                        _battleView.DestroyEnemy();
-                        return _dollarUseCase.IsClear() ? GameState.Clear : GameState.Pick;
-                    case Side.Enemy:
-                        return GameState.Fail;
-                    default:
-                        throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE);
-                }
+                await _battlePtUseCase.ResetAsync(token);
+                return GameState.Deal;
             }
 
-            return GameState.Deal;
+            switch (attacker)
+            {
+                case Side.Player:
+                    _dollarUseCase.Add(_dropUseCase.GetDropDollar());
+                    if (_dollarUseCase.IsClear()) return GameState.Clear;
+
+                    await (
+                        _battlePtUseCase.ResetAsync(token),
+                        _battleView.DestroyEnemyAsync(token)
+                    );
+                    return GameState.Pick;
+                case Side.Enemy:
+                    return GameState.Fail;
+                default:
+                    throw new  QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE);
+            }
         }
     }
 }

@@ -95,9 +95,13 @@ namespace PrimeMillionaire.Game.Presentation.View
             };
         }
 
-        public void DestroyEnemy()
+        public async UniTask DestroyEnemyAsync(CancellationToken token)
         {
-            Destroy(_enemyView.gameObject);
+            enemyEntryFxView.Exit(() =>
+            {
+                Destroy(_enemyView.gameObject);
+            });
+            await UniTaskHelper.DelayAsync(2.0f, token);
         }
 
         public void PlayBuff(BuffVO buff)

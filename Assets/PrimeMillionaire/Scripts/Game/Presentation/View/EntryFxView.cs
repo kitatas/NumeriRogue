@@ -19,6 +19,13 @@ namespace PrimeMillionaire.Game.Presentation.View
             this.Delay(8.0f / 12.0f, () => action?.Invoke());
         }
 
+        public void Exit(Action action)
+        {
+            SetIsExit(true);
+
+            this.Delay(11.0f / 12.0f, () => action?.Invoke());
+        }
+
         private void SetIsEntry(bool value) => animator.SetBool(_isEntry, value);
         private void SetIsExit(bool value) => animator.SetBool(_isExit, value);
     }
