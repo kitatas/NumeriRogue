@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: damage_002_controller
+  m_Controller: {fileID: 9100000, guid: 1215ed3a7987443a18aa18afb49143a9, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 1f7b595e7a4d34ac2b99495bee740db5, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: bf8de4f694953472a8650b91ffb68b6f, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 59c03023b5d744da1b1b859b5bbbcd9b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 1bcc50674810a42aba24d2cf62bcfec3, type: 2}
