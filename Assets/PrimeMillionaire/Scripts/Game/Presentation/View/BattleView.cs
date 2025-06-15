@@ -14,6 +14,8 @@ namespace PrimeMillionaire.Game.Presentation.View
         [SerializeField] private StageView stageView = default;
         [SerializeField] private EntryFxView playerEntryFxView = default;
         [SerializeField] private EntryFxView enemyEntryFxView = default;
+        [SerializeField] private DamageFxView playerDamageFxView = default;
+        [SerializeField] private DamageFxView enemyDamageFxView = default;
 
         private CharacterView _playerView;
         private CharacterView _enemyView;
@@ -62,6 +64,7 @@ namespace PrimeMillionaire.Game.Presentation.View
             var (attackerView, defenderView) = GetCharacterViews(attacker);
 
             defenderView.Damage(true);
+            GetDamageFx(attacker).Play();
 
             this.Delay(defenderView.deadTime, () =>
             {
@@ -91,6 +94,16 @@ namespace PrimeMillionaire.Game.Presentation.View
             {
                 Side.Player => player,
                 Side.Enemy => enemy,
+                _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE),
+            };
+        }
+
+        private DamageFxView GetDamageFx(Side side)
+        {
+            return side switch
+            {
+                Side.Player => playerDamageFxView,
+                Side.Enemy => enemyDamageFxView,
                 _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE),
             };
         }
