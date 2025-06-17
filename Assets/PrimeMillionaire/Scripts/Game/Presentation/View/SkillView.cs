@@ -26,7 +26,7 @@ namespace PrimeMillionaire.Game.Presentation.View
             description.text = skill.description;
             button.gameObject.SetActive(true);
             button.SetInteractable(isInteractable);
-            buttonText.text = skill.isHold ? "Trash" : ZString.Format("${0}", skill.price);
+            buttonText.text = skill.isHold ? "Trash" : ZString.Format("<sprite name=\"gem_0\">{0}", skill.price);
 
             icon.sprite = await ResourceHelper.LoadAsync<Sprite>(skill.skillBase.iconPath, token);
         }

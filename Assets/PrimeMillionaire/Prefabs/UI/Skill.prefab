@@ -150,8 +150,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6694563532142970365, guid: a0fc58840646346b29cf932943434c5a, type: 3}
       propertyPath: m_text
-      value: $9999
+      value: <sprite name="gem_0">999
       objectReference: {fileID: 0}
+    - target: {fileID: 6694563532142970365, guid: a0fc58840646346b29cf932943434c5a, type: 3}
+      propertyPath: m_spriteAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7e036d94d81df4b58b2841835dc04040, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
