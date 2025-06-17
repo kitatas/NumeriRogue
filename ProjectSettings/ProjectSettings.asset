@@ -140,10 +140,11 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 0.13
+  bundleVersion: 0.17
   preloadedAssets:
   - {fileID: 11400000, guid: 8aeb33a1a7d0149d9b224d880393bf1d, type: 2}
   - {fileID: 11400000, guid: 13989c3c8ff11414090ef626d1c13b6a, type: 2}
+  - {fileID: 11400000, guid: a840c7d0496c5440ca0c2dca39402e17, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -677,22 +678,24 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   scriptingDefineSymbols:
-    Android: DOTWEEN;UNITASK_DOTWEEN_SUPPORT
+    Android: DOTWEEN;UNITASK_DOTWEEN_SUPPORT;ES3_TMPRO;ES3_UGUI
     Bratwurst: DOTWEEN
-    EmbeddedLinux: DOTWEEN
+    EmbeddedLinux: DOTWEEN;ES3_TMPRO;ES3_UGUI
     GameCoreScarlett: DOTWEEN
     GameCoreXboxOne: DOTWEEN
-    LinuxHeadlessSimulation: DOTWEEN
-    Nintendo Switch: DOTWEEN
-    PS4: DOTWEEN
-    PS5: DOTWEEN
-    QNX: DOTWEEN
-    Standalone: DOTWEEN
-    WebGL: DOTWEEN;UNITASK_DOTWEEN_SUPPORT
-    Windows Store Apps: DOTWEEN
-    XboxOne: DOTWEEN
-    iPhone: DOTWEEN
-    tvOS: DOTWEEN
+    LinuxHeadlessSimulation: DOTWEEN;ES3_TMPRO;ES3_UGUI
+    Nintendo Switch: DOTWEEN;ES3_TMPRO;ES3_UGUI
+    PS4: DOTWEEN;ES3_TMPRO;ES3_UGUI
+    PS5: DOTWEEN;ES3_TMPRO;ES3_UGUI
+    QNX: DOTWEEN;ES3_TMPRO;ES3_UGUI
+    Server: ES3_TMPRO;ES3_UGUI
+    Standalone: DOTWEEN;ES3_TMPRO;ES3_UGUI
+    VisionOS: ES3_TMPRO;ES3_UGUI
+    WebGL: DOTWEEN;UNITASK_DOTWEEN_SUPPORT;ES3_TMPRO;ES3_UGUI;ZLINQ_UNITY_COLLECTIONS_SUPPORT
+    Windows Store Apps: DOTWEEN;ES3_TMPRO;ES3_UGUI
+    XboxOne: DOTWEEN;ES3_TMPRO;ES3_UGUI
+    iPhone: DOTWEEN;ES3_TMPRO;ES3_UGUI
+    tvOS: DOTWEEN;ES3_TMPRO;ES3_UGUI
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
