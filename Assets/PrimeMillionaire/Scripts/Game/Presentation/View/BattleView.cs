@@ -98,12 +98,12 @@ namespace PrimeMillionaire.Game.Presentation.View
             };
         }
 
-        private DamageFxView GetDamageFx(Side side)
+        private DamageFxView GetDamageFx(Side attacker)
         {
-            return side switch
+            return attacker switch
             {
-                Side.Player => playerDamageFxView,
-                Side.Enemy => enemyDamageFxView,
+                Side.Player => enemyDamageFxView,
+                Side.Enemy => playerDamageFxView,
                 _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE),
             };
         }
