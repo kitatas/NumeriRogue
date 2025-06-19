@@ -110,5 +110,14 @@ namespace PrimeMillionaire.Game.Presentation.View
 
             _cardViews = new List<CardView>(_cardViews.Where(x => x.isActive));
         }
+
+        public Tween ActivateHandsField(bool value, float duration)
+        {
+            var y = value ? 200.0f : 0.0f;
+            return DOTween.Sequence()
+                .Append(transform.ToRectTransform()
+                    .DOAnchorPosY(y, duration))
+                .SetEase(Ease.OutCirc);
+        }
     }
 }

@@ -90,6 +90,18 @@ namespace PrimeMillionaire.Game.Presentation.View
             await enemyHandView.HideAsync(Side.Enemy, index, HandConfig.TRASH_DURATION, token);
         }
 
+        public async UniTask ActivatePlayerFieldAsync(float duration, CancellationToken token)
+        {
+            await playerHandView.ActivateHandsField(true, duration)
+                .WithCancellation(token);
+        }
+
+        public async UniTask DeactivatePlayerFieldAsync(float duration, CancellationToken token)
+        {
+            await playerHandView.ActivateHandsField(false, duration)
+                .WithCancellation(token);
+        }
+
         public void DestroyHideCards()
         {
             playerHandView.DestroyCards();

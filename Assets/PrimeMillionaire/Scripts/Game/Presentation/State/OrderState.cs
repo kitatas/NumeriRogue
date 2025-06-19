@@ -34,12 +34,18 @@ namespace PrimeMillionaire.Game.Presentation.State
 
         public override async UniTask InitAsync(CancellationToken token)
         {
-            await _orderUseCase.HideOrderCardsAsync(0.0f, token);
+            await (
+                _orderUseCase.HideOrderCardsAsync(0.0f, token),
+                _tableView.DeactivatePlayerFieldAsync(0.0f, token)
+            );
         }
 
         public override async UniTask<GameState> TickAsync(CancellationToken token)
         {
-            await _orderUseCase.ShowOrderCardsAsync(UiConfig.TWEEN_DURATION, token);
+            await (
+                _orderUseCase.ShowOrderCardsAsync(UiConfig.TWEEN_DURATION, token),
+                _tableView.ActivatePlayerFieldAsync(UiConfig.TWEEN_DURATION, token)
+            );
 
             while (true)
             {
@@ -63,7 +69,8 @@ namespace PrimeMillionaire.Game.Presentation.State
                     _dollarUseCase.Update();
                     _parameterUseCase.PublishPlayerParamAsync(token).Forget();
                 }, token),
-                _orderUseCase.PushValueAsync(token)
+                _orderUseCase.PushValueAsync(token),
+                _tableView.DeactivatePlayerFieldAsync(UiConfig.TWEEN_DURATION, token)
             );
 
             var playerPt = _orderUseCase.currentValueWithBonus;
