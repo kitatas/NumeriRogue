@@ -12,6 +12,7 @@ namespace PrimeMillionaire.Game.Presentation.View
         [SerializeField] private Transform player = default;
         [SerializeField] private Transform enemy = default;
         [SerializeField] private StageView stageView = default;
+        [SerializeField] private DropView dropView = default;
         [SerializeField] private EntryFxView playerEntryFxView = default;
         [SerializeField] private EntryFxView enemyEntryFxView = default;
         [SerializeField] private DamageFxView playerDamageFxView = default;
@@ -70,6 +71,10 @@ namespace PrimeMillionaire.Game.Presentation.View
             {
                 defenderView.Damage(false);
                 defenderView.Dead(isDestroy);
+                if (isDestroy && attacker is Side.Player)
+                {
+                    dropView.Drop(enemy, 10, 0.25f);
+                }
             });
             await UniTaskHelper.DelayAsync(1.5f, token);
 
