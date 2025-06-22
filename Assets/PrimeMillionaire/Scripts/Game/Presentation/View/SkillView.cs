@@ -17,6 +17,7 @@ namespace PrimeMillionaire.Game.Presentation.View
         [SerializeField] private TextMeshProUGUI description = default;
         [SerializeField] private CommonButtonView button = default;
         [SerializeField] private TextMeshProUGUI buttonText = default;
+        [SerializeField] private GameObject soldOut = default;
 
         public SkillVO skill { get; private set; }
 
@@ -27,6 +28,7 @@ namespace PrimeMillionaire.Game.Presentation.View
             button.gameObject.SetActive(true);
             button.SetInteractable(isInteractable);
             buttonText.text = skill.isHold ? "Trash" : ZString.Format("<sprite name=\"gem_0\">{0}", skill.price);
+            ActivateSoldOut(false);
 
             icon.sprite = await ResourceHelper.LoadAsync<Sprite>(skill.skillBase.iconPath, token);
         }
@@ -49,12 +51,12 @@ namespace PrimeMillionaire.Game.Presentation.View
         {
             if (skill == null) return;
 
-            button.SetInteractable(value >= skill.price && buttonText.text != "SoldOut");
+            button.SetInteractable(value >= skill.price && !soldOut.activeSelf);
         }
 
-        public void SoldOut()
+        public void ActivateSoldOut(bool value)
         {
-            buttonText.text = "SoldOut";
+            soldOut.SetActive(value);
         }
     }
 }

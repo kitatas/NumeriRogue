@@ -32,7 +32,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
                     .Where(x => _dollarUseCase.IsConsume(x.price))
                     .Subscribe(x =>
                     {
-                        skillView.SoldOut();
+                        skillView.ActivateSoldOut(true);
                         _dollarUseCase.Consume(x.price);
                         _holdSkillUseCase.AddAsync(x, _tokenSource.Token).Forget();
                     })
