@@ -47,7 +47,7 @@ namespace PrimeMillionaire.Game
 
     public sealed class SkillConfig
     {
-        public const int LOT_NUM = 3;
+        public const int LOT_NUM = 5;
 
         public const int HOLD_NUM = 5;
     }
