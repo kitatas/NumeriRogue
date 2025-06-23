@@ -34,6 +34,11 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             Update();
         }
 
+        public bool IsClear()
+        {
+            return _levelEntity.currentValue == LevelConfig.CLEAR_LEVEL;
+        }
+
         public void Dispose()
         {
             _level?.Dispose();

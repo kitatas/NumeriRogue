@@ -24,6 +24,11 @@ namespace PrimeMillionaire.Game
         };
     }
 
+    public sealed class LevelConfig
+    {
+        public const int CLEAR_LEVEL = DebugConfig.IS_FORCE_WIN == Side.None ? 5 : 1;
+    }
+
     public sealed class DollarConfig
     {
         public const int DROP_VALUE = 80;
