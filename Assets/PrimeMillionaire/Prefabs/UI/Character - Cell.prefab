@@ -337,7 +337,7 @@ PrefabInstance:
     - target: {fileID: 7076579982940099400, guid: 43d15ac4b62f84904bd3df5c6e70f65c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1918338239, guid: d7a7ba0581b384a07a09bc884f53bc27, type: 3}
+      objectReference: {fileID: -711001834, guid: d137d53b1214041098094b2f54340978, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -692,21 +692,13 @@ PrefabInstance:
       value: Image - Background
       objectReference: {fileID: 0}
     - target: {fileID: 7076579982940099400, guid: 43d15ac4b62f84904bd3df5c6e70f65c, type: 3}
-      propertyPath: m_Color.a
-      value: 0.5019608
+      propertyPath: m_Type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7076579982940099400, guid: 43d15ac4b62f84904bd3df5c6e70f65c, type: 3}
-      propertyPath: m_Color.b
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 7076579982940099400, guid: 43d15ac4b62f84904bd3df5c6e70f65c, type: 3}
-      propertyPath: m_Color.g
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 7076579982940099400, guid: 43d15ac4b62f84904bd3df5c6e70f65c, type: 3}
-      propertyPath: m_Color.r
-      value: 0.75
-      objectReference: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2530564911472380330, guid: b21e9e6355edf499d84d48e47b7636c3, type: 3}
     - target: {fileID: 7076579982940099400, guid: 43d15ac4b62f84904bd3df5c6e70f65c, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -839,7 +831,7 @@ PrefabInstance:
     - target: {fileID: 7076579982940099400, guid: 43d15ac4b62f84904bd3df5c6e70f65c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 85853755, guid: 3397b1bcb23474b59b1b66b9c6da95f5, type: 3}
+      objectReference: {fileID: -1097794441, guid: d137d53b1214041098094b2f54340978, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
