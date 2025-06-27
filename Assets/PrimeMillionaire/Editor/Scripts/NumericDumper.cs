@@ -49,6 +49,16 @@ namespace PrimeMillionaire.Editor.Scripts
             DumpCsv(list, "SquareNumber");
         }
 
+        [MenuItem("Tools/Numeric/" + nameof(DumpTriangularNumber))]
+        private static void DumpTriangularNumber()
+        {
+            var list = GetNumbers()
+                .Select(int.Parse)
+                .Where(IsTriangular);
+
+            DumpCsv(list, "TriangularNumber");
+        }
+
         private static IEnumerable<string> GetNumbers()
         {
             return Enumerable.Range(1, 13)
@@ -85,6 +95,11 @@ namespace PrimeMillionaire.Editor.Scripts
         {
             int root = (int)Mathf.Sqrt(value);
             return root * root == value;
+        }
+
+        private static bool IsTriangular(int value)
+        {
+            return IsSquare(8 * value + 1);
         }
 
         private static void DumpCsv(IEnumerable<int> list, string fileName)

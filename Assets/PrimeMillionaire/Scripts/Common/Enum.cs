@@ -54,6 +54,7 @@ namespace PrimeMillionaire.Common
         PerfectNumber = 8,
         PalindromicNumber = 9,
         SquareNumber = 10,
+        TriangularNumber = 11,
         HarshadNumber = 13,
     }
 
