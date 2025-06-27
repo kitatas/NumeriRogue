@@ -47,6 +47,7 @@ namespace PrimeMillionaire.Common
         ValueDown = 1,
         OnePair = 2,
         ThreeOfAKind = 3,
+        Straight = 4,
         Flush = 5,
         PrimeNumber = 6,
         PalindromicNumber = 9,

@@ -74,6 +74,8 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         public int currentValueWithBonus => _bonusEntity.CalcOrderValue(currentValue);
 
         private bool isOnePair => _orders.GroupBy(x => x.card.rank).Count() == 2;
+        private bool isStraight => _orders.GroupBy(x => x.card.rank).Count() == 3 && 
+                                   _orders.Max(x => x.card.rank) - _orders.Min(x => x.card.rank) == 2;
         private bool isSuitMatch => _orders.GroupBy(x => x.card.suit).Count() == 1;
         private bool isValueDown => _communityBattlePtEntity.currentValue >= currentValue;
 
@@ -163,6 +165,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
             foreach (var bonus in _numericRepository.Finds(currentValue)) _bonusEntity.Add(bonus);
             if (isOnePair) _bonusEntity.Add(_numericRepository.Find(BonusType.OnePair));
+            if (isStraight) _bonusEntity.Add(_numericRepository.Find(BonusType.Straight));
             if (isSuitMatch) _bonusEntity.Add(_numericRepository.Find(BonusType.Flush));
             if (isValueDown) _bonusEntity.Add(_numericRepository.Find(BonusType.ValueDown));
 
