@@ -50,7 +50,10 @@ namespace PrimeMillionaire.Common
         Straight = 4,
         Flush = 5,
         PrimeNumber = 6,
+        PowerOfTwo = 7,
+        PerfectNumber = 8,
         PalindromicNumber = 9,
+        HarshadNumber = 13,
     }
 
     public enum CharacterType
