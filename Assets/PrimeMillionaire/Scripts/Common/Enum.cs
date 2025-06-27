@@ -57,6 +57,7 @@ namespace PrimeMillionaire.Common
         TriangularNumber = 11,
         FibonacciNumber = 12,
         HarshadNumber = 13,
+        MersenneNumber = 14,
     }
 
     public enum CharacterType

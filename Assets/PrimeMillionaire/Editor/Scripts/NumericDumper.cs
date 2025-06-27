@@ -69,6 +69,17 @@ namespace PrimeMillionaire.Editor.Scripts
             DumpCsv(list, "FibonacciNumber");
         }
 
+        [MenuItem("Tools/Numeric/" + nameof(DumpMersenneNumber))]
+        private static void DumpMersenneNumber()
+        {
+            var list = GetNumbers()
+                .Select(int.Parse)
+                .Where(IsMersenne);
+
+            DumpCsv(list, "MersenneNumber");
+        }
+
+
         private static IEnumerable<string> GetNumbers()
         {
             return Enumerable.Range(1, 13)
@@ -122,6 +133,18 @@ namespace PrimeMillionaire.Editor.Scripts
         {
             long x = 5L * value * value;
             return IsSquare(x + 4) || IsSquare(x - 4);
+        }
+
+        private static bool IsMersenne(int value)
+        {
+            int p = 1;
+            while (true)
+            {
+                long m = (1L << p) - 1; // 2^p - 1
+                if (m == value) return true;
+                if (m > value) return false;
+                p++;
+            }
         }
 
         private static void DumpCsv(IEnumerable<int> list, string fileName)
