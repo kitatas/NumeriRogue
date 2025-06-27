@@ -53,6 +53,7 @@ namespace PrimeMillionaire.Common
         PowerOfTwo = 7,
         PerfectNumber = 8,
         PalindromicNumber = 9,
+        SquareNumber = 10,
         HarshadNumber = 13,
     }
 
