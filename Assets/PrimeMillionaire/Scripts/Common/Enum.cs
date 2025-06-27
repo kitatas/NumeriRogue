@@ -44,11 +44,12 @@ namespace PrimeMillionaire.Common
     public enum BonusType
     {
         None = 0,
-        PrimeNumber = 1,
-        SameNumbers = 2,
-        SuitMatch = 3,
-        ValueDown = 4,
-        PalindromicNumber = 5,
+        ValueDown = 1,
+        OnePair = 2,
+        ThreeOfAKind = 3,
+        Flush = 5,
+        PrimeNumber = 6,
+        PalindromicNumber = 9,
     }
 
     public enum CharacterType

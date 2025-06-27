@@ -73,8 +73,8 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public int currentValueWithBonus => _bonusEntity.CalcOrderValue(currentValue);
 
+        private bool isOnePair => _orders.GroupBy(x => x.card.rank).Count() == 2;
         private bool isSuitMatch => _orders.GroupBy(x => x.card.suit).Count() == 1;
-
         private bool isValueDown => _communityBattlePtEntity.currentValue >= currentValue;
 
         public void StockBuff()
@@ -162,7 +162,8 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _bonusEntity.Clear();
 
             foreach (var bonus in _numericRepository.Finds(currentValue)) _bonusEntity.Add(bonus);
-            if (isSuitMatch) _bonusEntity.Add(_numericRepository.Find(BonusType.SuitMatch));
+            if (isOnePair) _bonusEntity.Add(_numericRepository.Find(BonusType.OnePair));
+            if (isSuitMatch) _bonusEntity.Add(_numericRepository.Find(BonusType.Flush));
             if (isValueDown) _bonusEntity.Add(_numericRepository.Find(BonusType.ValueDown));
 
             await Router.Default.PublishAsync(new OrderValueVO(currentValue, _bonusEntity.ToVO()), token);
