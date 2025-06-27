@@ -55,6 +55,7 @@ namespace PrimeMillionaire.Common
         PalindromicNumber = 9,
         SquareNumber = 10,
         TriangularNumber = 11,
+        FibonacciNumber = 12,
         HarshadNumber = 13,
     }
 

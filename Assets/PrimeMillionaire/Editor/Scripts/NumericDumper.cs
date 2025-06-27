@@ -59,6 +59,16 @@ namespace PrimeMillionaire.Editor.Scripts
             DumpCsv(list, "TriangularNumber");
         }
 
+        [MenuItem("Tools/Numeric/" + nameof(DumpFibonacciNumber))]
+        private static void DumpFibonacciNumber()
+        {
+            var list = GetNumbers()
+                .Select(int.Parse)
+                .Where(IsFibonacci);
+
+            DumpCsv(list, "FibonacciNumber");
+        }
+
         private static IEnumerable<string> GetNumbers()
         {
             return Enumerable.Range(1, 13)
@@ -97,9 +107,21 @@ namespace PrimeMillionaire.Editor.Scripts
             return root * root == value;
         }
 
+        private static bool IsSquare(long value)
+        {
+            int root = (int)Mathf.Sqrt(value);
+            return root * root == value;
+        }
+
         private static bool IsTriangular(int value)
         {
             return IsSquare(8 * value + 1);
+        }
+
+        private static bool IsFibonacci(int value)
+        {
+            long x = 5L * value * value;
+            return IsSquare(x + 4) || IsSquare(x - 4);
         }
 
         private static void DumpCsv(IEnumerable<int> list, string fileName)
