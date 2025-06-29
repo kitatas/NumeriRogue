@@ -26,6 +26,6 @@ namespace PrimeMillionaire.Game.Data.Entity
             return _bonusList.Aggregate(value, (current, bonus) => (int)(current * bonus.value));
         }
 
-        public List<BonusVO> ToVO() => _bonusList;
+        public List<BonusVO> ToVO() => _bonusList.OrderBy(x => x.type).ToList();
     }
 }
