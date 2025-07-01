@@ -830,6 +830,10 @@ PrefabInstance:
       value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1687629659414884493, guid: 66ce232fa231440e0abcc61562ed706c, type: 3}
+      propertyPath: m_spriteAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7e036d94d81df4b58b2841835dc04040, type: 2}
+    - target: {fileID: 1687629659414884493, guid: 66ce232fa231440e0abcc61562ed706c, type: 3}
       propertyPath: m_enableAutoSizing
       value: 1
       objectReference: {fileID: 0}
