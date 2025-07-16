@@ -1,11 +1,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Text;
+using PrimeMillionaire.Common;
 
 namespace PrimeMillionaire.Game.Utility
 {
     public static class OrderHelper
     {
+        public static BonusType GetPokerHandBonus(IEnumerable<OrderVO> orders)
+        {
+            var rankCount = orders.GroupBy(x => x.card.rank).Count();
+            var maxRank = orders.Max(x => x.card.rank);
+            var minRank = orders.Min(x => x.card.rank);
+            var isStraight = rankCount == 3 && maxRank - minRank == 2;
+
+            var suitCount = orders.GroupBy(x => x.card.suit).Count();
+            var isFlush = suitCount == 1;
+
+            if (isStraight && isFlush) return BonusType.StraightFlush;
+            if (rankCount == 1) return BonusType.ThreeOfAKind;
+            if (isStraight) return BonusType.Straight;
+            if (isFlush) return BonusType.Flush;
+            if (rankCount == 2) return BonusType.OnePair;
+
+            return BonusType.None;
+        }
+
         public static (int[] index, int value) GetOrder(IEnumerable<HandVO> hands, int value)
         {
             var cards = hands

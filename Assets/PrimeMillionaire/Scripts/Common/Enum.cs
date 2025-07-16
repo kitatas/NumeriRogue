@@ -46,24 +46,26 @@ namespace PrimeMillionaire.Common
         None = 0,
         ValueDown = 1,
         OnePair = 2,
-        ThreeOfAKind = 3,
+        Flush = 3,
         Straight = 4,
-        Flush = 5,
-        PrimeNumber = 6,
-        PowerOfTwo = 7,
-        PerfectNumber = 8,
-        PalindromicNumber = 9,
-        SquareNumber = 10,
-        TriangularNumber = 11,
-        FibonacciNumber = 12,
-        HarshadNumber = 13,
-        MersenneNumber = 14,
+        ThreeOfAKind = 5,
+        StraightFlush = 6,
+        PrimeNumber = 7,
+        PowerOfTwo = 8,
+        PerfectNumber = 9,
+        PalindromicNumber = 10,
+        SquareNumber = 11,
+        TriangularNumber = 12,
+        FibonacciNumber = 13,
+        HarshadNumber = 14,
+        MersenneNumber = 15,
     }
 
     public enum CharacterType
     {
         None = 0,
-        Andromeda = 1,
+        General = 1,
+
         Borealjuggernaut = 2,
         Dissonance = 3,
         Kron = 4,
@@ -71,7 +73,7 @@ namespace PrimeMillionaire.Common
         Harmony = 6,
         Candypanda = 7,
         Chaosknight = 8,
-        General = 9,
+        Andromeda = 9,
     }
 
     public enum ProgressStatus

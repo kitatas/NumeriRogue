@@ -7,6 +7,7 @@ using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Utility;
 using PrimeMillionaire.Game.Data.Entity;
 using PrimeMillionaire.Game.Domain.Repository;
+using PrimeMillionaire.Game.Utility;
 using UniEx;
 using VitalRouter;
 
@@ -73,9 +74,6 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public int currentValueWithBonus => _bonusEntity.CalcOrderValue(currentValue);
 
-        private bool isOnePair => _orders.GroupBy(x => x.card.rank).Count() == 2;
-        private bool isStraight => _orders.GroupBy(x => x.card.rank).Count() == 3 && 
-                                   _orders.Max(x => x.card.rank) - _orders.Min(x => x.card.rank) == 2;
         private bool isSuitMatch => _orders.GroupBy(x => x.card.suit).Count() == 1;
         private bool isValueDown => _communityBattlePtEntity.currentValue >= currentValue;
 
@@ -164,9 +162,9 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _bonusEntity.Clear();
 
             foreach (var bonus in _numericRepository.Finds(currentValue)) _bonusEntity.Add(bonus);
-            if (isOnePair) _bonusEntity.Add(_numericRepository.Find(BonusType.OnePair));
-            if (isStraight) _bonusEntity.Add(_numericRepository.Find(BonusType.Straight));
-            if (isSuitMatch) _bonusEntity.Add(_numericRepository.Find(BonusType.Flush));
+            var pokerHandsBonus = OrderHelper.GetPokerHandBonus(_orders);
+            if (pokerHandsBonus != BonusType.None) _bonusEntity.Add(_numericRepository.Find(pokerHandsBonus));
+
             if (isValueDown) _bonusEntity.Add(_numericRepository.Find(BonusType.ValueDown));
 
             await Router.Default.PublishAsync(new OrderValueVO(currentValue, _bonusEntity.ToVO()), token);
