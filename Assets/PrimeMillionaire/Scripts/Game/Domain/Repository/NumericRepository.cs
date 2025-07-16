@@ -16,13 +16,9 @@ namespace PrimeMillionaire.Game.Domain.Repository
             _memoryDatabase = memoryDatabase;
         }
 
-        public bool IsExistPrimeNumber(int value) => IsExist(value, BonusType.PrimeNumber);
-        public bool IsExistSameNumbers(int value) => IsExist(value, BonusType.ThreeOfAKind);
-
-        private bool IsExist(int value, BonusType type)
+        public bool IsAny(int value)
         {
-            return _memoryDatabase.NumericMasterTable.FindByValue(value)
-                .Any(x => x.Bonus.ToBonusType() == type);
+            return _memoryDatabase.NumericMasterTable.FindByValue(value).Any();
         }
 
         public BonusVO Find(BonusType type)

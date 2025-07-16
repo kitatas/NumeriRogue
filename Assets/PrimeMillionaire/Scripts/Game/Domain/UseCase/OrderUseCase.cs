@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Cysharp.Text;
@@ -78,30 +79,27 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public void StockBuff()
         {
-            if (isValueDown)
-            {
-                _buffEntity.Add(SkillType.ValueDownDollar);
-                _buffEntity.Add(SkillType.ValueDownHeal);
-            }
-            else
-            {
-                _buffEntity.Add(SkillType.ValueUpAtk);
-                _buffEntity.Add(SkillType.ValueUpDef);
-            }
+            var skills = new List<SkillType>();
 
+            // up / down
+            skills.AddRange(isValueDown ? BonusType.ValueDown.ToSkillTypes() : BonusType.ValueUp.ToSkillTypes());
+
+            // poker hands
             var pokerHands = OrderHelper.GetPokerHandBonus(_orders);
-            if (pokerHands == BonusType.None)
-            {
-                _buffEntity.Add(SkillType.HighCard);
-                _buffEntity.Add(SkillType.HighCardAtk);
-                _buffEntity.Add(SkillType.HighCardDef);
-            }
-            else
-            {
-                _buffEntity.Add(SkillType.PokerHands);
-                _buffEntity.Add(SkillType.PokerHandsAtk);
-                _buffEntity.Add(SkillType.PokerHandsDef);
-            }
+            skills.AddRange(pokerHands == BonusType.None
+                ? BonusType.HighCard.ToSkillTypes()
+                : pokerHands.ToSkillTypes());
+
+            // odd / even
+            skills.AddRange(currentValue.IsEven() ? BonusType.Even.ToSkillTypes() : BonusType.Odd.ToSkillTypes());
+
+            // special number
+            skills.AddRange(_numericRepository.IsAny(currentValue)
+                ? BonusType.SpecialNumbers.ToSkillTypes()
+                : BonusType.NotSpecialNumbers.ToSkillTypes());
+            foreach (var bonus in _numericRepository.Finds(currentValue)) skills.AddRange(bonus.type.ToSkillTypes());
+
+            foreach (var type in skills) _buffEntity.Add(type);
         }
 
         public async UniTask PushValueAsync(CancellationToken token)
