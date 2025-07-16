@@ -74,77 +74,10 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public int currentValueWithBonus => _bonusEntity.CalcOrderValue(currentValue);
 
-        private bool isSuitMatch => _orders.GroupBy(x => x.card.suit).Count() == 1;
         private bool isValueDown => _communityBattlePtEntity.currentValue >= currentValue;
 
         public void StockBuff()
         {
-            if (currentValue.IsEven())
-            {
-                _buffEntity.Add(SkillType.Even);
-                _buffEntity.Add(SkillType.EvenAtk);
-                _buffEntity.Add(SkillType.EvenDef);
-            }
-            else
-            {
-                _buffEntity.Add(SkillType.Odd);
-                _buffEntity.Add(SkillType.OddAtk);
-                _buffEntity.Add(SkillType.OddDef);
-            }
-
-            if (_numericRepository.IsExistPrimeNumber(currentValue))
-            {
-                _buffEntity.Add(SkillType.PrimeNumber);
-                _buffEntity.Add(SkillType.PrimeNumberAtk);
-                _buffEntity.Add(SkillType.PrimeNumberDef);
-                _buffEntity.Add(SkillType.PrimeNumberDollar);
-                _buffEntity.Add(SkillType.PrimeNumberHeal);
-            }
-            else
-            {
-                _buffEntity.Add(SkillType.NotPrimeNumber);
-                _buffEntity.Add(SkillType.NotPrimeNumberAtk);
-                _buffEntity.Add(SkillType.NotPrimeNumberDef);
-            }
-
-            if (_numericRepository.IsExistSameNumbers(currentValue))
-            {
-                _buffEntity.Add(SkillType.SameNumbers);
-                _buffEntity.Add(SkillType.SameNumbersAtk);
-                _buffEntity.Add(SkillType.SameNumbersDef);
-                _buffEntity.Add(SkillType.SameNumbersDollar);
-                _buffEntity.Add(SkillType.SameNumbersHeal);
-            }
-            else
-            {
-                _buffEntity.Add(SkillType.NotSameNumbers);
-                _buffEntity.Add(SkillType.NotSameNumbersAtk);
-                _buffEntity.Add(SkillType.NotSameNumbersDef);
-            }
-
-            if (isSuitMatch)
-            {
-                _buffEntity.Add(SkillType.SuitMatch);
-                _buffEntity.Add(SkillType.SuitMatchAtk);
-                _buffEntity.Add(SkillType.SuitMatchDef);
-
-                var suitMatchSkill = _orders[0].card.suit switch
-                {
-                    Suit.Club => SkillType.SuitMatchClub,
-                    Suit.Diamond => SkillType.SuitMatchDiamond,
-                    Suit.Heart => SkillType.SuitMatchHeart,
-                    Suit.Spade => SkillType.SuitMatchSpade,
-                    _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SUIT),
-                };
-                _buffEntity.Add(suitMatchSkill);
-            }
-            else
-            {
-                _buffEntity.Add(SkillType.SuitUnmatch);
-                _buffEntity.Add(SkillType.SuitUnmatchAtk);
-                _buffEntity.Add(SkillType.SuitUnmatchDef);
-            }
-
             if (isValueDown)
             {
                 _buffEntity.Add(SkillType.ValueDownDollar);
@@ -154,6 +87,20 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             {
                 _buffEntity.Add(SkillType.ValueUpAtk);
                 _buffEntity.Add(SkillType.ValueUpDef);
+            }
+
+            var pokerHands = OrderHelper.GetPokerHandBonus(_orders);
+            if (pokerHands == BonusType.None)
+            {
+                _buffEntity.Add(SkillType.HighCard);
+                _buffEntity.Add(SkillType.HighCardAtk);
+                _buffEntity.Add(SkillType.HighCardDef);
+            }
+            else
+            {
+                _buffEntity.Add(SkillType.PokerHands);
+                _buffEntity.Add(SkillType.PokerHandsAtk);
+                _buffEntity.Add(SkillType.PokerHandsDef);
             }
         }
 
