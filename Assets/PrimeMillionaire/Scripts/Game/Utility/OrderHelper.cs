@@ -7,7 +7,7 @@ namespace PrimeMillionaire.Game.Utility
 {
     public static class OrderHelper
     {
-        public static BonusType GetPokerHandBonus(IEnumerable<OrderVO> orders)
+        public static PokerHands GetPokerHands(IEnumerable<OrderVO> orders)
         {
             var rankCount = orders.GroupBy(x => x.card.rank).Count();
             var maxRank = orders.Max(x => x.card.rank);
@@ -17,13 +17,13 @@ namespace PrimeMillionaire.Game.Utility
             var suitCount = orders.GroupBy(x => x.card.suit).Count();
             var isFlush = suitCount == 1;
 
-            if (isStraight && isFlush) return BonusType.StraightFlush;
-            if (rankCount == 1) return BonusType.ThreeOfAKind;
-            if (isStraight) return BonusType.Straight;
-            if (isFlush) return BonusType.Flush;
-            if (rankCount == 2) return BonusType.OnePair;
+            if (isStraight && isFlush) return PokerHands.StraightFlush;
+            if (rankCount == 1) return PokerHands.ThreeOfAKind;
+            if (isStraight) return PokerHands.Straight;
+            if (isFlush) return PokerHands.Flush;
+            if (rankCount == 2) return PokerHands.OnePair;
 
-            return BonusType.None;
+            return PokerHands.HighCard;
         }
 
         public static (int[] index, int value) GetOrder(IEnumerable<HandVO> hands, int value)

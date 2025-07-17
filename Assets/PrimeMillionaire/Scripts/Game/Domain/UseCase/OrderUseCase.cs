@@ -85,10 +85,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             skills.AddRange(isValueDown ? BonusType.ValueDown.ToSkillTypes() : BonusType.ValueUp.ToSkillTypes());
 
             // poker hands
-            var pokerHands = OrderHelper.GetPokerHandBonus(_orders);
-            skills.AddRange(pokerHands == BonusType.None
-                ? BonusType.HighCard.ToSkillTypes()
-                : pokerHands.ToSkillTypes());
+            skills.AddRange(OrderHelper.GetPokerHands(_orders).ToBonusType().ToSkillTypes());
 
             // odd / even
             skills.AddRange(currentValue.IsEven() ? BonusType.Even.ToSkillTypes() : BonusType.Odd.ToSkillTypes());
@@ -107,8 +104,8 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _bonusEntity.Clear();
 
             foreach (var bonus in _numericRepository.Finds(currentValue)) _bonusEntity.Add(bonus);
-            var pokerHandsBonus = OrderHelper.GetPokerHandBonus(_orders);
-            if (pokerHandsBonus != BonusType.None) _bonusEntity.Add(_numericRepository.Find(pokerHandsBonus));
+            var pokerHands = OrderHelper.GetPokerHands(_orders);
+            if (pokerHands != PokerHands.HighCard) _bonusEntity.Add(_numericRepository.Find(pokerHands.ToBonusType()));
 
             if (isValueDown) _bonusEntity.Add(_numericRepository.Find(BonusType.ValueDown));
 

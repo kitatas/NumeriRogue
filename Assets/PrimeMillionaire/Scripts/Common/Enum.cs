@@ -67,6 +67,16 @@ namespace PrimeMillionaire.Common
         MersenneNumber = 21,
     }
 
+    public enum PokerHands
+    {
+        HighCard = 0,
+        OnePair = 1,
+        Flush = 2,
+        Straight = 3,
+        ThreeOfAKind = 4,
+        StraightFlush = 5,
+    }
+
     public enum CharacterType
     {
         None = 0,

@@ -1,4 +1,3 @@
-using System;
 using PrimeMillionaire.Common;
 
 namespace PrimeMillionaire.Game.Utility
@@ -41,6 +40,20 @@ namespace PrimeMillionaire.Game.Utility
                 BonusType.HarshadNumber => new[] { SkillType.HarshadNumber },
                 BonusType.MersenneNumber => new[] { SkillType.MersenneNumber },
                 _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_BONUS),
+            };
+        }
+
+        public static BonusType ToBonusType(this PokerHands self)
+        {
+            return self switch
+            {
+                PokerHands.HighCard => BonusType.HighCard,
+                PokerHands.OnePair => BonusType.OnePair,
+                PokerHands.Flush => BonusType.Flush,
+                PokerHands.Straight => BonusType.Straight,
+                PokerHands.ThreeOfAKind => BonusType.ThreeOfAKind,
+                PokerHands.StraightFlush => BonusType.StraightFlush,
+                _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_POKER_HANDS)
             };
         }
     }
