@@ -6,6 +6,7 @@ using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Utility;
 using PrimeMillionaire.Game.Data.Entity;
 using PrimeMillionaire.Game.Domain.Repository;
+using UnityEngine;
 using VitalRouter;
 
 namespace PrimeMillionaire.Game.Domain.UseCase
@@ -42,7 +43,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
                 foreach (var skill in activateSkills)
                 {
-                    var fx = _buffRepository.FindFxObject(skill.skillBase.type);
+                    var fx = await ResourceHelper.LoadAsync<GameObject>(skill.skillBase.fxPath, token);
                     await Router.Default.PublishAsync(new BuffVO(Side.Player, fx), token);
 
                     ApplySkillEffect(skill);

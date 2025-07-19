@@ -134,6 +134,7 @@ namespace PrimeMillionaire.Common
         }
 
         public string iconPath => ZString.Format("Assets/Externals/Sprites/Skills/{0}.png[{0}]", target.FastToString());
+        public string fxPath => ZString.Format("Assets/PrimeMillionaire/Prefabs/Fx/Buff/Buff Variant - {0}.prefab", target.FastToString());
     }
 
     public sealed class SkillVO
