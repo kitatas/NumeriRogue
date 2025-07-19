@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Text;
 using FastEnumUtility;
 using PrimeMillionaire.Common.Utility;
@@ -225,6 +226,18 @@ namespace PrimeMillionaire.Common
         {
             this.level = level;
             this.rate = rate / 100.0f;
+        }
+    }
+
+    public sealed class BonusTargetVO
+    {
+        public readonly BonusType type;
+        public readonly IEnumerable<SkillType> skillTypes;
+
+        public BonusTargetVO(int type, int[] skillTypes)
+        {
+            this.type = type.ToBonusType();
+            this.skillTypes = skillTypes.Select(x => x.ToSkillType());
         }
     }
 
