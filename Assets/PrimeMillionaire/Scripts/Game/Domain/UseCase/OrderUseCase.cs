@@ -19,15 +19,18 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         private readonly BonusEntity _bonusEntity;
         private readonly BuffEntity _buffEntity;
         private readonly CommunityBattlePtEntity _communityBattlePtEntity;
+        private readonly BonusRepository _bonusRepository;
         private readonly NumericRepository _numericRepository;
         private readonly ObservableList<OrderVO> _orders;
 
         public OrderUseCase(BonusEntity bonusEntity, BuffEntity buffEntity,
-            CommunityBattlePtEntity communityBattlePtEntity, NumericRepository numericRepository)
+            CommunityBattlePtEntity communityBattlePtEntity, BonusRepository bonusRepository,
+            NumericRepository numericRepository)
         {
             _bonusEntity = bonusEntity;
             _buffEntity = buffEntity;
             _communityBattlePtEntity = communityBattlePtEntity;
+            _bonusRepository = bonusRepository;
             _numericRepository = numericRepository;
             _orders = new ObservableList<OrderVO>(HandConfig.ORDER_NUM)
             {
@@ -79,24 +82,18 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public void StockBuff()
         {
-            var skills = new List<SkillType>();
-
             // up / down
-            skills.AddRange(isValueDown ? BonusType.ValueDown.ToSkillTypes() : BonusType.ValueUp.ToSkillTypes());
+            _buffEntity.AddRange(_bonusRepository.Find(isValueDown ? BonusType.ValueDown : BonusType.ValueUp));
 
             // poker hands
-            skills.AddRange(OrderHelper.GetPokerHands(_orders).ToBonusType().ToSkillTypes());
+            _buffEntity.AddRange(_bonusRepository.Find(OrderHelper.GetPokerHands(_orders).ToBonusType()));
 
             // odd / even
-            skills.AddRange(currentValue.IsEven() ? BonusType.Even.ToSkillTypes() : BonusType.Odd.ToSkillTypes());
+            _buffEntity.AddRange(_bonusRepository.Find(currentValue.IsEven() ? BonusType.Even : BonusType.Odd));
 
             // special number
-            skills.AddRange(_numericRepository.IsAny(currentValue)
-                ? BonusType.SpecialNumbers.ToSkillTypes()
-                : BonusType.NotSpecialNumbers.ToSkillTypes());
-            foreach (var bonus in _numericRepository.Finds(currentValue)) skills.AddRange(bonus.type.ToSkillTypes());
-
-            foreach (var type in skills) _buffEntity.Add(type);
+            _buffEntity.AddRange(_bonusRepository.Find(_numericRepository.IsAny(currentValue) ? BonusType.SpecialNumbers : BonusType.NotSpecialNumbers));
+            foreach (var bonus in _numericRepository.Finds(currentValue)) _buffEntity.AddRange(_bonusRepository.Find(bonus.type));
         }
 
         public async UniTask PushValueAsync(CancellationToken token)

@@ -21,6 +21,12 @@ namespace PrimeMillionaire.Game.Data.Entity
             _current.Add(type);
         }
 
+        public void AddRange(BonusTargetVO bonusTarget)
+        {
+            if (bonusTarget.skillTypes.Any(x => x == SkillType.None)) throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SKILL);
+            _current.AddRange(bonusTarget.skillTypes);
+        }
+
         public void ApplyTotal()
         {
             _total.AddRange(_current);
