@@ -17,17 +17,15 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         private readonly DollarEntity _dollarEntity;
         private readonly HoldSkillEntity _holdSkillEntity;
         private readonly PlayerParameterEntity _playerParameterEntity;
-        private readonly BuffRepository _buffRepository;
         private readonly SkillRepository _skillRepository;
 
         public BuffUseCase(BuffEntity buffEntity, DollarEntity dollarEntity, HoldSkillEntity holdSkillEntity,
-            PlayerParameterEntity playerParameterEntity, BuffRepository buffRepository, SkillRepository skillRepository)
+            PlayerParameterEntity playerParameterEntity, SkillRepository skillRepository)
         {
             _buffEntity = buffEntity;
             _dollarEntity = dollarEntity;
             _holdSkillEntity = holdSkillEntity;
             _playerParameterEntity = playerParameterEntity;
-            _buffRepository = buffRepository;
             _skillRepository = skillRepository;
         }
 
