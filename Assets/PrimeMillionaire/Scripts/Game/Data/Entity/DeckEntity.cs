@@ -14,24 +14,17 @@ namespace PrimeMillionaire.Game.Data.Entity
             _cards = new List<CardVO>(CardConfig.MAX_RANK * CardConfig.SUITS.Length);
         }
 
-        public void Init(IEnumerable<CardVO> cards)
+        public void Init(DeckVO deck)
         {
-            var c = DebugConfig.IS_FORCE_WIN switch
+            var d = DebugConfig.IS_FORCE_WIN switch
             {
-                Side.None => cards,
-                Side.Player => new List<CardVO>
-                    { new(1, 13), new(1, 1), new(2, 13), new(2, 1), new(3, 13), new(3, 1), },
-                Side.Enemy => new List<CardVO>
-                    { new(1, 1), new(1, 13), new(2, 1), new(2, 13), new(3, 1), new(3, 13), },
+                Side.None => deck,
+                Side.Player => new DeckVO(new List<CardVO> { new(1, 13), new(1, 1), new(2, 13), new(2, 1), new(3, 13), new(3, 1) }),
+                Side.Enemy => new DeckVO(new List<CardVO> { new(1, 1), new(1, 13), new(2, 1), new(2, 13), new(3, 1), new(3, 13) }),
                 _ => throw new QuitExceptionVO(ExceptionConfig.UNKNOWN_ERROR),
             };
 
-            _cards.AddRange(c);
-        }
-
-        public void Init(DeckVO deck)
-        {
-            _cards.AddRange(deck.cards);
+            _cards.AddRange(d.cards);
         }
 
         public void Refresh()

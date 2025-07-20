@@ -12,11 +12,11 @@ namespace PrimeMillionaire.Top.Presentation.View
         [SerializeField] private CardView[] hearts = default;
         [SerializeField] private CardView[] spades = default;
 
-        public void Render(IEnumerable<CardVO> deck)
+        public void Render(DeckVO deck)
         {
             Refresh();
 
-            foreach (var card in deck)
+            foreach (var card in deck.cards)
             {
                 var cardViews = card.suit switch
                 {

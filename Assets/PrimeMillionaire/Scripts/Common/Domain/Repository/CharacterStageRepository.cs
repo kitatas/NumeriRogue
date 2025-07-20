@@ -15,13 +15,15 @@ namespace PrimeMillionaire.Common.Domain.Repository
             _memoryDatabase = memoryDatabase;
         }
 
-        public IEnumerable<CardVO> GetCards(CharacterType type)
+        public DeckVO GetCards(CharacterType type)
         {
             if (_memoryDatabase.CharacterStageMasterTable.TryFindByType(type.ToInt32(), out var characterStage))
             {
-                return _memoryDatabase.CardMasterTable.All
+                var cards = _memoryDatabase.CardMasterTable.All
                     .Where(x => characterStage.Suits.Contains(x.Suit) && characterStage.Ranks.Contains(x.Rank))
                     .Select(x => x.ToVO());
+
+                return new DeckVO(cards);
             }
             else
             {

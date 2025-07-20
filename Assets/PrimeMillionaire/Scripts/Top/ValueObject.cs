@@ -26,9 +26,9 @@ namespace PrimeMillionaire.Top
     public sealed class OrderCharacterVO
     {
         public readonly CharacterVO character;
-        public readonly IEnumerable<CardVO> deck;
+        public readonly DeckVO deck;
 
-        public OrderCharacterVO(CharacterVO character, IEnumerable<CardVO> deck)
+        public OrderCharacterVO(CharacterVO character, DeckVO deck)
         {
             this.character = character;
             this.deck = deck;

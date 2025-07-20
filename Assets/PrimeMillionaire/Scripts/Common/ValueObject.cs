@@ -43,9 +43,9 @@ namespace PrimeMillionaire.Common
 
     public sealed class DeckVO
     {
-        public readonly List<CardVO> cards;
+        public readonly IEnumerable<CardVO> cards;
 
-        public DeckVO(List<CardVO> cards)
+        public DeckVO(IEnumerable<CardVO> cards)
         {
             this.cards = cards;
         }
