@@ -82,6 +82,15 @@ namespace PrimeMillionaire.Editor.Scripts
             DumpCsv(list, "MersenneNumber");
         }
 
+        [MenuItem(BASE_PATH + nameof(DumpKaprekarNumber))]
+        private static void DumpKaprekarNumber()
+        {
+            var list = GetNumbers()
+                .Select(int.Parse)
+                .Where(IsKaprekar);
+
+            DumpCsv(list, "KaprekarNumber");
+        }
 
         private static IEnumerable<string> GetNumbers()
         {
@@ -148,6 +157,25 @@ namespace PrimeMillionaire.Editor.Scripts
                 if (m > value) return false;
                 p++;
             }
+        }
+
+        private static bool IsKaprekar(int value)
+        {
+            long square = (long)value * value;
+            string squareStr = square.ToString();
+
+            for (int i = 1; i < squareStr.Length; i++)
+            {
+                var left = squareStr[..i];
+                var right = squareStr[i..];
+                if (right is "" or "0") continue;
+
+                long leftNum = long.Parse(left);
+                long rightNum = long.Parse(right);
+                if (leftNum + rightNum == value) return true;
+            }
+
+            return false;
         }
 
         private static void DumpCsv(IEnumerable<int> list, string fileName)
