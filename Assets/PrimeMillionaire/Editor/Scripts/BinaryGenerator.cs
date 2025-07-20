@@ -24,7 +24,6 @@ namespace PrimeMillionaire.Editor.Scripts
             MessagePackSerializer.DefaultOptions = options;
 
             var databaseBuilder = new DatabaseBuilder();
-            databaseBuilder.Append(DeserializeJson<BonusTargetMaster>("bonus_target"));
             databaseBuilder.Append(DeserializeJson<CardMaster>("card"));
             databaseBuilder.Append(DeserializeJson<CharacterMaster>("character"));
             databaseBuilder.Append(DeserializeJson<CharacterStageMaster>("character_stage"));

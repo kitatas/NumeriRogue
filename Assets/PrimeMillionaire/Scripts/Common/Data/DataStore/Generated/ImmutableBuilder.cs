@@ -25,74 +25,11 @@ namespace PrimeMillionaire.Common.Data.DataStore
             return memory;
         }
 
-        public void ReplaceAll(System.Collections.Generic.IList<BonusTargetMaster> data)
-        {
-            var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
-            var table = new BonusTargetMasterTable(newData);
-            memory = new MemoryDatabase(
-                table,
-                memory.CardMasterTable,
-                memory.CharacterMasterTable,
-                memory.CharacterStageMasterTable,
-                memory.DropRateMasterTable,
-                memory.LevelMasterTable,
-                memory.NumericBonusMasterTable,
-                memory.NumericMasterTable,
-                memory.SkillBaseMasterTable,
-                memory.SkillEffectMasterTable,
-                memory.SkillTargetMasterTable
-            
-            );
-        }
-
-        public void RemoveBonusTargetMaster(int[] keys)
-        {
-            var data = RemoveCore(memory.BonusTargetMasterTable.GetRawDataUnsafe(), keys, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
-            var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
-            var table = new BonusTargetMasterTable(newData);
-            memory = new MemoryDatabase(
-                table,
-                memory.CardMasterTable,
-                memory.CharacterMasterTable,
-                memory.CharacterStageMasterTable,
-                memory.DropRateMasterTable,
-                memory.LevelMasterTable,
-                memory.NumericBonusMasterTable,
-                memory.NumericMasterTable,
-                memory.SkillBaseMasterTable,
-                memory.SkillEffectMasterTable,
-                memory.SkillTargetMasterTable
-            
-            );
-        }
-
-        public void Diff(BonusTargetMaster[] addOrReplaceData)
-        {
-            var data = DiffCore(memory.BonusTargetMasterTable.GetRawDataUnsafe(), addOrReplaceData, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
-            var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
-            var table = new BonusTargetMasterTable(newData);
-            memory = new MemoryDatabase(
-                table,
-                memory.CardMasterTable,
-                memory.CharacterMasterTable,
-                memory.CharacterStageMasterTable,
-                memory.DropRateMasterTable,
-                memory.LevelMasterTable,
-                memory.NumericBonusMasterTable,
-                memory.NumericMasterTable,
-                memory.SkillBaseMasterTable,
-                memory.SkillEffectMasterTable,
-                memory.SkillTargetMasterTable
-            
-            );
-        }
-
         public void ReplaceAll(System.Collections.Generic.IList<CardMaster> data)
         {
             var newData = CloneAndSortBy(data, x => (x.Suit, x.Rank), System.Collections.Generic.Comparer<(int Suit, int Rank)>.Default);
             var table = new CardMasterTable(newData);
             memory = new MemoryDatabase(
-                memory.BonusTargetMasterTable,
                 table,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
@@ -113,7 +50,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
             var newData = CloneAndSortBy(data, x => (x.Suit, x.Rank), System.Collections.Generic.Comparer<(int Suit, int Rank)>.Default);
             var table = new CardMasterTable(newData);
             memory = new MemoryDatabase(
-                memory.BonusTargetMasterTable,
                 table,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
@@ -134,7 +70,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
             var newData = CloneAndSortBy(data, x => (x.Suit, x.Rank), System.Collections.Generic.Comparer<(int Suit, int Rank)>.Default);
             var table = new CardMasterTable(newData);
             memory = new MemoryDatabase(
-                memory.BonusTargetMasterTable,
                 table,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
@@ -154,7 +89,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
             var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
             var table = new CharacterMasterTable(newData);
             memory = new MemoryDatabase(
-                memory.BonusTargetMasterTable,
                 memory.CardMasterTable,
                 table,
                 memory.CharacterStageMasterTable,
@@ -175,7 +109,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
             var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
             var table = new CharacterMasterTable(newData);
             memory = new MemoryDatabase(
-                memory.BonusTargetMasterTable,
                 memory.CardMasterTable,
                 table,
                 memory.CharacterStageMasterTable,
@@ -196,7 +129,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
             var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
             var table = new CharacterMasterTable(newData);
             memory = new MemoryDatabase(
-                memory.BonusTargetMasterTable,
                 memory.CardMasterTable,
                 table,
                 memory.CharacterStageMasterTable,
@@ -216,7 +148,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
             var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
             var table = new CharacterStageMasterTable(newData);
             memory = new MemoryDatabase(
-                memory.BonusTargetMasterTable,
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 table,
@@ -237,7 +168,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
             var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
             var table = new CharacterStageMasterTable(newData);
             memory = new MemoryDatabase(
-                memory.BonusTargetMasterTable,
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 table,
@@ -258,7 +188,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
             var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
             var table = new CharacterStageMasterTable(newData);
             memory = new MemoryDatabase(
-                memory.BonusTargetMasterTable,
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 table,
@@ -278,7 +207,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
             var newData = CloneAndSortBy(data, x => x.Turn, System.Collections.Generic.Comparer<int>.Default);
             var table = new DropRateMasterTable(newData);
             memory = new MemoryDatabase(
-                memory.BonusTargetMasterTable,
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
@@ -299,7 +227,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
             var newData = CloneAndSortBy(data, x => x.Turn, System.Collections.Generic.Comparer<int>.Default);
             var table = new DropRateMasterTable(newData);
             memory = new MemoryDatabase(
-                memory.BonusTargetMasterTable,
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
@@ -320,7 +247,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
             var newData = CloneAndSortBy(data, x => x.Turn, System.Collections.Generic.Comparer<int>.Default);
             var table = new DropRateMasterTable(newData);
             memory = new MemoryDatabase(
-                memory.BonusTargetMasterTable,
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
@@ -340,7 +266,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
             var newData = CloneAndSortBy(data, x => x.Level, System.Collections.Generic.Comparer<int>.Default);
             var table = new LevelMasterTable(newData);
             memory = new MemoryDatabase(
-                memory.BonusTargetMasterTable,
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
@@ -361,7 +286,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
             var newData = CloneAndSortBy(data, x => x.Level, System.Collections.Generic.Comparer<int>.Default);
             var table = new LevelMasterTable(newData);
             memory = new MemoryDatabase(
-                memory.BonusTargetMasterTable,
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
@@ -382,7 +306,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
             var newData = CloneAndSortBy(data, x => x.Level, System.Collections.Generic.Comparer<int>.Default);
             var table = new LevelMasterTable(newData);
             memory = new MemoryDatabase(
-                memory.BonusTargetMasterTable,
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
@@ -402,7 +325,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
             var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
             var table = new NumericBonusMasterTable(newData);
             memory = new MemoryDatabase(
-                memory.BonusTargetMasterTable,
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
@@ -423,7 +345,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
             var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
             var table = new NumericBonusMasterTable(newData);
             memory = new MemoryDatabase(
-                memory.BonusTargetMasterTable,
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
@@ -444,7 +365,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
             var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
             var table = new NumericBonusMasterTable(newData);
             memory = new MemoryDatabase(
-                memory.BonusTargetMasterTable,
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
@@ -464,7 +384,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
             var newData = CloneAndSortBy(data, x => x.Value, System.Collections.Generic.Comparer<int>.Default);
             var table = new NumericMasterTable(newData);
             memory = new MemoryDatabase(
-                memory.BonusTargetMasterTable,
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
@@ -485,7 +404,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
             var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
             var table = new SkillBaseMasterTable(newData);
             memory = new MemoryDatabase(
-                memory.BonusTargetMasterTable,
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
@@ -506,7 +424,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
             var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
             var table = new SkillBaseMasterTable(newData);
             memory = new MemoryDatabase(
-                memory.BonusTargetMasterTable,
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
@@ -527,7 +444,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
             var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
             var table = new SkillBaseMasterTable(newData);
             memory = new MemoryDatabase(
-                memory.BonusTargetMasterTable,
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
@@ -547,7 +463,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
             var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
             var table = new SkillEffectMasterTable(newData);
             memory = new MemoryDatabase(
-                memory.BonusTargetMasterTable,
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
@@ -568,7 +483,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
             var newData = CloneAndSortBy(data, x => x.Target, System.Collections.Generic.Comparer<int>.Default);
             var table = new SkillTargetMasterTable(newData);
             memory = new MemoryDatabase(
-                memory.BonusTargetMasterTable,
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
@@ -589,7 +503,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
             var newData = CloneAndSortBy(data, x => x.Target, System.Collections.Generic.Comparer<int>.Default);
             var table = new SkillTargetMasterTable(newData);
             memory = new MemoryDatabase(
-                memory.BonusTargetMasterTable,
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,
@@ -610,7 +523,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
             var newData = CloneAndSortBy(data, x => x.Target, System.Collections.Generic.Comparer<int>.Default);
             var table = new SkillTargetMasterTable(newData);
             memory = new MemoryDatabase(
-                memory.BonusTargetMasterTable,
                 memory.CardMasterTable,
                 memory.CharacterMasterTable,
                 memory.CharacterStageMasterTable,

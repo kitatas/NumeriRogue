@@ -46,19 +46,18 @@ namespace PrimeMillionaire.Common.Data.DataStore
 
         static MasterMemoryResolverGetFormatterHelper()
         {
-            lookup = new global::System.Collections.Generic.Dictionary<Type, int>(11)
+            lookup = new global::System.Collections.Generic.Dictionary<Type, int>(10)
             {
-                {typeof(BonusTargetMaster[]), 0 },
-                {typeof(CardMaster[]), 1 },
-                {typeof(CharacterMaster[]), 2 },
-                {typeof(CharacterStageMaster[]), 3 },
-                {typeof(DropRateMaster[]), 4 },
-                {typeof(LevelMaster[]), 5 },
-                {typeof(NumericBonusMaster[]), 6 },
-                {typeof(NumericMaster[]), 7 },
-                {typeof(SkillBaseMaster[]), 8 },
-                {typeof(SkillEffectMaster[]), 9 },
-                {typeof(SkillTargetMaster[]), 10 },
+                {typeof(CardMaster[]), 0 },
+                {typeof(CharacterMaster[]), 1 },
+                {typeof(CharacterStageMaster[]), 2 },
+                {typeof(DropRateMaster[]), 3 },
+                {typeof(LevelMaster[]), 4 },
+                {typeof(NumericBonusMaster[]), 5 },
+                {typeof(NumericMaster[]), 6 },
+                {typeof(SkillBaseMaster[]), 7 },
+                {typeof(SkillEffectMaster[]), 8 },
+                {typeof(SkillTargetMaster[]), 9 },
             };
         }
 
@@ -69,17 +68,16 @@ namespace PrimeMillionaire.Common.Data.DataStore
 
             switch (key)
             {
-                case 0: return new MessagePack.Formatters.ArrayFormatter<BonusTargetMaster>();
-                case 1: return new MessagePack.Formatters.ArrayFormatter<CardMaster>();
-                case 2: return new MessagePack.Formatters.ArrayFormatter<CharacterMaster>();
-                case 3: return new MessagePack.Formatters.ArrayFormatter<CharacterStageMaster>();
-                case 4: return new MessagePack.Formatters.ArrayFormatter<DropRateMaster>();
-                case 5: return new MessagePack.Formatters.ArrayFormatter<LevelMaster>();
-                case 6: return new MessagePack.Formatters.ArrayFormatter<NumericBonusMaster>();
-                case 7: return new MessagePack.Formatters.ArrayFormatter<NumericMaster>();
-                case 8: return new MessagePack.Formatters.ArrayFormatter<SkillBaseMaster>();
-                case 9: return new MessagePack.Formatters.ArrayFormatter<SkillEffectMaster>();
-                case 10: return new MessagePack.Formatters.ArrayFormatter<SkillTargetMaster>();
+                case 0: return new MessagePack.Formatters.ArrayFormatter<CardMaster>();
+                case 1: return new MessagePack.Formatters.ArrayFormatter<CharacterMaster>();
+                case 2: return new MessagePack.Formatters.ArrayFormatter<CharacterStageMaster>();
+                case 3: return new MessagePack.Formatters.ArrayFormatter<DropRateMaster>();
+                case 4: return new MessagePack.Formatters.ArrayFormatter<LevelMaster>();
+                case 5: return new MessagePack.Formatters.ArrayFormatter<NumericBonusMaster>();
+                case 6: return new MessagePack.Formatters.ArrayFormatter<NumericMaster>();
+                case 7: return new MessagePack.Formatters.ArrayFormatter<SkillBaseMaster>();
+                case 8: return new MessagePack.Formatters.ArrayFormatter<SkillEffectMaster>();
+                case 9: return new MessagePack.Formatters.ArrayFormatter<SkillTargetMaster>();
                 default: return null;
             }
         }

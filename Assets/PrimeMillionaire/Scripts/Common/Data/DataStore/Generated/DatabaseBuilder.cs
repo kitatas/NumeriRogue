@@ -16,12 +16,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
         public DatabaseBuilder() : this(null) { }
         public DatabaseBuilder(MessagePack.IFormatterResolver resolver) : base(resolver) { }
 
-        public DatabaseBuilder Append(System.Collections.Generic.IEnumerable<BonusTargetMaster> dataSource)
-        {
-            AppendCore(dataSource, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
-            return this;
-        }
-
         public DatabaseBuilder Append(System.Collections.Generic.IEnumerable<CardMaster> dataSource)
         {
             AppendCore(dataSource, x => (x.Suit, x.Rank), System.Collections.Generic.Comparer<(int Suit, int Rank)>.Default);
