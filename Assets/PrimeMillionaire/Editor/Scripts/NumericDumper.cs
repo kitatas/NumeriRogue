@@ -4,12 +4,15 @@ using System.Linq;
 using Cysharp.Text;
 using UniEx;
 using UnityEditor;
+using UnityEngine;
 
 namespace PrimeMillionaire.Editor.Scripts
 {
     public static class NumericDumper
     {
-        [MenuItem("Tools/Numeric/" + nameof(DumpPrimeNumber))]
+        public const string BASE_PATH = "Tools/Numeric/";
+
+        [MenuItem(BASE_PATH + nameof(DumpPrimeNumber))]
         private static void DumpPrimeNumber()
         {
             var list = GetNumbers()
@@ -19,7 +22,7 @@ namespace PrimeMillionaire.Editor.Scripts
             DumpCsv(list, "PrimeNumber");
         }
 
-        [MenuItem("Tools/Numeric/" + nameof(DumpPalindromicNumber))]
+        [MenuItem(BASE_PATH + nameof(DumpPalindromicNumber))]
         private static void DumpPalindromicNumber()
         {
             var list = GetNumbers()
@@ -29,7 +32,7 @@ namespace PrimeMillionaire.Editor.Scripts
             DumpCsv(list, "PalindromicNumber");
         }
 
-        [MenuItem("Tools/Numeric/" + nameof(DumpHarshadNumber))]
+        [MenuItem(BASE_PATH + nameof(DumpHarshadNumber))]
         private static void DumpHarshadNumber()
         {
             var list = GetNumbers()
@@ -39,7 +42,7 @@ namespace PrimeMillionaire.Editor.Scripts
             DumpCsv(list, "HarshadNumber");
         }
 
-        [MenuItem("Tools/Numeric/" + nameof(DumpSquareNumber))]
+        [MenuItem(BASE_PATH + nameof(DumpSquareNumber))]
         private static void DumpSquareNumber()
         {
             var list = GetNumbers()
@@ -49,7 +52,7 @@ namespace PrimeMillionaire.Editor.Scripts
             DumpCsv(list, "SquareNumber");
         }
 
-        [MenuItem("Tools/Numeric/" + nameof(DumpTriangularNumber))]
+        [MenuItem(BASE_PATH + nameof(DumpTriangularNumber))]
         private static void DumpTriangularNumber()
         {
             var list = GetNumbers()
@@ -59,7 +62,7 @@ namespace PrimeMillionaire.Editor.Scripts
             DumpCsv(list, "TriangularNumber");
         }
 
-        [MenuItem("Tools/Numeric/" + nameof(DumpFibonacciNumber))]
+        [MenuItem(BASE_PATH + nameof(DumpFibonacciNumber))]
         private static void DumpFibonacciNumber()
         {
             var list = GetNumbers()
@@ -69,7 +72,7 @@ namespace PrimeMillionaire.Editor.Scripts
             DumpCsv(list, "FibonacciNumber");
         }
 
-        [MenuItem("Tools/Numeric/" + nameof(DumpMersenneNumber))]
+        [MenuItem(BASE_PATH + nameof(DumpMersenneNumber))]
         private static void DumpMersenneNumber()
         {
             var list = GetNumbers()
