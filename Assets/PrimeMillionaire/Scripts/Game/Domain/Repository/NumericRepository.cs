@@ -33,6 +33,18 @@ namespace PrimeMillionaire.Game.Domain.Repository
             }
         }
 
+        public BonusTargetVO FindTarget(BonusType type)
+        {
+            if (_memoryDatabase.NumericBonusMasterTable.TryFindByType(type.ToInt32(), out var master))
+            {
+                return master.ToTargetVO();
+            }
+            else
+            {
+                throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_BONUS);
+            }
+        }
+
         public IEnumerable<BonusVO> Finds(int value)
         {
             return _memoryDatabase.NumericMasterTable.FindByValue(value)

@@ -89,6 +89,7 @@ namespace PrimeMillionaire.Common.Data.DataStore.Tables
                 {
                     new MasterMemory.Meta.MetaProperty(typeof(NumericBonusMaster).GetProperty("Type")),
                     new MasterMemory.Meta.MetaProperty(typeof(NumericBonusMaster).GetProperty("Rate")),
+                    new MasterMemory.Meta.MetaProperty(typeof(NumericBonusMaster).GetProperty("SkillTypes")),
                 },
                 new MasterMemory.Meta.MetaIndex[]{
                     new MasterMemory.Meta.MetaIndex(new System.Reflection.PropertyInfo[] {
