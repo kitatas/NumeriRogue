@@ -89,7 +89,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         private float GetDefSkillRate()
         {
-            return _skillRepository.FindsSkillType(SkillTarget.Atk)
+            return _skillRepository.FindsSkillType(SkillTarget.Def)
                 .Sum(GetSkillRate);
         }
 
