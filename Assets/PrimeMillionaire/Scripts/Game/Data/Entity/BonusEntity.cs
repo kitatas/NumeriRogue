@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using PrimeMillionaire.Common;
+using UnityEngine;
 
 namespace PrimeMillionaire.Game.Data.Entity
 {
@@ -23,7 +24,9 @@ namespace PrimeMillionaire.Game.Data.Entity
 
         public int CalcOrderValue(int value)
         {
-            return _bonusList.Aggregate(value, (current, bonus) => (int)(current * bonus.value));
+            return _bonusList
+                .OrderBy(x => x.type)
+                .Aggregate(value, (current, bonus) => Mathf.CeilToInt(current * bonus.value));
         }
 
         public List<BonusVO> ToVO() => _bonusList.OrderBy(x => x.type).ToList();

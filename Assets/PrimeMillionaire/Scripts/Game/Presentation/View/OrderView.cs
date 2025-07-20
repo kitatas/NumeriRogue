@@ -49,7 +49,7 @@ namespace PrimeMillionaire.Game.Presentation.View
 
             foreach (var bonus in orderValue.bonus)
             {
-                value = (int)(value * bonus.value);
+                value = Mathf.CeilToInt(value * bonus.value);
                 await bonusView.TweenAsync(bonus, token);
                 await TweenOrderValue(value).WithCancellation(token);
             }
