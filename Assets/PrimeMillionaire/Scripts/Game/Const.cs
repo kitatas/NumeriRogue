@@ -32,7 +32,6 @@ namespace PrimeMillionaire.Game
     public sealed class DollarConfig
     {
         public const int DROP_VALUE = 80;
-        public const int CLEAR_THRESHOLD = DebugConfig.IS_FORCE_WIN == Side.None ? 1500 : 250;
     }
 
     public sealed class HandConfig
