@@ -92,6 +92,7 @@ namespace PrimeMillionaire.Common.Data.DataStore.Tables
                     new MasterMemory.Meta.MetaProperty(typeof(CharacterStageMaster).GetProperty("Ranks")),
                     new MasterMemory.Meta.MetaProperty(typeof(CharacterStageMaster).GetProperty("ReleaseConditions")),
                     new MasterMemory.Meta.MetaProperty(typeof(CharacterStageMaster).GetProperty("Stage")),
+                    new MasterMemory.Meta.MetaProperty(typeof(CharacterStageMaster).GetProperty("MaxEnemyCount")),
                 },
                 new MasterMemory.Meta.MetaIndex[]{
                     new MasterMemory.Meta.MetaIndex(new System.Reflection.PropertyInfo[] {

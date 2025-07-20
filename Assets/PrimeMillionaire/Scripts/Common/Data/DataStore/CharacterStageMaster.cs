@@ -6,13 +6,14 @@ namespace PrimeMillionaire.Common.Data.DataStore
     [MemoryTable(nameof(CharacterStageMaster)), MessagePackObject(true)]
     public sealed class CharacterStageMaster
     {
-        public CharacterStageMaster(int type, int[] suits, int[] ranks, int[] releaseConditions, int stage)
+        public CharacterStageMaster(int type, int[] suits, int[] ranks, int[] releaseConditions, int stage, int maxEnemyCount)
         {
             Type = type;
             Suits = suits;
             Ranks = ranks;
             ReleaseConditions = releaseConditions;
             Stage = stage;
+            MaxEnemyCount = maxEnemyCount;
         }
 
         [PrimaryKey] public int Type { get; }
@@ -20,5 +21,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
         public int[] Ranks { get; }
         public int[] ReleaseConditions { get; }
         public int Stage { get; }
+        public int MaxEnemyCount { get; }
     }
 }

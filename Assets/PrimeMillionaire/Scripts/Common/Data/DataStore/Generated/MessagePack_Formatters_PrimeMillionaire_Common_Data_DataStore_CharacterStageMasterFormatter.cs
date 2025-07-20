@@ -28,6 +28,8 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
         private static global::System.ReadOnlySpan<byte> GetSpan_ReleaseConditions() => new byte[1 + 17] { 177, 82, 101, 108, 101, 97, 115, 101, 67, 111, 110, 100, 105, 116, 105, 111, 110, 115 };
         // Stage
         private static global::System.ReadOnlySpan<byte> GetSpan_Stage() => new byte[1 + 5] { 165, 83, 116, 97, 103, 101 };
+        // MaxEnemyCount
+        private static global::System.ReadOnlySpan<byte> GetSpan_MaxEnemyCount() => new byte[1 + 13] { 173, 77, 97, 120, 69, 110, 101, 109, 121, 67, 111, 117, 110, 116 };
 
         public void Serialize(ref global::MessagePack.MessagePackWriter writer, global::PrimeMillionaire.Common.Data.DataStore.CharacterStageMaster value, global::MessagePack.MessagePackSerializerOptions options)
         {
@@ -38,7 +40,7 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
             }
 
             var formatterResolver = options.Resolver;
-            writer.WriteMapHeader(5);
+            writer.WriteMapHeader(6);
             writer.WriteRaw(GetSpan_Type());
             writer.Write(value.Type);
             writer.WriteRaw(GetSpan_Suits());
@@ -49,6 +51,8 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
             global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<int[]>(formatterResolver).Serialize(ref writer, value.ReleaseConditions, options);
             writer.WriteRaw(GetSpan_Stage());
             writer.Write(value.Stage);
+            writer.WriteRaw(GetSpan_MaxEnemyCount());
+            writer.Write(value.MaxEnemyCount);
         }
 
         public global::PrimeMillionaire.Common.Data.DataStore.CharacterStageMaster Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)
@@ -66,6 +70,7 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
             var __Ranks__ = default(int[]);
             var __ReleaseConditions__ = default(int[]);
             var __Stage__ = default(int);
+            var __MaxEnemyCount__ = default(int);
 
             for (int i = 0; i < length; i++)
             {
@@ -100,11 +105,16 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
 
                         __ReleaseConditions__ = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<int[]>(formatterResolver).Deserialize(ref reader, options);
                         continue;
+                    case 13:
+                        if (!global::System.MemoryExtensions.SequenceEqual(stringKey, GetSpan_MaxEnemyCount().Slice(1))) { goto FAIL; }
+
+                        __MaxEnemyCount__ = reader.ReadInt32();
+                        continue;
 
                 }
             }
 
-            var ____result = new global::PrimeMillionaire.Common.Data.DataStore.CharacterStageMaster(__Type__, __Suits__, __Ranks__, __ReleaseConditions__, __Stage__);
+            var ____result = new global::PrimeMillionaire.Common.Data.DataStore.CharacterStageMaster(__Type__, __Suits__, __Ranks__, __ReleaseConditions__, __Stage__, __MaxEnemyCount__);
             reader.Depth--;
             return ____result;
         }
