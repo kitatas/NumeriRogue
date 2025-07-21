@@ -14,6 +14,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         private readonly PlayerCharacterEntity _playerCharacterEntity;
         private readonly PlayerParameterEntity _playerParameterEntity;
         private readonly EnemyCharacterEntity _enemyCharacterEntity;
+        private readonly EnemyCountEntity _enemyCountEntity;
         private readonly EnemyParameterEntity _enemyParameterEntity;
         private readonly LevelEntity _levelEntity;
         private readonly TurnEntity _turnEntity;
@@ -22,8 +23,8 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         public InterruptUseCase(CommunityBattlePtEntity communityBattlePtEntity, DeckEntity deckEntity,
             DollarEntity dollarEntity, HoldSkillEntity holdSkillEntity, PlayerCharacterEntity playerCharacterEntity,
             PlayerParameterEntity playerParameterEntity, EnemyCharacterEntity enemyCharacterEntity,
-            EnemyParameterEntity enemyParameterEntity, LevelEntity levelEntity, TurnEntity turnEntity,
-            SaveRepository saveRepository)
+            EnemyCountEntity enemyCountEntity, EnemyParameterEntity enemyParameterEntity, LevelEntity levelEntity,
+            TurnEntity turnEntity, SaveRepository saveRepository)
         {
             _communityBattlePtEntity = communityBattlePtEntity;
             _deckEntity = deckEntity;
@@ -32,6 +33,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _playerCharacterEntity = playerCharacterEntity;
             _playerParameterEntity = playerParameterEntity;
             _enemyCharacterEntity = enemyCharacterEntity;
+            _enemyCountEntity = enemyCountEntity;
             _enemyParameterEntity = enemyParameterEntity;
             _levelEntity = levelEntity;
             _turnEntity = turnEntity;
@@ -48,6 +50,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 _dollarEntity.currentValue,
                 _levelEntity.currentValue,
                 _turnEntity.currentValue,
+                _enemyCountEntity.currentValue,
                 _communityBattlePtEntity.currentValue
             );
 
@@ -61,6 +64,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 _playerCharacterEntity.SetType(interrupt.player.type);
                 _playerParameterEntity.InitForInterrupt(interrupt.player);
                 _enemyCharacterEntity.SetType(interrupt.enemy.type);
+                _enemyCountEntity.Set(interrupt.enemyCount);
                 _enemyParameterEntity.InitForInterrupt(interrupt.enemy);
                 _levelEntity.Set(interrupt.level);
                 _turnEntity.Set(interrupt.turn);

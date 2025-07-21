@@ -15,6 +15,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
         public int dollar;
         public int level;
         public int turn;
+        public int enemyCount;
         public int communityBattlePt;
 
         public InterruptDTO(InterruptVO interrupt)
@@ -26,6 +27,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             dollar = interrupt.dollar;
             level = interrupt.level;
             turn = interrupt.turn;
+            enemyCount = interrupt.enemyCount;
             communityBattlePt = interrupt.communityBattlePt;
         }
 
@@ -37,6 +39,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             dollar,
             level,
             turn,
+            enemyCount,
             communityBattlePt
         );
     }
