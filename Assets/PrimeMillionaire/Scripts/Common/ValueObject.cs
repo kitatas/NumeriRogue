@@ -185,24 +185,20 @@ namespace PrimeMillionaire.Common
         public readonly StageType type;
         public readonly string name;
         public readonly string lowerName;
+        public readonly int maxEnemyCount;
 
-        public StageVO(int type)
+        public StageVO(int type, int maxEnemyCount)
         {
             this.type = type.ToStageType();
             this.name = this.type.FastToString();
             this.lowerName = this.name.ToLower();
+            this.maxEnemyCount = maxEnemyCount;
         }
 
         public bool hasGlow => type is StageType.Abyssian or StageType.Redrock;
-
-        public string bgPath => ZString.Format("Assets/Externals/Sprites/Stages/{0}/background@2x.jpg[background@2x_0]",
-            lowerName);
-
-        public string mgPath =>
-            ZString.Format("Assets/Externals/Sprites/Stages/{0}/midground@2x.png[midground@2x_0]", lowerName);
-
-        public string glowPath =>
-            ZString.Format("Assets/Externals/Sprites/Stages/{0}/midground_glow@2x.png[midground_glow@2x_0]", lowerName);
+        public string bgPath => ZString.Format("Assets/Externals/Sprites/Stages/{0}/background@2x.jpg[background@2x_0]", lowerName);
+        public string mgPath => ZString.Format("Assets/Externals/Sprites/Stages/{0}/midground@2x.png[midground@2x_0]", lowerName);
+        public string glowPath => ZString.Format("Assets/Externals/Sprites/Stages/{0}/midground_glow@2x.png[midground_glow@2x_0]", lowerName);
     }
 
     public sealed class DropRateVO

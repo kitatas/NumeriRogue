@@ -46,7 +46,7 @@ namespace PrimeMillionaire.Common.Domain.Repository
         {
             if (_memoryDatabase.CharacterStageMasterTable.TryFindByType(type.ToInt32(), out var master))
             {
-                return new StageVO(master.Stage);
+                return master.ToStageVO();
             }
             else
             {

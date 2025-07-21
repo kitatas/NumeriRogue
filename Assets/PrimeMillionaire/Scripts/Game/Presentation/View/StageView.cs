@@ -3,6 +3,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Utility;
+using TMPro;
 using UnityEngine;
 
 namespace PrimeMillionaire.Game.Presentation.View
@@ -12,6 +13,7 @@ namespace PrimeMillionaire.Game.Presentation.View
         [SerializeField] private SpriteRenderer background = default;
         [SerializeField] private SpriteRenderer midground = default;
         [SerializeField] private SpriteRenderer midgroundGlow = default;
+        [SerializeField] private TextMeshProUGUI maxEnemyCount = default;
 
         public async UniTask LoadAsync(StageVO stage, CancellationToken token)
         {
@@ -26,6 +28,8 @@ namespace PrimeMillionaire.Game.Presentation.View
             background.sprite = results[0];
             midground.sprite = results[1];
             if (stage.hasGlow) midgroundGlow.sprite = results[2];
+
+            maxEnemyCount.text = $"{stage.maxEnemyCount}";
         }
     }
 }

@@ -22,5 +22,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
         public int[] ReleaseConditions { get; }
         public int Stage { get; }
         public int MaxEnemyCount { get; }
+
+        public StageVO ToStageVO() => new(Stage, MaxEnemyCount);
     }
 }
