@@ -12,17 +12,17 @@ namespace PrimeMillionaire.Game.Presentation.State
         private readonly BattleUseCase _battleUseCase;
         private readonly DollarUseCase _dollarUseCase;
         private readonly DropUseCase _dropUseCase;
-        private readonly LevelUseCase _levelUseCase;
+        private readonly EnemyCountUseCase _enemyCountUseCase;
         private readonly BattleView _battleView;
 
         public BattleState(BattlePtUseCase battlePtUseCase, BattleUseCase battleUseCase, DollarUseCase dollarUseCase,
-            DropUseCase dropUseCase, LevelUseCase levelUseCase, BattleView battleView)
+            DropUseCase dropUseCase, EnemyCountUseCase enemyCountUseCase, BattleView battleView)
         {
             _battlePtUseCase = battlePtUseCase;
             _battleUseCase = battleUseCase;
             _dollarUseCase = dollarUseCase;
             _dropUseCase = dropUseCase;
-            _levelUseCase = levelUseCase;
+            _enemyCountUseCase = enemyCountUseCase;
             _battleView = battleView;
         }
 
@@ -54,7 +54,7 @@ namespace PrimeMillionaire.Game.Presentation.State
             {
                 case Side.Player:
                     _dollarUseCase.Add(_dropUseCase.GetDropDollar());
-                    if (_levelUseCase.IsClear()) return GameState.Clear;
+                    if (_enemyCountUseCase.IsClear()) return GameState.Clear;
 
                     await (
                         _battlePtUseCase.ResetAsync(token),
