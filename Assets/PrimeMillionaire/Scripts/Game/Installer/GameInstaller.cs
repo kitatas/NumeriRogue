@@ -78,6 +78,7 @@ namespace PrimeMillionaire.Game.Installer
                 entryPoints.Add<BattlePtPresenter>();
                 entryPoints.Add<BuffPresenter>();
                 entryPoints.Add<DollarPresenter>();
+                entryPoints.Add<EnemyCountPresenter>();
                 entryPoints.Add<GiveUpPresenter>();
                 entryPoints.Add<LevelPresenter>();
                 entryPoints.Add<HoldSkillPresenter>();
@@ -96,6 +97,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.RegisterComponentInHierarchy<ClearView>();
             builder.RegisterComponentInHierarchy<DollarView>();
             builder.RegisterComponentInHierarchy<LevelView>();
+            builder.RegisterComponentInHierarchy<EnemyCountView>();
             builder.RegisterComponentInHierarchy<EnemyParameterView>();
             builder.RegisterComponentInHierarchy<FailView>();
             builder.RegisterComponentInHierarchy<GiveUpView>();
