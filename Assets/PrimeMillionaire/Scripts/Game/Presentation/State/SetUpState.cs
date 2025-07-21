@@ -36,7 +36,7 @@ namespace PrimeMillionaire.Game.Presentation.State
         public override async UniTask<GameState> TickAsync(CancellationToken token)
         {
             _enemyCountUseCase.Increment();
-            _levelUseCase.Increment();
+            _levelUseCase.Lot();
             _turnUseCase.Reset();
 
             var enemy = _characterUseCase.LotEnemyCharacter();

@@ -6,11 +6,13 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 {
     public sealed class LevelUseCase : IDisposable
     {
+        private readonly EnemyCountEntity _enemyCountEntity;
         private readonly LevelEntity _levelEntity;
         private readonly ReactiveProperty<int> _level;
 
-        public LevelUseCase(LevelEntity levelEntity)
+        public LevelUseCase(EnemyCountEntity enemyCountEntity, LevelEntity levelEntity)
         {
+            _enemyCountEntity = enemyCountEntity;
             _levelEntity = levelEntity;
             _level = new ReactiveProperty<int>(_levelEntity.currentValue);
         }
@@ -22,9 +24,9 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _level.Value = _levelEntity.currentValue;
         }
 
-        public void Increment()
+        public void Lot()
         {
-            _levelEntity.Add(1);
+            _levelEntity.Set(_enemyCountEntity.currentValue);
             Update();
         }
 
