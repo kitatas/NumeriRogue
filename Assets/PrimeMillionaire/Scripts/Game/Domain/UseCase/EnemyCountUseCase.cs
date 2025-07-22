@@ -9,15 +9,18 @@ namespace PrimeMillionaire.Game.Domain.UseCase
     public sealed class EnemyCountUseCase : IDisposable
     {
         private readonly EnemyCountEntity _enemyCountEntity;
+        private readonly PlayerCharacterEntity _playerCharacterEntity;
+        private readonly CharacterStageRepository _characterStageRepository;
         private readonly ReactiveProperty<int> _enemyCount;
-        private readonly int _maxEnemyCount;
+        private int? _maxEnemyCount;
 
         public EnemyCountUseCase(EnemyCountEntity enemyCountEntity, PlayerCharacterEntity playerCharacterEntity,
             CharacterStageRepository characterStageRepository)
         {
             _enemyCountEntity = enemyCountEntity;
+            _playerCharacterEntity = playerCharacterEntity;
+            _characterStageRepository = characterStageRepository;
             _enemyCount = new ReactiveProperty<int>(_enemyCountEntity.currentValue);
-            _maxEnemyCount = characterStageRepository.GetStage(playerCharacterEntity.type).maxEnemyCount;
         }
 
         public Observable<int> enemyCount => _enemyCount;
@@ -35,6 +38,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public bool IsClear()
         {
+            _maxEnemyCount ??= _characterStageRepository.GetStage(_playerCharacterEntity.type).maxEnemyCount;
             return _enemyCountEntity.currentValue == _maxEnemyCount;
         }
 
