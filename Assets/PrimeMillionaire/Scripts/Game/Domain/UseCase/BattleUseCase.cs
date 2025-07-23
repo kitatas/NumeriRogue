@@ -38,11 +38,13 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         {
             if (_playerBattlePtEntity.currentValue >= _enemyBattlePtEntity.currentValue)
             {
-                return _enemyParameterEntity.currentHp <= GetEnemyDamage();
+                _enemyParameterEntity.Damage(GetEnemyDamage());
+                return _enemyParameterEntity.isDead;
             }
             else
             {
-                return _playerParameterEntity.currentHp <= GetPlayerDamage();
+                _playerParameterEntity.Damage(GetPlayerDamage());
+                return _playerParameterEntity.isDead;
             }
         }
 
@@ -53,12 +55,10 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
             if (_playerBattlePtEntity.currentValue >= _enemyBattlePtEntity.currentValue)
             {
-                _enemyParameterEntity.Damage(GetEnemyDamage());
                 await Router.Default.PublishAsync(_enemyParameterEntity.ToVO(), token);
             }
             else
             {
-                _playerParameterEntity.Damage(GetPlayerDamage());
                 await Router.Default.PublishAsync(_playerParameterEntity.ToVO(), token);
             }
 

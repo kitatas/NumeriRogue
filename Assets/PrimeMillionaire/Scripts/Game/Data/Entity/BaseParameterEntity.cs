@@ -12,6 +12,7 @@ namespace PrimeMillionaire.Game.Data.Entity
         public virtual int atk => _parameter.atk;
         public virtual int def => _parameter.def;
         public virtual int currentHp => _hp;
+        public bool isDead => currentHp <= 0;
 
         public void Init(ParameterVO parameter)
         {
