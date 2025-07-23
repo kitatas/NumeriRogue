@@ -32,14 +32,14 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public void ApplyDamage(Side attacker)
         {
-            if (attacker == Side.Player) _enemyParameterEntity.Damage(GetEnemyDamage());
-            else if (attacker == Side.Enemy) _playerParameterEntity.Damage(GetPlayerDamage());
+            if (attacker == Side.Player) _enemyParameterEntity.Damage(GetDamageToEnemy());
+            else if (attacker == Side.Enemy) _playerParameterEntity.Damage(GetDamageToPlayer());
             else throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE);
 
             _buffEntity.Clear();
         }
 
-        private int GetEnemyDamage()
+        private int GetDamageToEnemy()
         {
             var rate = GetSkillRate(SkillTarget.Atk) + 1.0f;
             var atk = _playerBattlePtEntity.currentValue + Mathf.CeilToInt(_playerParameterEntity.atk * rate);
@@ -47,7 +47,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             return CalcDamage(atk, def);
         }
 
-        private int GetPlayerDamage()
+        private int GetDamageToPlayer()
         {
             var rate = GetSkillRate(SkillTarget.Def) + 1.0f;
             var atk = _enemyBattlePtEntity.currentValue + _enemyParameterEntity.atk;
