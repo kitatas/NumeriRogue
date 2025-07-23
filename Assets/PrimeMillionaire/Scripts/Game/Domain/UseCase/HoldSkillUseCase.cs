@@ -32,19 +32,13 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         public async UniTaskVoid AddAsync(SkillVO skill, CancellationToken token)
         {
             _holdSkillEntity.Add(skill);
-            _holdCount.Value = _holdSkillEntity.count;
-            await (
-                ApplyViewAsync(token)
-            );
+            await UpdateAsync(token);
         }
 
         public async UniTaskVoid RemoveAsync(SkillVO skill, CancellationToken token)
         {
             _holdSkillEntity.Remove(skill);
-            _holdCount.Value = _holdSkillEntity.count;
-            await (
-                ApplyViewAsync(token)
-            );
+            await UpdateAsync(token);
         }
 
         public async UniTask ApplyViewAsync(CancellationToken token)

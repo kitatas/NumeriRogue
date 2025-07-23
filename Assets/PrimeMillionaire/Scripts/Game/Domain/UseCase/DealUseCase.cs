@@ -42,19 +42,9 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
             for (int i = 0; i < HandConfig.MAX_NUM; i++)
             {
-                DealToPlayer();
-                DealToEnemy();
+                _playerHandEntity.Add(_deckEntity.Draw());
+                _enemyHandEntity.Add(_deckEntity.Draw());
             }
-        }
-
-        public void DealToPlayer()
-        {
-            _playerHandEntity.Add(_deckEntity.Draw());
-        }
-
-        public void DealToEnemy()
-        {
-            _enemyHandEntity.Add(_deckEntity.Draw());
         }
     }
 }

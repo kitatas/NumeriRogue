@@ -67,7 +67,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         private int GetEnemyDamage()
         {
-            var rate = GetAtkSkillRate() + 1.0f;
+            var rate = GetSkillRate(SkillTarget.Atk) + 1.0f;
             var atk = _playerBattlePtEntity.currentValue + Mathf.CeilToInt(_playerParameterEntity.atk * rate);
             var def = _enemyBattlePtEntity.currentValue + _enemyParameterEntity.def;
             return CalcDamage(atk, def);
@@ -75,27 +75,16 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         private int GetPlayerDamage()
         {
-            var rate = GetDefSkillRate() + 1.0f;
+            var rate = GetSkillRate(SkillTarget.Def) + 1.0f;
             var atk = _enemyBattlePtEntity.currentValue + _enemyParameterEntity.atk;
             var def = _playerBattlePtEntity.currentValue + Mathf.CeilToInt(_playerParameterEntity.def * rate);
             return CalcDamage(atk, def);
         }
 
-        private float GetAtkSkillRate()
+        private float GetSkillRate(SkillTarget target)
         {
-            return _skillRepository.FindsSkillType(SkillTarget.Atk)
-                .Sum(GetSkillRate);
-        }
-
-        private float GetDefSkillRate()
-        {
-            return _skillRepository.FindsSkillType(SkillTarget.Def)
-                .Sum(GetSkillRate);
-        }
-
-        private float GetSkillRate(SkillType type)
-        {
-            return _holdSkillEntity.GetTotalRate(type) * _buffEntity.GetTotalCount(type);
+            return _skillRepository.FindsSkillType(target)
+                .Sum(x => _holdSkillEntity.GetTotalRate(x) * _buffEntity.GetTotalCount(x));
         }
 
         private static int CalcDamage(float atk, float def)
