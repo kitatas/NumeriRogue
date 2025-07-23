@@ -13,16 +13,19 @@ namespace PrimeMillionaire.Game.Presentation.State
         private readonly DollarUseCase _dollarUseCase;
         private readonly DropUseCase _dropUseCase;
         private readonly EnemyCountUseCase _enemyCountUseCase;
+        private readonly ParameterUseCase _parameterUseCase;
         private readonly BattleView _battleView;
 
         public BattleState(BattlePtUseCase battlePtUseCase, BattleUseCase battleUseCase, DollarUseCase dollarUseCase,
-            DropUseCase dropUseCase, EnemyCountUseCase enemyCountUseCase, BattleView battleView)
+            DropUseCase dropUseCase, EnemyCountUseCase enemyCountUseCase, ParameterUseCase parameterUseCase,
+            BattleView battleView)
         {
             _battlePtUseCase = battlePtUseCase;
             _battleUseCase = battleUseCase;
             _dollarUseCase = dollarUseCase;
             _dropUseCase = dropUseCase;
             _enemyCountUseCase = enemyCountUseCase;
+            _parameterUseCase = parameterUseCase;
             _battleView = battleView;
         }
 
@@ -36,12 +39,13 @@ namespace PrimeMillionaire.Game.Presentation.State
         public override async UniTask<GameState> TickAsync(CancellationToken token)
         {
             var attacker = _battlePtUseCase.GetAttacker();
-            var isDestroy = _battleUseCase.IsDestroy();
+            _battleUseCase.ApplyDamage(attacker);
             await _battleView.PlayAttackAnimAsync(attacker, token);
 
+            var isDestroy = _parameterUseCase.IsDestroy(attacker);
             await (
                 _battleView.PlayDamageAnimAsync(attacker, isDestroy, token),
-                _battleUseCase.ExecBattleAsync(token)
+                _parameterUseCase.ApplyDamageAsync(token)
             );
 
             if (!isDestroy)

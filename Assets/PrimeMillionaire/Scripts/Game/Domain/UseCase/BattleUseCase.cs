@@ -1,12 +1,8 @@
 using System.Linq;
-using System.Threading;
-using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
-using PrimeMillionaire.Common.Utility;
 using PrimeMillionaire.Game.Data.Entity;
 using PrimeMillionaire.Game.Domain.Repository;
 using UnityEngine;
-using VitalRouter;
 
 namespace PrimeMillionaire.Game.Domain.UseCase
 {
@@ -34,33 +30,11 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _skillRepository = skillRepository;
         }
 
-        public bool IsDestroy()
+        public void ApplyDamage(Side attacker)
         {
-            if (_playerBattlePtEntity.currentValue >= _enemyBattlePtEntity.currentValue)
-            {
-                _enemyParameterEntity.Damage(GetEnemyDamage());
-                return _enemyParameterEntity.isDead;
-            }
-            else
-            {
-                _playerParameterEntity.Damage(GetPlayerDamage());
-                return _playerParameterEntity.isDead;
-            }
-        }
-
-        public async UniTask ExecBattleAsync(CancellationToken token)
-        {
-            // Damage Animation との調整
-            await UniTaskHelper.DelayAsync(0.25f, token);
-
-            if (_playerBattlePtEntity.currentValue >= _enemyBattlePtEntity.currentValue)
-            {
-                await Router.Default.PublishAsync(_enemyParameterEntity.ToVO(), token);
-            }
-            else
-            {
-                await Router.Default.PublishAsync(_playerParameterEntity.ToVO(), token);
-            }
+            if (attacker == Side.Player) _enemyParameterEntity.Damage(GetEnemyDamage());
+            else if (attacker == Side.Enemy) _playerParameterEntity.Damage(GetPlayerDamage());
+            else throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE);
 
             _buffEntity.Clear();
         }
