@@ -150,7 +150,7 @@ namespace PrimeMillionaire.Common
             this.skillEffect = skillEffect;
         }
 
-        public int price => skillEffect.value * skillBase.priceRate;
+        public int price => Mathf.CeilToInt(skillEffect.value * skillBase.priceRate / 100.0f);
         public string description => ZString.Format(skillBase.description.Replace("\\\"", "\""), skillEffect.value);
     }
 
