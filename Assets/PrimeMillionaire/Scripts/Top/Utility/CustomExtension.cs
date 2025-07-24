@@ -1,4 +1,3 @@
-using System;
 using PrimeMillionaire.Common;
 
 namespace PrimeMillionaire.Top.Utility
@@ -12,7 +11,7 @@ namespace PrimeMillionaire.Top.Utility
                 ModalType.License => UrlConfig.URL_LICENSE,
                 ModalType.Credit => UrlConfig.URL_CREDIT,
                 ModalType.Policy => UrlConfig.URL_POLICY,
-                _ => throw new Exception()
+                _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_WEBVIEW),
             };
         }
     }
