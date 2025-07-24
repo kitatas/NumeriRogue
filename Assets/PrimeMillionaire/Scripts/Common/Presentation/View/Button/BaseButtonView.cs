@@ -33,6 +33,10 @@ namespace PrimeMillionaire.Common.Presentation.View.Button
                 .SetLink(button.gameObject);
         }
 
-        public void SetInteractable(bool value) => button.interactable = value;
+        public void SetInteractable(bool value)
+        {
+            button.interactable = value;
+            button.image.raycastTarget = value;
+        }
     }
 }

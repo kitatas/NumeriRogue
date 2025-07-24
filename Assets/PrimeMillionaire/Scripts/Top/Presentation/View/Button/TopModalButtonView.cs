@@ -10,5 +10,15 @@ namespace PrimeMillionaire.Top.Presentation.View.Button
 
         public ModalType type => modalType;
         public bool isActivate => isActivateModal;
+
+        private void Start()
+        {
+#if UNITY_WEB
+            if (modalType is ModalType.License or ModalType.Credit or ModalType.Policy)
+            {
+                SetInteractable(false);
+            }
+#endif
+        }
     }
 }
