@@ -7,14 +7,18 @@ namespace PrimeMillionaire.Game.Utility
 {
     public static class OrderHelper
     {
+        private static readonly int[] _qka = { 1, 12, 13 };
+
         public static PokerHands GetPokerHands(IEnumerable<OrderVO> orders)
         {
-            var rankCount = orders.GroupBy(x => x.card.rank).Count();
-            var maxRank = orders.Max(x => x.card.rank);
-            var minRank = orders.Min(x => x.card.rank);
-            var isStraight = rankCount == 3 && maxRank - minRank == 2;
+            var cards = orders.Select(o => o.card).ToArray();
 
-            var suitCount = orders.GroupBy(x => x.card.suit).Count();
+            var ranks = cards.Select(c => c.rank).OrderBy(r => r).ToArray();
+            var rankCount = ranks.Distinct().Count();
+            var isStraight = (rankCount == 3 && ranks[2] - ranks[0] == 2) || ranks.SequenceEqual(_qka);
+
+            var suits = cards.Select(c => c.suit);
+            var suitCount = suits.Distinct().Count();
             var isFlush = suitCount == 1;
 
             if (isStraight && isFlush) return PokerHands.StraightFlush;
