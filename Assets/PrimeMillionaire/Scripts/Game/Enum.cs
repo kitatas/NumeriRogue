@@ -34,7 +34,7 @@ namespace PrimeMillionaire.Game
         None = 0,
         PickSkill = 1,
         Menu = 2,
-        Sound = 3,
+        Configuration = 3,
         GiveUpConfirm = 4,
         GiveUpComplete = 5,
     }
