@@ -3,12 +3,14 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UniEx;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace PrimeMillionaire.Common.Presentation.View.Modal
 {
     public abstract class BaseModalView : MonoBehaviour
     {
         [SerializeField] protected CanvasGroup canvasGroup = default;
+        [SerializeField] private ScrollRect scrollRect = default;
         private Tween _tween;
 
         public async UniTask InitAsync(CancellationToken token)
@@ -53,6 +55,10 @@ namespace PrimeMillionaire.Common.Presentation.View.Modal
                     .DOScale(Vector3.one * 0.8f, duration)
                     .SetEase(Ease.OutQuart))
                 .AppendCallback(() => canvasGroup.blocksRaycasts = false)
+                .OnComplete(() =>
+                {
+                    if (scrollRect) scrollRect.verticalNormalizedPosition = 1.0f;
+                })
                 .SetLink(gameObject);
 
             return _tween;
