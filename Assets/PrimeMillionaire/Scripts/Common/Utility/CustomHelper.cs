@@ -60,9 +60,9 @@ namespace PrimeMillionaire.Common.Utility
 
             return (
                 Mathf.RoundToInt(bottomLeft.x),
-                Mathf.RoundToInt(Screen.height - topRight.y) - 10,
+                Mathf.RoundToInt(Screen.height - topRight.y),
                 Mathf.RoundToInt(Screen.width - topRight.x),
-                Mathf.RoundToInt(bottomLeft.y) + 10
+                Mathf.RoundToInt(bottomLeft.y)
             );
         }
     }
