@@ -64,11 +64,8 @@ namespace PrimeMillionaire.Common
             this.parameter = new ParameterVO(type, hp, atk, def);
         }
 
-        public string objPath =>
-            ZString.Format("Assets/PrimeMillionaire/Prefabs/Characters/Character - {0}.prefab", name);
-
-        public string imgPath =>
-            ZString.Format("Assets/Externals/Sprites/Characters/boss_{0}.png[boss_{0}_101]", name.ToLower());
+        public string objPath => ZString.Format("Assets/PrimeMillionaire/Prefabs/Characters/Character - {0}.prefab", name);
+        public string imgPath => ZString.Format("Assets/Externals/Sprites/Characters/boss_{0}.png[boss_{0}_idle_000]", name.ToLower());
     }
 
     public class ParameterVO
