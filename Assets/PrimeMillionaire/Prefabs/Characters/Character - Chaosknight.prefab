@@ -10,16 +10,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1727829766073714275, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_Size.x
-      value: 1.41
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 1727829766073714275, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_Size.y
-      value: 1.41
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 1727829766073714275, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 3429077902888703903, guid: 1b9e13aa33a324e6f9a8a8ae78904e83, type: 3}
+      objectReference: {fileID: -4698203763052508507, guid: 1b9e13aa33a324e6f9a8a8ae78904e83, type: 3}
     - target: {fileID: 1727829766073714275, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -39,7 +39,7 @@ PrefabInstance:
     - target: {fileID: 3502071019341154681, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 22100000, guid: 9441a32e11d61488f969dd37452fbf6b, type: 2}
+      objectReference: {fileID: 22100000, guid: 8bcf5dfae9a984eb49a0c025065236aa, type: 2}
     - target: {fileID: 4351035717049259497, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_Name
       value: Character - Chaosknight

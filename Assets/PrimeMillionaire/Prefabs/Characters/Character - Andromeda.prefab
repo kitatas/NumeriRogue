@@ -9,9 +9,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1727829766073714275, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1727829766073714275, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1727829766073714275, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -2171026313302780675, guid: 29999043b6adb4538b7f33fe7f935ba2, type: 3}
+      objectReference: {fileID: 8506832538953212227, guid: 29999043b6adb4538b7f33fe7f935ba2, type: 3}
     - target: {fileID: 1727829766073714275, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -39,7 +47,7 @@ PrefabInstance:
     - target: {fileID: 3502071019341154681, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 22100000, guid: afade84899e2541afad5c79fa52975ae, type: 2}
+      objectReference: {fileID: 22100000, guid: 488107f3132bc4dcab3402a8ce2d75a8, type: 2}
     - target: {fileID: 4351035717049259497, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_Name
       value: Character - Andromeda

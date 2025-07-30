@@ -10,16 +10,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1727829766073714275, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_Size.x
-      value: 1.11
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 1727829766073714275, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_Size.y
-      value: 1.11
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 1727829766073714275, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 430430662645507698, guid: 1e80c3ea35e44442e8753a2a5d219cad, type: 3}
+      objectReference: {fileID: 1797970552718306835, guid: 1e80c3ea35e44442e8753a2a5d219cad, type: 3}
     - target: {fileID: 1727829766073714275, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -39,7 +39,7 @@ PrefabInstance:
     - target: {fileID: 3502071019341154681, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 22100000, guid: 784e2176dde924e92ab78c00b6621dbb, type: 2}
+      objectReference: {fileID: 22100000, guid: 5089eed447ad5440983733e935c8f0bc, type: 2}
     - target: {fileID: 4351035717049259497, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_Name
       value: Character - Kron

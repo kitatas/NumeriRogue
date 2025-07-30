@@ -9,9 +9,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1727829766073714275, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1727829766073714275, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1727829766073714275, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 2697289188401701031, guid: d5549c9d738454f9e95d3c26df2024e3, type: 3}
+      objectReference: {fileID: 7625281039772525221, guid: d5549c9d738454f9e95d3c26df2024e3, type: 3}
     - target: {fileID: 1727829766073714275, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -31,7 +39,7 @@ PrefabInstance:
     - target: {fileID: 3502071019341154681, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 22100000, guid: bef14e6b8c54349b8882cb39f6574b1e, type: 2}
+      objectReference: {fileID: 22100000, guid: 4d41308838ae84dacb60d503afdf65fa, type: 2}
     - target: {fileID: 4351035717049259497, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_Name
       value: Character - Candypanda
