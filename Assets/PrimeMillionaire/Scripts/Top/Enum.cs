@@ -17,5 +17,6 @@ namespace PrimeMillionaire.Top
         Configuration = 5,
         DeleteConfirm = 6,
         DeleteComplete = 7,
+        Screen = 8,
     }
 }

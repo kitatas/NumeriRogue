@@ -37,5 +37,7 @@ namespace PrimeMillionaire.Game
         Configuration = 3,
         GiveUpConfirm = 4,
         GiveUpComplete = 5,
+        Screen = 6,
+        HowTo = 7,
     }
 }
