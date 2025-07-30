@@ -20,22 +20,22 @@ namespace PrimeMillionaire.Game.Presentation.View
         #region Animation
 
         private static readonly int _isAttack = Animator.StringToHash("IsAttack");
-        private static readonly int _isDamage = Animator.StringToHash("IsDamage");
-        private static readonly int _isDead = Animator.StringToHash("IsDead");
+        private static readonly int _isHit = Animator.StringToHash("IsHit");
+        private static readonly int _isDeath = Animator.StringToHash("IsDeath");
 
         public void Attack(bool value)
         {
             animator.SetBool(_isAttack, value);
         }
 
-        public void Damage(bool value)
+        public void Hit(bool value)
         {
-            animator.SetBool(_isDamage, value);
+            animator.SetBool(_isHit, value);
         }
 
-        public void Dead(bool value)
+        public void Death(bool value)
         {
-            animator.SetBool(_isDead, value);
+            animator.SetBool(_isDeath, value);
         }
 
         #endregion

@@ -64,18 +64,22 @@ namespace PrimeMillionaire.Game.Presentation.View
         {
             var (attackerView, defenderView) = GetCharacterViews(attacker);
 
-            defenderView.Damage(true);
             GetDamageFx(attacker).Play();
 
-            this.Delay(defenderView.deadTime, () =>
+            if (isDestroy)
             {
-                defenderView.Damage(false);
-                defenderView.Dead(isDestroy);
-                if (isDestroy && attacker is Side.Player)
+                defenderView.Death(true);
+                if (attacker is Side.Player)
                 {
-                    dropView.Drop(enemy, 10, 0.25f);
+                    this.Delay(defenderView.deadTime, () => dropView.Drop(enemy, 10, 0.25f));
                 }
-            });
+            }
+            else
+            {
+                defenderView.Hit(true);
+                this.DelayFrame(1, () => defenderView.Hit(false));
+            }
+
             await UniTaskHelper.DelayAsync(1.5f, token);
 
             var x = GetTransform(attacker).localPosition.x;
