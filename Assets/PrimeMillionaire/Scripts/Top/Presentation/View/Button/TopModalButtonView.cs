@@ -13,7 +13,7 @@ namespace PrimeMillionaire.Top.Presentation.View.Button
 
         private void Start()
         {
-#if UNITY_WEB
+#if UNITY_WEBGL
             if (modalType is ModalType.License or ModalType.Credit or ModalType.Policy)
             {
                 SetInteractable(false);
