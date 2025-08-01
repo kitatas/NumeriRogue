@@ -17,7 +17,7 @@ namespace PrimeMillionaire.Boot.Domain.UseCase
             var saveData = _saveRepository.Load();
             if (saveData.IsEmptyUid())
             {
-                saveData.uid = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 20);
+                saveData.uid = Ulid.NewUlid().ToString();
                 _saveRepository.Save(saveData);
             }
 
