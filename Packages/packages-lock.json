@@ -8,7 +8,7 @@
       "hash": "84fb71550bf28d2b5250adafac948e802ddd4b51"
     },
     "com.coffee.ui-effect": {
-      "version": "5.9.2",
+      "version": "5.9.6",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -30,6 +30,13 @@
       "dependencies": {
         "com.unity.modules.imgui": "1.0.0"
       },
+      "url": "https://package.openupm.com"
+    },
+    "com.cysharp.ulid": {
+      "version": "1.4.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
       "url": "https://package.openupm.com"
     },
     "com.cysharp.unitask": {
@@ -402,14 +409,14 @@
       }
     },
     "jp.hadashikick.vcontainer": {
-      "version": "1.16.9",
+      "version": "1.17.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
       "url": "https://package.openupm.com"
     },
     "jp.hadashikick.vitalrouter": {
-      "version": "1.6.5",
+      "version": "1.7.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
@@ -498,7 +505,7 @@
       "url": "https://unitynuget-registry.openupm.com"
     },
     "org.nuget.observablecollections": {
-      "version": "3.3.3",
+      "version": "3.3.4",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -508,11 +515,11 @@
       "url": "https://unitynuget-registry.openupm.com"
     },
     "org.nuget.observablecollections.r3": {
-      "version": "3.3.3",
+      "version": "3.3.4",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "org.nuget.observablecollections": "3.3.3",
+        "org.nuget.observablecollections": "3.3.4",
         "org.nuget.r3": "1.0.0"
       },
       "url": "https://unitynuget-registry.openupm.com"
