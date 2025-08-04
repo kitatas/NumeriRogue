@@ -6,6 +6,7 @@ using PrimeMillionaire.Common;
 using TMPro;
 using UniEx;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace PrimeMillionaire.Game.Presentation.View
 {
@@ -13,6 +14,7 @@ namespace PrimeMillionaire.Game.Presentation.View
     {
         [SerializeField] private CardView[] cardViews = default;
         [SerializeField] private TextMeshProUGUI currentValue = default;
+        [SerializeField] private Image currentValueBg = default;
         [SerializeField] private BonusView bonusView = default;
 
         public void Init()
@@ -69,14 +71,30 @@ namespace PrimeMillionaire.Game.Presentation.View
 
         public async UniTask FadeInCardsAsync(float duration, CancellationToken token)
         {
-            await UniTask.WhenAll(cardViews
-                .Select(x => x.FadeIn(duration).WithCancellation(token)));
+            await (
+                UniTask.WhenAll(cardViews
+                    .Select(x => x.FadeIn(duration).WithCancellation(token))),
+                FadeCurrentValue(0.0f, duration).WithCancellation(token)
+            );
         }
 
         public async UniTask FadeOutCardsAsync(float duration, CancellationToken token)
         {
-            await UniTask.WhenAll(cardViews
-                .Select(x => x.FadeOut(duration).WithCancellation(token)));
+            await (
+                UniTask.WhenAll(cardViews
+                    .Select(x => x.FadeOut(duration).WithCancellation(token))),
+                FadeCurrentValue(1.0f, duration).WithCancellation(token)
+            );
+        }
+
+        private Tween FadeCurrentValue(float target, float duration)
+        {
+            return DOTween.Sequence()
+                .Append(currentValue
+                    .DOFade(target, duration))
+                .Join(currentValueBg
+                    .DOFade(target, duration))
+                .SetLink(gameObject);
         }
     }
 }
