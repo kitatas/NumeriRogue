@@ -1,4 +1,5 @@
 using Cysharp.Text;
+using DG.Tweening;
 using FancyScrollView;
 using FastEnumUtility;
 using PrimeMillionaire.Common.Utility;
@@ -33,7 +34,12 @@ namespace PrimeMillionaire.Top.Presentation.View
 
         public override void UpdateContent(StageCharacterVO value)
         {
-            this.LoadAsset<Sprite>(value.character.imgPath, x => chara.sprite = x);
+            this.LoadAsset<Sprite>(value.character.imgPath, x =>
+            {
+                chara.rectTransform.sizeDelta = x.rect.size * 1.25f;
+                chara.rectTransform.DOAnchorPosY(x.rect.height * 0.65f, 0.0f);
+                chara.sprite = x;
+            });
             characterId.text = ZString.Format("No.{0:000}", value.character.type.ToInt32());
             characterName.text = value.character.name;
 

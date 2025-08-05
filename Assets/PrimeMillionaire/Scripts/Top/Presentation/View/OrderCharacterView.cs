@@ -1,6 +1,7 @@
 using System.Threading;
 using Cysharp.Text;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using PrimeMillionaire.Common.Utility;
 using TMPro;
 using UnityEngine;
@@ -20,6 +21,8 @@ namespace PrimeMillionaire.Top.Presentation.View
         public async UniTask RenderAsync(OrderCharacterVO value, CancellationToken token)
         {
             var img = await ResourceHelper.LoadAsync<Sprite>(value.character.imgPath, token);
+            chara.rectTransform.sizeDelta = img.rect.size * 2.0f;
+            chara.rectTransform.DOAnchorPosY(img.rect.height * 1.0f, 0.0f);
             chara.sprite = img;
             charaName.text = value.character.name;
             hp.text = ZString.Format("{0}", value.character.parameter.hp);
