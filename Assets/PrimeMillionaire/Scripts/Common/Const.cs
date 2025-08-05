@@ -13,6 +13,8 @@ namespace PrimeMillionaire.Common
         public const string URL_LICENSE = URL_BASE + "license";
         public const string URL_CREDIT = URL_BASE + "credit";
         public const string URL_POLICY = URL_BASE + "policy";
+
+        public const string DEVELOPER_APP_URL = "https://play.google.com/store/apps/developer?id=KitaLab";
     }
 
     public sealed class SaveConfig
