@@ -93,6 +93,7 @@ namespace PrimeMillionaire.Common
         Candypanda = 7,
         Chaosknight = 8,
         Andromeda = 9,
+        Crystal = 10,
     }
 
     public enum ProgressStatus
