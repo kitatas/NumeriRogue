@@ -94,6 +94,7 @@ namespace PrimeMillionaire.Common
         Chaosknight = 8,
         Andromeda = 9,
         Crystal = 10,
+        Antiswarm = 11,
     }
 
     public enum ProgressStatus
