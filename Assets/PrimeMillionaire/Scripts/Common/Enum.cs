@@ -102,6 +102,7 @@ namespace PrimeMillionaire.Common
         Grym = 16,
         Invader = 17,
         Kane = 18,
+        Malyk = 19,
     }
 
     public enum ProgressStatus
