@@ -38,7 +38,15 @@ PrefabInstance:
       objectReference: {fileID: 22100000, guid: f7dfbea16476842a48a86f3c75a0b1f6, type: 2}
     - target: {fileID: 4351035717049259497, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_Name
-      value: Character - Paragon
+      value: Character - paragon
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054036509863231754, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
+      propertyPath: deadFrame
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054036509863231754, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
+      propertyPath: applyDamageFrame
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8368267371645522459, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -83,37 +91,5 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4351035717049259497, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4415103514213319028}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
---- !u!212 &4975414906037638568 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 1727829766073714275, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
-  m_PrefabInstance: {fileID: 5978041952307057611}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &7093062150689659570 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 3502071019341154681, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
-  m_PrefabInstance: {fileID: 5978041952307057611}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7969047612888647202 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4351035717049259497, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
-  m_PrefabInstance: {fileID: 5978041952307057611}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4415103514213319028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7969047612888647202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea110ec129084a54ab6ec950282db39a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 7093062150689659570}
-  spriteRenderer: {fileID: 4975414906037638568}

@@ -36,6 +36,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character - cindera
       objectReference: {fileID: 0}
+    - target: {fileID: 6054036509863231754, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
+      propertyPath: deadFrame
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054036509863231754, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
+      propertyPath: applyDamageFrame
+      value: 32
+      objectReference: {fileID: 0}
     - target: {fileID: 8368267371645522459, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

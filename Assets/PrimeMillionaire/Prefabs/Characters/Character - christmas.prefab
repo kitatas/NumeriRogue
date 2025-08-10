@@ -34,7 +34,15 @@ PrefabInstance:
       objectReference: {fileID: 22100000, guid: 4723b527714384cc895da7fce2eb38a3, type: 2}
     - target: {fileID: 4351035717049259497, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_Name
-      value: Character - Christmas
+      value: Character - christmas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054036509863231754, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
+      propertyPath: deadFrame
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054036509863231754, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
+      propertyPath: applyDamageFrame
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8368267371645522459, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -79,37 +87,5 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4351035717049259497, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 841045909091563384}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
---- !u!95 &1696334195784354519 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 3502071019341154681, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
-  m_PrefabInstance: {fileID: 2815679950287668142}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1977843373349017159 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4351035717049259497, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
-  m_PrefabInstance: {fileID: 2815679950287668142}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &841045909091563384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1977843373349017159}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c6795dbb9d14575a97d238964cc7543, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 1696334195784354519}
-  spriteRenderer: {fileID: 3524403140340057549}
---- !u!212 &3524403140340057549 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 1727829766073714275, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
-  m_PrefabInstance: {fileID: 2815679950287668142}
-  m_PrefabAsset: {fileID: 0}

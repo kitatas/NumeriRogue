@@ -1,18 +1,15 @@
 using System;
 using DG.Tweening;
-using PrimeMillionaire.Common;
 using UnityEngine;
 
 namespace PrimeMillionaire.Game.Presentation.View
 {
-    public abstract class CharacterView : MonoBehaviour
+    public sealed class CharacterView : MonoBehaviour
     {
+        [SerializeField] private int applyDamageFrame = 0;
+        [SerializeField] private int deadFrame = 0;
         [SerializeField] private Animator animator = default;
         [SerializeField] private SpriteRenderer spriteRenderer = default;
-
-        public abstract CharacterType characterType { get; }
-        protected abstract int applyDamageFrame { get; }
-        protected abstract int deadFrame { get; }
 
         public float applyDamageTime => applyDamageFrame / 12.0f; 
         public float deadTime => deadFrame / 12.0f;
