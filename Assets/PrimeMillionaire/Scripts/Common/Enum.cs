@@ -113,6 +113,7 @@ namespace PrimeMillionaire.Common
         Taskmaster = 27,
         Treatdemon = 28,
         Unhallowed = 29,
+        Valiant = 30,
     }
 
     public enum ProgressStatus
