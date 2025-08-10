@@ -101,6 +101,7 @@ namespace PrimeMillionaire.Common
         Emp = 15,
         Grym = 16,
         Invader = 17,
+        Kane = 18,
     }
 
     public enum ProgressStatus
