@@ -100,6 +100,7 @@ namespace PrimeMillionaire.Common
         Decepticleprime = 14,
         Emp = 15,
         Grym = 16,
+        Invader = 17,
     }
 
     public enum ProgressStatus
