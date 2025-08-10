@@ -112,6 +112,7 @@ namespace PrimeMillionaire.Common
         Spelleater = 26,
         Taskmaster = 27,
         Treatdemon = 28,
+        Unhallowed = 29,
     }
 
     public enum ProgressStatus
