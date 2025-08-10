@@ -104,6 +104,7 @@ namespace PrimeMillionaire.Common
         Kane = 18,
         Malyk = 19,
         Serpenti = 20,
+        Shadowlord = 21,
     }
 
     public enum ProgressStatus
