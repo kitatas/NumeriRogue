@@ -105,6 +105,7 @@ namespace PrimeMillionaire.Common
         Malyk = 19,
         Serpenti = 20,
         Shadowlord = 21,
+        Shinkagezendo = 22,
     }
 
     public enum ProgressStatus
