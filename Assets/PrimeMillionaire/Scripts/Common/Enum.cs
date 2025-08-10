@@ -116,6 +116,7 @@ namespace PrimeMillionaire.Common
         Valiant = 30,
         Vampire = 31,
         Wolfpunch = 32,
+        Wraith = 33,
     }
 
     public enum ProgressStatus
