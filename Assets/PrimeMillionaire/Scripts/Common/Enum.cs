@@ -97,6 +97,7 @@ namespace PrimeMillionaire.Common
         Antiswarm = 11,
         Christmas = 12,
         Cindera = 13,
+        Decepticleprime = 14,
     }
 
     public enum ProgressStatus
