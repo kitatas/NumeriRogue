@@ -115,6 +115,7 @@ namespace PrimeMillionaire.Common
         Unhallowed = 29,
         Valiant = 30,
         Vampire = 31,
+        Wolfpunch = 32,
     }
 
     public enum ProgressStatus
