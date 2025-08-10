@@ -99,6 +99,7 @@ namespace PrimeMillionaire.Common
         Cindera = 13,
         Decepticleprime = 14,
         Emp = 15,
+        Grym = 16,
     }
 
     public enum ProgressStatus
