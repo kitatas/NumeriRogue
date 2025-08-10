@@ -108,6 +108,7 @@ namespace PrimeMillionaire.Common
         Shinkagezendo = 22,
         Skyfalltyrant = 23,
         Solfist = 24,
+        Soulstealer = 25,
     }
 
     public enum ProgressStatus
