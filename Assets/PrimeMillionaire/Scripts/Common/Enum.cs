@@ -111,6 +111,7 @@ namespace PrimeMillionaire.Common
         Soulstealer = 25,
         Spelleater = 26,
         Taskmaster = 27,
+        Treatdemon = 28,
     }
 
     public enum ProgressStatus
