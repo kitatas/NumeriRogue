@@ -103,6 +103,7 @@ namespace PrimeMillionaire.Common
         Invader = 17,
         Kane = 18,
         Malyk = 19,
+        Serpenti = 20,
     }
 
     public enum ProgressStatus
