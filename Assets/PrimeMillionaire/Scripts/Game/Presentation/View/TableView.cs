@@ -9,7 +9,8 @@ namespace PrimeMillionaire.Game.Presentation.View
 {
     public sealed class TableView : MonoBehaviour
     {
-        [SerializeField] private CardView cardView = default;
+        [SerializeField] private List<CardView> playerCards = default;
+        [SerializeField] private List<CardView> enemyCads = default;
 
         [SerializeField] private HandView playerHandView = default;
         [SerializeField] private HandView enemyHandView = default;
@@ -23,51 +24,29 @@ namespace PrimeMillionaire.Game.Presentation.View
             );
         }
 
-        public async UniTask RenderPlayerHandsAsync(IEnumerable<HandVO> playerHands, CancellationToken token)
+        public async UniTask RenderPlayerHandsAsync(List<HandVO> playerHands, CancellationToken token)
         {
-            foreach (var playerHand in playerHands)
+            for (int i = 0; i < playerHands.Count; i++)
             {
-                var card = CreateCardAsyncForget(playerHand, token);
-                await DealPlayerHandAsync(card, token);
+                var card = playerCards[i];
+                card.transform.position = deck.position;
+                card.RenderAsync(playerHands[i].card, token).Forget();
+                await playerHandView.DealHandAsync(card, HandConfig.TWEEN_DURATION, token);
+                card.Open(UiConfig.TWEEN_DURATION).WithCancellation(token).Forget();
             }
         }
 
-        public async UniTask RenderEnemyHandsAsync(IEnumerable<HandVO> enemyHands, CancellationToken token)
+        public async UniTask RenderEnemyHandsAsync(List<HandVO> enemyHands, CancellationToken token)
         {
             await UniTaskHelper.DelayAsync(HandConfig.TWEEN_DURATION / 2.0f, token);
-            foreach (var enemyHand in enemyHands)
+            for (int i = 0; i < enemyHands.Count; i++)
             {
-                var card = CreateCardAsyncForget(enemyHand, token);
-                await DealEnemyHandAsync(card, token);
+                var card = enemyCads[i];
+                card.transform.position = deck.position;
+                card.RenderAsync(enemyHands[i].card, token).Forget();
+                await enemyHandView.DealHandAsync(card, HandConfig.TWEEN_DURATION, token);
+                card.Open(UiConfig.TWEEN_DURATION).WithCancellation(token).Forget();
             }
-        }
-
-        public async UniTask<CardView> CreateCardAsync(HandVO hand, CancellationToken token)
-        {
-            var card = Instantiate(cardView, transform);
-            card.transform.localPosition = deck.localPosition;
-            await card.RenderAsync(hand.card, token);
-            return card;
-        }
-
-        public CardView CreateCardAsyncForget(HandVO hand, CancellationToken token)
-        {
-            var card = Instantiate(cardView, transform);
-            card.transform.localPosition = deck.localPosition;
-            card.RenderAsync(hand.card, token).Forget();
-            return card;
-        }
-
-        public async UniTask DealPlayerHandAsync(CardView card, CancellationToken token)
-        {
-            await playerHandView.DealHandAsync(card, HandConfig.TWEEN_DURATION, token);
-            card.Open(UiConfig.TWEEN_DURATION).WithCancellation(token).Forget();
-        }
-
-        public async UniTask DealEnemyHandAsync(CardView card, CancellationToken token)
-        {
-            await enemyHandView.DealHandAsync(card, HandConfig.TWEEN_DURATION, token);
-            card.Open(UiConfig.TWEEN_DURATION).WithCancellation(token).Forget();
         }
 
         public async UniTask<(int index, int count)> OrderPlayerHandsAsync(CancellationToken token)

@@ -18,16 +18,18 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _enemyHandEntity = enemyHandEntity;
         }
 
-        public IEnumerable<HandVO> GetPlayerHands()
+        public List<HandVO> GetPlayerHands()
         {
             return _playerHandEntity.hands
-                .Select((v, i) => new HandVO(i, _deckEntity.GetCard(v)));
+                .Select((v, i) => new HandVO(i, _deckEntity.GetCard(v)))
+                .ToList();
         }
 
-        public IEnumerable<HandVO> GetEnemyHands()
+        public List<HandVO> GetEnemyHands()
         {
             return _enemyHandEntity.hands
-                .Select((v, i) => new HandVO(i, _deckEntity.GetCard(v)));
+                .Select((v, i) => new HandVO(i, _deckEntity.GetCard(v)))
+                .ToList();
         }
 
         public CardVO GetPlayerCard(int index)

@@ -21,7 +21,10 @@ namespace PrimeMillionaire.Game.Presentation.View
 
         public async UniTask RenderAsync(CardVO card, CancellationToken token)
         {
+            Activate(true);
+            ActivateBackground(true);
             ActivateMask(false);
+            RenderOrderNo(0);
             var sprite = await ResourceHelper.LoadAsync<Sprite>(card.imgPath, token);
             main.sprite = sprite;
         }

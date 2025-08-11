@@ -16,7 +16,6 @@ namespace PrimeMillionaire.Game.Presentation.View
 
         public async UniTask DealHandAsync(CardView cardView, float duration, CancellationToken token)
         {
-            cardView.transform.SetParent(transform);
             _cardViews.Add(cardView);
 
             await (
@@ -57,7 +56,6 @@ namespace PrimeMillionaire.Game.Presentation.View
             await UniTaskHelper.DelayAsync(duration + 0.5f, token);
 
             _cardViews.Clear();
-            gameObject.DestroyChildren();
         }
 
         public async UniTask<(int index, int count)> OrderAsync(CancellationToken token)
@@ -103,11 +101,6 @@ namespace PrimeMillionaire.Game.Presentation.View
 
         public void DestroyCards()
         {
-            for (int i = _cardViews.Count - 1; i >= 0; i--)
-            {
-                if (_cardViews[i].isActive == false) Destroy(_cardViews[i].gameObject);
-            }
-
             _cardViews = new List<CardView>(_cardViews.Where(x => x.isActive));
         }
 
