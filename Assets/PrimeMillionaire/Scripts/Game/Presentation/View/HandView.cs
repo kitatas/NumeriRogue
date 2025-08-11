@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Utility;
 using PrimeMillionaire.Game.Utility;
 using UniEx;
@@ -12,7 +13,7 @@ namespace PrimeMillionaire.Game.Presentation.View
 {
     public sealed class HandView : MonoBehaviour
     {
-        private List<CardView> _cardViews = new();
+        private readonly List<CardView> _cardViews = new();
 
         public async UniTask DealHandAsync(CardView cardView, float duration, CancellationToken token)
         {
@@ -22,18 +23,19 @@ namespace PrimeMillionaire.Game.Presentation.View
                 cardView.TweenY(0.0f, duration).WithCancellation(token),
                 TweenHandsAsync(duration, token)
             );
+
+            cardView.Open(UiConfig.TWEEN_DURATION).WithCancellation(token).Forget();
         }
 
         private async UniTask TweenHandsAsync(float duration, CancellationToken token)
         {
-            var cardCount = _cardViews.Count(x => x.isActive);
+            var cardCount = _cardViews.Count;
             var pointX = cardCount.IsEven()
                 ? -1.0f * HandConfig.HAND_INTERVAL * (cardCount * 0.5f - 0.5f)
                 : -1.0f * HandConfig.HAND_INTERVAL * Mathf.Floor(cardCount * 0.5f);
 
-            for (int i = 0; i < _cardViews.Count; i++)
+            for (int i = 0; i < cardCount; i++)
             {
-                if (_cardViews[i].isActive == false) continue;
                 _cardViews[i].TweenX(pointX, duration).WithCancellation(token).Forget();
                 pointX += HandConfig.HAND_INTERVAL;
             }
@@ -58,12 +60,17 @@ namespace PrimeMillionaire.Game.Presentation.View
             _cardViews.Clear();
         }
 
+        public void SwitchMask(int index)
+        {
+            _cardViews[index].SwitchMask();
+        }
+
         public async UniTask<(int index, int count)> OrderAsync(CancellationToken token)
         {
             var index = await UniTask.WhenAny(_cardViews
                 .Select(x => x.OrderAsync(token)));
 
-            _cardViews[index].SwitchMask();
+            SwitchMask(index);
             return (index, _cardViews.Count(x => x.isOrder));
         }
 
@@ -79,7 +86,7 @@ namespace PrimeMillionaire.Game.Presentation.View
                 .TweenY(300.0f * side.ToSign(), duration)
                 .WithCancellation(token);
 
-            _cardViews[index].Activate(false);
+            _cardViews.RemoveAt(index);
             await TweenHandsAsync(duration, token);
         }
 
@@ -88,20 +95,14 @@ namespace PrimeMillionaire.Game.Presentation.View
             var index = new List<int>();
             for (int i = _cardViews.Count - 1; i >= 0; i--)
             {
-                if (_cardViews[i].isOrder) index.Add(i);
-            }
-
-            foreach (var i in index)
-            {
-                await HideAsync(side, i, duration, token);
+                if (_cardViews[i].isOrder)
+                {
+                    index.Add(i);
+                    await HideAsync(side, i, duration, token);
+                }
             }
 
             return index;
-        }
-
-        public void DestroyCards()
-        {
-            _cardViews = new List<CardView>(_cardViews.Where(x => x.isActive));
         }
 
         public Tween ActivateHandsField(bool value, float duration)

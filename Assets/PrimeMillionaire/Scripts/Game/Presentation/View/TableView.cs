@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Utility;
 using UnityEngine;
 
@@ -32,7 +31,6 @@ namespace PrimeMillionaire.Game.Presentation.View
                 card.transform.position = deck.position;
                 card.RenderAsync(playerHands[i].card, token).Forget();
                 await playerHandView.DealHandAsync(card, HandConfig.TWEEN_DURATION, token);
-                card.Open(UiConfig.TWEEN_DURATION).WithCancellation(token).Forget();
             }
         }
 
@@ -45,7 +43,6 @@ namespace PrimeMillionaire.Game.Presentation.View
                 card.transform.position = deck.position;
                 card.RenderAsync(enemyHands[i].card, token).Forget();
                 await enemyHandView.DealHandAsync(card, HandConfig.TWEEN_DURATION, token);
-                card.Open(UiConfig.TWEEN_DURATION).WithCancellation(token).Forget();
             }
         }
 
@@ -54,9 +51,19 @@ namespace PrimeMillionaire.Game.Presentation.View
             return await playerHandView.OrderAsync(token);
         }
 
+        public void OrderEnemyHands(int index)
+        {
+            enemyHandView.SwitchMask(index);
+        }
+
         public async UniTask RenderPlayerOrderNo(int index, int no, CancellationToken token)
         {
             await playerHandView.RenderOrderNoAsync(index, no, token);
+        }
+
+        public async UniTask RenderEnemyOrderNo(int index, int no, CancellationToken token)
+        {
+            await enemyHandView.RenderOrderNoAsync(index, no, token);
         }
 
         public async UniTask<IEnumerable<int>> TrashPlayerHandsAsync(CancellationToken token)
@@ -64,9 +71,9 @@ namespace PrimeMillionaire.Game.Presentation.View
             return await playerHandView.TrashCards(Side.Player, HandConfig.TRASH_DURATION, token);
         }
 
-        public async UniTask TrashEnemyHandAsync(int index, CancellationToken token)
+        public async UniTask<IEnumerable<int>> TrashEnemyHandsAsync(CancellationToken token)
         {
-            await enemyHandView.HideAsync(Side.Enemy, index, HandConfig.TRASH_DURATION, token);
+            return await enemyHandView.TrashCards(Side.Enemy, HandConfig.TRASH_DURATION, token);
         }
 
         public async UniTask ActivatePlayerFieldAsync(float duration, CancellationToken token)
@@ -79,12 +86,6 @@ namespace PrimeMillionaire.Game.Presentation.View
         {
             await playerHandView.ActivateHandsField(false, duration)
                 .WithCancellation(token);
-        }
-
-        public void DestroyHideCards()
-        {
-            playerHandView.DestroyCards();
-            enemyHandView.DestroyCards();
         }
     }
 }

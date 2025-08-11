@@ -1,7 +1,7 @@
-using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
+using PrimeMillionaire.Common.Utility;
 using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.View;
 using PrimeMillionaire.Game.Utility;
@@ -80,14 +80,20 @@ namespace PrimeMillionaire.Game.Presentation.State
             );
 
             var enemyOrder = OrderHelper.GetOrder(_handUseCase.GetEnemyHands(), playerPt);
-            foreach (var index in enemyOrder.index)
+            for (int i = 0; i < enemyOrder.index.Length; i++)
             {
+                int index = enemyOrder.index[i];
                 var card = _handUseCase.GetEnemyCard(index);
                 _orderUseCase.Set(card);
-                await _tableView.TrashEnemyHandAsync(index, token);
+                _tableView.OrderEnemyHands(index);
+                await _tableView.RenderEnemyOrderNo(index, i + 1, token);
+                await UniTaskHelper.DelayAsync(HandConfig.TRASH_DURATION, token);
             }
 
-            _handUseCase.RemoveEnemyCards(enemyOrder.index.OrderByDescending(x => x));
+            {
+                var index = await _tableView.TrashEnemyHandsAsync(token);
+                _handUseCase.RemoveEnemyCards(index);
+            }
 
             await _orderUseCase.PushValueAsync(token);
 
@@ -96,8 +102,6 @@ namespace PrimeMillionaire.Game.Presentation.State
                 _battlePtUseCase.AddEnemyBattlePtAsync(enemyPt, token),
                 _orderUseCase.RefreshAsync(token)
             );
-
-            _tableView.DestroyHideCards();
 
             var isPlayerHandsEmpty = _handUseCase.IsPlayerHandsEmpty();
             if (isPlayerHandsEmpty)
