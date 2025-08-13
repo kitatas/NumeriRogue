@@ -86,8 +86,8 @@ namespace PrimeMillionaire.Game.Presentation.State
             await _tableView.SetUpAsync(token);
 
             await (
-                _tableView.RenderHandsAsync(Side.Player, _handUseCase.GetPlayerHands(), token),
-                _tableView.RenderHandsAsync(Side.Enemy, _handUseCase.GetEnemyHands(), token)
+                _tableView.RenderHandsAsync(Side.Player, _handUseCase.GetHands(Side.Player), token),
+                _tableView.RenderHandsAsync(Side.Enemy, _handUseCase.GetHands(Side.Enemy), token)
             );
 
             _loadingUseCase.Set(false);

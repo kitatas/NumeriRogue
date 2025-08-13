@@ -50,7 +50,7 @@ namespace PrimeMillionaire.Game.Presentation.State
             while (true)
             {
                 var (index, count) = await _tableView.OrderPlayerHandsAsync(token);
-                var card = _handUseCase.GetPlayerCard(index);
+                var card = _handUseCase.GetCard(Side.Player, index);
                 var orderNo = _orderUseCase.Set(card);
                 await _tableView.RenderOrderNo(Side.Player, index, orderNo, token);
 
@@ -59,7 +59,7 @@ namespace PrimeMillionaire.Game.Presentation.State
 
             {
                 var index = await _tableView.TrashHandsAsync(Side.Player, token);
-                _handUseCase.RemovePlayerCards(index);
+                _handUseCase.RemoveCards(Side.Player, index);
             }
 
             _orderUseCase.StockBuff();
@@ -79,10 +79,10 @@ namespace PrimeMillionaire.Game.Presentation.State
                 _orderUseCase.RefreshAsync(token)
             );
 
-            var enemyOrder = OrderHelper.GetOrder(_handUseCase.GetEnemyHands(), playerPt);
+            var enemyOrder = OrderHelper.GetOrder(_handUseCase.GetHands(Side.Enemy), playerPt);
             foreach (var index in enemyOrder.index)
             {
-                var card = _handUseCase.GetEnemyCard(index);
+                var card = _handUseCase.GetCard(Side.Enemy, index);
                 var orderNo = _orderUseCase.Set(card);
                 await _tableView.OrderEnemyHandsAsync(index, token);
                 await _tableView.RenderOrderNo(Side.Enemy, index, orderNo, token);
@@ -90,7 +90,7 @@ namespace PrimeMillionaire.Game.Presentation.State
 
             {
                 var index = await _tableView.TrashHandsAsync(Side.Enemy, token);
-                _handUseCase.RemoveEnemyCards(index);
+                _handUseCase.RemoveCards(Side.Enemy, index);
             }
 
             await _orderUseCase.PushValueAsync(token);

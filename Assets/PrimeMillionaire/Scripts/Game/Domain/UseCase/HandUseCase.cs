@@ -18,44 +18,34 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _enemyHandEntity = enemyHandEntity;
         }
 
-        public List<HandVO> GetPlayerHands()
+        public List<HandVO> GetHands(Side side)
         {
-            return _playerHandEntity.hands
+            return GetHandEntity(side).hands
                 .Select((v, i) => new HandVO(i, _deckEntity.GetCard(v)))
                 .ToList();
         }
 
-        public List<HandVO> GetEnemyHands()
+        public CardVO GetCard(Side side, int index)
         {
-            return _enemyHandEntity.hands
-                .Select((v, i) => new HandVO(i, _deckEntity.GetCard(v)))
-                .ToList();
+            return _deckEntity.GetCard(GetHandEntity(side).hands[index]);
         }
 
-        public CardVO GetPlayerCard(int index)
-        {
-            return _deckEntity.GetCard(_playerHandEntity.hands[index]);
-        }
-
-        public CardVO GetEnemyCard(int index)
-        {
-            return _deckEntity.GetCard(_enemyHandEntity.hands[index]);
-        }
-
-        public void RemovePlayerCards(IEnumerable<int> index)
+        public void RemoveCards(Side side, IEnumerable<int> index)
         {
             foreach (var i in index)
             {
-                _playerHandEntity.Remove(i);
+                GetHandEntity(side).Remove(i);
             }
         }
 
-        public void RemoveEnemyCards(IEnumerable<int> index)
+        private BaseHandEntity GetHandEntity(Side side)
         {
-            foreach (var i in index)
+            return side switch
             {
-                _enemyHandEntity.Remove(i);
-            }
+                Side.Player => _playerHandEntity,
+                Side.Enemy => _enemyHandEntity,
+                _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE),
+            };
         }
 
         public bool IsPlayerHandsEmpty()
