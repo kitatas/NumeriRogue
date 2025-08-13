@@ -58,7 +58,7 @@ namespace PrimeMillionaire.Game.Presentation.State
             _interruptUseCase.Load();
 
             // Init
-            var player = _characterUseCase.GetPlayerCharacter();
+            var player = _characterUseCase.GetCharacter(Side.Player);
             var stage = _characterUseCase.GetStage();
             await (
                 _parameterUseCase.PublishPlayerParamAsync(token),
@@ -75,7 +75,7 @@ namespace PrimeMillionaire.Game.Presentation.State
             _turnUseCase.Update();
             _dollarUseCase.Update();
 
-            var enemy = _characterUseCase.GetEnemyCharacter();
+            var enemy = _characterUseCase.GetCharacter(Side.Enemy);
             await (
                 _parameterUseCase.PublishEnemyParamAsync(token),
                 _battleView.CreateEnemyAsync(enemy, token)

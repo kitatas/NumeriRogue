@@ -36,7 +36,7 @@ namespace PrimeMillionaire.Game.Presentation.State
         {
             _dealUseCase.Init();
 
-            var player = _characterUseCase.GetPlayerCharacter();
+            var player = _characterUseCase.GetCharacter(Side.Player);
             var stage = _characterUseCase.GetStage();
             await (
                 _parameterUseCase.InitPlayerParamAsync(token),

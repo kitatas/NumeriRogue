@@ -21,26 +21,31 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _characterStageRepository = characterStageRepository;
         }
 
-        public CharacterVO GetPlayerCharacter()
+        public CharacterVO GetCharacter(Side side)
         {
-            return _characterRepository.Find(_playerCharacterEntity.type);
+            return _characterRepository.Find(GetCharacterType(side));
         }
 
         public StageVO GetStage()
         {
-            return _characterStageRepository.GetStage(_playerCharacterEntity.type);
-        }
-
-        public CharacterVO GetEnemyCharacter()
-        {
-            return _characterRepository.Find(_enemyCharacterEntity.type);
+            return _characterStageRepository.GetStage(GetCharacterType(Side.Player));
         }
 
         public CharacterVO LotEnemyCharacter()
         {
-            var character = _characterRepository.FindOther(_playerCharacterEntity.type);
+            var character = _characterRepository.FindOther(GetCharacterType(Side.Player));
             _enemyCharacterEntity.SetType(character.type);
             return character;
+        }
+
+        private CharacterType GetCharacterType(Side side)
+        {
+            return side switch
+            {
+                Side.Player => _playerCharacterEntity.type,
+                Side.Enemy => _enemyCharacterEntity.type,
+                _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE),
+            };
         }
     }
 }
