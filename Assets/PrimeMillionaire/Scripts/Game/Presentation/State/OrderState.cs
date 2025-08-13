@@ -52,13 +52,13 @@ namespace PrimeMillionaire.Game.Presentation.State
                 var (index, count) = await _tableView.OrderPlayerHandsAsync(token);
                 var card = _handUseCase.GetPlayerCard(index);
                 var orderNo = _orderUseCase.Set(card);
-                await _tableView.RenderPlayerOrderNo(index, orderNo, token);
+                await _tableView.RenderOrderNo(Side.Player, index, orderNo, token);
 
                 if (count == HandConfig.ORDER_NUM) break;
             }
 
             {
-                var index = await _tableView.TrashPlayerHandsAsync(token);
+                var index = await _tableView.TrashHandsAsync(Side.Player, token);
                 _handUseCase.RemovePlayerCards(index);
             }
 
@@ -80,18 +80,16 @@ namespace PrimeMillionaire.Game.Presentation.State
             );
 
             var enemyOrder = OrderHelper.GetOrder(_handUseCase.GetEnemyHands(), playerPt);
-            for (int i = 0; i < enemyOrder.index.Length; i++)
+            foreach (var index in enemyOrder.index)
             {
-                int index = enemyOrder.index[i];
                 var card = _handUseCase.GetEnemyCard(index);
-                _orderUseCase.Set(card);
-                _tableView.OrderEnemyHands(index);
-                await _tableView.RenderEnemyOrderNo(index, i + 1, token);
-                await UniTaskHelper.DelayAsync(HandConfig.TRASH_DURATION, token);
+                var orderNo = _orderUseCase.Set(card);
+                await _tableView.OrderEnemyHandsAsync(index, token);
+                await _tableView.RenderOrderNo(Side.Enemy, index, orderNo, token);
             }
 
             {
-                var index = await _tableView.TrashEnemyHandsAsync(token);
+                var index = await _tableView.TrashHandsAsync(Side.Enemy, token);
                 _handUseCase.RemoveEnemyCards(index);
             }
 

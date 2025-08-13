@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Utility;
 using UnityEngine;
 
@@ -23,26 +24,19 @@ namespace PrimeMillionaire.Game.Presentation.View
             );
         }
 
-        public async UniTask RenderPlayerHandsAsync(List<HandVO> playerHands, CancellationToken token)
+        public async UniTask RenderHandsAsync(Side side, List<HandVO> hands, CancellationToken token)
         {
-            for (int i = 0; i < playerHands.Count; i++)
+            if (side == Side.Enemy)
             {
-                var card = playerCards[i];
-                card.transform.position = deck.position;
-                card.RenderAsync(playerHands[i].card, token).Forget();
-                await playerHandView.DealHandAsync(card, HandConfig.TWEEN_DURATION, token);
+                await UniTaskHelper.DelayAsync(HandConfig.TWEEN_DURATION / 2.0f, token);
             }
-        }
 
-        public async UniTask RenderEnemyHandsAsync(List<HandVO> enemyHands, CancellationToken token)
-        {
-            await UniTaskHelper.DelayAsync(HandConfig.TWEEN_DURATION / 2.0f, token);
-            for (int i = 0; i < enemyHands.Count; i++)
+            for (int i = 0; i < hands.Count; i++)
             {
-                var card = enemyCads[i];
+                var card = GetCardViews(side)[i];
                 card.transform.position = deck.position;
-                card.RenderAsync(enemyHands[i].card, token).Forget();
-                await enemyHandView.DealHandAsync(card, HandConfig.TWEEN_DURATION, token);
+                card.RenderAsync(hands[i].card, token).Forget();
+                await GetHandView(side).DealHandAsync(card, HandConfig.TWEEN_DURATION, token);
             }
         }
 
@@ -51,29 +45,39 @@ namespace PrimeMillionaire.Game.Presentation.View
             return await playerHandView.OrderAsync(token);
         }
 
-        public void OrderEnemyHands(int index)
+        public async UniTask OrderEnemyHandsAsync(int index, CancellationToken token)
         {
-            enemyHandView.SwitchMask(index);
+            await enemyHandView.OrderAsync(index, token);
         }
 
-        public async UniTask RenderPlayerOrderNo(int index, int no, CancellationToken token)
+        public async UniTask RenderOrderNo(Side side, int index, int no, CancellationToken token)
         {
-            await playerHandView.RenderOrderNoAsync(index, no, token);
+            await GetHandView(side).RenderOrderNoAsync(index, no, token);
         }
 
-        public async UniTask RenderEnemyOrderNo(int index, int no, CancellationToken token)
+        public async UniTask<IEnumerable<int>> TrashHandsAsync(Side side, CancellationToken token)
         {
-            await enemyHandView.RenderOrderNoAsync(index, no, token);
+            return await GetHandView(side).TrashCards(side, HandConfig.TRASH_DURATION, token);
         }
 
-        public async UniTask<IEnumerable<int>> TrashPlayerHandsAsync(CancellationToken token)
+        private List<CardView> GetCardViews(Side side)
         {
-            return await playerHandView.TrashCards(Side.Player, HandConfig.TRASH_DURATION, token);
+            return side switch
+            {
+                Side.Player => playerCards,
+                Side.Enemy => enemyCads,
+                _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE),
+            };
         }
 
-        public async UniTask<IEnumerable<int>> TrashEnemyHandsAsync(CancellationToken token)
+        private HandView GetHandView(Side side)
         {
-            return await enemyHandView.TrashCards(Side.Enemy, HandConfig.TRASH_DURATION, token);
+            return side switch
+            {
+                Side.Player => playerHandView,
+                Side.Enemy => enemyHandView,
+                _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE),
+            };
         }
 
         public async UniTask ActivatePlayerFieldAsync(float duration, CancellationToken token)

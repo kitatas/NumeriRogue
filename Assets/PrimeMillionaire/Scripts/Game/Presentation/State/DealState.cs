@@ -38,8 +38,8 @@ namespace PrimeMillionaire.Game.Presentation.State
             await _tableView.SetUpAsync(token);
 
             await (
-                _tableView.RenderPlayerHandsAsync(_handUseCase.GetPlayerHands(), token),
-                _tableView.RenderEnemyHandsAsync(_handUseCase.GetEnemyHands(), token)
+                _tableView.RenderHandsAsync(Side.Player, _handUseCase.GetPlayerHands(), token),
+                _tableView.RenderHandsAsync(Side.Enemy, _handUseCase.GetEnemyHands(), token)
             );
 
             _interruptUseCase.Save();
