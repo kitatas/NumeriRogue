@@ -1,5 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using PrimeMillionaire.Common;
 using PrimeMillionaire.Game.Data.Entity;
 using VitalRouter;
 
@@ -16,19 +17,12 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _enemyBattlePtEntity = enemyBattlePtEntity;
         }
 
-        public int currentPlayerPt => _playerBattlePtEntity.currentValue;
-        public int currentEnemyPt => _enemyBattlePtEntity.currentValue;
+        private int GetCurrentPt(Side side) => GetBattlePtEntity(side).currentValue;
 
-        public async UniTask AddPlayerBattlePtAsync(int value, CancellationToken token)
+        public async UniTask AddBattlePtAsync(Side side, int value, CancellationToken token)
         {
-            _playerBattlePtEntity.Add(value);
-            await Router.Default.PublishAsync(new BattlePtVO(Side.Player, currentPlayerPt), token);
-        }
-
-        public async UniTask AddEnemyBattlePtAsync(int value, CancellationToken token)
-        {
-            _enemyBattlePtEntity.Add(value);
-            await Router.Default.PublishAsync(new BattlePtVO(Side.Enemy, currentEnemyPt), token);
+            GetBattlePtEntity(side).Add(value);
+            await PublishAsync(side, token);
         }
 
         public async UniTask ResetAsync(CancellationToken token)
@@ -37,14 +31,29 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _enemyBattlePtEntity.Reset();
 
             await (
-                Router.Default.PublishAsync(new BattlePtVO(Side.Player, currentPlayerPt), token).AsUniTask(),
-                Router.Default.PublishAsync(new BattlePtVO(Side.Enemy, currentEnemyPt), token).AsUniTask()
+                PublishAsync(Side.Player, token),
+                PublishAsync(Side.Enemy, token)
             );
+        }
+
+        private UniTask PublishAsync(Side side, CancellationToken token)
+        {
+            return Router.Default.PublishAsync(new BattlePtVO(side, GetCurrentPt(side)), token).AsUniTask();
         }
 
         public Side GetAttacker()
         {
-            return currentPlayerPt >= currentEnemyPt ? Side.Player : Side.Enemy;
+            return GetCurrentPt(Side.Player) >= GetCurrentPt(Side.Enemy) ? Side.Player : Side.Enemy;
+        }
+
+        private BaseBattlePtEntity GetBattlePtEntity(Side side)
+        {
+            return side switch
+            {
+                Side.Player => _playerBattlePtEntity,
+                Side.Enemy => _enemyBattlePtEntity,
+                _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE),
+            };
         }
     }
 }

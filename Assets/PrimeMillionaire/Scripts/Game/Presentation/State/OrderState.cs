@@ -75,7 +75,7 @@ namespace PrimeMillionaire.Game.Presentation.State
 
             var playerPt = _orderUseCase.currentValueWithBonus;
             await (
-                _battlePtUseCase.AddPlayerBattlePtAsync(playerPt, token),
+                _battlePtUseCase.AddBattlePtAsync(Side.Player, playerPt, token),
                 _orderUseCase.RefreshAsync(token)
             );
 
@@ -97,7 +97,7 @@ namespace PrimeMillionaire.Game.Presentation.State
 
             var enemyPt = _orderUseCase.currentValueWithBonus;
             await (
-                _battlePtUseCase.AddEnemyBattlePtAsync(enemyPt, token),
+                _battlePtUseCase.AddBattlePtAsync(Side.Enemy, enemyPt, token),
                 _orderUseCase.RefreshAsync(token)
             );
 
