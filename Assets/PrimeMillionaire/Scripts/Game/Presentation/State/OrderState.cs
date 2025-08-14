@@ -1,7 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
-using PrimeMillionaire.Common.Utility;
 using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.View;
 using PrimeMillionaire.Game.Utility;
@@ -57,10 +56,7 @@ namespace PrimeMillionaire.Game.Presentation.State
                 if (count == HandConfig.ORDER_NUM) break;
             }
 
-            {
-                var index = await _tableView.TrashHandsAsync(Side.Player, token);
-                _handUseCase.RemoveCards(Side.Player, index);
-            }
+            await RemoveCardsAsync(Side.Player, token);
 
             _orderUseCase.StockBuff();
             await (
@@ -73,11 +69,7 @@ namespace PrimeMillionaire.Game.Presentation.State
                 _tableView.DeactivatePlayerFieldAsync(UiConfig.TWEEN_DURATION, token)
             );
 
-            var playerPt = _orderUseCase.currentValueWithBonus;
-            await (
-                _battlePtUseCase.AddBattlePtAsync(Side.Player, playerPt, token),
-                _orderUseCase.RefreshAsync(token)
-            );
+            var playerPt = await ApplyBattlePtAsync(Side.Player, token);
 
             var enemyOrder = OrderHelper.GetOrder(_handUseCase.GetHands(Side.Enemy), playerPt);
             foreach (var index in enemyOrder.index)
@@ -88,28 +80,38 @@ namespace PrimeMillionaire.Game.Presentation.State
                 await _tableView.RenderOrderNo(Side.Enemy, index, orderNo, token);
             }
 
-            {
-                var index = await _tableView.TrashHandsAsync(Side.Enemy, token);
-                _handUseCase.RemoveCards(Side.Enemy, index);
-            }
+            await RemoveCardsAsync(Side.Enemy, token);
 
             await _orderUseCase.PushValueAsync(token);
 
-            var enemyPt = _orderUseCase.currentValueWithBonus;
+            await ApplyBattlePtAsync(Side.Enemy, token);
+
+            if (_handUseCase.IsPlayerHandsEmpty())
+            {
+                await _orderUseCase.HideOrderCardsAsync(UiConfig.TWEEN_DURATION, token);
+                return GameState.Battle;
+            }
+            else
+            {
+                return GameState.Order;
+            }
+        }
+
+        private async UniTask RemoveCardsAsync(Side side, CancellationToken token)
+        {
+            var index = await _tableView.TrashHandsAsync(side, token);
+            _handUseCase.RemoveCards(side, index);
+        }
+
+        private async UniTask<int> ApplyBattlePtAsync(Side side, CancellationToken token)
+        {
+            var pt = _orderUseCase.currentValueWithBonus;
             await (
-                _battlePtUseCase.AddBattlePtAsync(Side.Enemy, enemyPt, token),
+                _battlePtUseCase.AddBattlePtAsync(side, pt, token),
                 _orderUseCase.RefreshAsync(token)
             );
 
-            var isPlayerHandsEmpty = _handUseCase.IsPlayerHandsEmpty();
-            if (isPlayerHandsEmpty)
-            {
-                await _orderUseCase.HideOrderCardsAsync(UiConfig.TWEEN_DURATION, token);
-            }
-
-            return isPlayerHandsEmpty
-                ? GameState.Battle
-                : GameState.Order;
+            return pt;
         }
     }
 }
