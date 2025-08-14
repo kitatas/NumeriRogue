@@ -1,5 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using PrimeMillionaire.Common;
 using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.View;
 
@@ -35,7 +36,7 @@ namespace PrimeMillionaire.Game.Presentation.State
             _turnUseCase.Increment();
 
             _dealUseCase.SetUp();
-            await _tableView.SetUpAsync(token);
+            await _tableView.SetUpAsync(UiConfig.TWEEN_DURATION, token);
 
             await UniTask.WhenAll(
                 HandConfig.ALL_SIDE.Select(x => _tableView.RenderHandsAsync(x, _handUseCase.GetHands(x), token))

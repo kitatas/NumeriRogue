@@ -16,11 +16,11 @@ namespace PrimeMillionaire.Game.Presentation.View
         [SerializeField] private HandView enemyHandView = default;
         [SerializeField] private Transform deck = default;
 
-        public async UniTask SetUpAsync(CancellationToken token)
+        public async UniTask SetUpAsync(float duration, CancellationToken token)
         {
             await (
-                playerHandView.HideAsync(HandConfig.TWEEN_DURATION, token),
-                enemyHandView.HideAsync(HandConfig.TWEEN_DURATION, token)
+                playerHandView.HideAsync(duration, token),
+                enemyHandView.HideAsync(duration, token)
             );
         }
 
