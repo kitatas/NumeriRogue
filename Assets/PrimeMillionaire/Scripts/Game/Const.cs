@@ -37,6 +37,12 @@ namespace PrimeMillionaire.Game
         public const float HAND_INTERVAL = 130.0f;
         public const float TWEEN_DURATION = 0.25f;
         public const float TRASH_DURATION = 0.05f;
+
+        public static readonly Side[] ALL_SIDE =
+        {
+            Side.Player,
+            Side.Enemy,
+        };
     }
 
     public sealed class CharacterConfig

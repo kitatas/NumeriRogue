@@ -25,14 +25,16 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             await PublishAsync(side, token);
         }
 
+        private async UniTask ResetBattlePtAsync(Side side, CancellationToken token)
+        {
+            GetBattlePtEntity(side).Reset();
+            await PublishAsync(side, token);
+        }
+
         public async UniTask ResetAsync(CancellationToken token)
         {
-            _playerBattlePtEntity.Reset();
-            _enemyBattlePtEntity.Reset();
-
-            await (
-                PublishAsync(Side.Player, token),
-                PublishAsync(Side.Enemy, token)
+            await UniTask.WhenAll(
+                HandConfig.ALL_SIDE.Select(x => ResetBattlePtAsync(x, token))
             );
         }
 

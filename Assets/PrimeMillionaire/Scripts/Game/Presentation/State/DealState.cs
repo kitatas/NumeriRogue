@@ -37,9 +37,8 @@ namespace PrimeMillionaire.Game.Presentation.State
             _dealUseCase.SetUp();
             await _tableView.SetUpAsync(token);
 
-            await (
-                _tableView.RenderHandsAsync(Side.Player, _handUseCase.GetHands(Side.Player), token),
-                _tableView.RenderHandsAsync(Side.Enemy, _handUseCase.GetHands(Side.Enemy), token)
+            await UniTask.WhenAll(
+                HandConfig.ALL_SIDE.Select(x => _tableView.RenderHandsAsync(x, _handUseCase.GetHands(x), token))
             );
 
             _interruptUseCase.Save();
