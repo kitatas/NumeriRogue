@@ -57,33 +57,26 @@ namespace PrimeMillionaire.Game.Presentation.State
         {
             _interruptUseCase.Load();
 
-            // Init
             var player = _characterUseCase.GetCharacter(Side.Player);
             var stage = _characterUseCase.GetStage();
-            await (
-                _parameterUseCase.PublishPlayerParamAsync(token),
-                _battleView.CreatePlayerAsync(player, token),
-                _battleView.RenderStageAsync(stage, token),
-                _orderUseCase.PublishCommunityBattlePtAsync(token)
-            );
+            var enemy = _characterUseCase.GetCharacter(Side.Enemy);
 
-            await _holdSkillUseCase.UpdateAsync(token);
-
-            // SetUp
             _enemyCountUseCase.Update();
             _levelUseCase.Update();
             _turnUseCase.Update();
             _dollarUseCase.Update();
-
-            var enemy = _characterUseCase.GetCharacter(Side.Enemy);
-            await (
-                _parameterUseCase.PublishEnemyParamAsync(token),
-                _battleView.CreateEnemyAsync(enemy, token)
-            );
-
-            // Deal
             _dealUseCase.SetUpHands();
-            await _tableView.SetUpAsync(0.0f, token);
+
+            await (
+                _parameterUseCase.PublishPlayerParamAsync(token),
+                _battleView.CreatePlayerAsync(player, token),
+                _battleView.RenderStageAsync(stage, token),
+                _orderUseCase.PublishCommunityBattlePtAsync(token),
+                _holdSkillUseCase.UpdateAsync(token),
+                _parameterUseCase.PublishEnemyParamAsync(token),
+                _battleView.CreateEnemyAsync(enemy, token),
+                _tableView.SetUpAsync(0.0f, token)
+            );
 
             await UniTask.WhenAll(
                 HandConfig.ALL_SIDE.Select(x => _tableView.RenderHandsAsync(x, _handUseCase.GetHands(x), token))
