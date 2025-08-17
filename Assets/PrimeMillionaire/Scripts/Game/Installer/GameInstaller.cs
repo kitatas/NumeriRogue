@@ -31,6 +31,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.Register<PlayerBattlePtEntity>(Lifetime.Scoped);
             builder.Register<PlayerHandEntity>(Lifetime.Scoped);
             builder.Register<PlayerParameterEntity>(Lifetime.Scoped);
+            builder.Register<SortEntity>(Lifetime.Scoped);
             builder.Register<TurnEntity>(Lifetime.Scoped);
 
             // Repository

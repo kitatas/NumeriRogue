@@ -8,23 +8,30 @@ namespace PrimeMillionaire.Game.Domain.UseCase
     public sealed class HandUseCase
     {
         private readonly DeckEntity _deckEntity;
+        private readonly SortEntity _sortEntity;
         private readonly PlayerHandEntity _playerHandEntity;
         private readonly EnemyHandEntity _enemyHandEntity;
 
-        public HandUseCase(DeckEntity deckEntity, PlayerHandEntity playerHandEntity, EnemyHandEntity enemyHandEntity)
+        public HandUseCase(DeckEntity deckEntity, SortEntity sortEntity, PlayerHandEntity playerHandEntity,
+            EnemyHandEntity enemyHandEntity)
         {
             _deckEntity = deckEntity;
+            _sortEntity = sortEntity;
             _playerHandEntity = playerHandEntity;
             _enemyHandEntity = enemyHandEntity;
         }
 
         public List<HandVO> GetHands(Side side)
         {
-            return GetHandEntity(side).hands
-                .Select((v, i) => new HandVO(v, _deckEntity.GetCard(v)))
-                .OrderBy(x => x.card.rank)
-                .ThenBy(x => x.card.suit)
-                .ToList();
+            var hands = GetHandEntity(side).hands
+                .Select((v, i) => new HandVO(v, _deckEntity.GetCard(v)));
+
+            return _sortEntity.value switch
+            {
+                Sort.Rank => hands.OrderBy(x => x.card.rank).ThenBy(x => x.card.suit).ToList(),
+                Sort.Suit => hands.OrderBy(x => x.card.suit).ThenBy(x => x.card.rank).ToList(),
+                _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SORT)
+            };
         }
 
         public CardVO GetCard(Side side, int index)

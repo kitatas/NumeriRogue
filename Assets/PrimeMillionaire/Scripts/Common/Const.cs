@@ -43,6 +43,7 @@ namespace PrimeMillionaire.Common
         public const string NOT_FOUND_SE = "NOT_FOUND_SE";
         public const string NOT_FOUND_SIDE = "NOT_FOUND_SIDE";
         public const string NOT_FOUND_SKILL = "NOT_FOUND_SKILL";
+        public const string NOT_FOUND_SORT = "NOT_FOUND_SORT";
         public const string NOT_FOUND_STAGE = "NOT_FOUND_STAGE";
         public const string NOT_FOUND_STATE = "NOT_FOUND_STATE";
         public const string NOT_FOUND_SUIT = "NOT_FOUND_SUIT";

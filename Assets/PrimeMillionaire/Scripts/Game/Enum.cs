@@ -40,4 +40,11 @@ namespace PrimeMillionaire.Game
         Screen = 6,
         HowTo = 7,
     }
+
+    public enum Sort
+    {
+        None = 0,
+        Rank = 1,
+        Suit = 2,
+    }
 }
