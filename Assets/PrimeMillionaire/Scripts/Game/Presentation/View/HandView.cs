@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Utility;
 using PrimeMillionaire.Game.Utility;
 using UniEx;
@@ -13,18 +12,38 @@ namespace PrimeMillionaire.Game.Presentation.View
 {
     public sealed class HandView : MonoBehaviour
     {
+        [SerializeField] private List<CardView> cards = default;
         private readonly List<CardView> _cardViews = new();
 
-        public async UniTask DealHandAsync(CardView cardView, float duration, CancellationToken token)
+        public async UniTask DealAsync(List<HandVO> hands, Transform deck, float duration, CancellationToken token)
         {
-            _cardViews.Add(cardView);
+            for (int i = 0; i < hands.Count; i++)
+            {
+                var cardView = cards[i];
+                cardView.transform.position = deck.position;
+                cardView.RenderAsync(hands[i].card, token).Forget();
 
-            await (
-                cardView.TweenY(0.0f, duration).WithCancellation(token),
-                TweenHandsAsync(duration, token)
-            );
+                _cardViews.Add(cardView);
 
-            cardView.Open(UiConfig.TWEEN_DURATION).WithCancellation(token).Forget();
+                await (
+                    cardView.TweenY(0.0f, duration).WithCancellation(token),
+                    TweenHandsAsync(duration, token)
+                );
+
+                cardView.Open(duration).WithCancellation(token).Forget();
+            }
+        }
+
+        public async UniTask RepaintAsync(List<HandVO> hands, CancellationToken token)
+        {
+            for (int i = 0; i < hands.Count; i++)
+            {
+                var cardView = _cardViews[i];
+                cardView.RenderAsync(hands[i].card, token).Forget();
+                cardView.Open(0.0f).WithCancellation(token).Forget();
+            }
+
+            await UniTask.Yield(token);
         }
 
         private async UniTask TweenHandsAsync(float duration, CancellationToken token)

@@ -11,9 +11,6 @@ namespace PrimeMillionaire.Game.Presentation.View
 {
     public sealed class TableView : MonoBehaviour
     {
-        [SerializeField] private List<CardView> playerCards = default;
-        [SerializeField] private List<CardView> enemyCads = default;
-
         [SerializeField] private HandView playerHandView = default;
         [SerializeField] private HandView enemyHandView = default;
         [SerializeField] private CommonButtonView sortButtonView = default;
@@ -34,25 +31,12 @@ namespace PrimeMillionaire.Game.Presentation.View
                 await UniTaskHelper.DelayAsync(HandConfig.TWEEN_DURATION / 2.0f, token);
             }
 
-            for (int i = 0; i < hands.Count; i++)
-            {
-                var card = GetCardViews(side)[i];
-                card.transform.position = deck.position;
-                card.RenderAsync(hands[i].card, token).Forget();
-                await GetHandView(side).DealHandAsync(card, HandConfig.TWEEN_DURATION, token);
-            }
+            await GetHandView(side).DealAsync(hands, deck, HandConfig.TWEEN_DURATION, token);
         }
 
         public async UniTask RepaintHandsAsync(Side side, List<HandVO> hands, CancellationToken token)
         {
-            for (int i = 0; i < hands.Count; i++)
-            {
-                var card = GetCardViews(side)[i];
-                card.RenderAsync(hands[i].card, token).Forget();
-                card.Open(0.0f);
-            }
-
-            await UniTask.Yield(token);
+            await GetHandView(side).RepaintAsync(hands, token);
         }
 
         public async UniTask<(int index, int count)> OrderPlayerHandsAsync(CancellationToken token)
@@ -73,16 +57,6 @@ namespace PrimeMillionaire.Game.Presentation.View
         public async UniTask<IEnumerable<int>> TrashHandsAsync(Side side, CancellationToken token)
         {
             return await GetHandView(side).TrashCards(side, HandConfig.TRASH_DURATION, token);
-        }
-
-        private List<CardView> GetCardViews(Side side)
-        {
-            return side switch
-            {
-                Side.Player => playerCards,
-                Side.Enemy => enemyCads,
-                _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE),
-            };
         }
 
         private HandView GetHandView(Side side)
