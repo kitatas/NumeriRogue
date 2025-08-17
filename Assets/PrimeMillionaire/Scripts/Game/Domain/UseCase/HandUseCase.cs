@@ -1,7 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Game.Data.Entity;
+using VitalRouter;
 
 namespace PrimeMillionaire.Game.Domain.UseCase
 {
@@ -21,9 +24,18 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _enemyHandEntity = enemyHandEntity;
         }
 
-        public void SwitchSort()
+        public async UniTask SwitchSortAsync(CancellationToken token)
         {
             _sortEntity.Switch();
+
+            await UniTask.WhenAll(
+                HandConfig.ALL_SIDE.Select(x => PublishSortHandAsync(x, token))
+            );
+        }
+
+        private UniTask PublishSortHandAsync(Side side, CancellationToken token)
+        {
+            return Router.Default.PublishAsync(new SortHandVO(side, GetHands(side)), token).AsUniTask();
         }
 
         public List<HandVO> GetHands(Side side)

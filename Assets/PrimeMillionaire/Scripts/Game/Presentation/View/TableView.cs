@@ -40,9 +40,26 @@ namespace PrimeMillionaire.Game.Presentation.View
             }
         }
 
+        public async UniTask RepaintHandsAsync(Side side, List<HandVO> hands, CancellationToken token)
+        {
+            for (int i = 0; i < hands.Count; i++)
+            {
+                var card = GetCardViews(side)[i];
+                card.RenderAsync(hands[i].card, token).Forget();
+                card.Open(0.0f);
+            }
+
+            await UniTask.Yield(token);
+        }
+
         public async UniTask<(int index, int count)> OrderPlayerHandsAsync(CancellationToken token)
         {
             return await playerHandView.OrderAsync(token);
+        }
+
+        public async UniTask OrderPlayerHandsAsync(int index, CancellationToken token)
+        {
+            await playerHandView.OrderAsync(index, token);
         }
 
         public async UniTask OrderEnemyHandsAsync(int index, CancellationToken token)
