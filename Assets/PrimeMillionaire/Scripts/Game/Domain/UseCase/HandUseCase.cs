@@ -29,7 +29,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         public List<HandVO> GetHands(Side side)
         {
             var hands = GetHandEntity(side).hands
-                .Select((v, i) => new HandVO(v, _deckEntity.GetCard(v)));
+                .Select((v, i) => new HandVO(v, i, _deckEntity.GetCard(v)));
 
             return _sortEntity.value switch
             {
@@ -41,12 +41,17 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public CardVO GetCard(Side side, int index)
         {
-            return _deckEntity.GetCard(GetHands(side)[index].index);
+            return _deckEntity.GetCard(GetHands(side)[index].deckIndex);
         }
 
         public void RemoveCards(Side side, IEnumerable<int> index)
         {
-            foreach (var i in index)
+            var hands = GetHands(side);
+            var removeIndex = index
+                .Select(x => hands[x].handIndex)
+                .OrderByDescending(x => x);
+
+            foreach (var i in removeIndex)
             {
                 GetHandEntity(side).Remove(i);
             }
