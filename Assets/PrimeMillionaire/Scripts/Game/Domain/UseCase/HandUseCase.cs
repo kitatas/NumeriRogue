@@ -21,13 +21,15 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         public List<HandVO> GetHands(Side side)
         {
             return GetHandEntity(side).hands
-                .Select((v, i) => new HandVO(i, _deckEntity.GetCard(v)))
+                .Select((v, i) => new HandVO(v, _deckEntity.GetCard(v)))
+                .OrderBy(x => x.card.rank)
+                .ThenBy(x => x.card.suit)
                 .ToList();
         }
 
         public CardVO GetCard(Side side, int index)
         {
-            return _deckEntity.GetCard(GetHandEntity(side).hands[index]);
+            return _deckEntity.GetCard(GetHands(side)[index].index);
         }
 
         public void RemoveCards(Side side, IEnumerable<int> index)
