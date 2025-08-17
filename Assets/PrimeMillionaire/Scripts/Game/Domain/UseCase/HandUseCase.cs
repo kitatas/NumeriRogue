@@ -21,6 +21,11 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _enemyHandEntity = enemyHandEntity;
         }
 
+        public void SwitchSort()
+        {
+            _sortEntity.Switch();
+        }
+
         public List<HandVO> GetHands(Side side)
         {
             var hands = GetHandEntity(side).hands

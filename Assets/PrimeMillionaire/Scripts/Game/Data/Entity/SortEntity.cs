@@ -10,5 +10,15 @@ namespace PrimeMillionaire.Game.Data.Entity
         {
             value = Sort.Rank;
         }
+
+        public void Switch()
+        {
+            value = value switch
+            {
+                Sort.Rank => Sort.Suit,
+                Sort.Suit => Sort.Rank,
+                _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SORT),
+            };
+        }
     }
 }

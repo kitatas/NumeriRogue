@@ -4,6 +4,7 @@ using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.Presenter;
 using PrimeMillionaire.Game.Presentation.State;
 using PrimeMillionaire.Game.Presentation.View;
+using PrimeMillionaire.Game.Presentation.View.Button;
 using VContainer;
 using VContainer.Unity;
 
@@ -87,12 +88,14 @@ namespace PrimeMillionaire.Game.Installer
                 entryPoints.Add<OrderPresenter>();
                 entryPoints.Add<ParameterPresenter>();
                 entryPoints.Add<PickSkillPresenter>();
+                entryPoints.Add<SortPresenter>();
                 entryPoints.Add<StatePresenter>();
                 entryPoints.Add<TurnPresenter>();
                 entryPoints.Add<VolumePresenter>();
             });
 
             // View
+            builder.RegisterComponentInHierarchy<SortButtonView>();
             builder.RegisterComponentInHierarchy<BattleView>();
             builder.RegisterComponentInHierarchy<BattlePtView>();
             builder.RegisterComponentInHierarchy<ClearView>();
