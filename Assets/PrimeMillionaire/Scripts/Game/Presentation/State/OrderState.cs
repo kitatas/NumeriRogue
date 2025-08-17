@@ -76,7 +76,7 @@ namespace PrimeMillionaire.Game.Presentation.State
             {
                 var card = _handUseCase.GetCard(Side.Enemy, index);
                 var orderNo = _orderUseCase.Set(card);
-                await _tableView.OrderEnemyHandsAsync(index, token);
+                await _tableView.OrderHandsAsync(Side.Enemy, index, token);
                 await _tableView.RenderOrderNo(Side.Enemy, index, orderNo, token);
             }
 
