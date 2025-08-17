@@ -4,7 +4,6 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.View;
-using PrimeMillionaire.Game.Presentation.View.Button;
 using R3;
 using VContainer.Unity;
 using VitalRouter;
@@ -15,25 +14,22 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
     {
         private readonly HandUseCase _handUseCase;
         private readonly OrderUseCase _orderUseCase;
-        private readonly SortButtonView _sortButtonView;
         private readonly TableView _tableView;
         private readonly CancellationTokenSource _tokenSource;
 
-        public SortPresenter(HandUseCase handUseCase, OrderUseCase orderUseCase, SortButtonView sortButtonView,
-            TableView tableView)
+        public SortPresenter(HandUseCase handUseCase, OrderUseCase orderUseCase, TableView tableView)
         {
             _handUseCase = handUseCase;
             _orderUseCase = orderUseCase;
-            _sortButtonView = sortButtonView;
             _tableView = tableView;
             _tokenSource = new CancellationTokenSource();
         }
 
         public void Start()
         {
-            _sortButtonView.push
+            _tableView.pushSwitchSort
                 .Subscribe(_ => _handUseCase.SwitchSortAsync(_tokenSource.Token).Forget())
-                .AddTo(_sortButtonView);
+                .AddTo(_tableView);
 
             Router.Default
                 .SubscribeAwait<SortHandVO>(async (x, context) =>

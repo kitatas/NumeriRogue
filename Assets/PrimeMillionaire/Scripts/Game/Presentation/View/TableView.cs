@@ -2,7 +2,9 @@ using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
+using PrimeMillionaire.Common.Presentation.View.Button;
 using PrimeMillionaire.Common.Utility;
+using R3;
 using UnityEngine;
 
 namespace PrimeMillionaire.Game.Presentation.View
@@ -14,6 +16,7 @@ namespace PrimeMillionaire.Game.Presentation.View
 
         [SerializeField] private HandView playerHandView = default;
         [SerializeField] private HandView enemyHandView = default;
+        [SerializeField] private CommonButtonView sortButtonView = default;
         [SerializeField] private Transform deck = default;
 
         public async UniTask SetUpAsync(float duration, CancellationToken token)
@@ -91,6 +94,8 @@ namespace PrimeMillionaire.Game.Presentation.View
                 _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE),
             };
         }
+
+        public Observable<Unit> pushSwitchSort => sortButtonView.push.Select(_ => Unit.Default);
 
         public async UniTask ActivatePlayerFieldAsync(float duration, CancellationToken token)
         {
