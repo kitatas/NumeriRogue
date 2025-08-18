@@ -35,10 +35,10 @@ namespace PrimeMillionaire.Common
     public enum Suit
     {
         None = 0,
-        Club = 1,
-        Diamond = 2,
-        Heart = 3,
-        Spade = 4,
+        Spade = 1,
+        Heart = 2,
+        Club = 3,
+        Diamond = 4,
     }
 
     public enum BonusType
