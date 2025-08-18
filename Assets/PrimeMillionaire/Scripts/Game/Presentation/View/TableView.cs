@@ -75,10 +75,14 @@ namespace PrimeMillionaire.Game.Presentation.View
         {
             await playerHandView.ActivateHandsField(true, duration)
                 .WithCancellation(token);
+
+            sortButtonView.SetInteractable(true);
         }
 
         public async UniTask DeactivatePlayerFieldAsync(float duration, CancellationToken token)
         {
+            sortButtonView.SetInteractable(false);
+
             await playerHandView.ActivateHandsField(false, duration)
                 .WithCancellation(token);
         }
