@@ -61,16 +61,6 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             await Router.Default.PublishAsync(_enemyParameterEntity.ToVO(), token);
         }
 
-        public bool IsDestroy(Side attacker)
-        {
-            return attacker switch
-            {
-                Side.Player => _enemyParameterEntity.isDead,
-                Side.Enemy => _playerParameterEntity.isDead,
-                _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE),
-            };
-        }
-
         public async UniTask ApplyDamageAsync(CancellationToken token)
         {
             // Damage Animation との調整

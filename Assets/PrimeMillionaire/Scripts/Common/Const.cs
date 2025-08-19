@@ -30,6 +30,7 @@ namespace PrimeMillionaire.Common
 
         public const string UNKNOWN_ERROR = "UNKNOWN_ERROR";
         public const string NOT_FOUND_BGM = "NOT_FOUND_BGM";
+        public const string NOT_FOUND_BATTLE_ANIMATION = "NOT_FOUND_BATTLE_ANIMATION";
         public const string NOT_FOUND_BONUS = "NOT_FOUND_BONUS";
         public const string NOT_FOUND_BUTTON = "NOT_FOUND_BUTTON";
         public const string NOT_FOUND_CARD = "NOT_FOUND_CARD";

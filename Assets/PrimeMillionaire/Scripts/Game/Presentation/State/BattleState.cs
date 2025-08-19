@@ -2,31 +2,30 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Game.Domain.UseCase;
-using PrimeMillionaire.Game.Presentation.View;
 
 namespace PrimeMillionaire.Game.Presentation.State
 {
     public sealed class BattleState : BaseState
     {
+        private readonly BattleAnimationUseCase _battleAnimationUseCase;
         private readonly BattlePtUseCase _battlePtUseCase;
         private readonly BattleUseCase _battleUseCase;
         private readonly DollarUseCase _dollarUseCase;
         private readonly DropUseCase _dropUseCase;
         private readonly EnemyCountUseCase _enemyCountUseCase;
         private readonly ParameterUseCase _parameterUseCase;
-        private readonly BattleView _battleView;
 
-        public BattleState(BattlePtUseCase battlePtUseCase, BattleUseCase battleUseCase, DollarUseCase dollarUseCase,
-            DropUseCase dropUseCase, EnemyCountUseCase enemyCountUseCase, ParameterUseCase parameterUseCase,
-            BattleView battleView)
+        public BattleState(BattleAnimationUseCase battleAnimationUseCase, BattlePtUseCase battlePtUseCase,
+            BattleUseCase battleUseCase, DollarUseCase dollarUseCase, DropUseCase dropUseCase,
+            EnemyCountUseCase enemyCountUseCase, ParameterUseCase parameterUseCase)
         {
+            _battleAnimationUseCase = battleAnimationUseCase;
             _battlePtUseCase = battlePtUseCase;
             _battleUseCase = battleUseCase;
             _dollarUseCase = dollarUseCase;
             _dropUseCase = dropUseCase;
             _enemyCountUseCase = enemyCountUseCase;
             _parameterUseCase = parameterUseCase;
-            _battleView = battleView;
         }
 
         public override GameState state => GameState.Battle;
@@ -40,15 +39,14 @@ namespace PrimeMillionaire.Game.Presentation.State
         {
             var attacker = _battlePtUseCase.GetAttacker();
             _battleUseCase.ApplyDamage(attacker);
-            await _battleView.PlayAttackAnimAsync(attacker, token);
+            await _battleAnimationUseCase.AttackAsync(attacker, token);
 
-            var isDestroy = _parameterUseCase.IsDestroy(attacker);
             await (
-                _battleView.PlayDamageAnimAsync(attacker, isDestroy, token),
+                _battleAnimationUseCase.DamageOrDeadAsync(attacker, token),
                 _parameterUseCase.ApplyDamageAsync(token)
             );
 
-            if (!isDestroy)
+            if (!_battleAnimationUseCase.IsDeath(attacker))
             {
                 await _battlePtUseCase.ResetAsync(token);
                 return GameState.Deal;
@@ -62,7 +60,7 @@ namespace PrimeMillionaire.Game.Presentation.State
 
                     await (
                         _battlePtUseCase.ResetAsync(token),
-                        _battleView.DestroyEnemyAsync(token)
+                        _battleAnimationUseCase.ExitAsync(Side.Enemy, token)
                     );
                     return GameState.Pick;
                 case Side.Enemy:

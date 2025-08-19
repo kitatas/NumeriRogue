@@ -47,4 +47,14 @@ namespace PrimeMillionaire.Game
         Rank = 1,
         Suit = 2,
     }
+
+    public enum BattleAnim
+    {
+        None = 0,
+        Entry = 1,
+        Exit = 2,
+        Attack = 3,
+        Hit = 4,
+        Death = 5,
+    }
 }

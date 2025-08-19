@@ -41,6 +41,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.Register<SkillRepository>(Lifetime.Scoped);
 
             // UseCase
+            builder.Register<BattleAnimationUseCase>(Lifetime.Scoped);
             builder.Register<BattlePtUseCase>(Lifetime.Scoped);
             builder.Register<BattleUseCase>(Lifetime.Scoped);
             builder.Register<BuffUseCase>(Lifetime.Scoped);
@@ -76,6 +77,7 @@ namespace PrimeMillionaire.Game.Installer
             // Presenter
             builder.UseEntryPoints(Lifetime.Scoped, entryPoints =>
             {
+                entryPoints.Add<BattlePresenter>();
                 entryPoints.Add<BattlePtPresenter>();
                 entryPoints.Add<BuffPresenter>();
                 entryPoints.Add<DollarPresenter>();

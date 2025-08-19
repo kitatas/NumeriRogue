@@ -118,6 +118,20 @@ namespace PrimeMillionaire.Game
         }
     }
 
+    public sealed class BattleAnimationVO : ICommand
+    {
+        public readonly Side side;
+        public readonly BattleAnim battleAnim;
+
+        public BattleAnimationVO(Side side, BattleAnim battleAnim)
+        {
+            if (side == Side.None) throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_FADE);
+            if (battleAnim == BattleAnim.None) throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_BATTLE_ANIMATION);
+            this.side = side;
+            this.battleAnim = battleAnim;
+        }
+    }
+
     public sealed class PickSkillVO : ICommand
     {
         public readonly int index;
