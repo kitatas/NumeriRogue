@@ -42,7 +42,7 @@ namespace PrimeMillionaire.Game.Presentation.State
             var enemy = _characterUseCase.LotEnemyCharacter();
             await (
                 _parameterUseCase.InitEnemyParamAsync(token),
-                _battleView.CreateEnemyAsync(enemy, token)
+                _battleView.CreateCharacterAsync(Side.Enemy, enemy, token)
             );
 
             return GameState.Deal;

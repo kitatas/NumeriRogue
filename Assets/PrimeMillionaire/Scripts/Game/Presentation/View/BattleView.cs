@@ -1,7 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
-using PrimeMillionaire.Common.Utility;
 using UniEx;
 using UnityEngine;
 
@@ -9,127 +8,58 @@ namespace PrimeMillionaire.Game.Presentation.View
 {
     public sealed class BattleView : MonoBehaviour
     {
-        [SerializeField] private Transform player = default;
-        [SerializeField] private Transform enemy = default;
+        [SerializeField] private CharacterSideView playerSideView = default;
+        [SerializeField] private CharacterSideView enemySideView = default;
         [SerializeField] private StageView stageView = default;
         [SerializeField] private DropView dropView = default;
-        [SerializeField] private EntryFxView playerEntryFxView = default;
-        [SerializeField] private EntryFxView enemyEntryFxView = default;
-        [SerializeField] private DamageFxView playerDamageFxView = default;
-        [SerializeField] private DamageFxView enemyDamageFxView = default;
-
-        private CharacterView _playerView;
-        private CharacterView _enemyView;
-
-        public async UniTask CreatePlayerAsync(CharacterVO character, CancellationToken token)
-        {
-            var playerObj = await ResourceHelper.LoadAsync<GameObject>(character.objPath, token);
-
-            playerEntryFxView.Entry(() =>
-            {
-                _playerView = Instantiate(playerObj, player.position, Quaternion.identity).GetComponent<CharacterView>();
-                _playerView.FlipX(Side.Player);
-            });
-        }
 
         public async UniTask RenderStageAsync(StageVO stage, CancellationToken token)
         {
             await stageView.LoadAsync(stage, token);
         }
 
-        public async UniTask CreateEnemyAsync(CharacterVO character, CancellationToken token)
+        public async UniTask CreateCharacterAsync(Side side, CharacterVO character, CancellationToken token)
         {
-            var enemyObj = await ResourceHelper.LoadAsync<GameObject>(character.objPath, token);
-
-            enemyEntryFxView.Entry(() =>
-            {
-                _enemyView = Instantiate(enemyObj, enemy.position, Quaternion.identity).GetComponent<CharacterView>();
-                _enemyView.FlipX(Side.Enemy);
-            });
+            await GetSideView(side).CreateCharacterAsync(side, character, token);
         }
 
         public async UniTask PlayAttackAnimAsync(Side attacker, CancellationToken token)
         {
-            var (attackerView, defenderView) = GetCharacterViews(attacker);
-            await attackerView.TweenPositionX(0.0f, CharacterConfig.MOVE_TIME)
-                .WithCancellation(token);
-
-            attackerView.Attack(true);
-            await UniTaskHelper.DelayAsync(attackerView.applyDamageTime, token);
-
-            attackerView.Attack(false);
+            await GetSideView(attacker).PlayAttackAnimAsync(token);
         }
 
-        public async UniTask PlayDamageAnimAsync(Side attacker, bool isDestroy, CancellationToken token)
+        public async UniTask PlayDamageAnimAsync(Side attacker, bool isDeath, CancellationToken token)
         {
-            var (attackerView, defenderView) = GetCharacterViews(attacker);
-
-            GetDamageFx(attacker).Play();
-
-            if (isDestroy)
+            var defender = attacker == Side.Player ? Side.Enemy : Side.Player;
+            await GetSideView(defender).PlayHitOrDeathAnimAsync(isDeath, x =>
             {
-                defenderView.Death(true);
                 if (attacker is Side.Player)
                 {
-                    this.Delay(defenderView.deadTime, () => dropView.Drop(enemy, 10, 0.25f));
+                    this.Delay(x.deadTime, () => dropView.Drop(x.transform, 10, 0.25f));
                 }
-            }
-            else
-            {
-                defenderView.Hit(true);
-                this.DelayFrame(1, () => defenderView.Hit(false));
-            }
+            }, token);
 
-            await UniTaskHelper.DelayAsync(1.5f, token);
-
-            var x = GetTransform(attacker).localPosition.x;
-            await attackerView.TweenPositionX(x, CharacterConfig.MOVE_TIME)
-                .WithCancellation(token);
+            await GetSideView(attacker).TweenInitPositionAsync(token);
         }
 
-        private (CharacterView attackerView, CharacterView defenderView) GetCharacterViews(Side attacker)
+        public async UniTask DestroyCharacterAsync(Side side, CancellationToken token)
         {
-            return attacker switch
-            {
-                Side.Player => (attackerView: _playerView, defenderView: _enemyView),
-                Side.Enemy => (attackerView: _enemyView, defenderView: _playerView),
-                _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE),
-            };
-        }
-
-        private Transform GetTransform(Side side)
-        {
-            return side switch
-            {
-                Side.Player => player,
-                Side.Enemy => enemy,
-                _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE),
-            };
-        }
-
-        private DamageFxView GetDamageFx(Side attacker)
-        {
-            return attacker switch
-            {
-                Side.Player => enemyDamageFxView,
-                Side.Enemy => playerDamageFxView,
-                _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE),
-            };
-        }
-
-        public async UniTask DestroyEnemyAsync(CancellationToken token)
-        {
-            enemyEntryFxView.Exit(() =>
-            {
-                Destroy(_enemyView.gameObject);
-            });
-            await UniTaskHelper.DelayAsync(2.0f, token);
+            await GetSideView(side).DestroyCharacterAsync(token);
         }
 
         public void PlayBuff(BuffVO buff)
         {
-            var fx = Instantiate(buff.fxObject, GetTransform(buff.side));
-            Destroy(fx, 3.0f);
+            GetSideView(buff.side).PlayBuffFx(buff);
+        }
+
+        private CharacterSideView GetSideView(Side side)
+        {
+            return side switch
+            {
+                Side.Player => playerSideView,
+                Side.Enemy => enemySideView,
+                _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE),
+            };
         }
     }
 }

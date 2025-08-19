@@ -25,7 +25,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
                         case BattleAnim.Entry:
                             break;
                         case BattleAnim.Exit:
-                            if (x.side == Side.Enemy) await _battleView.DestroyEnemyAsync(context.CancellationToken);
+                            await _battleView.DestroyCharacterAsync(x.side, context.CancellationToken);
                             break;
                         case BattleAnim.Attack:
                             await _battleView.PlayAttackAnimAsync(x.side, context.CancellationToken);

@@ -69,12 +69,12 @@ namespace PrimeMillionaire.Game.Presentation.State
 
             await (
                 _parameterUseCase.PublishPlayerParamAsync(token),
-                _battleView.CreatePlayerAsync(player, token),
+                _battleView.CreateCharacterAsync(Side.Player, player, token),
                 _battleView.RenderStageAsync(stage, token),
                 _orderUseCase.PublishCommunityBattlePtAsync(token),
                 _holdSkillUseCase.UpdateAsync(token),
                 _parameterUseCase.PublishEnemyParamAsync(token),
-                _battleView.CreateEnemyAsync(enemy, token),
+                _battleView.CreateCharacterAsync(Side.Enemy, enemy, token),
                 _tableView.SetUpAsync(0.0f, token)
             );
 

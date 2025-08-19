@@ -46,7 +46,7 @@ namespace PrimeMillionaire.Game.Presentation.State
             _loadingUseCase.Set(false);
             await UniTaskHelper.DelayAsync(1.0f, token);
 
-            await _battleView.CreatePlayerAsync(player, token);
+            await _battleView.CreateCharacterAsync(Side.Player, player, token);
             await UniTaskHelper.DelayAsync(0.5f, token);
 
             return GameState.SetUp;
