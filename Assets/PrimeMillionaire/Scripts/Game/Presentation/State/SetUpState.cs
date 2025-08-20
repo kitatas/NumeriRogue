@@ -1,29 +1,28 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Game.Domain.UseCase;
-using PrimeMillionaire.Game.Presentation.View;
 
 namespace PrimeMillionaire.Game.Presentation.State
 {
     public sealed class SetUpState : BaseState
     {
+        private readonly BattleAnimationUseCase _battleAnimationUseCase;
         private readonly CharacterUseCase _characterUseCase;
         private readonly EnemyCountUseCase _enemyCountUseCase;
         private readonly LevelUseCase _levelUseCase;
         private readonly ParameterUseCase _parameterUseCase;
         private readonly TurnUseCase _turnUseCase;
-        private readonly BattleView _battleView;
 
-        public SetUpState(CharacterUseCase characterUseCase, EnemyCountUseCase enemyCountUseCase,
-            LevelUseCase levelUseCase, ParameterUseCase parameterUseCase, TurnUseCase turnUseCase,
-            BattleView battleView)
+        public SetUpState(BattleAnimationUseCase battleAnimationUseCase, CharacterUseCase characterUseCase,
+            EnemyCountUseCase enemyCountUseCase, LevelUseCase levelUseCase, ParameterUseCase parameterUseCase,
+            TurnUseCase turnUseCase)
         {
+            _battleAnimationUseCase = battleAnimationUseCase;
             _characterUseCase = characterUseCase;
             _enemyCountUseCase = enemyCountUseCase;
             _levelUseCase = levelUseCase;
             _parameterUseCase = parameterUseCase;
             _turnUseCase = turnUseCase;
-            _battleView = battleView;
         }
 
         public override GameState state => GameState.SetUp;
@@ -42,7 +41,7 @@ namespace PrimeMillionaire.Game.Presentation.State
             var enemy = _characterUseCase.LotEnemyCharacter();
             await (
                 _parameterUseCase.InitEnemyParamAsync(token),
-                _battleView.CreateCharacterAsync(Side.Enemy, enemy, token)
+                _battleAnimationUseCase.EntryAsync(Side.Enemy, enemy, token)
             );
 
             return GameState.Deal;
