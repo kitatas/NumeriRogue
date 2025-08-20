@@ -1,8 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using PrimeMillionaire.Common;
 using PrimeMillionaire.Game.Domain.UseCase;
-using PrimeMillionaire.Game.Presentation.View;
 
 namespace PrimeMillionaire.Game.Presentation.State
 {
@@ -12,16 +10,14 @@ namespace PrimeMillionaire.Game.Presentation.State
         private readonly HandUseCase _handUseCase;
         private readonly InterruptUseCase _interruptUseCase;
         private readonly TurnUseCase _turnUseCase;
-        private readonly TableView _tableView;
 
         public DealState(DealUseCase dealUseCase, HandUseCase handUseCase, InterruptUseCase interruptUseCase,
-            TurnUseCase turnUseCase, TableView tableView)
+            TurnUseCase turnUseCase)
         {
             _dealUseCase = dealUseCase;
             _handUseCase = handUseCase;
             _interruptUseCase = interruptUseCase;
             _turnUseCase = turnUseCase;
-            _tableView = tableView;
         }
 
         public override GameState state => GameState.Deal;
@@ -35,10 +31,7 @@ namespace PrimeMillionaire.Game.Presentation.State
         {
             _turnUseCase.Increment();
             _dealUseCase.SetUp();
-
-            await UniTask.WhenAll(
-                HandConfig.ALL_SIDE.Select(x => _tableView.RenderHandsAsync(x, _handUseCase.GetHands(x), token))
-            );
+            await _handUseCase.DealAsync(token);
 
             _interruptUseCase.Save();
 

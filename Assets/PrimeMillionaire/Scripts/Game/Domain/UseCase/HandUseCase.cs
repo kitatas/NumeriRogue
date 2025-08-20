@@ -29,13 +29,17 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _sortEntity.Switch();
 
             await UniTask.WhenAll(
-                HandConfig.ALL_SIDE.Select(x => PublishSortHandAsync(x, token))
+                HandConfig.ALL_SIDE
+                    .Select(x => Router.Default.PublishAsync(new SortHandVO(x, GetHands(x)), token).AsUniTask())
             );
         }
 
-        private UniTask PublishSortHandAsync(Side side, CancellationToken token)
+        public async UniTask DealAsync(CancellationToken token)
         {
-            return Router.Default.PublishAsync(new SortHandVO(side, GetHands(side)), token).AsUniTask();
+            await UniTask.WhenAll(
+                HandConfig.ALL_SIDE
+                    .Select(x => Router.Default.PublishAsync(new DealHandVO(x, GetHands(x)), token).AsUniTask())
+            );
         }
 
         public List<HandVO> GetHands(Side side)

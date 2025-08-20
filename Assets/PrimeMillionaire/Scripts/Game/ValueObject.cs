@@ -41,6 +41,18 @@ namespace PrimeMillionaire.Game
         }
     }
 
+    public sealed class DealHandVO : ICommand
+    {
+        public readonly Side side;
+        public readonly List<HandVO> hands;
+
+        public DealHandVO(Side side, List<HandVO> hands)
+        {
+            this.side = side;
+            this.hands = hands;
+        }
+    }
+
     public sealed class SortHandVO : ICommand
     {
         public readonly Side side;
