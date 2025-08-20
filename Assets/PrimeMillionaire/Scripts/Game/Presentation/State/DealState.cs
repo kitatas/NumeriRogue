@@ -34,9 +34,7 @@ namespace PrimeMillionaire.Game.Presentation.State
         public override async UniTask<GameState> TickAsync(CancellationToken token)
         {
             _turnUseCase.Increment();
-
             _dealUseCase.SetUp();
-            await _tableView.SetUpAsync(UiConfig.TWEEN_DURATION, token);
 
             await UniTask.WhenAll(
                 HandConfig.ALL_SIDE.Select(x => _tableView.RenderHandsAsync(x, _handUseCase.GetHands(x), token))

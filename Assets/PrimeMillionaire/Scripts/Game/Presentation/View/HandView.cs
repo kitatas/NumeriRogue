@@ -17,6 +17,8 @@ namespace PrimeMillionaire.Game.Presentation.View
 
         public async UniTask DealAsync(List<HandVO> hands, Transform deck, float duration, CancellationToken token)
         {
+            _cardViews.Clear();
+
             for (int i = 0; i < hands.Count; i++)
             {
                 var cardView = cards[i];
@@ -60,23 +62,6 @@ namespace PrimeMillionaire.Game.Presentation.View
             }
 
             await UniTaskHelper.DelayAsync(duration, token);
-        }
-
-        public async UniTask HideAsync(float duration, CancellationToken token)
-        {
-            if (_cardViews.Count <= 0) return;
-
-            for (int i = 0; i < _cardViews.Count; i++)
-            {
-                _cardViews[i].TweenX(-1300.0f, duration)
-                    .SetDelay(0.05f * i)
-                    .WithCancellation(token)
-                    .Forget();
-            }
-
-            await UniTaskHelper.DelayAsync(duration + 0.5f, token);
-
-            _cardViews.Clear();
         }
 
         public async UniTask<(int index, int count)> OrderAsync(CancellationToken token)

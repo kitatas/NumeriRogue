@@ -16,14 +16,6 @@ namespace PrimeMillionaire.Game.Presentation.View
         [SerializeField] private CommonButtonView sortButtonView = default;
         [SerializeField] private Transform deck = default;
 
-        public async UniTask SetUpAsync(float duration, CancellationToken token)
-        {
-            await (
-                playerHandView.HideAsync(duration, token),
-                enemyHandView.HideAsync(duration, token)
-            );
-        }
-
         public async UniTask RenderHandsAsync(Side side, List<HandVO> hands, CancellationToken token)
         {
             if (side == Side.Enemy)

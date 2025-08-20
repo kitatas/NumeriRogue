@@ -75,8 +75,7 @@ namespace PrimeMillionaire.Game.Presentation.State
                 _orderUseCase.PublishCommunityBattlePtAsync(token),
                 _holdSkillUseCase.UpdateAsync(token),
                 _parameterUseCase.PublishEnemyParamAsync(token),
-                _battleView.CreateCharacterAsync(Side.Enemy, enemy, token),
-                _tableView.SetUpAsync(0.0f, token)
+                _battleView.CreateCharacterAsync(Side.Enemy, enemy, token)
             );
 
             await UniTask.WhenAll(
