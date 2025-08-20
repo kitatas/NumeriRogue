@@ -177,7 +177,7 @@ namespace PrimeMillionaire.Common
         }
     }
 
-    public sealed class StageVO
+    public sealed class StageVO : ICommand
     {
         public readonly StageType type;
         public readonly string name;

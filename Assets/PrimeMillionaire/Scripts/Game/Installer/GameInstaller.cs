@@ -59,6 +59,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.Register<ParameterUseCase>(Lifetime.Scoped);
             builder.Register<PickSkillUseCase>(Lifetime.Scoped);
             builder.Register<ProgressUseCase>(Lifetime.Scoped);
+            builder.Register<StageUseCase>(Lifetime.Scoped);
             builder.Register<StateUseCase>(Lifetime.Scoped);
             builder.Register<TurnUseCase>(Lifetime.Scoped);
 
@@ -90,6 +91,7 @@ namespace PrimeMillionaire.Game.Installer
                 entryPoints.Add<ParameterPresenter>();
                 entryPoints.Add<PickSkillPresenter>();
                 entryPoints.Add<SortPresenter>();
+                entryPoints.Add<StagePresenter>();
                 entryPoints.Add<StatePresenter>();
                 entryPoints.Add<TurnPresenter>();
                 entryPoints.Add<VolumePresenter>();

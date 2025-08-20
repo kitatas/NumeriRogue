@@ -10,25 +10,18 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         private readonly PlayerCharacterEntity _playerCharacterEntity;
         private readonly EnemyCharacterEntity _enemyCharacterEntity;
         private readonly CharacterRepository _characterRepository;
-        private readonly CharacterStageRepository _characterStageRepository;
 
         public CharacterUseCase(PlayerCharacterEntity playerCharacterEntity, EnemyCharacterEntity enemyCharacterEntity,
-            CharacterRepository characterRepository, CharacterStageRepository characterStageRepository)
+            CharacterRepository characterRepository)
         {
             _playerCharacterEntity = playerCharacterEntity;
             _enemyCharacterEntity = enemyCharacterEntity;
             _characterRepository = characterRepository;
-            _characterStageRepository = characterStageRepository;
         }
 
         public CharacterVO GetCharacter(Side side)
         {
             return _characterRepository.Find(GetCharacterType(side));
-        }
-
-        public StageVO GetStage()
-        {
-            return _characterStageRepository.GetStage(GetCharacterType(Side.Player));
         }
 
         public CharacterVO LotEnemyCharacter()

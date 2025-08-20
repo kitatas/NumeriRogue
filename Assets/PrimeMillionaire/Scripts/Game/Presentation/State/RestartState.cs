@@ -20,6 +20,7 @@ namespace PrimeMillionaire.Game.Presentation.State
         private readonly HoldSkillUseCase _holdSkillUseCase;
         private readonly OrderUseCase _orderUseCase;
         private readonly ParameterUseCase _parameterUseCase;
+        private readonly StageUseCase _stageUseCase;
         private readonly TurnUseCase _turnUseCase;
         private readonly BattleView _battleView;
         private readonly TableView _tableView;
@@ -28,7 +29,7 @@ namespace PrimeMillionaire.Game.Presentation.State
             CharacterUseCase characterUseCase, DealUseCase dealUseCase, DollarUseCase dollarUseCase,
             EnemyCountUseCase enemyCountUseCase, LevelUseCase levelUseCase, HandUseCase handUseCase,
             HoldSkillUseCase holdSkillUseCase, OrderUseCase orderUseCase, ParameterUseCase parameterUseCase,
-            TurnUseCase turnUseCase, BattleView battleView, TableView tableView)
+            StageUseCase stageUseCase, TurnUseCase turnUseCase, BattleView battleView, TableView tableView)
         {
             _interruptUseCase = interruptUseCase;
             _loadingUseCase = loadingUseCase;
@@ -41,6 +42,7 @@ namespace PrimeMillionaire.Game.Presentation.State
             _holdSkillUseCase = holdSkillUseCase;
             _orderUseCase = orderUseCase;
             _parameterUseCase = parameterUseCase;
+            _stageUseCase = stageUseCase;
             _turnUseCase = turnUseCase;
             _battleView = battleView;
             _tableView = tableView;
@@ -58,7 +60,6 @@ namespace PrimeMillionaire.Game.Presentation.State
             _interruptUseCase.Load();
 
             var player = _characterUseCase.GetCharacter(Side.Player);
-            var stage = _characterUseCase.GetStage();
             var enemy = _characterUseCase.GetCharacter(Side.Enemy);
 
             _enemyCountUseCase.Update();
@@ -70,7 +71,7 @@ namespace PrimeMillionaire.Game.Presentation.State
             await (
                 _parameterUseCase.PublishPlayerParamAsync(token),
                 _battleView.CreateCharacterAsync(Side.Player, player, token),
-                _battleView.RenderStageAsync(stage, token),
+                _stageUseCase.PublishStageAsync(token),
                 _orderUseCase.PublishCommunityBattlePtAsync(token),
                 _holdSkillUseCase.UpdateAsync(token),
                 _parameterUseCase.PublishEnemyParamAsync(token),

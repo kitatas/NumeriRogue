@@ -13,15 +13,17 @@ namespace PrimeMillionaire.Game.Presentation.State
         private readonly DealUseCase _dealUseCase;
         private readonly LoadingUseCase _loadingUseCase;
         private readonly ParameterUseCase _parameterUseCase;
+        private readonly StageUseCase _stageUseCase;
         private readonly BattleView _battleView;
 
         public InitState(CharacterUseCase characterUseCase, DealUseCase dealUseCase, LoadingUseCase loadingUseCase,
-            ParameterUseCase parameterUseCase, BattleView battleView)
+            ParameterUseCase parameterUseCase, StageUseCase stageUseCase, BattleView battleView)
         {
             _characterUseCase = characterUseCase;
             _dealUseCase = dealUseCase;
             _loadingUseCase = loadingUseCase;
             _parameterUseCase = parameterUseCase;
+            _stageUseCase = stageUseCase;
             _battleView = battleView;
         }
 
@@ -37,10 +39,9 @@ namespace PrimeMillionaire.Game.Presentation.State
             _dealUseCase.Init();
 
             var player = _characterUseCase.GetCharacter(Side.Player);
-            var stage = _characterUseCase.GetStage();
             await (
                 _parameterUseCase.InitPlayerParamAsync(token),
-                _battleView.RenderStageAsync(stage, token)
+                _stageUseCase.PublishStageAsync(token)
             );
 
             _loadingUseCase.Set(false);
