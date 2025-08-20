@@ -2,7 +2,6 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common.Domain.UseCase;
 using PrimeMillionaire.Game.Domain.UseCase;
-using PrimeMillionaire.Game.Presentation.View;
 
 namespace PrimeMillionaire.Game.Presentation.State
 {
@@ -11,6 +10,7 @@ namespace PrimeMillionaire.Game.Presentation.State
         private readonly InterruptUseCase _interruptUseCase;
         private readonly LoadingUseCase _loadingUseCase;
 
+        private readonly BattleAnimationUseCase _battleAnimationUseCase;
         private readonly CharacterUseCase _characterUseCase;
         private readonly DealUseCase _dealUseCase;
         private readonly DollarUseCase _dollarUseCase;
@@ -22,17 +22,16 @@ namespace PrimeMillionaire.Game.Presentation.State
         private readonly ParameterUseCase _parameterUseCase;
         private readonly StageUseCase _stageUseCase;
         private readonly TurnUseCase _turnUseCase;
-        private readonly BattleView _battleView;
-        private readonly TableView _tableView;
 
         public RestartState(InterruptUseCase interruptUseCase, LoadingUseCase loadingUseCase,
-            CharacterUseCase characterUseCase, DealUseCase dealUseCase, DollarUseCase dollarUseCase,
-            EnemyCountUseCase enemyCountUseCase, LevelUseCase levelUseCase, HandUseCase handUseCase,
-            HoldSkillUseCase holdSkillUseCase, OrderUseCase orderUseCase, ParameterUseCase parameterUseCase,
-            StageUseCase stageUseCase, TurnUseCase turnUseCase, BattleView battleView, TableView tableView)
+            BattleAnimationUseCase battleAnimationUseCase, CharacterUseCase characterUseCase, DealUseCase dealUseCase,
+            DollarUseCase dollarUseCase, EnemyCountUseCase enemyCountUseCase, LevelUseCase levelUseCase,
+            HandUseCase handUseCase, HoldSkillUseCase holdSkillUseCase, OrderUseCase orderUseCase,
+            ParameterUseCase parameterUseCase, StageUseCase stageUseCase, TurnUseCase turnUseCase)
         {
             _interruptUseCase = interruptUseCase;
             _loadingUseCase = loadingUseCase;
+            _battleAnimationUseCase = battleAnimationUseCase;
             _characterUseCase = characterUseCase;
             _dealUseCase = dealUseCase;
             _dollarUseCase = dollarUseCase;
@@ -44,8 +43,6 @@ namespace PrimeMillionaire.Game.Presentation.State
             _parameterUseCase = parameterUseCase;
             _stageUseCase = stageUseCase;
             _turnUseCase = turnUseCase;
-            _battleView = battleView;
-            _tableView = tableView;
         }
 
         public override GameState state => GameState.Restart;
@@ -69,18 +66,16 @@ namespace PrimeMillionaire.Game.Presentation.State
             _dealUseCase.SetUpHands();
 
             await (
-                _parameterUseCase.PublishPlayerParamAsync(token),
-                _battleView.CreateCharacterAsync(Side.Player, player, token),
-                _stageUseCase.PublishStageAsync(token),
-                _orderUseCase.PublishCommunityBattlePtAsync(token),
+                _battleAnimationUseCase.EntryAsync(Side.Player, player, token),
+                _battleAnimationUseCase.EntryAsync(Side.Enemy, enemy, token),
                 _holdSkillUseCase.UpdateAsync(token),
+                _orderUseCase.PublishCommunityBattlePtAsync(token),
+                _parameterUseCase.PublishPlayerParamAsync(token),
                 _parameterUseCase.PublishEnemyParamAsync(token),
-                _battleView.CreateCharacterAsync(Side.Enemy, enemy, token)
+                _stageUseCase.PublishStageAsync(token)
             );
 
-            await UniTask.WhenAll(
-                HandConfig.ALL_SIDE.Select(x => _tableView.RenderHandsAsync(x, _handUseCase.GetHands(x), token))
-            );
+            await _handUseCase.DealAsync(token);
 
             _loadingUseCase.Set(false);
 
