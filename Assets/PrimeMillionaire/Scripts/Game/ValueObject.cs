@@ -122,6 +122,7 @@ namespace PrimeMillionaire.Game
     {
         public readonly Side side;
         public readonly BattleAnim battleAnim;
+        public readonly CharacterVO character;
 
         public BattleAnimationVO(Side side, BattleAnim battleAnim)
         {
@@ -129,6 +130,15 @@ namespace PrimeMillionaire.Game
             if (battleAnim == BattleAnim.None) throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_BATTLE_ANIMATION);
             this.side = side;
             this.battleAnim = battleAnim;
+            this.character = null;
+        }
+
+        public BattleAnimationVO(Side side, CharacterVO character)
+        {
+            if (character.type == CharacterType.None) throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_CHARACTER);
+            this.side = side;
+            this.battleAnim = BattleAnim.Entry;
+            this.character = character;
         }
     }
 

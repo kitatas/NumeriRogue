@@ -18,6 +18,11 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _playerParameterEntity = playerParameterEntity;
         }
 
+        public async UniTask EntryAsync(Side side, CharacterVO character, CancellationToken token)
+        {
+            await PlayAnimationAsync(side, character, token);
+        }
+
         public async UniTask ExitAsync(Side side, CancellationToken token)
         {
             await PlayAnimationAsync(side, BattleAnim.Exit, token);
@@ -44,9 +49,19 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             };
         }
 
+        private static async UniTask PlayAnimationAsync(Side side, CharacterVO character, CancellationToken token)
+        {
+            await PlayAnimationAsync(new BattleAnimationVO(side, character), token);
+        }
+
         private static async UniTask PlayAnimationAsync(Side side, BattleAnim battleAnim, CancellationToken token)
         {
-            await Router.Default.PublishAsync(new BattleAnimationVO(side, battleAnim), token);
+            await PlayAnimationAsync(new BattleAnimationVO(side, battleAnim), token);
+        }
+
+        private static async UniTask PlayAnimationAsync(BattleAnimationVO battleAnimation, CancellationToken token)
+        {
+            await Router.Default.PublishAsync(battleAnimation, token);
         }
     }
 }

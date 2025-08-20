@@ -23,6 +23,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
                     switch (x.battleAnim)
                     {
                         case BattleAnim.Entry:
+                            await _battleView.CreateCharacterAsync(x.side, x.character, context.CancellationToken);
                             break;
                         case BattleAnim.Exit:
                             await _battleView.DestroyCharacterAsync(x.side, context.CancellationToken);

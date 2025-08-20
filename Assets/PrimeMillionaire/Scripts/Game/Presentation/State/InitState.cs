@@ -3,28 +3,28 @@ using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common.Domain.UseCase;
 using PrimeMillionaire.Common.Utility;
 using PrimeMillionaire.Game.Domain.UseCase;
-using PrimeMillionaire.Game.Presentation.View;
 
 namespace PrimeMillionaire.Game.Presentation.State
 {
     public sealed class InitState : BaseState
     {
+        private readonly BattleAnimationUseCase _battleAnimationUseCase;
         private readonly CharacterUseCase _characterUseCase;
         private readonly DealUseCase _dealUseCase;
         private readonly LoadingUseCase _loadingUseCase;
         private readonly ParameterUseCase _parameterUseCase;
         private readonly StageUseCase _stageUseCase;
-        private readonly BattleView _battleView;
 
-        public InitState(CharacterUseCase characterUseCase, DealUseCase dealUseCase, LoadingUseCase loadingUseCase,
-            ParameterUseCase parameterUseCase, StageUseCase stageUseCase, BattleView battleView)
+        public InitState(BattleAnimationUseCase battleAnimationUseCase, CharacterUseCase characterUseCase,
+            DealUseCase dealUseCase, LoadingUseCase loadingUseCase, ParameterUseCase parameterUseCase,
+            StageUseCase stageUseCase)
         {
+            _battleAnimationUseCase = battleAnimationUseCase;
             _characterUseCase = characterUseCase;
             _dealUseCase = dealUseCase;
             _loadingUseCase = loadingUseCase;
             _parameterUseCase = parameterUseCase;
             _stageUseCase = stageUseCase;
-            _battleView = battleView;
         }
 
         public override GameState state => GameState.Init;
@@ -38,7 +38,6 @@ namespace PrimeMillionaire.Game.Presentation.State
         {
             _dealUseCase.Init();
 
-            var player = _characterUseCase.GetCharacter(Side.Player);
             await (
                 _parameterUseCase.InitPlayerParamAsync(token),
                 _stageUseCase.PublishStageAsync(token)
@@ -47,7 +46,8 @@ namespace PrimeMillionaire.Game.Presentation.State
             _loadingUseCase.Set(false);
             await UniTaskHelper.DelayAsync(1.0f, token);
 
-            await _battleView.CreateCharacterAsync(Side.Player, player, token);
+            var player = _characterUseCase.GetCharacter(Side.Player);
+            await _battleAnimationUseCase.EntryAsync(Side.Player, player, token);
             await UniTaskHelper.DelayAsync(0.5f, token);
 
             return GameState.SetUp;
