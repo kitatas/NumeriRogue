@@ -65,19 +65,38 @@ namespace PrimeMillionaire.Game
         }
     }
 
-    public sealed class OrderVO
+    public sealed class OrderVO : ICommand
     {
+        public readonly Side side;
+        public readonly int orderIndex;
+        public readonly int handIndex;
         public readonly CardVO card;
 
-        public OrderVO()
+        public OrderVO(Side side, int orderIndex)
         {
-            card = null;
+            this.side = side;
+            this.orderIndex = orderIndex;
+            this.handIndex = -1;
+            this.card = null;
         }
 
-        public OrderVO(CardVO card)
+        public OrderVO(Side side, int orderIndex, int handIndex)
         {
+            this.side = side;
+            this.orderIndex = orderIndex;
+            this.handIndex = handIndex;
+            this.card = null;
+        }
+
+        public OrderVO(Side side, int orderIndex, int handIndex, CardVO card)
+        {
+            this.side = side;
+            this.orderIndex = orderIndex;
+            this.handIndex = handIndex;
             this.card = card;
         }
+
+        public int no => orderIndex + 1;
     }
 
     public sealed class OrderValueVO : ICommand

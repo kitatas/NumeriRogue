@@ -1,6 +1,4 @@
-using ObservableCollections;
 using PrimeMillionaire.Common;
-using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.View;
 using R3;
 using VContainer.Unity;
@@ -10,22 +8,26 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
 {
     public sealed class OrderPresenter : IStartable
     {
-        private readonly OrderUseCase _orderUseCase;
         private readonly OrderView _orderView;
+        private readonly TableView _tableView;
 
-        public OrderPresenter(OrderUseCase orderUseCase, OrderView orderView)
+        public OrderPresenter(OrderView orderView, TableView tableView)
         {
-            _orderUseCase = orderUseCase;
             _orderView = orderView;
+            _tableView = tableView;
         }
 
         public void Start()
         {
-            _orderUseCase.orders
-                .ObserveReplace()
-                .SubscribeAwait(async (x, token) =>
+            Router.Default
+                .SubscribeAwait<OrderVO>(async (x, context) =>
                 {
-                    await _orderView.RenderAsync(x.Index, x.NewValue.card, token);
+                    await _orderView.RenderAsync(x.orderIndex, x.card, context.CancellationToken);
+
+                    if (x.side != Side.None)
+                    {
+                        await _tableView.RenderOrderNo(x.side, x.handIndex, x.no, context.CancellationToken);
+                    }
                 })
                 .AddTo(_orderView);
 

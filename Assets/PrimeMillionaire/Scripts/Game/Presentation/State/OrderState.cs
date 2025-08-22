@@ -50,8 +50,7 @@ namespace PrimeMillionaire.Game.Presentation.State
             {
                 var (index, count) = await _tableView.OrderPlayerHandsAsync(token);
                 var card = _handUseCase.GetCard(Side.Player, index);
-                var orderNo = _orderUseCase.Set(card);
-                await _tableView.RenderOrderNo(Side.Player, index, orderNo, token);
+                await _orderUseCase.SetAsync(Side.Player, index, card, token);
 
                 if (count == HandConfig.ORDER_NUM) break;
             }
@@ -75,9 +74,8 @@ namespace PrimeMillionaire.Game.Presentation.State
             foreach (var index in enemyOrder.index)
             {
                 var card = _handUseCase.GetCard(Side.Enemy, index);
-                var orderNo = _orderUseCase.Set(card);
+                await _orderUseCase.SetAsync(Side.Enemy, index, card, token);
                 await _tableView.OrderHandsAsync(Side.Enemy, index, token);
-                await _tableView.RenderOrderNo(Side.Enemy, index, orderNo, token);
             }
 
             await RemoveCardsAsync(Side.Enemy, token);

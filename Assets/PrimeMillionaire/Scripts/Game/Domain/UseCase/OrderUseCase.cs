@@ -2,7 +2,6 @@ using System.Linq;
 using System.Threading;
 using Cysharp.Text;
 using Cysharp.Threading.Tasks;
-using ObservableCollections;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Utility;
 using PrimeMillionaire.Game.Data.Entity;
@@ -19,7 +18,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         private readonly BuffEntity _buffEntity;
         private readonly CommunityBattlePtEntity _communityBattlePtEntity;
         private readonly NumericRepository _numericRepository;
-        private readonly ObservableList<OrderVO> _orders;
+        private readonly OrderVO[] _orders;
 
         public OrderUseCase(BonusEntity bonusEntity, BuffEntity buffEntity,
             CommunityBattlePtEntity communityBattlePtEntity, NumericRepository numericRepository)
@@ -28,17 +27,17 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _buffEntity = buffEntity;
             _communityBattlePtEntity = communityBattlePtEntity;
             _numericRepository = numericRepository;
-            _orders = new ObservableList<OrderVO>(HandConfig.ORDER_NUM)
+            _orders = new OrderVO[]
             {
-                new(),
-                new(),
-                new(),
+                new(Side.None, 0),
+                new(Side.None, 1),
+                new(Side.None, 2),
             };
         }
 
-        public ObservableList<OrderVO> orders => _orders;
+        public OrderVO[] orders => _orders;
 
-        public int Set(CardVO card)
+        public async UniTask SetAsync(Side side, int handIndex, CardVO card, CancellationToken token)
         {
             var orderList = _orders.ToList();
             var o = orderList.Find(x => x.card == card);
@@ -46,26 +45,32 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             {
                 // 選択
                 var i = orderList.IndexOf(orderList.Find(x => x.card == null));
-                _orders[i] = new OrderVO(card);
-                return i + 1;
+                _orders[i] = new OrderVO(side, i, handIndex, card);
+                await PublishOrderAsync(i, token);
             }
             else
             {
                 // 選択解除
                 var i = orderList.IndexOf(o);
-                _orders[i] = new OrderVO();
-                return i + 1;
+                _orders[i] = new OrderVO(side, i, handIndex);
+                await PublishOrderAsync(i, token);
             }
         }
 
         public async UniTask RefreshAsync(CancellationToken token)
         {
-            for (int i = 0; i < _orders.Count; i++)
+            for (int i = 0; i < _orders.Length; i++)
             {
-                _orders[i] = new OrderVO();
+                _orders[i] = new OrderVO(Side.None, i);
+                await PublishOrderAsync(i, token);
             }
 
             await UniTaskHelper.DelayAsync(1.0f, token);
+        }
+
+        private async UniTask PublishOrderAsync(int index, CancellationToken token)
+        {
+            await Router.Default.PublishAsync(_orders[index], token);
         }
 
         public int currentValue => _orders.Any(x => x.card == null)
