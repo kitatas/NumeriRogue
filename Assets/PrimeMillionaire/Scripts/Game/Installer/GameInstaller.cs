@@ -50,6 +50,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.Register<DollarUseCase>(Lifetime.Scoped);
             builder.Register<DropUseCase>(Lifetime.Scoped);
             builder.Register<EnemyCountUseCase>(Lifetime.Scoped);
+            builder.Register<FinishUseCase>(Lifetime.Scoped);
             builder.Register<LevelUseCase>(Lifetime.Scoped);
             builder.Register<HandUseCase>(Lifetime.Scoped);
             builder.Register<HoldSkillUseCase>(Lifetime.Scoped);
@@ -83,6 +84,7 @@ namespace PrimeMillionaire.Game.Installer
                 entryPoints.Add<BuffPresenter>();
                 entryPoints.Add<DollarPresenter>();
                 entryPoints.Add<EnemyCountPresenter>();
+                entryPoints.Add<FinishPresenter>();
                 entryPoints.Add<GiveUpPresenter>();
                 entryPoints.Add<HandPresenter>();
                 entryPoints.Add<LevelPresenter>();
@@ -107,6 +109,7 @@ namespace PrimeMillionaire.Game.Installer
             builder.RegisterComponentInHierarchy<EnemyCountView>();
             builder.RegisterComponentInHierarchy<EnemyParameterView>();
             builder.RegisterComponentInHierarchy<FailView>();
+            builder.RegisterComponentInHierarchy<FinishView>();
             builder.RegisterComponentInHierarchy<GiveUpView>();
             builder.RegisterComponentInHierarchy<HoldSkillView>();
             builder.RegisterComponentInHierarchy<OrderView>();

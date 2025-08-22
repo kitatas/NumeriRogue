@@ -36,6 +36,7 @@ namespace PrimeMillionaire.Common
         public const string NOT_FOUND_CARD = "NOT_FOUND_CARD";
         public const string NOT_FOUND_CHARACTER = "NOT_FOUND_CHARACTER";
         public const string NOT_FOUND_FADE = "NOT_FOUND_FADE";
+        public const string NOT_FOUND_FINISH = "NOT_FOUND_FINISH";
         public const string NOT_FOUND_FX = "NOT_FOUND_FX";
         public const string NOT_FOUND_LOAD = "NOT_FOUND_LOAD";
         public const string NOT_FOUND_MODAL = "NOT_FOUND_MODAL";

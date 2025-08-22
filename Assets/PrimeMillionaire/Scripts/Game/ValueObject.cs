@@ -166,6 +166,17 @@ namespace PrimeMillionaire.Game
         }
     }
 
+    public sealed class FinishVO : ICommand
+    {
+        public readonly FinishType type;
+
+        public FinishVO(FinishType type)
+        {
+            if (type == FinishType.None) throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_FINISH);
+            this.type = type;
+        }
+    }
+
     public sealed class ModalVO : BaseModalVO<ModalType>
     {
         public ModalVO(ModalType type, bool isActivate) : base(type, isActivate)

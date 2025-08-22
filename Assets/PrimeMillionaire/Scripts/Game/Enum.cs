@@ -15,6 +15,13 @@ namespace PrimeMillionaire.Game
         Restart = 10,
     }
 
+    public enum FinishType
+    {
+        None = 0,
+        Clear = 1,
+        Fail = 2,
+    }
+
     public enum Side
     {
         None = 0,
