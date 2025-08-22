@@ -87,5 +87,10 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         {
             return _playerHandEntity.hands.Count == 0;
         }
+
+        public async UniTask DisplayPlayerHandFieldAsync(DisplayType type, float duration, CancellationToken token)
+        {
+            await Router.Default.PublishAsync(new PlayerHandFieldVO(type, duration), token);
+        }
     }
 }

@@ -124,6 +124,19 @@ namespace PrimeMillionaire.Game
         }
     }
 
+    public sealed class PlayerHandFieldVO : ICommand
+    {
+        public readonly DisplayType type;
+        public readonly float duration;
+
+        public PlayerHandFieldVO(DisplayType type, float duration)
+        {
+            if (type == DisplayType.None) throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_DISPLAY);
+            this.type = type;
+            this.duration = duration;
+        }
+    }
+
     public sealed class BuffVO : ICommand
     {
         public readonly Side side;

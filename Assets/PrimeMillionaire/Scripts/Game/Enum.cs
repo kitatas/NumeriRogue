@@ -29,6 +29,13 @@ namespace PrimeMillionaire.Game
         Enemy = 2,
     }
 
+    public enum DisplayType
+    {
+        None = 0,
+        Show = 1,
+        Hide = 2,
+    }
+
     public enum Fade
     {
         None = 0,

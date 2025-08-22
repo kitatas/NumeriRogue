@@ -1,3 +1,4 @@
+using PrimeMillionaire.Common;
 using PrimeMillionaire.Game.Presentation.View;
 using R3;
 using VContainer.Unity;
@@ -20,6 +21,18 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
                 .SubscribeAwait<DealHandVO>(async (x, context) =>
                 {
                     await _tableView.RenderHandsAsync(x.side, x.hands, context.CancellationToken);
+                })
+                .AddTo(_tableView);
+
+            Router.Default
+                .SubscribeAwait<PlayerHandFieldVO>(async (x, context) =>
+                {
+                    await (x.type switch
+                    {
+                        DisplayType.Show => _tableView.ActivatePlayerFieldAsync(x.duration, context.CancellationToken),
+                        DisplayType.Hide => _tableView.DeactivatePlayerFieldAsync(x.duration, context.CancellationToken),
+                        _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_DISPLAY),
+                    });
                 })
                 .AddTo(_tableView);
         }

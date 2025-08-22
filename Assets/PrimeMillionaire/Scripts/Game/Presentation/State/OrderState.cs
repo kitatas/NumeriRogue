@@ -34,16 +34,16 @@ namespace PrimeMillionaire.Game.Presentation.State
         public override async UniTask InitAsync(CancellationToken token)
         {
             await (
-                _orderUseCase.HideOrderCardsAsync(0.0f, token),
-                _tableView.DeactivatePlayerFieldAsync(0.0f, token)
+                _handUseCase.DisplayPlayerHandFieldAsync(DisplayType.Hide, 0.0f, token),
+                _orderUseCase.HideOrderCardsAsync(0.0f, token)
             );
         }
 
         public override async UniTask<GameState> TickAsync(CancellationToken token)
         {
             await (
-                _orderUseCase.ShowOrderCardsAsync(UiConfig.TWEEN_DURATION, token),
-                _tableView.ActivatePlayerFieldAsync(UiConfig.TWEEN_DURATION, token)
+                _handUseCase.DisplayPlayerHandFieldAsync(DisplayType.Show, UiConfig.TWEEN_DURATION, token),
+                _orderUseCase.ShowOrderCardsAsync(UiConfig.TWEEN_DURATION, token)
             );
 
             while (true)
@@ -64,8 +64,8 @@ namespace PrimeMillionaire.Game.Presentation.State
                     _dollarUseCase.Update();
                     _parameterUseCase.PublishPlayerParamAsync(token).Forget();
                 }, token),
-                _orderUseCase.PushValueAsync(token),
-                _tableView.DeactivatePlayerFieldAsync(UiConfig.TWEEN_DURATION, token)
+                _handUseCase.DisplayPlayerHandFieldAsync(DisplayType.Hide, UiConfig.TWEEN_DURATION, token),
+                _orderUseCase.PushValueAsync(token)
             );
 
             var playerPt = await ApplyBattlePtAsync(Side.Player, token);
