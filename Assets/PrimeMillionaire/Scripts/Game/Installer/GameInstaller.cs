@@ -103,12 +103,10 @@ namespace PrimeMillionaire.Game.Installer
             // View
             builder.RegisterComponentInHierarchy<BattleView>();
             builder.RegisterComponentInHierarchy<BattlePtView>();
-            builder.RegisterComponentInHierarchy<ClearView>();
             builder.RegisterComponentInHierarchy<DollarView>();
             builder.RegisterComponentInHierarchy<LevelView>();
             builder.RegisterComponentInHierarchy<EnemyCountView>();
             builder.RegisterComponentInHierarchy<EnemyParameterView>();
-            builder.RegisterComponentInHierarchy<FailView>();
             builder.RegisterComponentInHierarchy<FinishView>();
             builder.RegisterComponentInHierarchy<GiveUpView>();
             builder.RegisterComponentInHierarchy<HoldSkillView>();
