@@ -27,5 +27,15 @@ namespace PrimeMillionaire.Game.Utility
                 _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_POKER_HANDS)
             };
         }
+
+        public static Side ToOppositeSide(this Side self)
+        {
+            return self switch
+            {
+                Side.Player => Side.Enemy,
+                Side.Enemy => Side.Player,
+                _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE),
+            };
+        }
     }
 }

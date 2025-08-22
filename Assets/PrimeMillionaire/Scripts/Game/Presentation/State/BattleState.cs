@@ -2,6 +2,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Game.Domain.UseCase;
+using PrimeMillionaire.Game.Utility;
 
 namespace PrimeMillionaire.Game.Presentation.State
 {
@@ -41,33 +42,40 @@ namespace PrimeMillionaire.Game.Presentation.State
             _battleUseCase.ApplyDamage(attacker);
             await _battleAnimationUseCase.AttackAsync(attacker, token);
 
+            var defender = attacker.ToOppositeSide();
             await (
-                _battleAnimationUseCase.DamageOrDeadAsync(attacker, token),
+                _battleAnimationUseCase.DamageOrDeadAsync(defender, token),
                 _parameterUseCase.ApplyDamageAsync(token)
             );
 
-            if (!_battleAnimationUseCase.IsDeath(attacker))
+            if (_battleAnimationUseCase.IsDeath(defender))
             {
-                await _battlePtUseCase.ResetAsync(token);
-                return GameState.Deal;
+                return defender switch
+                {
+                    Side.Player => GameState.Fail,
+                    Side.Enemy => await HandleDefeatAsync(Side.Enemy, token),
+                    _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE)
+                };
             }
 
-            switch (attacker)
-            {
-                case Side.Player:
-                    _dollarUseCase.Add(_dropUseCase.GetDropDollar());
-                    if (_enemyCountUseCase.IsClear()) return GameState.Clear;
+            await _battlePtUseCase.ResetAsync(token);
+            return GameState.Deal;
+        }
 
-                    await (
-                        _battlePtUseCase.ResetAsync(token),
-                        _battleAnimationUseCase.ExitAsync(Side.Enemy, token)
-                    );
-                    return GameState.Pick;
-                case Side.Enemy:
-                    return GameState.Fail;
-                default:
-                    throw new  QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE);
+        private async UniTask<GameState> HandleDefeatAsync(Side side, CancellationToken token)
+        {
+            _dollarUseCase.Add(_dropUseCase.GetDropDollar());
+
+            if (_enemyCountUseCase.IsClear())
+            {
+                return GameState.Clear;
             }
+
+            await (
+                _battlePtUseCase.ResetAsync(token),
+                _battleAnimationUseCase.ExitAsync(side, token)
+            );
+            return GameState.Pick;
         }
     }
 }

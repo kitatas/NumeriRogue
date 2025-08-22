@@ -33,18 +33,18 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             await PlayAnimationAsync(attacker, BattleAnim.Attack, token);
         }
 
-        public async UniTask DamageOrDeadAsync(Side attacker, CancellationToken token)
+        public async UniTask DamageOrDeadAsync(Side side, CancellationToken token)
         {
-            var battleAnim = IsDeath(attacker) ? BattleAnim.Death : BattleAnim.Hit;
-            await PlayAnimationAsync(attacker, battleAnim, token);
+            var battleAnim = IsDeath(side) ? BattleAnim.Death : BattleAnim.Hit;
+            await PlayAnimationAsync(side, battleAnim, token);
         }
 
-        public bool IsDeath(Side attacker)
+        public bool IsDeath(Side side)
         {
-            return attacker switch
+            return side switch
             {
-                Side.Player => _enemyParameterEntity.isDead,
-                Side.Enemy => _playerParameterEntity.isDead,
+                Side.Player => _playerParameterEntity.isDead,
+                Side.Enemy => _enemyParameterEntity.isDead,
                 _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE),
             };
         }

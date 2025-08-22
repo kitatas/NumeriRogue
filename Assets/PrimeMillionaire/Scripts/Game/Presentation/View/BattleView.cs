@@ -1,6 +1,7 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
+using PrimeMillionaire.Game.Utility;
 using UniEx;
 using UnityEngine;
 
@@ -23,22 +24,22 @@ namespace PrimeMillionaire.Game.Presentation.View
             await GetSideView(side).CreateCharacterAsync(side, character, token);
         }
 
-        public async UniTask PlayAttackAnimAsync(Side attacker, CancellationToken token)
+        public async UniTask PlayAttackAnimAsync(Side side, CancellationToken token)
         {
-            await GetSideView(attacker).PlayAttackAnimAsync(token);
+            await GetSideView(side).PlayAttackAnimAsync(token);
         }
 
-        public async UniTask PlayDamageAnimAsync(Side attacker, bool isDeath, CancellationToken token)
+        public async UniTask PlayDamageAnimAsync(Side side, bool isDeath, CancellationToken token)
         {
-            var defender = attacker == Side.Player ? Side.Enemy : Side.Player;
-            await GetSideView(defender).PlayHitOrDeathAnimAsync(isDeath, x =>
+            await GetSideView(side).PlayHitOrDeathAnimAsync(isDeath, x =>
             {
-                if (attacker is Side.Player)
+                if (side is Side.Enemy)
                 {
                     this.Delay(x.deadTime, () => dropView.Drop(x.transform, 10, 0.25f));
                 }
             }, token);
 
+            var attacker = side.ToOppositeSide();
             await GetSideView(attacker).TweenInitPositionAsync(token);
         }
 
