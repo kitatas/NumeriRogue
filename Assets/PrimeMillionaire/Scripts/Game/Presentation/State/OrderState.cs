@@ -13,17 +13,20 @@ namespace PrimeMillionaire.Game.Presentation.State
         private readonly BuffUseCase _buffUseCase;
         private readonly DollarUseCase _dollarUseCase;
         private readonly HandUseCase _handUseCase;
+        private readonly OrderHandUseCase _orderHandUseCase;
         private readonly OrderUseCase _orderUseCase;
         private readonly ParameterUseCase _parameterUseCase;
         private readonly TableView _tableView;
 
         public OrderState(BattlePtUseCase battlePtUseCase, BuffUseCase buffUseCase, DollarUseCase dollarUseCase,
-            HandUseCase handUseCase, OrderUseCase orderUseCase, ParameterUseCase parameterUseCase, TableView tableView)
+            HandUseCase handUseCase, OrderHandUseCase orderHandUseCase, OrderUseCase orderUseCase,
+            ParameterUseCase parameterUseCase, TableView tableView)
         {
             _battlePtUseCase = battlePtUseCase;
             _buffUseCase = buffUseCase;
             _dollarUseCase = dollarUseCase;
             _handUseCase = handUseCase;
+            _orderHandUseCase = orderHandUseCase;
             _orderUseCase = orderUseCase;
             _parameterUseCase = parameterUseCase;
             _tableView = tableView;
@@ -48,7 +51,7 @@ namespace PrimeMillionaire.Game.Presentation.State
 
             while (true)
             {
-                var (index, count) = await _tableView.OrderPlayerHandsAsync(token);
+                var index = await _orderHandUseCase.OrderHandAsync(token);
                 var card = _handUseCase.GetCard(Side.Player, index);
                 await _orderUseCase.SetAsync(Side.Player, index, card, token);
 

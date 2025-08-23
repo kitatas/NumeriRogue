@@ -5,6 +5,7 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using PrimeMillionaire.Common.Utility;
 using PrimeMillionaire.Game.Utility;
+using R3;
 using UniEx;
 using UnityEngine;
 
@@ -71,6 +72,13 @@ namespace PrimeMillionaire.Game.Presentation.View
 
             _cardViews[index].SwitchMask();
             return (index, _cardViews.Count(x => x.isOrder));
+        }
+
+        public List<Observable<int>> OrderAll()
+        {
+            return _cardViews
+                .Select(x => x.Order().Select(_ => _cardViews.IndexOf(x)))
+                .ToList();
         }
 
         public async UniTask OrderAsync(int index, CancellationToken token)

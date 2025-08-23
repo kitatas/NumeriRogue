@@ -5,6 +5,8 @@ using Cysharp.Threading.Tasks.Triggers;
 using DG.Tweening;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Utility;
+using R3;
+using R3.Triggers;
 using TMPro;
 using UniEx;
 using UnityEngine;
@@ -27,6 +29,13 @@ namespace PrimeMillionaire.Game.Presentation.View
             RenderOrderNo(0);
             var sprite = await ResourceHelper.LoadAsync<Sprite>(card.imgPath, token);
             main.sprite = sprite;
+        }
+
+        public Observable<Unit> Order()
+        {
+            return main
+                .OnPointerDownAsObservable()
+                .Select(_ => Unit.Default);
         }
 
         public UniTask OrderAsync(CancellationToken token)

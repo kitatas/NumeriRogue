@@ -1,4 +1,5 @@
 using PrimeMillionaire.Common;
+using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.View;
 using R3;
 using VContainer.Unity;
@@ -8,19 +9,29 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
 {
     public sealed class HandPresenter : IStartable
     {
+        private readonly OrderHandUseCase _orderHandUseCase;
         private readonly TableView _tableView;
 
-        public HandPresenter(TableView tableView)
+        public HandPresenter(OrderHandUseCase orderHandUseCase, TableView tableView)
         {
+            _orderHandUseCase = orderHandUseCase;
             _tableView = tableView;
         }
 
         public void Start()
         {
+            var isSubscribe = true;
+
             Router.Default
                 .SubscribeAwait<DealHandVO>(async (x, context) =>
                 {
                     await _tableView.RenderHandsAsync(x.side, x.hands, context.CancellationToken);
+
+                    if (isSubscribe)
+                    {
+                        isSubscribe = false;
+                        SubscribeOrder();
+                    }
                 })
                 .AddTo(_tableView);
 
@@ -42,6 +53,20 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
                     await _tableView.TrashHandsAsync(x.side, x.index, x.duration, context.CancellationToken);
                 })
                 .AddTo(_tableView);
+        }
+
+        private void SubscribeOrder()
+        {
+            foreach (var order in _tableView.OrderAll(Side.Player))
+            {
+                order
+                    .SubscribeAwait(async (x, token) =>
+                    {
+                        await _tableView.OrderHandsAsync(Side.Player, x, token);
+                        _orderHandUseCase.Set(x);
+                    })
+                    .AddTo(_tableView);
+            }
         }
     }
 }
