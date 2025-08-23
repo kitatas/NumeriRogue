@@ -65,6 +65,21 @@ namespace PrimeMillionaire.Game
         }
     }
 
+    public sealed class TrashHandVO : ICommand
+    {
+        public readonly Side side;
+        public readonly int index;
+        public readonly float duration;
+
+        public TrashHandVO(Side side, int index, float duration)
+        {
+            if (side == Side.None) throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE);
+            this.side = side;
+            this.index = index;
+            this.duration = duration;
+        }
+    }
+
     public sealed class OrderVO : ICommand
     {
         public readonly Side side;

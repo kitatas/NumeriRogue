@@ -35,6 +35,13 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
                     });
                 })
                 .AddTo(_tableView);
+
+            Router.Default
+                .SubscribeAwait<TrashHandVO>(async (x, context) =>
+                {
+                    await _tableView.TrashHandsAsync(x.side, x.index, x.duration, context.CancellationToken);
+                })
+                .AddTo(_tableView);
         }
     }
 }

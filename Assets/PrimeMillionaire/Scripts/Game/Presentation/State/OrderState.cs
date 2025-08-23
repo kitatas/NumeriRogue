@@ -55,7 +55,7 @@ namespace PrimeMillionaire.Game.Presentation.State
                 if (count == HandConfig.ORDER_NUM) break;
             }
 
-            await RemoveCardsAsync(Side.Player, token);
+            await _handUseCase.RemoveCardsAsync(Side.Player, _orderUseCase.orderHandIndex, token);
 
             _orderUseCase.StockBuff();
             await (
@@ -78,7 +78,7 @@ namespace PrimeMillionaire.Game.Presentation.State
                 await _tableView.OrderHandsAsync(Side.Enemy, index, token);
             }
 
-            await RemoveCardsAsync(Side.Enemy, token);
+            await _handUseCase.RemoveCardsAsync(Side.Enemy, _orderUseCase.orderHandIndex, token);
 
             await _orderUseCase.PushValueAsync(token);
 
@@ -93,12 +93,6 @@ namespace PrimeMillionaire.Game.Presentation.State
             {
                 return GameState.Order;
             }
-        }
-
-        private async UniTask RemoveCardsAsync(Side side, CancellationToken token)
-        {
-            var index = await _tableView.TrashHandsAsync(side, token);
-            _handUseCase.RemoveCards(side, index);
         }
 
         private async UniTask<int> ApplyBattlePtAsync(Side side, CancellationToken token)

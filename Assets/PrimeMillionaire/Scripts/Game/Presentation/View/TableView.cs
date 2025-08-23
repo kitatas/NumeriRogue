@@ -46,9 +46,9 @@ namespace PrimeMillionaire.Game.Presentation.View
             await GetHandView(side).RenderOrderNoAsync(index, no, token);
         }
 
-        public async UniTask<IEnumerable<int>> TrashHandsAsync(Side side, CancellationToken token)
+        public async UniTask TrashHandsAsync(Side side, int index, float duration, CancellationToken token)
         {
-            return await GetHandView(side).TrashCards(side, HandConfig.TRASH_DURATION, token);
+            await GetHandView(side).HideAsync(side, index, duration, token);
         }
 
         private HandView GetHandView(Side side)

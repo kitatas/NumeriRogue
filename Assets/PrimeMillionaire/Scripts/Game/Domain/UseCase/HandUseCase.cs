@@ -60,7 +60,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             return _deckEntity.GetCard(GetHands(side)[index].deckIndex);
         }
 
-        public void RemoveCards(Side side, IEnumerable<int> index)
+        public async UniTask RemoveCardsAsync(Side side, IEnumerable<int> index, CancellationToken token)
         {
             var hands = GetHands(side);
             var removeIndex = index
@@ -70,6 +70,11 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             foreach (var i in removeIndex)
             {
                 GetHandEntity(side).Remove(i);
+            }
+
+            foreach (var i in index)
+            {
+                await Router.Default.PublishAsync(new TrashHandVO(side, i, HandConfig.TRASH_DURATION), token);
             }
         }
 

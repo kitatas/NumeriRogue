@@ -95,21 +95,6 @@ namespace PrimeMillionaire.Game.Presentation.View
             await TweenHandsAsync(duration, token);
         }
 
-        public async UniTask<IEnumerable<int>> TrashCards(Side side, float duration, CancellationToken token)
-        {
-            var index = new List<int>();
-            for (int i = _cardViews.Count - 1; i >= 0; i--)
-            {
-                if (_cardViews[i].isOrder)
-                {
-                    index.Add(i);
-                    await HideAsync(side, i, duration, token);
-                }
-            }
-
-            return index;
-        }
-
         public Tween ActivateHandsField(bool value, float duration)
         {
             var y = value ? 200.0f : 0.0f;

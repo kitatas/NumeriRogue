@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Cysharp.Text;
@@ -36,6 +37,10 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         }
 
         public OrderVO[] orders => _orders;
+
+        public IEnumerable<int> orderHandIndex => orders
+            .Select(x => x.handIndex)
+            .OrderByDescending(x => x);
 
         public void SetOrder(Side side, int orderIndex, int handIndex = -1, CardVO card = null)
         {
