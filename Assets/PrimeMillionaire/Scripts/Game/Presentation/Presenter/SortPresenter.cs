@@ -45,6 +45,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
 
                             var card = _orderUseCase.orders[i].card;
                             var index = x.hands.Select(y => y.card).ToList().IndexOf(card);
+                            _orderUseCase.SetOrder(x.side, i, index, card);
                             await _tableView.OrderHandsAsync(Side.Player, index, context.CancellationToken);
                             await _tableView.RenderOrderNo(Side.Player, index, i + 1, context.CancellationToken);
                         }

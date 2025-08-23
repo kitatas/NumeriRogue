@@ -37,6 +37,11 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public OrderVO[] orders => _orders;
 
+        public void SetOrder(Side side, int orderIndex, int handIndex = -1, CardVO card = null)
+        {
+            _orders[orderIndex] = new OrderVO(side, orderIndex, handIndex, card);
+        }
+
         public async UniTask SetAsync(Side side, int handIndex, CardVO card, CancellationToken token)
         {
             var orderList = _orders.ToList();
@@ -45,14 +50,14 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             {
                 // 選択
                 var i = orderList.IndexOf(orderList.Find(x => x.card == null));
-                _orders[i] = new OrderVO(side, i, handIndex, card);
+                SetOrder(side, i, handIndex, card);
                 await PublishOrderAsync(i, token);
             }
             else
             {
                 // 選択解除
                 var i = orderList.IndexOf(o);
-                _orders[i] = new OrderVO(side, i, handIndex);
+                SetOrder(side, i, handIndex);
                 await PublishOrderAsync(i, token);
             }
         }
@@ -61,7 +66,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         {
             for (int i = 0; i < _orders.Length; i++)
             {
-                _orders[i] = new OrderVO(Side.None, i);
+                SetOrder(Side.None, i);
                 await PublishOrderAsync(i, token);
             }
 
