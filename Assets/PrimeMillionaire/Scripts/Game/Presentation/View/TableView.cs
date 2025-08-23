@@ -31,11 +31,6 @@ namespace PrimeMillionaire.Game.Presentation.View
             await GetHandView(side).RepaintAsync(hands, token);
         }
 
-        public async UniTask<(int index, int count)> OrderPlayerHandsAsync(CancellationToken token)
-        {
-            return await playerHandView.OrderAsync(token);
-        }
-
         public List<Observable<int>> OrderAll(Side side)
         {
             return GetHandView(side).OrderAll();

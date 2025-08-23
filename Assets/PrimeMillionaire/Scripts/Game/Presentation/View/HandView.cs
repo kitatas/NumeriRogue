@@ -65,15 +65,6 @@ namespace PrimeMillionaire.Game.Presentation.View
             await UniTaskHelper.DelayAsync(duration, token);
         }
 
-        public async UniTask<(int index, int count)> OrderAsync(CancellationToken token)
-        {
-            var index = await UniTask.WhenAny(_cardViews
-                .Select(x => x.OrderAsync(token)));
-
-            _cardViews[index].SwitchMask();
-            return (index, _cardViews.Count(x => x.isOrder));
-        }
-
         public List<Observable<int>> OrderAll()
         {
             return _cardViews

@@ -2,7 +2,6 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Game.Domain.UseCase;
-using PrimeMillionaire.Game.Presentation.View;
 using PrimeMillionaire.Game.Utility;
 
 namespace PrimeMillionaire.Game.Presentation.State
@@ -16,11 +15,10 @@ namespace PrimeMillionaire.Game.Presentation.State
         private readonly OrderHandUseCase _orderHandUseCase;
         private readonly OrderUseCase _orderUseCase;
         private readonly ParameterUseCase _parameterUseCase;
-        private readonly TableView _tableView;
 
         public OrderState(BattlePtUseCase battlePtUseCase, BuffUseCase buffUseCase, DollarUseCase dollarUseCase,
             HandUseCase handUseCase, OrderHandUseCase orderHandUseCase, OrderUseCase orderUseCase,
-            ParameterUseCase parameterUseCase, TableView tableView)
+            ParameterUseCase parameterUseCase)
         {
             _battlePtUseCase = battlePtUseCase;
             _buffUseCase = buffUseCase;
@@ -29,7 +27,6 @@ namespace PrimeMillionaire.Game.Presentation.State
             _orderHandUseCase = orderHandUseCase;
             _orderUseCase = orderUseCase;
             _parameterUseCase = parameterUseCase;
-            _tableView = tableView;
         }
 
         public override GameState state => GameState.Order;
@@ -78,7 +75,6 @@ namespace PrimeMillionaire.Game.Presentation.State
             {
                 var card = _handUseCase.GetCard(Side.Enemy, index);
                 await _orderUseCase.SetAsync(Side.Enemy, index, card, token);
-                await _tableView.OrderHandsAsync(Side.Enemy, index, token);
             }
 
             await _handUseCase.RemoveCardsAsync(Side.Enemy, _orderUseCase.orderHandIndex, token);

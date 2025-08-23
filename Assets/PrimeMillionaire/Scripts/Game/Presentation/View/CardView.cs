@@ -1,7 +1,6 @@
 using System.Threading;
 using Cysharp.Text;
 using Cysharp.Threading.Tasks;
-using Cysharp.Threading.Tasks.Triggers;
 using DG.Tweening;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Utility;
@@ -38,16 +37,10 @@ namespace PrimeMillionaire.Game.Presentation.View
                 .Select(_ => Unit.Default);
         }
 
-        public UniTask OrderAsync(CancellationToken token)
-        {
-            return main.GetAsyncPointerDownTrigger().OnPointerDownAsync(token).AsUniTask();
-        }
-
         public void Activate(bool value) => gameObject.SetActive(value);
         public void ActivateBackground(bool value) => background.gameObject.SetActive(value);
         public void ActivateMask(bool value) => mask.gameObject.SetActive(value);
         public void SwitchMask() => ActivateMask(!isOrder);
-        public bool isActive => gameObject.activeSelf;
         public bool isOrder => mask.gameObject.activeSelf;
 
         public void RenderOrderNo(int no)
