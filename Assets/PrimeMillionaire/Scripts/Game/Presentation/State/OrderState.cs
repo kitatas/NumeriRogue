@@ -52,7 +52,7 @@ namespace PrimeMillionaire.Game.Presentation.State
                 var card = _handUseCase.GetCard(Side.Player, index);
                 await _orderUseCase.SetAsync(Side.Player, index, card, token);
 
-                if (count == HandConfig.ORDER_NUM) break;
+                if (_orderUseCase.isAllOrder) break;
             }
 
             await _handUseCase.RemoveCardsAsync(Side.Player, _orderUseCase.orderHandIndex, token);

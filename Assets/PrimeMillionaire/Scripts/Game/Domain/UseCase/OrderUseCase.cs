@@ -42,6 +42,8 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             .Select(x => x.handIndex)
             .OrderByDescending(x => x);
 
+        public bool isAllOrder => orders.All(x => x.card != null);
+
         public void SetOrder(Side side, int orderIndex, int handIndex = -1, CardVO card = null)
         {
             _orders[orderIndex] = new OrderVO(side, orderIndex, handIndex, card);
