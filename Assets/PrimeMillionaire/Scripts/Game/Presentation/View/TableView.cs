@@ -65,7 +65,7 @@ namespace PrimeMillionaire.Game.Presentation.View
 
         public async UniTask ActivatePlayerFieldAsync(float duration, CancellationToken token)
         {
-            await playerHandView.ActivateHandsField(true, duration)
+            await playerHandView.ActivateHandsField(duration)
                 .WithCancellation(token);
 
             sortButtonView.SetInteractable(true);
@@ -75,7 +75,7 @@ namespace PrimeMillionaire.Game.Presentation.View
         {
             sortButtonView.SetInteractable(false);
 
-            await playerHandView.ActivateHandsField(false, duration)
+            await playerHandView.DeactivateHandsField(duration)
                 .WithCancellation(token);
         }
     }

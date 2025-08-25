@@ -13,6 +13,7 @@ namespace PrimeMillionaire.Game.Presentation.View
 {
     public sealed class HandView : MonoBehaviour
     {
+        [SerializeField] private CanvasGroup canvasGroup = default;
         [SerializeField] private List<CardView> cards = default;
         private readonly List<CardView> _cardViews = new();
 
@@ -94,13 +95,24 @@ namespace PrimeMillionaire.Game.Presentation.View
             await TweenHandsAsync(duration, token);
         }
 
-        public Tween ActivateHandsField(bool value, float duration)
+        public Tween ActivateHandsField(float duration)
         {
-            var y = value ? 200.0f : 0.0f;
             return DOTween.Sequence()
-                .Append(transform.ToRectTransform()
-                    .DOAnchorPosY(y, duration))
-                .SetEase(Ease.OutCirc);
+                .Append(canvasGroup
+                    .DOFade(1.0f, duration))
+                .AppendCallback(() => canvasGroup.blocksRaycasts = true)
+                .SetEase(Ease.Linear)
+                .SetLink(gameObject);
+        }
+
+        public Tween DeactivateHandsField(float duration)
+        {
+            return DOTween.Sequence()
+                .AppendCallback(() => canvasGroup.blocksRaycasts = false)
+                .Append(canvasGroup
+                    .DOFade(0.5f, duration))
+                .SetEase(Ease.Linear)
+                .SetLink(gameObject);
         }
     }
 }
