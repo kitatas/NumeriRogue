@@ -60,6 +60,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
             foreach (var order in _tableView.OrderAll(Side.Player))
             {
                 order
+                    .Where(_ => _orderHandUseCase.isActivate)
                     .SubscribeAwait(async (x, token) =>
                     {
                         await _tableView.OrderHandsAsync(Side.Player, x, token);
