@@ -23,6 +23,7 @@ namespace PrimeMillionaire.Game.Presentation.View
         public async UniTask RenderAsync(CardVO card, CancellationToken token)
         {
             Activate(true);
+            ActivateMain(false);
             ActivateBackground(true);
             ActivateMask(false);
             RenderOrderNo(0);
@@ -38,6 +39,7 @@ namespace PrimeMillionaire.Game.Presentation.View
         }
 
         public void Activate(bool value) => gameObject.SetActive(value);
+        public void ActivateMain(bool value) => main.gameObject.SetActive(value);
         public void ActivateBackground(bool value) => background.gameObject.SetActive(value);
         public void ActivateMask(bool value) => mask.gameObject.SetActive(value);
         public void SwitchMask() => ActivateMask(!isOrder);
@@ -64,7 +66,11 @@ namespace PrimeMillionaire.Game.Presentation.View
         {
             return DOTween.Sequence()
                 .Append(RotateY(90.0f, duration))
-                .AppendCallback(() => ActivateBackground(false))
+                .AppendCallback(() =>
+                {
+                    ActivateMain(true);
+                    ActivateBackground(false);
+                })
                 .Append(RotateY(270.0f, 0.0f))
                 .Append(RotateY(360.0f, duration));
         }
@@ -73,7 +79,11 @@ namespace PrimeMillionaire.Game.Presentation.View
         {
             return DOTween.Sequence()
                 .Append(RotateY(90.0f, duration))
-                .AppendCallback(() => ActivateBackground(true))
+                .AppendCallback(() =>
+                {
+                    ActivateMain(false);
+                    ActivateBackground(true);
+                })
                 .Append(RotateY(270.0f, 0.0f))
                 .Append(RotateY(360.0f, duration));
         }
