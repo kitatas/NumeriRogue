@@ -35,7 +35,7 @@ namespace PrimeMillionaire.Game.Presentation.State
         {
             await (
                 _handUseCase.DisplayPlayerHandFieldAsync(DisplayType.Hide, 0.0f, token),
-                _orderUseCase.HideOrderCardsAsync(0.0f, token)
+                _orderUseCase.DisplayOrderCardsAsync(DisplayType.Hide, 0.0f, token)
             );
         }
 
@@ -43,7 +43,7 @@ namespace PrimeMillionaire.Game.Presentation.State
         {
             await (
                 _handUseCase.DisplayPlayerHandFieldAsync(DisplayType.Show, UiConfig.TWEEN_DURATION, token),
-                _orderUseCase.ShowOrderCardsAsync(UiConfig.TWEEN_DURATION, token)
+                _orderUseCase.DisplayOrderCardsAsync(DisplayType.Show, UiConfig.TWEEN_DURATION, token)
             );
 
             while (true)
@@ -85,7 +85,7 @@ namespace PrimeMillionaire.Game.Presentation.State
 
             if (_handUseCase.IsPlayerHandsEmpty())
             {
-                await _orderUseCase.HideOrderCardsAsync(UiConfig.TWEEN_DURATION, token);
+                await _orderUseCase.DisplayOrderCardsAsync(DisplayType.Hide, UiConfig.TWEEN_DURATION, token);
                 return GameState.Battle;
             }
             else

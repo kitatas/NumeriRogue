@@ -41,17 +41,12 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
             Router.Default
                 .SubscribeAwait<OrderCardsFadeVO>(async (x, context) =>
                 {
-                    switch (x.fade)
+                    await (x.type switch
                     {
-                        case Fade.In:
-                            await _orderView.FadeInCardsAsync(x.duration, context.CancellationToken);
-                            break;
-                        case Fade.Out:
-                            await _orderView.FadeOutCardsAsync(x.duration, context.CancellationToken);
-                            break;
-                        default:
-                            throw new RebootExceptionVO(ExceptionConfig.NOT_FOUND_FADE);
-                    }
+                        DisplayType.Show => _orderView.FadeOutCardsAsync(x.duration, context.CancellationToken),
+                        DisplayType.Hide => _orderView.FadeInCardsAsync(x.duration, context.CancellationToken),
+                        _ => throw new RebootExceptionVO(ExceptionConfig.NOT_FOUND_FADE),
+                    });
                 })
                 .AddTo(_orderView);
 

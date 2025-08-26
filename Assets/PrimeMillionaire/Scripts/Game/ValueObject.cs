@@ -128,13 +128,13 @@ namespace PrimeMillionaire.Game
 
     public sealed class OrderCardsFadeVO : ICommand
     {
-        public readonly Fade fade;
+        public readonly DisplayType type;
         public readonly float duration;
 
-        public OrderCardsFadeVO(Fade fade, float duration)
+        public OrderCardsFadeVO(DisplayType type, float duration)
         {
-            if (fade == Fade.None) throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_FADE);
-            this.fade = fade;
+            if (type == DisplayType.None) throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_DISPLAY);
+            this.type = type;
             this.duration = duration;
         }
     }

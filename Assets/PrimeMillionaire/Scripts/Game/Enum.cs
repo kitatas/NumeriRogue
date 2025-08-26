@@ -36,13 +36,6 @@ namespace PrimeMillionaire.Game
         Hide = 2,
     }
 
-    public enum Fade
-    {
-        None = 0,
-        In = 1,
-        Out = 2,
-    }
-
     public enum ModalType
     {
         None = 0,
