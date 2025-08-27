@@ -1,11 +1,9 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Boot.Domain.UseCase;
-using PrimeMillionaire.Boot.Presentation.View;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Domain.UseCase;
 using PrimeMillionaire.Common.Utility;
-using R3;
 
 namespace PrimeMillionaire.Boot.Presentation.State
 {
@@ -14,22 +12,21 @@ namespace PrimeMillionaire.Boot.Presentation.State
         private readonly InterruptUseCase _interruptUseCase;
         private readonly LoadingUseCase _loadingUseCase;
         private readonly LoginUseCase _loginUseCase;
-        private readonly TitleView _titleView;
+        private readonly TitleUseCase _titleUseCase;
 
         public LoginState(InterruptUseCase interruptUseCase, LoadingUseCase loadingUseCase, LoginUseCase loginUseCase,
-            TitleView titleView)
+            TitleUseCase titleUseCase)
         {
             _interruptUseCase = interruptUseCase;
             _loadingUseCase = loadingUseCase;
             _loginUseCase = loginUseCase;
-            _titleView = titleView;
+            _titleUseCase = titleUseCase;
         }
 
         public override BootState state => BootState.Login;
 
         public override async UniTask InitAsync(CancellationToken token)
         {
-            _titleView.Init();
             await UniTask.Yield(token);
         }
 
@@ -51,7 +48,7 @@ namespace PrimeMillionaire.Boot.Presentation.State
                 return BootState.Interrupt;
             }
 
-            await _titleView.push.FirstAsync(cancellationToken: token);
+            await _titleUseCase.TouchScreenAsync(token);
             return BootState.Load;
         }
     }

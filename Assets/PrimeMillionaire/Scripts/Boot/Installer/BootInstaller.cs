@@ -16,6 +16,7 @@ namespace PrimeMillionaire.Boot.Installer
             builder.Register<LoginUseCase>(Lifetime.Scoped);
             builder.Register<ModalUseCase>(Lifetime.Scoped);
             builder.Register<StateUseCase>(Lifetime.Scoped);
+            builder.Register<TitleUseCase>(Lifetime.Scoped);
 
             // State
             builder.Register<BaseState, InterruptState>(Lifetime.Scoped);
@@ -29,6 +30,7 @@ namespace PrimeMillionaire.Boot.Installer
                 entryPoints.Add<InterruptPresenter>();
                 entryPoints.Add<ModalPresenter>();
                 entryPoints.Add<StatePresenter>();
+                entryPoints.Add<TitlePresenter>();
             });
 
             // View
