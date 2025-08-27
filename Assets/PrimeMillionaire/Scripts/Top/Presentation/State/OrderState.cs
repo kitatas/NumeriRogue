@@ -2,20 +2,19 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Domain.UseCase;
-using PrimeMillionaire.Top.Presentation.View;
-using R3;
+using PrimeMillionaire.Top.Domain.UseCase;
 
 namespace PrimeMillionaire.Top.Presentation.State
 {
     public sealed class OrderState : BaseState
     {
         private readonly SceneUseCase _sceneUseCase;
-        private readonly OrderView _orderView;
+        private readonly StartUseCase _startUseCase;
 
-        public OrderState(SceneUseCase sceneUseCase, OrderView orderView)
+        public OrderState(SceneUseCase sceneUseCase, StartUseCase startUseCase)
         {
             _sceneUseCase = sceneUseCase;
-            _orderView = orderView;
+            _startUseCase = startUseCase;
         }
 
         public override TopState state => TopState.Order;
@@ -27,7 +26,7 @@ namespace PrimeMillionaire.Top.Presentation.State
 
         public override async UniTask<TopState> TickAsync(CancellationToken token)
         {
-            await _orderView.push.FirstAsync(cancellationToken: token);
+            await _startUseCase.PressStartAsync(token);
             _sceneUseCase.Load(SceneName.Game, LoadType.Fade);
             return TopState.None;
         }
