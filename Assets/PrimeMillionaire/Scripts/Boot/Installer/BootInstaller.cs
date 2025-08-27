@@ -26,6 +26,7 @@ namespace PrimeMillionaire.Boot.Installer
             // Presenter
             builder.UseEntryPoints(Lifetime.Scoped, entryPoints =>
             {
+                entryPoints.Add<InterruptPresenter>();
                 entryPoints.Add<ModalPresenter>();
                 entryPoints.Add<StatePresenter>();
             });

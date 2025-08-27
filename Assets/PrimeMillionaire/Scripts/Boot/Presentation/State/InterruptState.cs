@@ -1,7 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Boot.Domain.UseCase;
-using PrimeMillionaire.Boot.Presentation.View;
 using PrimeMillionaire.Common;
 
 namespace PrimeMillionaire.Boot.Presentation.State
@@ -10,13 +9,11 @@ namespace PrimeMillionaire.Boot.Presentation.State
     {
         private readonly InterruptUseCase _interruptUseCase;
         private readonly ModalUseCase _modalUseCase;
-        private readonly InterruptView _interruptView;
 
-        public InterruptState(InterruptUseCase interruptUseCase, ModalUseCase modalUseCase, InterruptView interruptView)
+        public InterruptState(InterruptUseCase interruptUseCase, ModalUseCase modalUseCase)
         {
             _interruptUseCase = interruptUseCase;
             _modalUseCase = modalUseCase;
-            _interruptView = interruptView;
         }
 
         public override BootState state => BootState.Interrupt;
@@ -25,17 +22,13 @@ namespace PrimeMillionaire.Boot.Presentation.State
         {
             await _modalUseCase.ShowAsync(ModalType.Interrupt, token);
 
-            var action = await _interruptView.PushAnyAsync(token);
-            switch (action)
+            var type = await _interruptUseCase.PressButtonAsync(token);
+            return type switch
             {
-                case ButtonType.Decision:
-                    return BootState.Restart;
-                case ButtonType.Cancel:
-                    _interruptUseCase.Delete();
-                    return BootState.Load;
-                default:
-                    throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_BUTTON);
-            }
+                ButtonType.Decision => BootState.Restart,
+                ButtonType.Cancel => BootState.Load,
+                _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_BUTTON),
+            };
         }
     }
 }

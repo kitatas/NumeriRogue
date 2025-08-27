@@ -1,8 +1,6 @@
-using System.Collections.Generic;
-using System.Threading;
-using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Presentation.View.Button;
+using R3;
 using UnityEngine;
 
 namespace PrimeMillionaire.Boot.Presentation.View
@@ -12,28 +10,7 @@ namespace PrimeMillionaire.Boot.Presentation.View
         [SerializeField] private CommonButtonView decision = default;
         [SerializeField] private CommonButtonView cancel = default;
 
-        public async UniTask<ButtonType> PushAnyAsync(CancellationToken token)
-        {
-            var buttonTasks = new List<UniTask<ButtonType>>
-            {
-                DecisionAsync(token),
-                CancelAsync(token),
-            };
-            var (_, button) = await UniTask.WhenAny(buttonTasks);
-
-            return button;
-        }
-
-        private async UniTask<ButtonType> DecisionAsync(CancellationToken token)
-        {
-            await decision.OnClickAsync(token);
-            return ButtonType.Decision;
-        }
-
-        private async UniTask<ButtonType> CancelAsync(CancellationToken token)
-        {
-            await cancel.OnClickAsync(token);
-            return ButtonType.Cancel;
-        }
+        public Observable<ButtonType> pressDecision => decision.push.Select(_ => ButtonType.Decision);
+        public Observable<ButtonType> pressCancel => cancel.push.Select(_ => ButtonType.Cancel);
     }
 }
