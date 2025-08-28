@@ -1,5 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Domain.UseCase;
 using PrimeMillionaire.Common.Utility;
 using PrimeMillionaire.Game.Domain.UseCase;
@@ -13,17 +14,19 @@ namespace PrimeMillionaire.Game.Presentation.State
         private readonly DealUseCase _dealUseCase;
         private readonly LoadingUseCase _loadingUseCase;
         private readonly ParameterUseCase _parameterUseCase;
+        private readonly SoundUseCase _soundUseCase;
         private readonly StageUseCase _stageUseCase;
 
         public InitState(BattleAnimationUseCase battleAnimationUseCase, CharacterUseCase characterUseCase,
             DealUseCase dealUseCase, LoadingUseCase loadingUseCase, ParameterUseCase parameterUseCase,
-            StageUseCase stageUseCase)
+            SoundUseCase soundUseCase, StageUseCase stageUseCase)
         {
             _battleAnimationUseCase = battleAnimationUseCase;
             _characterUseCase = characterUseCase;
             _dealUseCase = dealUseCase;
             _loadingUseCase = loadingUseCase;
             _parameterUseCase = parameterUseCase;
+            _soundUseCase = soundUseCase;
             _stageUseCase = stageUseCase;
         }
 
@@ -44,6 +47,9 @@ namespace PrimeMillionaire.Game.Presentation.State
             );
 
             _loadingUseCase.Set(false);
+
+            _soundUseCase.Play(Bgm.Game);
+
             await UniTaskHelper.DelayAsync(1.0f, token);
 
             var player = _characterUseCase.GetCharacter(Side.Player);

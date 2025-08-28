@@ -26,6 +26,7 @@ namespace PrimeMillionaire.Common
     {
         None = 0,
         Menu = 1,
+        Game = 2,
     }
 
     public enum Se
