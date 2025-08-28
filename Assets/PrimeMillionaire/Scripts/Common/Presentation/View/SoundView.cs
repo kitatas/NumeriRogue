@@ -10,6 +10,8 @@ namespace PrimeMillionaire.Common.Presentation.View
 
         public void PlayBgm(AudioVO value)
         {
+            if (bgmSource.clip == value.clip) return;
+
             this.Delay(value.duration, () =>
             {
                 bgmSource.clip = value.clip;

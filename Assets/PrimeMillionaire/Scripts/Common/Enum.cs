@@ -25,6 +25,7 @@ namespace PrimeMillionaire.Common
     public enum Bgm
     {
         None = 0,
+        Menu = 1,
     }
 
     public enum Se

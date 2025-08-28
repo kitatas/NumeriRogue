@@ -12,14 +12,16 @@ namespace PrimeMillionaire.Boot.Presentation.State
         private readonly InterruptUseCase _interruptUseCase;
         private readonly LoadingUseCase _loadingUseCase;
         private readonly LoginUseCase _loginUseCase;
+        private readonly SoundUseCase _soundUseCase;
         private readonly TitleUseCase _titleUseCase;
 
         public LoginState(InterruptUseCase interruptUseCase, LoadingUseCase loadingUseCase, LoginUseCase loginUseCase,
-            TitleUseCase titleUseCase)
+            SoundUseCase soundUseCase, TitleUseCase titleUseCase)
         {
             _interruptUseCase = interruptUseCase;
             _loadingUseCase = loadingUseCase;
             _loginUseCase = loginUseCase;
+            _soundUseCase = soundUseCase;
             _titleUseCase = titleUseCase;
         }
 
@@ -35,6 +37,8 @@ namespace PrimeMillionaire.Boot.Presentation.State
             // 他presenter初期化待ち
             await UniTaskHelper.DelayAsync(0.5f, token);
             _loadingUseCase.Set(false);
+
+            _soundUseCase.Play(Bgm.Menu);
 
             var isSuccess = _loginUseCase.Login();
             if (isSuccess == false)
