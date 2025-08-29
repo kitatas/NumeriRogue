@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ab7883d54ad4ebcb39ba88edec207e2, type: 3}
-  m_Name: BgmTable
+  m_Script: {fileID: 11500000, guid: 559d2d8ed7964dc583eab69bd64470e3, type: 3}
+  m_Name: BgmData - Menu
   m_EditorClassIdentifier: 
-  list:
-  - {fileID: 11400000, guid: 31096e0fe2dd844c4a64a958c43f532b, type: 2}
-  - {fileID: 11400000, guid: 62f6f8af20fc54da983b5e9d6c1020ab, type: 2}
+  bgmType: 1
+  audioClip: {fileID: 8300000, guid: 4d73d3151a75b4669963ae75351e2c18, type: 3}
