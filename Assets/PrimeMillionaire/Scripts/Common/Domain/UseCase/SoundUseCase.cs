@@ -25,9 +25,9 @@ namespace PrimeMillionaire.Common.Domain.UseCase
             var vo = sound;
             _isMuteBgm = new ReactiveProperty<bool>(vo.isMuteBgm);
 
-            _bgmVolume = new ReactiveProperty<VolumeVO>(vo.bgm);
-            _seVolume = new ReactiveProperty<VolumeVO>(vo.se);
             _master = vo.master;
+            _bgmVolume = new ReactiveProperty<VolumeVO>(vo.bgm.Multiply(_master));
+            _seVolume = new ReactiveProperty<VolumeVO>(vo.se.Multiply(_master));
         }
 
         public Observable<AudioVO> playBgm => _playBgm;
