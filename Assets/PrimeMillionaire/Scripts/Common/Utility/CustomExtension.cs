@@ -45,5 +45,15 @@ namespace PrimeMillionaire.Common.Utility
                 ? (StageType)self
                 : throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_STAGE);
         }
+
+        public static Se ToSe(this ButtonType self)
+        {
+            return self switch
+            {
+                ButtonType.Decision => Se.Decision,
+                ButtonType.Cancel => Se.Cancel,
+                _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_BUTTON),
+            };
+        }
     }
 }

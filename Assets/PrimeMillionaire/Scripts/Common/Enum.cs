@@ -32,6 +32,8 @@ namespace PrimeMillionaire.Common
     public enum Se
     {
         None = 0,
+        Decision = 1,
+        Cancel = 2,
     }
 
     public enum Suit
