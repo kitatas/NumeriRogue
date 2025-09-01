@@ -29,6 +29,7 @@ namespace PrimeMillionaire.Boot.Installer
             {
                 entryPoints.Add<InterruptPresenter>();
                 entryPoints.Add<ModalPresenter>();
+                entryPoints.Add<SoundPresenter>();
                 entryPoints.Add<StatePresenter>();
                 entryPoints.Add<TitlePresenter>();
             });
