@@ -278,6 +278,9 @@ PlayerSettings:
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
+  androidAppCategory: 3
+  useAndroidAppCategory: 1
+  androidAppCategoryOther: 
   AndroidEnableTango: 0
   androidEnableBanner: 1
   androidUseLowAccuracyLocation: 0
@@ -407,6 +410,7 @@ PlayerSettings:
     iPhone: 1
     tvOS: 1
   m_BuildTargetGroupLightmapEncodingQuality: []
+  m_BuildTargetGroupHDRCubemapEncodingQuality: []
   m_BuildTargetGroupLightmapSettings: []
   m_BuildTargetGroupLoadStoreDebugModeSettings: []
   m_BuildTargetNormalMapEncoding: []
@@ -690,6 +694,7 @@ PlayerSettings:
     GameCoreXboxOne: DOTWEEN
     LinuxHeadlessSimulation: DOTWEEN;ES3_TMPRO;ES3_UGUI
     Nintendo Switch: DOTWEEN;ES3_TMPRO;ES3_UGUI
+    Nintendo Switch 2: ES3_TMPRO;ES3_UGUI
     PS4: DOTWEEN;ES3_TMPRO;ES3_UGUI
     PS5: DOTWEEN;ES3_TMPRO;ES3_UGUI
     QNX: DOTWEEN;ES3_TMPRO;ES3_UGUI
