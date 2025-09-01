@@ -95,6 +95,7 @@ namespace PrimeMillionaire.Game.Installer
                 entryPoints.Add<ParameterPresenter>();
                 entryPoints.Add<PickSkillPresenter>();
                 entryPoints.Add<SortPresenter>();
+                entryPoints.Add<SoundPresenter>();
                 entryPoints.Add<StagePresenter>();
                 entryPoints.Add<StatePresenter>();
                 entryPoints.Add<TurnPresenter>();
