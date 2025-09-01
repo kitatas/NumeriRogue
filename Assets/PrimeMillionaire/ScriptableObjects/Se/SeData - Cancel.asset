@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b33b8abeff8441f4bda53ed564db38bf, type: 3}
-  m_Name: SeTable
+  m_Script: {fileID: 11500000, guid: 8c0d982bfa114bb49bd23823b8b6d39b, type: 3}
+  m_Name: SeData - Cancel
   m_EditorClassIdentifier: 
-  list:
-  - {fileID: 11400000, guid: beb689646bca94eeb8772cb8927386eb, type: 2}
-  - {fileID: 11400000, guid: 2fdab8b0d6e554935a31ac26737cbf05, type: 2}
+  seType: 2
+  audioClip: {fileID: 8300000, guid: 15e4b117fc8794d9c83afbfe7af8c4e0, type: 3}
