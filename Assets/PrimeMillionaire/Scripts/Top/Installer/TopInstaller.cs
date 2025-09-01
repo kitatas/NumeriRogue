@@ -28,6 +28,7 @@ namespace PrimeMillionaire.Top.Installer
                 entryPoints.Add<CharacterPresenter>();
                 entryPoints.Add<DeletePresenter>();
                 entryPoints.Add<ModalPresenter>();
+                entryPoints.Add<SoundPresenter>();
                 entryPoints.Add<StartPresenter>();
                 entryPoints.Add<StatePresenter>();
                 entryPoints.Add<VolumePresenter>();
