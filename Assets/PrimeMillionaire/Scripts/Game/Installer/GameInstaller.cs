@@ -99,7 +99,6 @@ namespace PrimeMillionaire.Game.Installer
                 entryPoints.Add<StagePresenter>();
                 entryPoints.Add<StatePresenter>();
                 entryPoints.Add<TurnPresenter>();
-                entryPoints.Add<VolumePresenter>();
             });
 
             // View

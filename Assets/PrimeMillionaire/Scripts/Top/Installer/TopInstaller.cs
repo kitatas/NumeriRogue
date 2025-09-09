@@ -31,7 +31,6 @@ namespace PrimeMillionaire.Top.Installer
                 entryPoints.Add<SoundPresenter>();
                 entryPoints.Add<StartPresenter>();
                 entryPoints.Add<StatePresenter>();
-                entryPoints.Add<VolumePresenter>();
             });
 
             // View
