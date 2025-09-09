@@ -1,3 +1,4 @@
+using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Domain.UseCase;
 using PrimeMillionaire.Common.Presentation.View.Button;
 using PrimeMillionaire.Game.Presentation.View;
@@ -32,6 +33,10 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
 
             _volumeView.seVolume
                 .Subscribe(_soundUseCase.SetSeVolume)
+                .AddTo(_volumeView);
+
+            _volumeView.releaseHandle
+                .Subscribe(_ => _soundUseCase.Play(Se.Decision))
                 .AddTo(_volumeView);
 
             foreach (var buttonView in Object.FindObjectsByType<BaseButtonView>(FindObjectsSortMode.None))

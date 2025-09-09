@@ -1,6 +1,7 @@
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Top.Presentation.View.Button;
 using R3;
+using R3.Triggers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -72,6 +73,11 @@ namespace PrimeMillionaire.Top.Presentation.View
                     return new VolumeVO(se.value, seMute.isMute);
                 })
             );
+
+        public Observable<Unit> releaseHandle => master.OnPointerUpAsObservable()
+            .Merge(bgm.OnPointerUpAsObservable())
+            .Merge(se.OnPointerUpAsObservable())
+            .Select(_ => Unit.Default);
 
         private void SetInteractable(bool value)
         {
