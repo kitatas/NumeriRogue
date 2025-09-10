@@ -1,11 +1,5 @@
 namespace PrimeMillionaire.Common
 {
-    public sealed class VersionConfig
-    {
-        public const int MAJOR_VERSION = 0;
-        public const int MINOR_VERSION = 30;
-    }
-
     public sealed class UrlConfig
     {
         // TODO: fix url

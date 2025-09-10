@@ -1,5 +1,4 @@
 using Cysharp.Text;
-using PrimeMillionaire.Common;
 using TMPro;
 using UnityEngine;
 
@@ -11,10 +10,7 @@ namespace PrimeMillionaire.Boot.Presentation.View
 
         private void Awake()
         {
-            version.text = ZString.Format("ver: {0}", ZString.Join(".",
-                VersionConfig.MAJOR_VERSION,
-                VersionConfig.MINOR_VERSION
-            ));
+            version.text = ZString.Format("ver: {0}", Application.version);
         }
     }
 }
