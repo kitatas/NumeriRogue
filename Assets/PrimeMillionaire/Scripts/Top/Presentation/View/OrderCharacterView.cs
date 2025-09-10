@@ -17,13 +17,16 @@ namespace PrimeMillionaire.Top.Presentation.View
         [SerializeField] private TextMeshProUGUI atk = default;
         [SerializeField] private TextMeshProUGUI def = default;
         [SerializeField] private DeckView deckView = default;
+        [SerializeField] private Sprite clear = default;
 
         public async UniTask RenderAsync(OrderCharacterVO value, CancellationToken token)
         {
             var img = await ResourceHelper.LoadAsync<Sprite>(value.character.imgPath, token);
+            chara.sprite = clear;
             chara.rectTransform.sizeDelta = img.rect.size * 2.0f;
-            chara.rectTransform.DOAnchorPosY(img.rect.height * 1.0f, 0.0f);
-            chara.sprite = img;
+            chara.rectTransform
+                .DOAnchorPosY(img.rect.height * 1.0f, 0.0f)
+                .OnComplete(() => chara.sprite = img);
             charaName.text = value.character.name;
             hp.text = ZString.Format("{0}", value.character.parameter.hp);
             atk.text = ZString.Format("{0}", value.character.parameter.atk);
