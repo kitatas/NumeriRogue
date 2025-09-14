@@ -7,7 +7,7 @@ using VitalRouter;
 
 namespace PrimeMillionaire.Game.Presentation.Presenter
 {
-    public sealed class BattlePtPresenter : IStartable
+    public sealed class BattlePtPresenter : IPostStartable
     {
         private readonly BattlePtView _battlePtView;
 
@@ -16,7 +16,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
             _battlePtView = battlePtView;
         }
 
-        public void Start()
+        public void PostStart()
         {
 
             Router.Default

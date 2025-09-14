@@ -6,7 +6,7 @@ using VitalRouter;
 
 namespace PrimeMillionaire.Game.Presentation.Presenter
 {
-    public sealed class BuffPresenter : IStartable
+    public sealed class BuffPresenter : IPostStartable
     {
         private readonly BattleView _battleView;
 
@@ -15,7 +15,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
             _battleView = battleView;
         }
 
-        public void Start()
+        public void PostStart()
         {
             Router.Default
                 .SubscribeAwait<BuffVO>(async (x, context) =>

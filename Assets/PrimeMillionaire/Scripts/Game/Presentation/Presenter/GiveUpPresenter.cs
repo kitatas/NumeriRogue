@@ -7,7 +7,7 @@ using VContainer.Unity;
 
 namespace PrimeMillionaire.Game.Presentation.Presenter
 {
-    public sealed class GiveUpPresenter : IStartable
+    public sealed class GiveUpPresenter : IPostStartable
     {
         private readonly SceneUseCase _sceneUseCase;
         private readonly InterruptUseCase _interruptUseCase;
@@ -23,7 +23,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
             _giveUpView = giveUpView;
         }
 
-        public void Start()
+        public void PostStart()
         {
             _giveUpView.giveUp
                 .SubscribeAwait(async (_, token) =>

@@ -7,7 +7,7 @@ using VitalRouter;
 
 namespace PrimeMillionaire.Game.Presentation.Presenter
 {
-    public sealed class FinishPresenter : IStartable
+    public sealed class FinishPresenter : IPostStartable
     {
         private readonly FinishView _finishView;
 
@@ -16,7 +16,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
             _finishView = finishView;
         }
 
-        public void Start()
+        public void PostStart()
         {
             _finishView.Init();
 

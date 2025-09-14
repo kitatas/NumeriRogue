@@ -9,7 +9,7 @@ using VitalRouter;
 
 namespace PrimeMillionaire.Game.Presentation.Presenter
 {
-    public sealed class HoldSkillPresenter : IStartable, IDisposable
+    public sealed class HoldSkillPresenter : IPostStartable, IDisposable
     {
         private readonly HoldSkillUseCase _holdSkillUseCase;
         private readonly HoldSkillView _holdSkillView;
@@ -22,7 +22,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
             _tokenSource = new CancellationTokenSource();
         }
 
-        public void Start()
+        public void PostStart()
         {
             foreach (var skillView in _holdSkillView.skills)
             {

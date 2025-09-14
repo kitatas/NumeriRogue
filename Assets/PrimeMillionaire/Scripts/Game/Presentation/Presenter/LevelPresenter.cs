@@ -5,7 +5,7 @@ using VContainer.Unity;
 
 namespace PrimeMillionaire.Game.Presentation.Presenter
 {
-    public sealed class LevelPresenter : IStartable
+    public sealed class LevelPresenter : IPostStartable
     {
         private readonly LevelUseCase _levelUseCase;
         private readonly LevelView _levelView;
@@ -16,7 +16,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
             _levelView = levelView;
         }
 
-        public void Start()
+        public void PostStart()
         {
             _levelUseCase.level
                 .Subscribe(_levelView.Render)
