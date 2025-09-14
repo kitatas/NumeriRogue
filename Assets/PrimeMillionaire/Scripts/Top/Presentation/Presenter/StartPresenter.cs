@@ -5,7 +5,7 @@ using VContainer.Unity;
 
 namespace PrimeMillionaire.Top.Presentation.Presenter
 {
-    public sealed class StartPresenter : IStartable
+    public sealed class StartPresenter : IPostStartable
     {
         private readonly StartUseCase _startUseCase;
         private readonly StartView _startView;
@@ -16,7 +16,7 @@ namespace PrimeMillionaire.Top.Presentation.Presenter
             _startView = startView;
         }
 
-        public void Start()
+        public void PostStart()
         {
             _startView.pressStart
                 .Subscribe(_ => _startUseCase.PressStart())
