@@ -5,7 +5,7 @@ using VContainer.Unity;
 
 namespace PrimeMillionaire.Boot.Presentation.Presenter
 {
-    public sealed class TitlePresenter : IStartable
+    public sealed class TitlePresenter : IPostStartable
     {
         private readonly TitleUseCase _titleUseCase;
         private readonly TitleView _titleView;
@@ -16,7 +16,7 @@ namespace PrimeMillionaire.Boot.Presentation.Presenter
             _titleView = titleView;
         }
 
-        public void Start()
+        public void PostStart()
         {
             _titleView.Init();
 

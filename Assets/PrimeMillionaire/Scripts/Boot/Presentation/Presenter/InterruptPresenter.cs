@@ -5,7 +5,7 @@ using VContainer.Unity;
 
 namespace PrimeMillionaire.Boot.Presentation.Presenter
 {
-    public sealed class InterruptPresenter : IStartable
+    public sealed class InterruptPresenter : IPostStartable
     {
         private readonly InterruptUseCase _interruptUseCase;
         private readonly InterruptView _interruptView;
@@ -16,7 +16,7 @@ namespace PrimeMillionaire.Boot.Presentation.Presenter
             _interruptView = interruptView;
         }
 
-        public void Start()
+        public void PostStart()
         {
             _interruptView.pressDecision
                 .Merge(_interruptView.pressCancel)

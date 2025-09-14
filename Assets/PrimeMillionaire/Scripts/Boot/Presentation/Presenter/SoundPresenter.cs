@@ -5,7 +5,7 @@ using VContainer.Unity;
 
 namespace PrimeMillionaire.Boot.Presentation.Presenter
 {
-    public sealed class SoundPresenter : IPostStartable
+    public sealed class SoundPresenter : IStartable
     {
         private readonly SoundUseCase _soundUseCase;
 
@@ -14,7 +14,7 @@ namespace PrimeMillionaire.Boot.Presentation.Presenter
             _soundUseCase = soundUseCase;
         }
 
-        public void PostStart()
+        public void Start()
         {
             foreach (var buttonView in Object.FindObjectsByType<BaseButtonView>(FindObjectsSortMode.None))
             {
