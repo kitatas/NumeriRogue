@@ -123,6 +123,7 @@ namespace PrimeMillionaire.Common
         Wraith = 33,
         Altgeneral = 34,
         Caliber = 35,
+        Elyxstormblade = 36,
     }
 
     public enum ProgressStatus
