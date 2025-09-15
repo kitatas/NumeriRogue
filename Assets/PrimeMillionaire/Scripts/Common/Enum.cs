@@ -122,6 +122,7 @@ namespace PrimeMillionaire.Common
         Wolfpunch = 32,
         Wraith = 33,
         Altgeneral = 34,
+        Caliber = 35,
     }
 
     public enum ProgressStatus
