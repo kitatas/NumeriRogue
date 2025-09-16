@@ -126,6 +126,7 @@ namespace PrimeMillionaire.Common
         Elyxstormblade = 36,
         Azuritelion = 37,
         Grandmasterzir = 38,
+        Keshraifanblade = 39,
     }
 
     public enum ProgressStatus
