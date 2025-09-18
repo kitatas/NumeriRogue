@@ -1,0 +1,17 @@
+{
+    "name": "Common.Application",
+    "rootNamespace": "",
+    "references": [
+        "GUID:77aea589fe3f34fa883d9f7e26eee12e",
+        "GUID:33661e06c33d31b4c9223810bf503247"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
