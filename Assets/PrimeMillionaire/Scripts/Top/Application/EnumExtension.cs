@@ -1,8 +1,8 @@
 using PrimeMillionaire.Common;
 
-namespace PrimeMillionaire.Top.Utility
+namespace PrimeMillionaire.Top
 {
-    public static class CustomExtension
+    public static class EnumExtension
     {
         public static string ToURL(this ModalType self)
         {

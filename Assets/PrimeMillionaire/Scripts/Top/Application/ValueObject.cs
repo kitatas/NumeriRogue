@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using PrimeMillionaire.Common;
 
 namespace PrimeMillionaire.Top

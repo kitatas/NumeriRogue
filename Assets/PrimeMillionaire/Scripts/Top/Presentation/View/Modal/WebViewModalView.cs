@@ -1,7 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common.Utility;
-using PrimeMillionaire.Top.Utility;
 using UniEx;
 using UnityEngine;
 
