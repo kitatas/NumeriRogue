@@ -2,7 +2,6 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Game.Domain.UseCase;
-using PrimeMillionaire.Game.Utility;
 
 namespace PrimeMillionaire.Game.Presentation.State
 {

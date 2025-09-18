@@ -1,7 +1,6 @@
 using System.Linq;
 using FastEnumUtility;
 using PrimeMillionaire.Common.Data.DataStore;
-using PrimeMillionaire.Common.Utility;
 using UniEx;
 
 namespace PrimeMillionaire.Common.Domain.Repository

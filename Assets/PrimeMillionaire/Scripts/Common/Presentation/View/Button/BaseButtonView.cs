@@ -2,7 +2,6 @@ using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using PrimeMillionaire.Common.Utility;
 using R3;
 using R3.Triggers;
 using UnityEngine;
