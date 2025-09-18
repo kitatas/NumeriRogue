@@ -3,6 +3,7 @@ using Cysharp.Text;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using PrimeMillionaire.Common;
+using PrimeMillionaire.Common.Presentation.View;
 using TMPro;
 using UniEx;
 using UnityEngine;

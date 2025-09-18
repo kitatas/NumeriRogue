@@ -2,7 +2,6 @@ using System.Threading;
 using Cysharp.Text;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Utility;
 using R3;
 using R3.Triggers;
@@ -11,7 +10,7 @@ using UniEx;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace PrimeMillionaire.Game.Presentation.View
+namespace PrimeMillionaire.Common.Presentation.View
 {
     public sealed class CardView : MonoBehaviour
     {

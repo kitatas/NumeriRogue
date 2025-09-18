@@ -1,6 +1,5 @@
-using System.Collections.Generic;
 using PrimeMillionaire.Common;
-using PrimeMillionaire.Game.Presentation.View;
+using PrimeMillionaire.Common.Presentation.View;
 using UnityEngine;
 
 namespace PrimeMillionaire.Top.Presentation.View
