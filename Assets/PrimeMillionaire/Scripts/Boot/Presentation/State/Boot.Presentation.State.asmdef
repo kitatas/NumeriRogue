@@ -1,0 +1,21 @@
+{
+    "name": "Boot.Presentation.State",
+    "rootNamespace": "",
+    "references": [
+        "GUID:33db315b82f264ceba5b853ae3b8cde8",
+        "GUID:a25a3b73baf96492d9acb10e631192cf",
+        "GUID:c4668ab80fc4f4511950111316c9e2e3",
+        "GUID:9e7555b7444774de2abdc010aec36a3a",
+        "GUID:844e94f2ef49c457085f4b2024e6ace7",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
