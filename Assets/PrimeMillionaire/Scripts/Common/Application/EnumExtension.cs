@@ -1,8 +1,8 @@
 using FastEnumUtility;
 
-namespace PrimeMillionaire.Common.Utility
+namespace PrimeMillionaire.Common
 {
-    public static class CustomExtension
+    public static class EnumExtension
     {
         public static Suit ToSuit(this int self)
         {
