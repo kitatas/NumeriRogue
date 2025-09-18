@@ -1,0 +1,20 @@
+{
+    "name": "Top.Presentation.State",
+    "rootNamespace": "",
+    "references": [
+        "GUID:33db315b82f264ceba5b853ae3b8cde8",
+        "GUID:c4668ab80fc4f4511950111316c9e2e3",
+        "GUID:9554ed6d388a441caa38df89dab1d9e3",
+        "GUID:7c9da4b685db6417093f477026b2b909",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,27 @@
+{
+    "name": "Top.Presentation.Presenter",
+    "rootNamespace": "",
+    "references": [
+        "GUID:33db315b82f264ceba5b853ae3b8cde8",
+        "GUID:c4668ab80fc4f4511950111316c9e2e3",
+        "GUID:85984e1f6cf69479b8a05add2437a313",
+        "GUID:9554ed6d388a441caa38df89dab1d9e3",
+        "GUID:7c9da4b685db6417093f477026b2b909",
+        "GUID:f02b1ae01e564467b890812dfdf98ce4",
+        "GUID:99c2e2bac6d4a44f7a12e296eb56369a",
+        "GUID:59f6770f7492c42ff827a64ac010ac49",
+        "GUID:77221876cc6b8244180b96e320b1bcd4",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc",
+        "GUID:77aea589fe3f34fa883d9f7e26eee12e"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

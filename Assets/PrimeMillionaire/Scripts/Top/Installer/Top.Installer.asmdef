@@ -1,0 +1,20 @@
+{
+    "name": "Top.Installer",
+    "rootNamespace": "",
+    "references": [
+        "GUID:7c9da4b685db6417093f477026b2b909",
+        "GUID:5f9019fcc63944e248d1d2176acc6513",
+        "GUID:f02b1ae01e564467b890812dfdf98ce4",
+        "GUID:99c2e2bac6d4a44f7a12e296eb56369a",
+        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
