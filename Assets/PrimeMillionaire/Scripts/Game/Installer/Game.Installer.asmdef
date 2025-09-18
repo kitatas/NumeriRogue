@@ -1,0 +1,22 @@
+{
+    "name": "Game.Installer",
+    "rootNamespace": "",
+    "references": [
+        "GUID:e4a070b0107f6418da46b3a181e29173",
+        "GUID:ee78e9a98bbf64bd58498832d014d113",
+        "GUID:a8c13cd9406af4fd8a1a5869c05ee447",
+        "GUID:9f0b7a46f208b40dd8152c91f892d1e0",
+        "GUID:4b82c4555d3fe4990b095aa45a75a5cd",
+        "GUID:f14b57b0977e04c50b8ac1adac704c31",
+        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
