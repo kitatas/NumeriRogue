@@ -1,8 +1,8 @@
 using PrimeMillionaire.Common;
 
-namespace PrimeMillionaire.Game.Utility
+namespace PrimeMillionaire.Game
 {
-    public static class CustomExtension
+    public static class EnumExtension
     {
         public static int ToSign(this Side side)
         {
