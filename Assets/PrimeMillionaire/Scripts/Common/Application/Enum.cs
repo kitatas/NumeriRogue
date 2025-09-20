@@ -132,6 +132,7 @@ namespace PrimeMillionaire.Common
         Anubis = 42,
         Argeon = 43,
         Reva = 44,
+        Scioness = 45,
     }
 
     public enum ProgressStatus
