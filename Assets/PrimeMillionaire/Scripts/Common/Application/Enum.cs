@@ -131,6 +131,7 @@ namespace PrimeMillionaire.Common
         Stormkage = 41,
         Anubis = 42,
         Argeon = 43,
+        Reva = 44,
     }
 
     public enum ProgressStatus
