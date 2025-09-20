@@ -130,6 +130,7 @@ namespace PrimeMillionaire.Common
         Ogremonk = 40,
         Stormkage = 41,
         Anubis = 42,
+        Argeon = 43,
     }
 
     public enum ProgressStatus
