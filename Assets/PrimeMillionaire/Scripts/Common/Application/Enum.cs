@@ -135,6 +135,7 @@ namespace PrimeMillionaire.Common
         Scioness = 45,
         Scioness2 = 46,
         Starstrider = 47,
+        Soulreaper = 48,
     }
 
     public enum ProgressStatus
