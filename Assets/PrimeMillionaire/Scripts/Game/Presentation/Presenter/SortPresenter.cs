@@ -27,8 +27,8 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
 
         public void PostStart()
         {
-            _tableView.pushSwitchSort
-                .Subscribe(_ => _handUseCase.SwitchSortAsync(_tokenSource.Token).Forget())
+            _tableView.pushAnySort
+                .Subscribe(x => _handUseCase.SetSortAsync(x, _tokenSource.Token).Forget())
                 .AddTo(_tableView);
 
             Router.Default

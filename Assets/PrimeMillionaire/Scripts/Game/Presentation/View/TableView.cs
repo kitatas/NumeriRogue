@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
-using PrimeMillionaire.Common.Presentation.View.Button;
 using PrimeMillionaire.Common.Utility;
 using R3;
 using UnityEngine;
@@ -13,7 +12,7 @@ namespace PrimeMillionaire.Game.Presentation.View
     {
         [SerializeField] private HandView playerHandView = default;
         [SerializeField] private HandView enemyHandView = default;
-        [SerializeField] private CommonButtonView sortButtonView = default;
+        [SerializeField] private SortView sortView = default;
         [SerializeField] private Transform deck = default;
 
         public async UniTask RenderHandsAsync(Side side, List<HandVO> hands, CancellationToken token)
@@ -61,19 +60,19 @@ namespace PrimeMillionaire.Game.Presentation.View
             };
         }
 
-        public Observable<Unit> pushSwitchSort => sortButtonView.push.Select(_ => Unit.Default);
+        public Observable<Sort> pushAnySort => sortView.pushAny;
 
         public async UniTask ActivatePlayerFieldAsync(float duration, CancellationToken token)
         {
             await playerHandView.ActivateHandsField(duration)
                 .WithCancellation(token);
 
-            sortButtonView.SetInteractable(true);
+            sortView.SetInteractable(true);
         }
 
         public async UniTask DeactivatePlayerFieldAsync(float duration, CancellationToken token)
         {
-            sortButtonView.SetInteractable(false);
+            sortView.SetInteractable(false);
 
             await playerHandView.DeactivateHandsField(duration)
                 .WithCancellation(token);

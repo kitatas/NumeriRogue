@@ -43,6 +43,8 @@ namespace PrimeMillionaire.Game
             Side.Player,
             Side.Enemy,
         };
+
+        public const Sort INIT_SORT = Sort.Rank;
     }
 
     public sealed class CharacterConfig

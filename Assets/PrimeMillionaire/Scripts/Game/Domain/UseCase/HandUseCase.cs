@@ -24,9 +24,9 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _enemyHandEntity = enemyHandEntity;
         }
 
-        public async UniTask SwitchSortAsync(CancellationToken token)
+        public async UniTask SetSortAsync(Sort value, CancellationToken token)
         {
-            _sortEntity.Switch();
+            _sortEntity.Set(value);
 
             await UniTask.WhenAll(
                 HandConfig.ALL_SIDE
