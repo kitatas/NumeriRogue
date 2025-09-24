@@ -19,8 +19,8 @@ namespace PrimeMillionaire.Game.Data.Entity
             var d = DebugConfig.IS_FORCE_WIN switch
             {
                 Side.None => deck,
-                Side.Player => new DeckVO(new List<CardVO> { new(1, 13), new(1, 1), new(2, 13), new(2, 1), new(3, 13), new(3, 1) }),
-                Side.Enemy => new DeckVO(new List<CardVO> { new(1, 1), new(1, 13), new(2, 1), new(2, 13), new(3, 1), new(3, 13) }),
+                Side.Player => new DeckVO(new List<CardVO> { new(1, 13), new(1, 1), new(2, 13), new(2, 2), new(3, 13), new(3, 4) }),
+                Side.Enemy => new DeckVO(new List<CardVO> { new(1, 1), new(1, 13), new(2, 2), new(2, 13), new(3, 4), new(3, 13) }),
                 _ => throw new QuitExceptionVO(ExceptionConfig.UNKNOWN_ERROR),
             };
 
