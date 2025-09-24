@@ -62,6 +62,8 @@ namespace PrimeMillionaire.Game.Presentation.View
 
         public Observable<Sort> pushAnySort => sortView.pushAny;
 
+        public void SwitchBackground(Sort value) => sortView.SwitchBackground(value);
+
         public async UniTask ActivatePlayerFieldAsync(float duration, CancellationToken token)
         {
             await playerHandView.ActivateHandsField(duration)

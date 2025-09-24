@@ -12,6 +12,12 @@ namespace PrimeMillionaire.Game.Presentation.View
         public Observable<Sort> pushAny => rankSortButtonView.pushSort
             .Merge(suitSortButtonView.pushSort);
 
+        public void SwitchBackground(Sort value)
+        {
+            rankSortButtonView.SwitchBackground(value);
+            suitSortButtonView.SwitchBackground(value);
+        }
+
         public void SetInteractable(bool value)
         {
             rankSortButtonView.SetInteractable(value);

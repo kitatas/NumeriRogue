@@ -4,6 +4,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Game.Data.Entity;
+using R3;
 using VitalRouter;
 
 namespace PrimeMillionaire.Game.Domain.UseCase
@@ -14,6 +15,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         private readonly SortEntity _sortEntity;
         private readonly PlayerHandEntity _playerHandEntity;
         private readonly EnemyHandEntity _enemyHandEntity;
+        private readonly ReactiveProperty<Sort> _sort;
 
         public HandUseCase(DeckEntity deckEntity, SortEntity sortEntity, PlayerHandEntity playerHandEntity,
             EnemyHandEntity enemyHandEntity)
@@ -22,11 +24,15 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _sortEntity = sortEntity;
             _playerHandEntity = playerHandEntity;
             _enemyHandEntity = enemyHandEntity;
+            _sort = new ReactiveProperty<Sort>(_sortEntity.value);
         }
+
+        public Observable<Sort> sort => _sort.Where(x => x != Sort.None);
 
         public async UniTask SetSortAsync(Sort value, CancellationToken token)
         {
             _sortEntity.Set(value);
+            _sort.Value = _sortEntity.value;
 
             await UniTask.WhenAll(
                 HandConfig.ALL_SIDE
