@@ -38,20 +38,24 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
 
                     if (x.side == Side.Player)
                     {
-                        for (int i = 0; i < HandConfig.ORDER_NUM; i++)
-                        {
-                            if (_orderUseCase.orders[i] == null) continue;
-                            if (_orderUseCase.orders[i].card == null) continue;
-
-                            var card = _orderUseCase.orders[i].card;
-                            var index = x.hands.Select(y => y.card).ToList().IndexOf(card);
-                            _orderUseCase.SetOrder(x.side, i, index, card);
-                            await _tableView.OrderHandsAsync(Side.Player, index, context.CancellationToken);
-                            await _tableView.RenderOrderNo(Side.Player, index, i + 1, context.CancellationToken);
-                        }
+                        await RepaintHandsOrderAsync(x, context.CancellationToken);
                     }
                 })
                 .AddTo(_tableView);
+        }
+
+        private async UniTask RepaintHandsOrderAsync(SortHandVO sortHand, CancellationToken token)
+        {
+            for (int i = 0; i < HandConfig.ORDER_NUM; i++)
+            {
+                var card = _orderUseCase.orders[i]?.card;
+                if (card == null) continue;
+
+                var index = sortHand.hands.Select(y => y.card).ToList().IndexOf(card);
+                _orderUseCase.SetOrder(sortHand.side, i, index, card);
+                await _tableView.OrderHandsAsync(Side.Player, index, token);
+                await _tableView.RenderOrderNo(Side.Player, index, i + 1, token);
+            }
         }
 
         public void Dispose()
