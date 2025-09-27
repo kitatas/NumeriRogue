@@ -1,6 +1,9 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
+using Cysharp.Text;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -50,19 +53,58 @@ namespace PrimeMillionaire.Common.Utility
 
     public static class ResourceHelper
     {
+        private static readonly List<AsyncOperationHandle> _handles = new();
+
         public static IEnumerator LoadCor<T>(string path, Action<T> action) where T : Object
         {
             var handle = Addressables.LoadAssetAsync<T>(path);
             yield return handle;
-            if (handle.Status == AsyncOperationStatus.Succeeded)
+
+            try
             {
-                action?.Invoke(handle.Result);
+                if (handle.Status == AsyncOperationStatus.Failed)
+                {
+                    var msg = handle.OperationException?.Message ?? "Unknown error";
+                    throw new Exception(ZString.Format("{0} load failed: {1}", path, msg));
+                }
+
+                if (handle.Status == AsyncOperationStatus.Succeeded)
+                {
+                    _handles.Add(handle);
+                    action?.Invoke(handle.Result);
+                }
+            }
+            catch (Exception e)
+            {
+                DebugHelper.LogException(e);
+                throw;
             }
         }
 
         public static async UniTask<T> LoadAsync<T>(string path, CancellationToken token) where T : Object
         {
-            return await Addressables.LoadAssetAsync<T>(path).WithCancellation(token);
+            try
+            {
+                var handle = Addressables.LoadAssetAsync<T>(path);
+                var result = await handle.WithCancellation(token);
+                _handles.Add(handle);
+                return result;
+            }
+            catch (Exception e)
+            {
+                DebugHelper.LogException(e);
+                throw;
+            }
+        }
+
+        public static void Release()
+        {
+            foreach (var handle in _handles.Where(handle => handle.IsValid()))
+            {
+                handle.Release();
+            }
+
+            _handles.Clear();
         }
     }
 

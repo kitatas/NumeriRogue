@@ -27,6 +27,9 @@ namespace PrimeMillionaire.Common.Presentation.Presenter
                 .SubscribeAwait(async (x, token) =>
                 {
                     if (x.isFade) await _transitionView.FadeIn(0.1f).WithCancellation(token);
+
+                    // シーン内の全リソース解放してから遷移させる
+                    ResourceHelper.Release();
                     await SceneManager.LoadSceneAsync(x.name).ToUniTask(cancellationToken: token);
 
                     _loadingUseCase.Set(true);
