@@ -6,7 +6,7 @@ using VitalRouter;
 
 namespace PrimeMillionaire.Game.Presentation.Presenter
 {
-    public sealed class OrderPresenter : IPostStartable
+    public sealed class OrderPresenter : IPostInitializable
     {
         private readonly OrderView _orderView;
         private readonly TableView _tableView;
@@ -17,7 +17,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
             _tableView = tableView;
         }
 
-        public void PostStart()
+        public void PostInitialize()
         {
             Router.Default
                 .SubscribeAwait<OrderVO>(async (x, context) =>

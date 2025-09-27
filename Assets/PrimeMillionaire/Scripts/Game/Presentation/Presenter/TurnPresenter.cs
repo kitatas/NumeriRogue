@@ -5,7 +5,7 @@ using VContainer.Unity;
 
 namespace PrimeMillionaire.Game.Presentation.Presenter
 {
-    public sealed class TurnPresenter : IPostStartable
+    public sealed class TurnPresenter : IPostInitializable
     {
         private readonly TurnUseCase _turnUseCase;
         private readonly TurnView _turnView;
@@ -16,7 +16,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
             _turnView = turnView;
         }
 
-        public void PostStart()
+        public void PostInitialize()
         {
             _turnUseCase.turn
                 .Subscribe(_turnView.Render)

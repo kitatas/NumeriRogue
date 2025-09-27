@@ -5,7 +5,7 @@ using VContainer.Unity;
 
 namespace PrimeMillionaire.Game.Presentation.Presenter
 {
-    public sealed class EnemyCountPresenter : IPostStartable
+    public sealed class EnemyCountPresenter : IPostInitializable
     {
         private readonly EnemyCountUseCase _enemyCountUseCase;
         private readonly EnemyCountView _enemyCountView;
@@ -16,7 +16,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
             _enemyCountView = enemyCountView;
         }
 
-        public void PostStart()
+        public void PostInitialize()
         {
             _enemyCountUseCase.enemyCount
                 .Subscribe(_enemyCountView.Render)

@@ -10,7 +10,7 @@ using VitalRouter;
 
 namespace PrimeMillionaire.Game.Presentation.Presenter
 {
-    public sealed class SortPresenter : IPostStartable, IDisposable
+    public sealed class SortPresenter : IPostInitializable, IDisposable
     {
         private readonly HandUseCase _handUseCase;
         private readonly OrderUseCase _orderUseCase;
@@ -25,7 +25,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
             _tokenSource = new CancellationTokenSource();
         }
 
-        public void PostStart()
+        public void PostInitialize()
         {
             _handUseCase.sort
                 .Subscribe(_tableView.SwitchBackground)

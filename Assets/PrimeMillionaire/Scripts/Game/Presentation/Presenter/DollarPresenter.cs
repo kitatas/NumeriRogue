@@ -5,7 +5,7 @@ using VContainer.Unity;
 
 namespace PrimeMillionaire.Game.Presentation.Presenter
 {
-    public sealed class DollarPresenter : IPostStartable
+    public sealed class DollarPresenter : IPostInitializable
     {
         private readonly DollarUseCase _dollarUseCase;
         private readonly DollarView _dollarView;
@@ -16,7 +16,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
             _dollarView = dollarView;
         }
 
-        public void PostStart()
+        public void PostInitialize()
         {
             _dollarUseCase.dollar
                 .Pairwise()

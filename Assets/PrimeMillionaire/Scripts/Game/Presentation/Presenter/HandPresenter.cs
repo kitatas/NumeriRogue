@@ -7,7 +7,7 @@ using VitalRouter;
 
 namespace PrimeMillionaire.Game.Presentation.Presenter
 {
-    public sealed class HandPresenter : IPostStartable
+    public sealed class HandPresenter : IPostInitializable
     {
         private readonly OrderHandUseCase _orderHandUseCase;
         private readonly TableView _tableView;
@@ -18,7 +18,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
             _tableView = tableView;
         }
 
-        public void PostStart()
+        public void PostInitialize()
         {
             var isSubscribe = true;
 

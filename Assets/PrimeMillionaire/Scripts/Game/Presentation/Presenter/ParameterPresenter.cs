@@ -7,7 +7,7 @@ using VitalRouter;
 
 namespace PrimeMillionaire.Game.Presentation.Presenter
 {
-    public sealed class ParameterPresenter : IPostStartable
+    public sealed class ParameterPresenter : IPostInitializable
     {
         private readonly PlayerParameterView _playerParameterView;
         private readonly EnemyParameterView _enemyParameterView;
@@ -18,7 +18,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
             _enemyParameterView = enemyParameterView;
         }
 
-        public void PostStart()
+        public void PostInitialize()
         {
             Router.Default
                 .SubscribeAwait<PlayerParameterVO>(async (x, context) =>
