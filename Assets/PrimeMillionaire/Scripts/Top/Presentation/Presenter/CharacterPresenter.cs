@@ -5,7 +5,7 @@ using VContainer.Unity;
 
 namespace PrimeMillionaire.Top.Presentation.Presenter
 {
-    public sealed class CharacterPresenter : IPostStartable
+    public sealed class CharacterPresenter : IPostInitializable
     {
         private readonly CharacterUseCase _characterUseCase;
         private readonly CharacterScrollView _characterScrollView;
@@ -19,7 +19,7 @@ namespace PrimeMillionaire.Top.Presentation.Presenter
             _orderCharacterView = orderCharacterView;
         }
 
-        public void PostStart()
+        public void PostInitialize()
         {
             _characterUseCase.orderCharacter
                 .SubscribeAwait(async (x, token) =>

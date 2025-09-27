@@ -8,7 +8,7 @@ using VContainer.Unity;
 
 namespace PrimeMillionaire.Top.Presentation.Presenter
 {
-    public sealed class SoundPresenter : IStartable
+    public sealed class SoundPresenter : IPostInitializable
     {
         private readonly SoundUseCase _soundUseCase;
         private readonly VolumeView _volumeView;
@@ -19,7 +19,7 @@ namespace PrimeMillionaire.Top.Presentation.Presenter
             _volumeView = volumeView;
         }
 
-        public void Start()
+        public void PostInitialize()
         {
             _volumeView.Init(_soundUseCase.sound);
 

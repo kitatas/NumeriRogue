@@ -7,7 +7,7 @@ using VContainer.Unity;
 
 namespace PrimeMillionaire.Top.Presentation.Presenter
 {
-    public sealed class DeletePresenter : IPostStartable
+    public sealed class DeletePresenter : IPostInitializable
     {
         private readonly SceneUseCase _sceneUseCase;
         private readonly ModalUseCase _modalUseCase;
@@ -23,7 +23,7 @@ namespace PrimeMillionaire.Top.Presentation.Presenter
             _deleteView = deleteView;
         }
 
-        public void PostStart()
+        public void PostInitialize()
         {
             _deleteView.delete
                 .SubscribeAwait(async (_, token) =>
