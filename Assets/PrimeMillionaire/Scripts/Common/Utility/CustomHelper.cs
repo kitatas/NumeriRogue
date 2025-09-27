@@ -9,6 +9,37 @@ using Object = UnityEngine.Object;
 
 namespace PrimeMillionaire.Common.Utility
 {
+    public static class DebugHelper
+    {
+        public static void Log(object message)
+        {
+#if UNITY_EDITOR
+            Debug.Log(message);
+#endif
+        }
+
+        public static void LogWarning(object message)
+        {
+#if UNITY_EDITOR
+            Debug.LogWarning(message);
+#endif
+        }
+
+        public static void LogError(object message)
+        {
+#if UNITY_EDITOR
+            Debug.LogError(message);
+#endif
+        }
+
+        public static void LogException(Exception exception)
+        {
+#if UNITY_EDITOR
+            Debug.LogException(exception);
+#endif
+        }
+    }
+    
     public static class MonoBehaviourHelper
     {
         public static Coroutine LoadAsset<T>(this MonoBehaviour self, string path, Action<T> action) where T : Object
