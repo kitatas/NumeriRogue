@@ -28,9 +28,9 @@ namespace PrimeMillionaire.Game.Presentation.View
             });
         }
 
-        public async UniTask PlayAttackAnimAsync(CancellationToken token)
+        public async UniTask PlayAttackAnimAsync(Side side, CancellationToken token)
         {
-            await characterView.TweenPositionX(0.0f, CharacterConfig.MOVE_TIME)
+            await characterView.TweenPositionX(1.0f * side.ToSign(), CharacterConfig.MOVE_TIME)
                 .WithCancellation(token);
 
             characterView.Attack(true);

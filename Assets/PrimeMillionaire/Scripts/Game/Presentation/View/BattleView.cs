@@ -25,7 +25,7 @@ namespace PrimeMillionaire.Game.Presentation.View
 
         public async UniTask PlayAttackAnimAsync(Side side, CancellationToken token)
         {
-            await GetSideView(side).PlayAttackAnimAsync(token);
+            await GetSideView(side).PlayAttackAnimAsync(side, token);
         }
 
         public async UniTask PlayDamageAnimAsync(Side side, bool isDeath, CancellationToken token)
