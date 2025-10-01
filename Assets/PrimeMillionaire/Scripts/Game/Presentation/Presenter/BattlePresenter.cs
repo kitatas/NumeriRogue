@@ -20,26 +20,15 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
             Router.Default
                 .SubscribeAwait<BattleAnimationVO>(async (x, context) =>
                 {
-                    switch (x.battleAnim)
+                    await (x.battleAnim switch
                     {
-                        case BattleAnim.Entry:
-                            await _battleView.CreateCharacterAsync(x.side, x.character, context.CancellationToken);
-                            break;
-                        case BattleAnim.Exit:
-                            await _battleView.DestroyCharacterAsync(x.side, context.CancellationToken);
-                            break;
-                        case BattleAnim.Attack:
-                            await _battleView.PlayAttackAnimAsync(x.side, context.CancellationToken);
-                            break;
-                        case BattleAnim.Hit:
-                            await _battleView.PlayDamageAnimAsync(x.side, false, context.CancellationToken);
-                            break;
-                        case BattleAnim.Death:
-                            await _battleView.PlayDamageAnimAsync(x.side, true, context.CancellationToken);
-                            break;
-                        default:
-                            throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_BATTLE_ANIMATION);
-                    }
+                        BattleAnim.Entry => _battleView.CreateCharacterAsync(x.side, x.character, context.CancellationToken),
+                        BattleAnim.Exit => _battleView.DestroyCharacterAsync(x.side, context.CancellationToken),
+                        BattleAnim.Attack => _battleView.PlayAttackAnimAsync(x.side, context.CancellationToken),
+                        BattleAnim.Hit => _battleView.PlayDamageAnimAsync(x.side, false, context.CancellationToken),
+                        BattleAnim.Death => _battleView.PlayDamageAnimAsync(x.side, true, context.CancellationToken),
+                        _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_BATTLE_ANIMATION),
+                    });
                 })
                 .AddTo(_battleView);
         }
