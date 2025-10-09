@@ -3,10 +3,12 @@ using UnityEngine;
 
 namespace PrimeMillionaire.Common.Presentation.View
 {
-    public sealed class SoundView : MonoBehaviour
+    public sealed class SoundView : MonoBehaviour, ISoundView
     {
         [SerializeField] private AudioSource bgmSource = default;
         [SerializeField] private AudioSource seSource = default;
+
+        public MonoBehaviour instance => this;
 
         public void PlayBgm(AudioVO value)
         {

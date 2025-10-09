@@ -8,9 +8,9 @@ namespace PrimeMillionaire.Common.Presentation.Presenter
     public sealed class SoundPresenter : IInitializable
     {
         private readonly SoundUseCase _soundUseCase;
-        private readonly SoundView _soundView;
+        private readonly ISoundView _soundView;
 
-        public SoundPresenter(SoundUseCase soundUseCase, SoundView soundView)
+        public SoundPresenter(SoundUseCase soundUseCase, ISoundView soundView)
         {
             _soundUseCase = soundUseCase;
             _soundView = soundView;
@@ -20,11 +20,11 @@ namespace PrimeMillionaire.Common.Presentation.Presenter
         {
             _soundUseCase.playBgm
                 .Subscribe(_soundView.PlayBgm)
-                .AddTo(_soundView);
+                .AddTo(_soundView.instance);
 
             _soundUseCase.playSe
                 .Subscribe(_soundView.PlaySe)
-                .AddTo(_soundView);
+                .AddTo(_soundView.instance);
 
             _soundUseCase.isMuteBgm
                 .Subscribe(x =>
@@ -38,15 +38,15 @@ namespace PrimeMillionaire.Common.Presentation.Presenter
                         _soundView.UnPauseBgm();
                     }
                 })
-                .AddTo(_soundView);
+                .AddTo(_soundView.instance);
 
             _soundUseCase.bgmVolume
                 .Subscribe(_soundView.SetBgmVolume)
-                .AddTo(_soundView);
+                .AddTo(_soundView.instance);
 
             _soundUseCase.seVolume
                 .Subscribe(_soundView.SetSeVolume)
-                .AddTo(_soundView);
+                .AddTo(_soundView.instance);
         }
     }
 }

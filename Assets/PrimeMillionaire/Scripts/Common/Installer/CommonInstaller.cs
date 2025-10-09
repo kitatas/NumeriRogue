@@ -52,7 +52,7 @@ namespace PrimeMillionaire.Common.Installer
             // View
             builder.RegisterInstance<ExceptionModalView>(FindFirstObjectByType<ExceptionModalView>());
             builder.RegisterInstance<LoadingView>(FindFirstObjectByType<LoadingView>());
-            builder.RegisterInstance<SoundView>(FindFirstObjectByType<SoundView>());
+            builder.RegisterInstance<ISoundView>(FindFirstObjectByType<SoundView>());
             builder.RegisterInstance<TransitionView>(FindFirstObjectByType<TransitionView>());
         }
     }
