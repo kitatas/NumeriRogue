@@ -14,12 +14,12 @@ namespace PrimeMillionaire.Game.Presentation.State
         private readonly DealUseCase _dealUseCase;
         private readonly LoadingUseCase _loadingUseCase;
         private readonly ParameterUseCase _parameterUseCase;
-        private readonly SoundUseCase _soundUseCase;
+        private readonly ISoundUseCase _soundUseCase;
         private readonly StageUseCase _stageUseCase;
 
         public InitState(BattleAnimationUseCase battleAnimationUseCase, CharacterUseCase characterUseCase,
             DealUseCase dealUseCase, LoadingUseCase loadingUseCase, ParameterUseCase parameterUseCase,
-            SoundUseCase soundUseCase, StageUseCase stageUseCase)
+            ISoundUseCase soundUseCase, StageUseCase stageUseCase)
         {
             _battleAnimationUseCase = battleAnimationUseCase;
             _characterUseCase = characterUseCase;

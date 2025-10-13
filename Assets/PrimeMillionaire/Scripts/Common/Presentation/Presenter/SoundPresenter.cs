@@ -7,10 +7,10 @@ namespace PrimeMillionaire.Common.Presentation.Presenter
 {
     public sealed class SoundPresenter : IInitializable
     {
-        private readonly SoundUseCase _soundUseCase;
+        private readonly ISoundUseCase _soundUseCase;
         private readonly ISoundView _soundView;
 
-        public SoundPresenter(SoundUseCase soundUseCase, ISoundView soundView)
+        public SoundPresenter(ISoundUseCase soundUseCase, ISoundView soundView)
         {
             _soundUseCase = soundUseCase;
             _soundView = soundView;

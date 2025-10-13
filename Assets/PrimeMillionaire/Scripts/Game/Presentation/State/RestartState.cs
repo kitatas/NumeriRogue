@@ -21,7 +21,7 @@ namespace PrimeMillionaire.Game.Presentation.State
         private readonly HoldSkillUseCase _holdSkillUseCase;
         private readonly OrderUseCase _orderUseCase;
         private readonly ParameterUseCase _parameterUseCase;
-        private readonly SoundUseCase _soundUseCase;
+        private readonly ISoundUseCase _soundUseCase;
         private readonly StageUseCase _stageUseCase;
         private readonly TurnUseCase _turnUseCase;
 
@@ -29,7 +29,7 @@ namespace PrimeMillionaire.Game.Presentation.State
             BattleAnimationUseCase battleAnimationUseCase, CharacterUseCase characterUseCase, DealUseCase dealUseCase,
             DollarUseCase dollarUseCase, EnemyCountUseCase enemyCountUseCase, LevelUseCase levelUseCase,
             HandUseCase handUseCase, HoldSkillUseCase holdSkillUseCase, OrderUseCase orderUseCase,
-            ParameterUseCase parameterUseCase, SoundUseCase soundUseCase, StageUseCase stageUseCase,
+            ParameterUseCase parameterUseCase, ISoundUseCase soundUseCase, StageUseCase stageUseCase,
             TurnUseCase turnUseCase)
         {
             _interruptUseCase = interruptUseCase;

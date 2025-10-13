@@ -8,9 +8,9 @@ namespace PrimeMillionaire.Top.Presentation.State
     public sealed class InitState : BaseState
     {
         private readonly LoadingUseCase _loadingUseCase;
-        private readonly SoundUseCase _soundUseCase;
+        private readonly ISoundUseCase _soundUseCase;
 
-        public InitState(LoadingUseCase loadingUseCase, SoundUseCase soundUseCase)
+        public InitState(LoadingUseCase loadingUseCase, ISoundUseCase soundUseCase)
         {
             _loadingUseCase = loadingUseCase;
             _soundUseCase = soundUseCase;

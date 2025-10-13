@@ -38,7 +38,7 @@ namespace PrimeMillionaire.Common.Installer
             builder.Register<ExceptionUseCase>(Lifetime.Singleton);
             builder.Register<LoadingUseCase>(Lifetime.Singleton);
             builder.Register<SceneUseCase>(Lifetime.Singleton);
-            builder.Register<SoundUseCase>(Lifetime.Singleton);
+            builder.Register<SoundUseCase>(Lifetime.Singleton).AsImplementedInterfaces();
 
             // Presenter
             builder.UseEntryPoints(Lifetime.Singleton, entryPoints =>

@@ -7,9 +7,9 @@ namespace PrimeMillionaire.Boot.Presentation.Presenter
 {
     public sealed class SoundPresenter : IPostInitializable
     {
-        private readonly SoundUseCase _soundUseCase;
+        private readonly ISoundUseCase _soundUseCase;
 
-        public SoundPresenter(SoundUseCase soundUseCase)
+        public SoundPresenter(ISoundUseCase soundUseCase)
         {
             _soundUseCase = soundUseCase;
         }

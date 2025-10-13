@@ -10,10 +10,10 @@ namespace PrimeMillionaire.Top.Presentation.Presenter
 {
     public sealed class SoundPresenter : IPostInitializable
     {
-        private readonly SoundUseCase _soundUseCase;
+        private readonly ISoundUseCase _soundUseCase;
         private readonly VolumeView _volumeView;
 
-        public SoundPresenter(SoundUseCase soundUseCase, VolumeView volumeView)
+        public SoundPresenter(ISoundUseCase soundUseCase, VolumeView volumeView)
         {
             _soundUseCase = soundUseCase;
             _volumeView = volumeView;

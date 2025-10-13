@@ -4,7 +4,7 @@ using R3;
 
 namespace PrimeMillionaire.Common.Domain.UseCase
 {
-    public sealed class SoundUseCase : IDisposable
+    public sealed class SoundUseCase : ISoundUseCase, IDisposable
     {
         private readonly SaveRepository _saveRepository;
         private readonly SoundRepository _soundRepository;

@@ -12,11 +12,11 @@ namespace PrimeMillionaire.Boot.Presentation.State
         private readonly InterruptUseCase _interruptUseCase;
         private readonly LoadingUseCase _loadingUseCase;
         private readonly LoginUseCase _loginUseCase;
-        private readonly SoundUseCase _soundUseCase;
+        private readonly ISoundUseCase _soundUseCase;
         private readonly TitleUseCase _titleUseCase;
 
         public LoginState(InterruptUseCase interruptUseCase, LoadingUseCase loadingUseCase, LoginUseCase loginUseCase,
-            SoundUseCase soundUseCase, TitleUseCase titleUseCase)
+            ISoundUseCase soundUseCase, TitleUseCase titleUseCase)
         {
             _interruptUseCase = interruptUseCase;
             _loadingUseCase = loadingUseCase;
