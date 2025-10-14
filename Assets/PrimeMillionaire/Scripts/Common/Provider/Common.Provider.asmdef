@@ -1,0 +1,19 @@
+{
+    "name": "Common.Provider",
+    "rootNamespace": "",
+    "references": [
+        "GUID:33db315b82f264ceba5b853ae3b8cde8",
+        "GUID:316f5cb0f109146b8a5f73d84387e48a",
+        "GUID:c4668ab80fc4f4511950111316c9e2e3",
+        "GUID:85984e1f6cf69479b8a05add2437a313"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
