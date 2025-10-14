@@ -305,12 +305,22 @@ namespace PrimeMillionaire.Common
     public sealed class AudioVO
     {
         public readonly AudioClip clip;
+        public readonly string cueName;
         public readonly float duration;
 
         public AudioVO(AudioClip clip, float duration)
         {
+            if (clip == null) throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SOUND);
             if (duration < 0.0f) throw new QuitExceptionVO(ExceptionConfig.INVALID_SOUND_DURATION);
             this.clip = clip;
+            this.duration = duration;
+        }
+
+        public AudioVO(string cueName, float duration)
+        {
+            if (string.IsNullOrEmpty(cueName)) throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SOUND);
+            if (duration < 0.0f) throw new QuitExceptionVO(ExceptionConfig.INVALID_SOUND_DURATION);
+            this.cueName = cueName;
             this.duration = duration;
         }
     }
