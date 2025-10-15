@@ -92,6 +92,11 @@ MonoBehaviour:
   m_Rectangle:
     m_CornerRadius: {x: 0, y: 0, z: 0, w: 0}
     m_UniformCornerRadius: 1
+  m_ChamferBox:
+    m_ChamferSize: 0
+  m_Parallelogram:
+    m_Skew: 0
+    m_CornerRadius: 0
   m_Circle:
     m_Radius: 0
     m_FitRadius: 0
@@ -339,6 +344,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6412844588939808084}
   - component: {fileID: 6028242210925516810}
+  - component: {fileID: 2496936760479940849}
   m_Layer: 0
   m_Name: AudioSource - SE
   m_TagString: Untagged
@@ -458,6 +464,39 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2496936760479940849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599289548341614315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1e631c3b9947b54c823c6853a05529c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: CriMw.CriWare.Runtime::CriWare.CriAtomSource
+  _playOnStart: 0
+  _regionOnStart: {fileID: 0}
+  _listenerOnStart: {fileID: 0}
+  _use3dPositioning: 0
+  _freezeOrientation: 0
+  _loop: 0
+  _volume: 0.5
+  _pitch: 0
+  _androidUseLowLatencyVoicePool: 0
+  need_to_player_update_all: 1
+  _use3dRandomization: 0
+  _randomPositionListMaxLength: 0
+  randomize3dConfig:
+    followsOriginalSource: 0
+    calculationType: 0
+    calculationParameters:
+    - 0
+    - 0
+    - 0
+  _cueName: 
+  _cueSheet: SE
 --- !u!1 &2512087959990524451
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,6 +589,11 @@ MonoBehaviour:
   m_Rectangle:
     m_CornerRadius: {x: 0, y: 0, z: 0, w: 0}
     m_UniformCornerRadius: 0
+  m_ChamferBox:
+    m_ChamferSize: 0
+  m_Parallelogram:
+    m_Skew: 0
+    m_CornerRadius: 0
   m_Circle:
     m_Radius: 0
     m_FitRadius: 0
@@ -701,6 +745,11 @@ MonoBehaviour:
   m_Rectangle:
     m_CornerRadius: {x: 0, y: 0, z: 0, w: 0}
     m_UniformCornerRadius: 0
+  m_ChamferBox:
+    m_ChamferSize: 0
+  m_Parallelogram:
+    m_Skew: 0
+    m_CornerRadius: 0
   m_Circle:
     m_Radius: 0
     m_FitRadius: 0
@@ -891,6 +940,11 @@ MonoBehaviour:
   m_Rectangle:
     m_CornerRadius: {x: 0, y: 0, z: 0, w: 0}
     m_UniformCornerRadius: 0
+  m_ChamferBox:
+    m_ChamferSize: 0
+  m_Parallelogram:
+    m_Skew: 0
+    m_CornerRadius: 0
   m_Circle:
     m_Radius: 0
     m_FitRadius: 0
@@ -960,6 +1014,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7751390692183096286}
   - component: {fileID: 7170174544049691624}
+  - component: {fileID: 8406513868729119520}
   m_Layer: 0
   m_Name: AudioSource - BGM
   m_TagString: Untagged
@@ -1079,6 +1134,39 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8406513868729119520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4542396768349049982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1e631c3b9947b54c823c6853a05529c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: CriMw.CriWare.Runtime::CriWare.CriAtomSource
+  _playOnStart: 0
+  _regionOnStart: {fileID: 0}
+  _listenerOnStart: {fileID: 0}
+  _use3dPositioning: 0
+  _freezeOrientation: 0
+  _loop: 1
+  _volume: 0.5
+  _pitch: 0
+  _androidUseLowLatencyVoicePool: 0
+  need_to_player_update_all: 1
+  _use3dRandomization: 0
+  _randomPositionListMaxLength: 0
+  randomize3dConfig:
+    followsOriginalSource: 0
+    calculationType: 0
+    calculationParameters:
+    - 0
+    - 0
+    - 0
+  _cueName: 
+  _cueSheet: BGM
 --- !u!1 &4549834138325107914
 GameObject:
   m_ObjectHideFlags: 0
@@ -1089,6 +1177,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3861350708511307241}
   - component: {fileID: 5453235937048273562}
+  - component: {fileID: 5879001913697807616}
   m_Layer: 0
   m_Name: Sound
   m_TagString: Untagged
@@ -1127,6 +1216,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmSource: {fileID: 7170174544049691624}
   seSource: {fileID: 6028242210925516810}
+--- !u!114 &5879001913697807616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4549834138325107914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb9f1f52909459dbf1a70077c4df7a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Common.Presentation.View::PrimeMillionaire.Common.Presentation.View.CriSoundView
+  bgmSource: {fileID: 8406513868729119520}
+  seSource: {fileID: 2496936760479940849}
 --- !u!1 &4937129463591324708
 GameObject:
   m_ObjectHideFlags: 0
@@ -1258,6 +1361,11 @@ MonoBehaviour:
   m_Rectangle:
     m_CornerRadius: {x: 0, y: 0, z: 0, w: 0}
     m_UniformCornerRadius: 0
+  m_ChamferBox:
+    m_ChamferSize: 0
+  m_Parallelogram:
+    m_Skew: 0
+    m_CornerRadius: 0
   m_Circle:
     m_Radius: 0
     m_FitRadius: 0
@@ -1409,6 +1517,11 @@ MonoBehaviour:
   m_Rectangle:
     m_CornerRadius: {x: 0, y: 0, z: 0, w: 0}
     m_UniformCornerRadius: 0
+  m_ChamferBox:
+    m_ChamferSize: 0
+  m_Parallelogram:
+    m_Skew: 0
+    m_CornerRadius: 0
   m_Circle:
     m_Radius: 0
     m_FitRadius: 0
@@ -1602,6 +1715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae1459590fe481aaaa3cce3671a28bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 1
   button: {fileID: 8806757847436213349}
 --- !u!114 &8806757847436213349 stripped
 MonoBehaviour:
@@ -1902,5 +2016,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 1957222345323733122}
+  scrollRect: {fileID: 0}
   message: {fileID: 3900082861239877771}
   button: {fileID: 652692352305861514}
