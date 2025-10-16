@@ -23,8 +23,7 @@ namespace PrimeMillionaire.Boot.Domain.UseCase
             if (saveData.IsEmptyUid())
             {
                 var user = await CreateAsync(token);
-                saveData.uid = user.uid;
-                _saveRepository.Save(saveData);
+                _saveRepository.Save(user);
             }
             else
             {
