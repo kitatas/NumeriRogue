@@ -40,7 +40,7 @@ namespace PrimeMillionaire.Boot.Presentation.State
 
             _soundUseCase.Play(Bgm.Menu);
 
-            var isSuccess = _loginUseCase.Login();
+            var isSuccess = await _loginUseCase.LoginAsync(token);
             if (isSuccess == false)
             {
                 throw new RebootExceptionVO(ExceptionConfig.FAILED_LOGIN);
