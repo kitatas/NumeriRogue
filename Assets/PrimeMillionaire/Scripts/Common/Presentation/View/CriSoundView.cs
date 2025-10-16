@@ -17,6 +17,11 @@ namespace PrimeMillionaire.Common.Presentation.View
 
             this.Delay(value.duration, () =>
             {
+                if (bgmSource.status == CriAtomSourceBase.Status.Playing)
+                {
+                    bgmSource.Stop();
+                }
+
                 bgmSource.cueName = value.cueName;
                 bgmSource.Play();
             });
