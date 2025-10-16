@@ -16,6 +16,11 @@ namespace PrimeMillionaire.Common
         public const string ES3_KEY = "";
     }
 
+    public sealed class PlayFabConfig
+    {
+        public const string TITLE_ID = "";
+    }
+
     public sealed class ExceptionConfig
     {
         public const string REBOOT_MESSAGE = "Return to title.";
@@ -47,6 +52,8 @@ namespace PrimeMillionaire.Common
         public const string NOT_FOUND_SUIT = "NOT_FOUND_SUIT";
         public const string NOT_FOUND_WEBVIEW = "NOT_FOUND_WEBVIEW";
         public const string FAILED_DEPENDENCY_RESOLUTION = "FAILED_DEPENDENCY_RESOLUTION";
+        public const string FAILED_FETCH_PAYLOAD = "FAILED_FETCH_PAYLOAD";
+        public const string FAILED_FETCH_USER_DATA = "FAILED_FETCH_USER_DATA";
         public const string FAILED_LOAD_INTERRUPT = "FAILED_LOAD_INTERRUPT";
         public const string FAILED_LOAD_PROGRESS = "FAILED_LOAD_PROGRESS";
         public const string FAILED_LOGIN = "FAILED_LOGIN";

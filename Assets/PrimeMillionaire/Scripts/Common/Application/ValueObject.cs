@@ -8,6 +8,18 @@ using VitalRouter;
 
 namespace PrimeMillionaire.Common
 {
+    public sealed class UserVO
+    {
+        public readonly string uid;
+        public readonly bool isNewly;
+
+        public UserVO(string uid, bool isNewly)
+        {
+            this.uid = uid;
+            this.isNewly = isNewly;
+        }
+    }
+
     public sealed class LoadVO
     {
         public readonly SceneName sceneName;
