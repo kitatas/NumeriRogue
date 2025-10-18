@@ -20,7 +20,7 @@ namespace PrimeMillionaire.Boot.Domain.UseCase
         public async UniTask<bool> LoginAsync(CancellationToken token)
         {
             var saveData = _saveRepository.Load();
-            if (saveData.IsEmptyUid())
+            if (saveData.isEmptyUid)
             {
                 var user = await CreateAsync(token);
                 _saveRepository.Save(user);

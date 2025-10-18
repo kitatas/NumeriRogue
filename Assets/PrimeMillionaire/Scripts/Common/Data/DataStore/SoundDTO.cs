@@ -16,6 +16,13 @@ namespace PrimeMillionaire.Common.Data.DataStore
             se = new VolumeDTO();
         }
 
+        public SoundDTO(SoundVO sound)
+        {
+            master = new VolumeDTO(sound.master);
+            bgm = new VolumeDTO(sound.bgm);
+            se = new VolumeDTO(sound.se);
+        }
+
         public SoundVO ToVO() => new(master.ToVO(), bgm.ToVO(), se.ToVO());
     }
 

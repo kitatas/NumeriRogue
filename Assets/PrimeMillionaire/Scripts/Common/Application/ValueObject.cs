@@ -20,6 +20,26 @@ namespace PrimeMillionaire.Common
         }
     }
 
+    public sealed class SaveVO
+    {
+        public readonly string uid;
+        public readonly ProgressVO progress;
+        public readonly InterruptVO interrupt;
+        public readonly SoundVO sound;
+
+        public SaveVO(string uid, ProgressVO progress, InterruptVO interrupt, SoundVO sound)
+        {
+            this.uid = uid;
+            this.progress = progress;
+            this.interrupt = interrupt;
+            this.sound = sound;
+        }
+
+        public bool isEmptyUid => string.IsNullOrEmpty(uid);
+        public bool hasProgress => progress != null;
+        public bool hasInterrupt => interrupt != null && interrupt.player.type != CharacterType.None;
+    }
+
     public sealed class LoadVO
     {
         public readonly SceneName sceneName;

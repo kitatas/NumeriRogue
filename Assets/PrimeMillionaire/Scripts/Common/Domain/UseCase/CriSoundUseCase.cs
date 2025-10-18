@@ -34,7 +34,7 @@ namespace PrimeMillionaire.Common.Domain.UseCase
         public Observable<bool> isMuteBgm => _isMuteBgm;
         public Observable<VolumeVO> bgmVolume => _bgmVolume;
         public Observable<VolumeVO> seVolume => _seVolume;
-        public SoundVO sound => _saveRepository.Load().sound.ToVO();
+        public SoundVO sound => _saveRepository.Load().sound;
 
         public void Play(Bgm bgm, float duration = 0)
         {
