@@ -9,20 +9,15 @@ namespace PrimeMillionaire.Boot.Presentation.State
 {
     public sealed class LoginState : BaseState
     {
-        private readonly InterruptUseCase _interruptUseCase;
         private readonly LoadingUseCase _loadingUseCase;
         private readonly LoginUseCase _loginUseCase;
         private readonly ISoundUseCase _soundUseCase;
-        private readonly TitleUseCase _titleUseCase;
 
-        public LoginState(InterruptUseCase interruptUseCase, LoadingUseCase loadingUseCase, LoginUseCase loginUseCase,
-            ISoundUseCase soundUseCase, TitleUseCase titleUseCase)
+        public LoginState(LoadingUseCase loadingUseCase, LoginUseCase loginUseCase, ISoundUseCase soundUseCase)
         {
-            _interruptUseCase = interruptUseCase;
             _loadingUseCase = loadingUseCase;
             _loginUseCase = loginUseCase;
             _soundUseCase = soundUseCase;
-            _titleUseCase = titleUseCase;
         }
 
         public override BootState state => BootState.Login;
@@ -46,14 +41,7 @@ namespace PrimeMillionaire.Boot.Presentation.State
                 throw new RebootExceptionVO(ExceptionConfig.FAILED_LOGIN);
             }
 
-            var hasInterrupt = _interruptUseCase.HasInterrupt();
-            if (hasInterrupt)
-            {
-                return BootState.Interrupt;
-            }
-
-            await _titleUseCase.TouchScreenAsync(token);
-            return BootState.Load;
+            return BootState.Start;
         }
     }
 }
