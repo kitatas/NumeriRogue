@@ -7,10 +7,12 @@ namespace PrimeMillionaire.Boot.Presentation.State
     public sealed class CheckState : BaseState
     {
         private readonly AppVersionUseCase _appVersionUseCase;
+        private readonly ModalUseCase _modalUseCase;
 
-        public CheckState(AppVersionUseCase appVersionUseCase)
+        public CheckState(AppVersionUseCase appVersionUseCase, ModalUseCase modalUseCase)
         {
             _appVersionUseCase = appVersionUseCase;
+            _modalUseCase = modalUseCase;
         }
 
         public override BootState state => BootState.Check;
@@ -25,7 +27,7 @@ namespace PrimeMillionaire.Boot.Presentation.State
             var isForceUpdate = await _appVersionUseCase.IsForceUpdateAsync(token);
             if (isForceUpdate)
             {
-                // TODO: 強制アプデのモーダル表示
+                await _modalUseCase.ShowAsync(ModalType.Update, token);
                 return BootState.None;
             }
 

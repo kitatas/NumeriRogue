@@ -15,5 +15,6 @@ namespace PrimeMillionaire.Boot
     {
         None = 0,
         Interrupt = 1,
+        Update = 2,
     }
 }
