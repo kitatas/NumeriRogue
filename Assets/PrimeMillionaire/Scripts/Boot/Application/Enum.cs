@@ -8,6 +8,7 @@ namespace PrimeMillionaire.Boot
         Restart = 3,
         Interrupt = 4,
         Start = 5,
+        Check = 6,
     }
 
     public enum ModalType

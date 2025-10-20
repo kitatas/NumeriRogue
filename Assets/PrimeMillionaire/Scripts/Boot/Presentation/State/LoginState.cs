@@ -41,7 +41,7 @@ namespace PrimeMillionaire.Boot.Presentation.State
                 throw new RebootExceptionVO(ExceptionConfig.FAILED_LOGIN);
             }
 
-            return BootState.Start;
+            return BootState.Check;
         }
     }
 }
