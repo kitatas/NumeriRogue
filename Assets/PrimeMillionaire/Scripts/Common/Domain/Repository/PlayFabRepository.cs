@@ -37,5 +37,21 @@ namespace PrimeMillionaire.Common.Domain.Repository
             var user = new UserDTO(response);
             return user.ToVO();
         }
+
+        public async UniTask<MasterVO> GetMasterAsync(CancellationToken token)
+        {
+            var completionSource = new UniTaskCompletionSource<GetTitleDataResult>();
+            var request = new GetTitleDataRequest();
+
+            PlayFabClientAPI.GetTitleData(
+                request,
+                result => completionSource.TrySetResult(result),
+                error => completionSource.TrySetException(new RebootExceptionVO(error.ErrorMessage))
+            );
+
+            var response = await completionSource.Task.AttachExternalCancellation(token);
+            var master = new MasterDTO(response);
+            return master.ToVO();
+        }
     }
 }

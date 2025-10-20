@@ -40,6 +40,34 @@ namespace PrimeMillionaire.Common
         public bool hasInterrupt => interrupt != null && interrupt.player.type != CharacterType.None;
     }
 
+    public sealed class MasterVO
+    {
+        public readonly AppVersionVO appVersion;
+
+        public MasterVO(AppVersionVO appVersion)
+        {
+            this.appVersion = appVersion;
+        }
+    }
+
+    public sealed class AppVersionVO
+    {
+        public readonly int major;
+        public readonly int minor;
+        public readonly bool isForceUpdate;
+
+        public AppVersionVO(int major, int minor)
+        {
+            this.major = major;
+            this.minor = minor;
+
+            var versions = Application.version.Split('.');
+            var currentMajor = int.Parse(versions[0]);
+            var currentMinor = int.Parse(versions[1]);
+            isForceUpdate = major > currentMajor || major == currentMajor && minor > currentMinor;
+        }
+    }
+
     public sealed class LoadVO
     {
         public readonly SceneName sceneName;

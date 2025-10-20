@@ -19,6 +19,7 @@ namespace PrimeMillionaire.Common
     public sealed class PlayFabConfig
     {
         public const string TITLE_ID = "";
+        public const string MASTER_APP_VERSION_KEY = "";
     }
 
     public sealed class ExceptionConfig
@@ -34,6 +35,7 @@ namespace PrimeMillionaire.Common
         public const string NOT_FOUND_BUTTON = "NOT_FOUND_BUTTON";
         public const string NOT_FOUND_CARD = "NOT_FOUND_CARD";
         public const string NOT_FOUND_CHARACTER = "NOT_FOUND_CHARACTER";
+        public const string NOT_FOUND_DATA = "NOT_FOUND_DATA";
         public const string NOT_FOUND_DISPLAY =  "NOT_FOUND_DISPLAY";
         public const string NOT_FOUND_FADE = "NOT_FOUND_FADE";
         public const string NOT_FOUND_FINISH = "NOT_FOUND_FINISH";
@@ -52,6 +54,7 @@ namespace PrimeMillionaire.Common
         public const string NOT_FOUND_SUIT = "NOT_FOUND_SUIT";
         public const string NOT_FOUND_WEBVIEW = "NOT_FOUND_WEBVIEW";
         public const string FAILED_DEPENDENCY_RESOLUTION = "FAILED_DEPENDENCY_RESOLUTION";
+        public const string FAILED_DESERIALIZE_MASTER = "FAILED_DESERIALIZE_MASTER";
         public const string FAILED_FETCH_PAYLOAD = "FAILED_FETCH_PAYLOAD";
         public const string FAILED_FETCH_USER_DATA = "FAILED_FETCH_USER_DATA";
         public const string FAILED_LOAD_INTERRUPT = "FAILED_LOAD_INTERRUPT";
