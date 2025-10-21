@@ -23,6 +23,6 @@ namespace PrimeMillionaire.Common.Data.DataStore
             this.sound = sound;
         }
 
-        public SaveVO ToVO() => new(uid, progress.ToVO(), interrupt.ToVO(), sound.ToVO());
+        public SaveVO ToVO() => new(uid, progress.ToVO(), interrupt?.ToVO(), sound.ToVO());
     }
 }
