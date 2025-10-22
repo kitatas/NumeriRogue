@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace PrimeMillionaire.Common.Data.DataStore
 {
@@ -23,6 +24,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
         }
 
         public ProgressVO ToVO() => new(characterStages.Select(x => x.ToVO()).ToList());
+        public string ToJson() => JsonConvert.SerializeObject(this);
     }
 
     [Serializable]

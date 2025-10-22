@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PlayFab;
@@ -36,6 +37,26 @@ namespace PrimeMillionaire.Common.Domain.Repository
             var response = await completionSource.Task.AttachExternalCancellation(token);
             var user = new UserDTO(uid, response);
             return user.ToVO();
+        }
+
+        public async UniTask UpdateUserProgressAsync(ProgressVO progress, CancellationToken token)
+        {
+            var completionSource = new UniTaskCompletionSource<UpdateUserDataResult>();
+            var request = new UpdateUserDataRequest
+            {
+                Data = new Dictionary<string, string>
+                {
+                    { PlayFabConfig.USER_PROGRESS_KEY, new ProgressDTO(progress).ToJson() },
+                },
+            };
+
+            PlayFabClientAPI.UpdateUserData(
+                request,
+                result => completionSource.TrySetResult(result),
+                error => completionSource.TrySetException(new RebootExceptionVO(error.ErrorMessage))
+            );
+
+            await completionSource.Task.AttachExternalCancellation(token);
         }
 
         public async UniTask<MasterVO> GetMasterAsync(CancellationToken token)

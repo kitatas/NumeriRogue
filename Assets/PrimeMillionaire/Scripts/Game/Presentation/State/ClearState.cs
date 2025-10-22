@@ -29,7 +29,7 @@ namespace PrimeMillionaire.Game.Presentation.State
         public override async UniTask<GameState> TickAsync(CancellationToken token)
         {
             _interruptUseCase.Delete();
-            _progressUseCase.UpdateProgress(ProgressStatus.Clear);
+            await _progressUseCase.UpdateProgressAsync(ProgressStatus.Clear, token);
             await _finishUseCase.FadeInViewAsync(FinishType.Clear, token);
 
             return GameState.Load;

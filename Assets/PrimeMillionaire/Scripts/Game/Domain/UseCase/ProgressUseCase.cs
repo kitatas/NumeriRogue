@@ -1,5 +1,8 @@
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Data.Entity;
+using PrimeMillionaire.Common.Domain.Repository;
 
 namespace PrimeMillionaire.Game.Domain.UseCase
 {
@@ -7,25 +10,29 @@ namespace PrimeMillionaire.Game.Domain.UseCase
     {
         private readonly PlayerCharacterEntity _playerCharacterEntity;
         private readonly UserEntity _userEntity;
+        private readonly PlayFabRepository _playFabRepository;
 
-        public ProgressUseCase(PlayerCharacterEntity playerCharacterEntity, UserEntity userEntity)
+        public ProgressUseCase(PlayerCharacterEntity playerCharacterEntity, UserEntity userEntity,
+            PlayFabRepository playFabRepository)
         {
             _playerCharacterEntity = playerCharacterEntity;
             _userEntity = userEntity;
+            _playFabRepository = playFabRepository;
         }
 
-        public void UpdateProgress(ProgressStatus status)
+        public async UniTask UpdateProgressAsync(ProgressStatus status, CancellationToken token)
         {
             var progress = _userEntity.progress;
             var type = _playerCharacterEntity.type;
             var characterProgress = progress.Find(type);
             if (characterProgress == null)
             {
+                // 初挑戦であればレコードを作成
                 progress.characterProgress.Add(new CharacterProgressVO(type, status));
             }
-            else if (characterProgress.isClear)
+            else if (status == ProgressStatus.None || characterProgress.isClear)
             {
-                // クリア済みであれば更新不要
+                // 失敗済み or クリア済みであれば更新不要
                 return;
             }
             else
@@ -34,7 +41,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 progress.characterProgress.Add(new CharacterProgressVO(type, status));
             }
 
-            // TODO: Send PlayFab
+            await _playFabRepository.UpdateUserProgressAsync(progress, token);
         }
     }
 }
