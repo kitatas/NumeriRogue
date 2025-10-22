@@ -7,7 +7,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
         public readonly string uid;
         public readonly bool isNewly;
 
-        public UserDTO(LoginResult loginResult)
+        public UserDTO(string uid, LoginResult loginResult)
         {
             var payload = loginResult.InfoResultPayload;
             if (payload == null) throw new QuitExceptionVO(ExceptionConfig.FAILED_FETCH_PAYLOAD);
@@ -15,9 +15,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
             var userData = payload.UserData;
             if (userData == null) throw new QuitExceptionVO(ExceptionConfig.FAILED_FETCH_USER_DATA);
 
-            var playerProfile = payload.PlayerProfile;
-            uid = playerProfile == null ? "" : playerProfile.PlayerId;
-            isNewly = loginResult.NewlyCreated;
+            this.uid = uid;
+            this.isNewly = loginResult.NewlyCreated;
         }
 
         public UserVO ToVO() => new(uid, isNewly);

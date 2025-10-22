@@ -34,7 +34,7 @@ namespace PrimeMillionaire.Common.Domain.Repository
             );
 
             var response = await completionSource.Task.AttachExternalCancellation(token);
-            var user = new UserDTO(response);
+            var user = new UserDTO(uid, response);
             return user.ToVO();
         }
 
