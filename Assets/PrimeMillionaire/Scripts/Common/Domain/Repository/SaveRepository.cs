@@ -18,13 +18,6 @@ namespace PrimeMillionaire.Common.Domain.Repository
             return ParseLoad().ToVO();
         }
 
-        public bool TryLoadProgress(out ProgressVO progress)
-        {
-            var data = Load();
-            progress = data.progress;
-            return data.hasProgress;
-        }
-
         public bool TryLoadInterrupt(out InterruptVO interrupt)
         {
             var data = Load();
@@ -55,13 +48,6 @@ namespace PrimeMillionaire.Common.Domain.Repository
         {
             var data = ParseLoad();
             data.interrupt = interrupt == null ? null : new InterruptDTO(interrupt);
-            Save(data);
-        }
-
-        public void Save(ProgressVO progress)
-        {
-            var data = ParseLoad();
-            data.progress = new ProgressDTO(progress);
             Save(data);
         }
 

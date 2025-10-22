@@ -1,47 +1,40 @@
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Data.Entity;
-using PrimeMillionaire.Common.Domain.Repository;
 
 namespace PrimeMillionaire.Game.Domain.UseCase
 {
     public sealed class ProgressUseCase
     {
         private readonly PlayerCharacterEntity _playerCharacterEntity;
-        private readonly SaveRepository _saveRepository;
+        private readonly UserEntity _userEntity;
 
-        public ProgressUseCase(PlayerCharacterEntity playerCharacterEntity, SaveRepository saveRepository)
+        public ProgressUseCase(PlayerCharacterEntity playerCharacterEntity, UserEntity userEntity)
         {
             _playerCharacterEntity = playerCharacterEntity;
-            _saveRepository = saveRepository;
+            _userEntity = userEntity;
         }
 
         public void UpdateProgress(ProgressStatus status)
         {
-            if (_saveRepository.TryLoadProgress(out var progress))
+            var progress = _userEntity.progress;
+            var type = _playerCharacterEntity.type;
+            var characterProgress = progress.Find(type);
+            if (characterProgress == null)
             {
-                var type = _playerCharacterEntity.type;
-                var characterProgress = progress.Find(type);
-                if (characterProgress == null)
-                {
-                    progress.characterProgress.Add(new CharacterProgressVO(type, status));
-                }
-                else if (characterProgress.isClear)
-                {
-                    // クリア済みであれば更新不要
-                    return;
-                }
-                else
-                {
-                    progress.characterProgress.Remove(characterProgress);
-                    progress.characterProgress.Add(new CharacterProgressVO(type, status));
-                }
-
-                _saveRepository.Save(progress);
+                progress.characterProgress.Add(new CharacterProgressVO(type, status));
+            }
+            else if (characterProgress.isClear)
+            {
+                // クリア済みであれば更新不要
+                return;
             }
             else
             {
-                throw new RebootExceptionVO(ExceptionConfig.FAILED_LOAD_PROGRESS);
+                progress.characterProgress.Remove(characterProgress);
+                progress.characterProgress.Add(new CharacterProgressVO(type, status));
             }
+
+            // TODO: Send PlayFab
         }
     }
 }

@@ -11,18 +11,18 @@ namespace PrimeMillionaire.Top.Domain.UseCase
     public sealed class CharacterUseCase : IDisposable
     {
         private readonly PlayerCharacterEntity _playerCharacterEntity;
+        private readonly UserEntity _userEntity;
         private readonly CharacterRepository _characterRepository;
         private readonly CharacterStageRepository _characterStageRepository;
-        private readonly SaveRepository _saveRepository;
         private readonly Subject<OrderCharacterVO> _orderCharacter;
 
-        public CharacterUseCase(PlayerCharacterEntity playerCharacterEntity, CharacterRepository characterRepository,
-            CharacterStageRepository characterStageRepository, SaveRepository saveRepository)
+        public CharacterUseCase(PlayerCharacterEntity playerCharacterEntity, UserEntity userEntity,
+            CharacterRepository characterRepository, CharacterStageRepository characterStageRepository)
         {
             _playerCharacterEntity = playerCharacterEntity;
+            _userEntity = userEntity;
             _characterRepository = characterRepository;
             _characterStageRepository = characterStageRepository;
-            _saveRepository = saveRepository;
             _orderCharacter = new Subject<OrderCharacterVO>();
         }
 
@@ -30,21 +30,15 @@ namespace PrimeMillionaire.Top.Domain.UseCase
 
         private List<StageCharacterVO> GetAll()
         {
-            if (_saveRepository.TryLoadProgress(out var progress))
-            {
-                return _characterStageRepository.GetReleased(progress)
-                    .Select(x =>
-                    {
-                        var character = _characterRepository.Find(x);
-                        var characterProgress = progress.Find(x) ?? new CharacterProgressVO(x, ProgressStatus.New);
-                        return new StageCharacterVO(character, characterProgress);
-                    })
-                    .ToList();
-            }
-            else
-            {
-                throw new RebootExceptionVO(ExceptionConfig.FAILED_LOAD_PROGRESS);
-            }
+            var progress = _userEntity.progress;
+            return _characterStageRepository.GetReleased(progress)
+                .Select(x =>
+                {
+                    var character = _characterRepository.Find(x);
+                    var characterProgress = progress.Find(x) ?? new CharacterProgressVO(x, ProgressStatus.New);
+                    return new StageCharacterVO(character, characterProgress);
+                })
+                .ToList();
         }
 
         public (List<StageCharacterVO>, int) GetAllAndIndex()

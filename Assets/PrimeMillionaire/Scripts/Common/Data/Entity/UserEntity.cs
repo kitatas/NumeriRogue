@@ -4,6 +4,8 @@ namespace PrimeMillionaire.Common.Data.Entity
     {
         private UserVO _user;
 
+        public ProgressVO progress => _user.progress;
+
         public void Set(UserVO user)
         {
             _user = user;
