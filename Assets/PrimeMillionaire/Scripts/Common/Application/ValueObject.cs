@@ -12,11 +12,13 @@ namespace PrimeMillionaire.Common
     {
         public readonly string uid;
         public readonly bool isNewly;
+        public readonly ProgressVO progress;
 
-        public UserVO(string uid, bool isNewly)
+        public UserVO(string uid, bool isNewly, ProgressVO progress)
         {
             this.uid = uid;
             this.isNewly = isNewly;
+            this.progress = progress;
         }
     }
 

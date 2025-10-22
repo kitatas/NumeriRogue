@@ -21,6 +21,7 @@ namespace PrimeMillionaire.Common
     {
         public const string TITLE_ID = "";
         public const string MASTER_APP_VERSION_KEY = "";
+        public const string USER_PROGRESS_KEY = "";
     }
 
     public sealed class ExceptionConfig
