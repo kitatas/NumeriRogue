@@ -33,6 +33,10 @@ namespace PrimeMillionaire.Common.Data.DataStore
         public CharacterType type;
         public ProgressStatus status;
 
+        public CharacterProgressDTO()
+        {
+        }
+
         public CharacterProgressDTO(CharacterProgressVO characterProgress)
         {
             type = characterProgress.type;
