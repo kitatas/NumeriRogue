@@ -1,8 +1,14 @@
 using System.ComponentModel;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using FastEnumUtility;
 using PrimeMillionaire.Common;
+using PrimeMillionaire.Common.Data.Entity;
 using PrimeMillionaire.Common.Domain.Repository;
+using PrimeMillionaire.Game.Domain.UseCase;
 using UnityEngine.SceneManagement;
+using VContainer;
+using VContainer.Unity;
 
 public partial class SROptions
 {
@@ -21,21 +27,18 @@ public partial class SROptions
     {
         if (characterTypeSingle == CharacterType.None) return;
 
-        var saveRepository = new SaveRepository();
-        if (saveRepository.TryLoadProgress(out var progress))
+        var container = VContainerSettings.Instance.GetOrCreateRootLifetimeScopeInstance().Container;
+        var playerCharacterEntity = container.Resolve<PlayerCharacterEntity>();
+        var userEntity = container.Resolve<UserEntity>();
+        var playFabRepository = container.Resolve<PlayFabRepository>();
+
+        var progressUseCase = new ProgressUseCase(playerCharacterEntity, userEntity, playFabRepository);
+        UniTask.Void(async token =>
         {
-            var characterProgress = progress.Find(characterTypeSingle);
-            if (characterProgress != null)
-            {
-                progress.characterProgress.Remove(characterProgress);
-            }
-
-            progress.characterProgress.Add(new CharacterProgressVO(characterTypeSingle, progressStatusSingle));
-
-            saveRepository.Save(progress);
-        }
-
-        SceneManager.LoadScene("Top");
+            playerCharacterEntity.SetType(characterTypeSingle);
+            await progressUseCase.UpdateProgressAsync(progressStatusSingle, token);
+            SceneManager.LoadScene(SceneName.Top.FastToString());
+        }, CancellationToken.None);
     }
 
     #endregion
