@@ -53,26 +53,29 @@ public partial class SROptions
     [Category(CHARACTER_PROGRESS_ALL), Sort(2), DisplayName("Exec")]
     public void UpdateCharacterProgressAll()
     {
-        var saveRepository = new SaveRepository();
-        if (saveRepository.TryLoadProgress(out var progress))
+        var container = VContainerSettings.Instance.GetOrCreateRootLifetimeScopeInstance().Container;
+        var userEntity = container.Resolve<UserEntity>();
+        var playFabRepository = container.Resolve<PlayFabRepository>();
+
+        var progress = userEntity.progress;
+        foreach (var characterType in FastEnum.GetValues<CharacterType>())
         {
-            foreach (var characterType in FastEnum.GetValues<CharacterType>())
+            if (characterType == CharacterType.None) continue;
+
+            var characterProgress = progress.Find(characterType);
+            if (characterProgress != null)
             {
-                if (characterType == CharacterType.None) continue;
-
-                var characterProgress = progress.Find(characterType);
-                if (characterProgress != null)
-                {
-                    progress.characterProgress.Remove(characterProgress);
-                }
-
-                progress.characterProgress.Add(new CharacterProgressVO(characterType, progressStatusAll));
-
-                saveRepository.Save(progress);
+                progress.characterProgress.Remove(characterProgress);
             }
+
+            progress.characterProgress.Add(new CharacterProgressVO(characterType, progressStatusAll));
         }
 
-        SceneManager.LoadScene("Top");
+        UniTask.Void(async token =>
+        {
+            await playFabRepository.UpdateUserProgressAsync(progress, token);
+            SceneManager.LoadScene(SceneName.Top.FastToString());
+        }, CancellationToken.None);
     }
 
     #endregion
