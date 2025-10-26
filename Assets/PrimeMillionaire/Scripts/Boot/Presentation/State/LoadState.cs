@@ -1,23 +1,22 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using PrimeMillionaire.Boot.Domain.UseCase;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Domain.UseCase;
 
 namespace PrimeMillionaire.Boot.Presentation.State
 {
-    public sealed class LoginState : BaseState
+    public sealed class LoadState : BaseState
     {
         private readonly LoadingUseCase _loadingUseCase;
-        private readonly LoginUseCase _loginUseCase;
+        private readonly ISoundUseCase _soundUseCase;
 
-        public LoginState(LoadingUseCase loadingUseCase, LoginUseCase loginUseCase)
+        public LoadState(LoadingUseCase loadingUseCase, ISoundUseCase soundUseCase)
         {
             _loadingUseCase = loadingUseCase;
-            _loginUseCase = loginUseCase;
+            _soundUseCase = soundUseCase;
         }
 
-        public override BootState state => BootState.Login;
+        public override BootState state => BootState.Load;
 
         public override async UniTask InitAsync(CancellationToken token)
         {
@@ -26,15 +25,12 @@ namespace PrimeMillionaire.Boot.Presentation.State
 
         public override async UniTask<BootState> TickAsync(CancellationToken token)
         {
+            await UniTask.Yield(token);
             _loadingUseCase.Set(false);
 
-            var isSuccess = await _loginUseCase.LoginAsync(token);
-            if (isSuccess == false)
-            {
-                throw new RebootExceptionVO(ExceptionConfig.FAILED_LOGIN);
-            }
+            _soundUseCase.Play(Bgm.Menu);
 
-            return BootState.Check;
+            return BootState.Login;
         }
     }
 }

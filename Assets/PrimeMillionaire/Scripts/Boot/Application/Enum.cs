@@ -3,6 +3,7 @@ namespace PrimeMillionaire.Boot
     public enum BootState
     {
         None = 0,
+        Load = 1,
         Login = 2,
         Interrupt = 4,
         Start = 5,
