@@ -8,11 +8,14 @@ namespace PrimeMillionaire.Common.Presentation.Presenter
 {
     public sealed class ExceptionPresenter : IInitializable
     {
+        private readonly LoadingUseCase _loadingUseCase;
         private readonly SceneUseCase _sceneUseCase;
         private readonly ExceptionModalView _exceptionModalView;
 
-        public ExceptionPresenter(SceneUseCase sceneUseCase, ExceptionModalView exceptionModalView)
+        public ExceptionPresenter(LoadingUseCase loadingUseCase, SceneUseCase sceneUseCase,
+            ExceptionModalView exceptionModalView)
         {
+            _loadingUseCase = loadingUseCase;
             _sceneUseCase = sceneUseCase;
             _exceptionModalView = exceptionModalView;
         }
@@ -24,6 +27,7 @@ namespace PrimeMillionaire.Common.Presentation.Presenter
             Router.Default
                 .SubscribeAwait<ExceptionVO>(async (v, context) =>
                 {
+                    _loadingUseCase.Set(false);
                     _exceptionModalView.Render(v.message);
                     await _exceptionModalView.ShowAndClickAsync(UiConfig.POPUP_DURATION, context.CancellationToken);
                     switch (v)
