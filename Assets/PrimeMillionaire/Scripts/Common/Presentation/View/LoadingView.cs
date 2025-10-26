@@ -6,9 +6,12 @@ namespace PrimeMillionaire.Common.Presentation.View
 {
     public sealed class LoadingView : MonoBehaviour
     {
+        [SerializeField] private CanvasGroup canvasGroup = default;
         [SerializeField] private TextMeshProUGUI loading = default;
 
+        private readonly float _interval = 0.05f;
         private Sequence _sequence;
+        private Tween _fade;
 
         private void Awake()
         {
@@ -21,15 +24,15 @@ namespace PrimeMillionaire.Common.Presentation.View
             {
                 if (char.IsWhiteSpace(loading.text[i])) continue;
 
-                var interval = (i + 1) * 0.05f;
+                var interval = (i + 1) * _interval;
                 _sequence
                     .Join(DOTween.Sequence()
-                        .AppendInterval(0.05f)
+                        .AppendInterval(_interval)
                         .Append(animator
                             .DOOffsetChar(i, animator.GetCharOffset(i) + offset, 0.1f)
                             .SetLoops(2, LoopType.Yoyo)
                             .SetDelay(interval))
-                        .AppendInterval(length * 0.05f - interval));
+                        .AppendInterval(length * _interval - interval));
             }
 
             _sequence
@@ -39,7 +42,11 @@ namespace PrimeMillionaire.Common.Presentation.View
 
         public void Activate(bool value)
         {
-            loading.enabled = value;
+            _fade?.Kill();
+            _fade = canvasGroup
+                .DOFade(value ? 1.0f : 0.0f, 0.05f)
+                .SetEase(Ease.Linear)
+                .SetLink(gameObject);
 
             if (value)
             {
