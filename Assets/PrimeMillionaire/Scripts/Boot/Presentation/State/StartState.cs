@@ -1,17 +1,21 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Boot.Domain.UseCase;
+using PrimeMillionaire.Common;
+using PrimeMillionaire.Common.Domain.UseCase;
 
 namespace PrimeMillionaire.Boot.Presentation.State
 {
     public sealed class StartState : BaseState
     {
         private readonly InterruptUseCase _interruptUseCase;
+        private readonly SceneUseCase _sceneUseCase;
         private readonly TitleUseCase _titleUseCase;
 
-        public StartState(InterruptUseCase interruptUseCase, TitleUseCase titleUseCase)
+        public StartState(InterruptUseCase interruptUseCase, SceneUseCase sceneUseCase, TitleUseCase titleUseCase)
         {
             _interruptUseCase = interruptUseCase;
+            _sceneUseCase = sceneUseCase;
             _titleUseCase = titleUseCase;
         }
 
@@ -31,7 +35,9 @@ namespace PrimeMillionaire.Boot.Presentation.State
             }
 
             await _titleUseCase.TouchScreenAsync(token);
-            return BootState.Load;
+
+            _sceneUseCase.Load(SceneName.Top, LoadType.Fade);
+            return BootState.None;
         }
     }
 }
