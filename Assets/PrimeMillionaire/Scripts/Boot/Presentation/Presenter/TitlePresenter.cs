@@ -20,6 +20,10 @@ namespace PrimeMillionaire.Boot.Presentation.Presenter
         {
             _titleView.Init();
 
+            _titleUseCase.playTouchScreen
+                .Subscribe(_titleView.Activate)
+                .AddTo(_titleView);
+
             _titleView.push
                 .Subscribe(_ => _titleUseCase.TouchScreen())
                 .AddTo(_titleView);

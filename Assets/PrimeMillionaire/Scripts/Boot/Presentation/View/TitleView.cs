@@ -14,13 +14,31 @@ namespace PrimeMillionaire.Boot.Presentation.View
         [SerializeField] private TextMeshProUGUI touch = default;
         [SerializeField] private Button start = default;
 
+        private Tween _tween;
+
         public void Init()
         {
-            touch
+            _tween = touch
                 .DOFade(0.0f, UiConfig.FLASH_DURATION)
                 .SetEase(Ease.InQuad)
                 .SetLoops(-1, LoopType.Yoyo)
                 .SetLink(touch.gameObject);
+
+            Activate(false);
+        }
+
+        public void Activate(bool value)
+        {
+            if (value)
+            {
+                touch.text = $"Touch Screen";
+                _tween?.Restart();
+            }
+            else
+            {
+                touch.text = $"";
+                _tween?.Pause();
+            }
         }
 
         public Observable<PointerEventData> push => start.OnPointerDownAsObservable();
