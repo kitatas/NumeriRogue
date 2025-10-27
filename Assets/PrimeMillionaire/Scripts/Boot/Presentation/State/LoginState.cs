@@ -26,9 +26,12 @@ namespace PrimeMillionaire.Boot.Presentation.State
 
         public override async UniTask<BootState> TickAsync(CancellationToken token)
         {
-            _loadingUseCase.Set(false);
+            _loadingUseCase.Set(true);
 
             var isSuccess = await _loginUseCase.LoginAsync(token);
+
+            _loadingUseCase.Set(false);
+
             if (isSuccess == false)
             {
                 throw new RebootExceptionVO(ExceptionConfig.FAILED_LOGIN);
