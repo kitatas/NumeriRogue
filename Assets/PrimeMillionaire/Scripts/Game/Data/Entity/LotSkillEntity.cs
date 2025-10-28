@@ -28,5 +28,7 @@ namespace PrimeMillionaire.Game.Data.Entity
             return _skills
                 .Select((x, i) => new PickSkillVO(i, x));
         }
+
+        public LotSkillVO ToVO() => new(_skills);
     }
 }

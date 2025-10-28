@@ -17,6 +17,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         private readonly EnemyCountEntity _enemyCountEntity;
         private readonly EnemyParameterEntity _enemyParameterEntity;
         private readonly LevelEntity _levelEntity;
+        private readonly LotSkillEntity _lotSkillEntity;
         private readonly TurnEntity _turnEntity;
         private readonly SaveRepository _saveRepository;
 
@@ -24,7 +25,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             DollarEntity dollarEntity, HoldSkillEntity holdSkillEntity, PlayerCharacterEntity playerCharacterEntity,
             PlayerParameterEntity playerParameterEntity, EnemyCharacterEntity enemyCharacterEntity,
             EnemyCountEntity enemyCountEntity, EnemyParameterEntity enemyParameterEntity, LevelEntity levelEntity,
-            TurnEntity turnEntity, SaveRepository saveRepository)
+            LotSkillEntity lotSkillEntity, TurnEntity turnEntity, SaveRepository saveRepository)
         {
             _communityBattlePtEntity = communityBattlePtEntity;
             _deckEntity = deckEntity;
@@ -36,6 +37,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _enemyCountEntity = enemyCountEntity;
             _enemyParameterEntity = enemyParameterEntity;
             _levelEntity = levelEntity;
+            _lotSkillEntity = lotSkillEntity;
             _turnEntity = turnEntity;
             _saveRepository = saveRepository;
         }
@@ -47,6 +49,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 _enemyParameterEntity.ToVO(),
                 _deckEntity.ToVO(),
                 _holdSkillEntity.ToVO(),
+                _lotSkillEntity.ToVO(),
                 _dollarEntity.currentValue,
                 _levelEntity.currentValue,
                 _turnEntity.currentValue,
@@ -72,6 +75,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
                 _communityBattlePtEntity.Set(interrupt.communityBattlePt);
                 _dollarEntity.Set(interrupt.dollar);
                 _holdSkillEntity.Init(interrupt.holdSkill);
+                _lotSkillEntity.Set(interrupt.lotSkill);
             }
             else
             {

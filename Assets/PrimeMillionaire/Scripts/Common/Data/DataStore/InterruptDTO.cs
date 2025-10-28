@@ -12,6 +12,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
         public ParameterDTO enemy;
         public DeckDTO deck;
         public HoldSkillDTO holdSkill;
+        public LotSkillDTO lotSkill;
         public int dollar;
         public int level;
         public int turn;
@@ -24,6 +25,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             enemy = new ParameterDTO(interrupt.enemy);
             deck = new DeckDTO(interrupt.deck);
             holdSkill = new HoldSkillDTO(interrupt.holdSkill);
+            lotSkill = new LotSkillDTO(interrupt.lotSkill);
             dollar = interrupt.dollar;
             level = interrupt.level;
             turn = interrupt.turn;
@@ -36,6 +38,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
             enemy.ToVO(),
             deck.ToVO(),
             holdSkill.ToVO(),
+            lotSkill.ToVO(),
             dollar,
             level,
             turn,
@@ -104,6 +107,19 @@ namespace PrimeMillionaire.Common.Data.DataStore
         }
 
         public HoldSkillVO ToVO() => new(skills.Select(x => x.ToVO()).ToList());
+    }
+
+    [Serializable]
+    public sealed class LotSkillDTO
+    {
+        public List<SkillDTO> skills;
+
+        public LotSkillDTO(LotSkillVO lotSkill)
+        {
+            skills = lotSkill.skills.Select(x => new SkillDTO(x)).ToList();
+        }
+
+        public LotSkillVO ToVO() => new(skills.Select(x => x.ToVO()).ToList());
     }
 
     [Serializable]
