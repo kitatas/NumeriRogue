@@ -29,7 +29,7 @@ namespace PrimeMillionaire.Game.Presentation.State
 
         public override async UniTask<GameState> TickAsync(CancellationToken token)
         {
-            await _pickSkillUseCase.LotAsync(token);
+            await _pickSkillUseCase.PublishAsync(token);
             await _modalUseCase.ShowAsync(ModalType.PickSkill, token);
             await _modalUseCase.HideAsync(ModalType.PickSkill, token);
 

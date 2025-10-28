@@ -20,11 +20,14 @@ namespace PrimeMillionaire.Game.Domain.UseCase
             _skillRepository = skillRepository;
         }
 
-        public async UniTask LotAsync(CancellationToken token)
+        public void Lot()
         {
             var skills = _skillRepository.FindLotteryTargets(_levelEntity.currentValue);
             _lotSkillEntity.Set(skills);
+        }
 
+        public async UniTask PublishAsync(CancellationToken token)
+        {
             await UniTask.WhenAll(_lotSkillEntity.ToPickVOs()
                 .Select(x => Router.Default.PublishAsync(x, token).AsUniTask())
             );

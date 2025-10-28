@@ -11,17 +11,19 @@ namespace PrimeMillionaire.Game.Presentation.State
         private readonly EnemyCountUseCase _enemyCountUseCase;
         private readonly LevelUseCase _levelUseCase;
         private readonly ParameterUseCase _parameterUseCase;
+        private readonly PickSkillUseCase _pickSkillUseCase;
         private readonly TurnUseCase _turnUseCase;
 
         public SetUpState(BattleAnimationUseCase battleAnimationUseCase, CharacterUseCase characterUseCase,
             EnemyCountUseCase enemyCountUseCase, LevelUseCase levelUseCase, ParameterUseCase parameterUseCase,
-            TurnUseCase turnUseCase)
+            PickSkillUseCase pickSkillUseCase, TurnUseCase turnUseCase)
         {
             _battleAnimationUseCase = battleAnimationUseCase;
             _characterUseCase = characterUseCase;
             _enemyCountUseCase = enemyCountUseCase;
             _levelUseCase = levelUseCase;
             _parameterUseCase = parameterUseCase;
+            _pickSkillUseCase = pickSkillUseCase;
             _turnUseCase = turnUseCase;
         }
 
@@ -37,6 +39,7 @@ namespace PrimeMillionaire.Game.Presentation.State
             _enemyCountUseCase.Increment();
             _levelUseCase.Lot();
             _turnUseCase.Reset();
+            _pickSkillUseCase.Lot();
 
             var enemy = _characterUseCase.LotEnemyCharacter();
             await (
