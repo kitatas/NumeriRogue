@@ -13,9 +13,9 @@ namespace PrimeMillionaire.Game.Data.Entity
             _skills = new List<SkillVO>();
         }
 
-        public void Set(List<SkillVO> skills)
+        public void Set(LotSkillVO skill)
         {
-            _skills.AddRange(skills);
+            _skills.AddRange(skill.skills);
         }
 
         public void Clear()

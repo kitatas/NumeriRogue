@@ -235,6 +235,16 @@ namespace PrimeMillionaire.Common
         }
     }
 
+    public sealed class LotSkillVO
+    {
+        public readonly List<SkillVO> skills;
+
+        public LotSkillVO(List<SkillVO> skills)
+        {
+            this.skills = skills;
+        }
+    }
+
     public sealed class StageVO : ICommand
     {
         public readonly StageType type;

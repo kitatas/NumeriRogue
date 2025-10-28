@@ -15,10 +15,10 @@ namespace PrimeMillionaire.Game.Domain.Repository
             _memoryDatabase = memoryDatabase;
         }
 
-        public List<SkillVO> FindLotteryTargets(int level)
+        public LotSkillVO FindLotteryTargets(int level)
         {
             var random = new System.Random();
-            return _memoryDatabase.SkillEffectMasterTable.FindClosestByLevel(level)
+            var skills = _memoryDatabase.SkillEffectMasterTable.FindClosestByLevel(level)
                 .OrderBy(_ => random.Next())
                 .Take(SkillConfig.LOT_NUM)
                 .Select(skillEffect =>
@@ -33,6 +33,8 @@ namespace PrimeMillionaire.Game.Domain.Repository
                     }
                 })
                 .ToList();
+
+            return new LotSkillVO(skills);
         }
 
         public bool IsExistTarget(SkillTarget target, SkillTarget containTarget)
