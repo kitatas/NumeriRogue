@@ -9,20 +9,27 @@ namespace PrimeMillionaire.Game.Domain.UseCase
     public sealed class PickSkillUseCase
     {
         private readonly LevelEntity _levelEntity;
+        private readonly LotSkillEntity _lotSkillEntity;
         private readonly SkillRepository _skillRepository;
 
-        public PickSkillUseCase(LevelEntity levelEntity, SkillRepository skillRepository)
+        public PickSkillUseCase(LevelEntity levelEntity, LotSkillEntity lotSkillEntity,
+            SkillRepository skillRepository)
         {
             _levelEntity = levelEntity;
+            _lotSkillEntity = lotSkillEntity;
             _skillRepository = skillRepository;
         }
 
         public async UniTask LotAsync(CancellationToken token)
         {
             var skills = _skillRepository.FindLotteryTargets(_levelEntity.currentValue);
-            await UniTask.WhenAll(skills
-                .Select((x, i) => Router.Default.PublishAsync(new PickSkillVO(i, x), token).AsUniTask())
+            _lotSkillEntity.Set(skills);
+
+            await UniTask.WhenAll(_lotSkillEntity.ToPickVOs()
+                .Select(x => Router.Default.PublishAsync(x, token).AsUniTask())
             );
+
+            _lotSkillEntity.Clear();
         }
     }
 }
