@@ -42,7 +42,7 @@ namespace PrimeMillionaire.Game.Presentation.State
             _dealUseCase.Init();
 
             await (
-                _parameterUseCase.InitPlayerParamAsync(token),
+                UniTaskHelper.DelayAsync(0.5f, token),
                 _stageUseCase.PublishStageAsync(token)
             );
 
@@ -50,10 +50,13 @@ namespace PrimeMillionaire.Game.Presentation.State
 
             _soundUseCase.Play(Bgm.Game);
 
-            await UniTaskHelper.DelayAsync(1.0f, token);
+            await UniTaskHelper.DelayAsync(0.5f, token);
 
             var player = _characterUseCase.GetCharacter(Side.Player);
-            await _battleAnimationUseCase.EntryAsync(Side.Player, player, token);
+            await (
+                _parameterUseCase.InitPlayerParamAsync(token),
+                _battleAnimationUseCase.EntryAsync(Side.Player, player, token)
+            );
             await UniTaskHelper.DelayAsync(0.5f, token);
 
             return GameState.SetUp;
