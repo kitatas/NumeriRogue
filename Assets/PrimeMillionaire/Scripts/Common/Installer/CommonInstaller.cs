@@ -25,7 +25,9 @@ namespace PrimeMillionaire.Common.Installer
             var soundProvider = new SoundProvider(providerSettings.sound);
 
             // DataStore
-            builder.RegisterInstance<MemoryDatabase>(new MemoryDatabase(memoryFile.bytes));
+            var mem = new MemoryDatabase(memoryFile.bytes);
+            builder.RegisterInstance<MemoryDatabase>(mem); // TODO: 削除
+            builder.RegisterInstance<MemoryData>(new MemoryData(mem));
             builder.RegisterInstance<BgmTable>(bgmTable);
             builder.RegisterInstance<SeTable>(seTable);
 
@@ -37,6 +39,7 @@ namespace PrimeMillionaire.Common.Installer
             // Repository
             builder.Register<CharacterRepository>(Lifetime.Singleton);
             builder.Register<CharacterStageRepository>(Lifetime.Singleton);
+            builder.Register<MasterMemoryRepository>(Lifetime.Singleton);
             builder.Register<PlayFabRepository>(Lifetime.Singleton);
             builder.Register<SaveRepository>(Lifetime.Singleton);
             builder.Register<SoundRepository>(Lifetime.Singleton);
