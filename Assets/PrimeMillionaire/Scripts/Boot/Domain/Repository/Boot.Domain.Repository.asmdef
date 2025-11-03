@@ -1,0 +1,18 @@
+{
+    "name": "Boot.Domain.Repository",
+    "rootNamespace": "",
+    "references": [
+        "GUID:33db315b82f264ceba5b853ae3b8cde8",
+        "GUID:7d596c833c7b348a0bf96054f7d185a7",
+        "GUID:0632cc6b22db61d41898dfef78dc32f5"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

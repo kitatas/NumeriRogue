@@ -2,6 +2,7 @@
     "name": "Boot.Installer",
     "rootNamespace": "",
     "references": [
+        "GUID:da1d5585984ec467f95f33d9b5e0ee1b",
         "GUID:844e94f2ef49c457085f4b2024e6ace7",
         "GUID:9cb46255231384818b29edd157403c83",
         "GUID:6f9126979e4bd4828aae5a4a3f2a7716",

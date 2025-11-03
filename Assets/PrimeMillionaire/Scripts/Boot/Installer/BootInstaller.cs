@@ -1,3 +1,4 @@
+using PrimeMillionaire.Boot.Domain.Repository;
 using PrimeMillionaire.Boot.Domain.UseCase;
 using PrimeMillionaire.Boot.Presentation.Presenter;
 using PrimeMillionaire.Boot.Presentation.State;
@@ -11,6 +12,9 @@ namespace PrimeMillionaire.Boot.Installer
     {
         protected override void Configure(IContainerBuilder builder)
         {
+            // Repository
+            builder.Register<AppVersionRepository>(Lifetime.Scoped);
+
             // UseCase
             builder.Register<AppVersionUseCase>(Lifetime.Scoped);
             builder.Register<InterruptUseCase>(Lifetime.Scoped);
