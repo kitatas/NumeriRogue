@@ -41,11 +41,11 @@ namespace PrimeMillionaire.Common
 
     public sealed class MasterVO
     {
-        public readonly AppVersionVO appVersion;
+        public readonly Dictionary<string, string> data;
 
-        public MasterVO(AppVersionVO appVersion)
+        public MasterVO(Dictionary<string, string> data)
         {
-            this.appVersion = appVersion;
+            this.data = data;
         }
     }
 

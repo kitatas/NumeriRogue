@@ -15,7 +15,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
         }
 
         public MasterVO ToVO() => new(
-            DeserializeMaster<AppVersionDTO>(PlayFabConfig.MASTER_APP_VERSION_KEY).ToVO()
+            _data
         );
 
         private T DeserializeMaster<T>(string key)
