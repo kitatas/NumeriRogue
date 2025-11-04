@@ -22,6 +22,12 @@ namespace PrimeMillionaire.Common.Domain.Repository
                     case PlayFabConfig.MASTER_APP_VERSION_KEY:
                         immutableBuilder.ReplaceAll(JsonConvert.DeserializeObject<AppVersionMaster[]>(values));
                         break;
+                    case PlayFabConfig.MASTER_CHARACTER_KEY:
+                        immutableBuilder.ReplaceAll(JsonConvert.DeserializeObject<CharacterMaster[]>(values));
+                        break;
+                    case PlayFabConfig.MASTER_CHARACTER_STAGE_KEY:
+                        immutableBuilder.ReplaceAll(JsonConvert.DeserializeObject<CharacterStageMaster[]>(values));
+                        break;
                 }
             }
 

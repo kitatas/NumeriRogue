@@ -21,6 +21,8 @@ namespace PrimeMillionaire.Common
     {
         public const string TITLE_ID = "";
         public const string MASTER_APP_VERSION_KEY = "";
+        public const string MASTER_CHARACTER_KEY = "";
+        public const string MASTER_CHARACTER_STAGE_KEY = "";
         public const string USER_PROGRESS_KEY = "";
     }
 
