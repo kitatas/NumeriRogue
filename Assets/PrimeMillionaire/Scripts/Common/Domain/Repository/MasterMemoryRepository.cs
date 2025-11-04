@@ -5,16 +5,16 @@ namespace PrimeMillionaire.Common.Domain.Repository
 {
     public sealed class MasterMemoryRepository
     {
-        private readonly MemoryData _memoryData;
+        private readonly MemoryDbData _memoryDbData;
 
-        public MasterMemoryRepository(MemoryData memoryData)
+        public MasterMemoryRepository(MemoryDbData memoryDbData)
         {
-            _memoryData = memoryData;
+            _memoryDbData = memoryDbData;
         }
 
         public void Build(MasterVO master)
         {
-            var immutableBuilder = _memoryData.Get().ToImmutableBuilder();
+            var immutableBuilder = _memoryDbData.Get().ToImmutableBuilder();
             foreach (var (key, values) in master.data)
             {
                 switch (key)
@@ -25,7 +25,7 @@ namespace PrimeMillionaire.Common.Domain.Repository
                 }
             }
 
-            _memoryData.Set(immutableBuilder.Build());
+            _memoryDbData.Set(immutableBuilder.Build());
         }
     }
 }

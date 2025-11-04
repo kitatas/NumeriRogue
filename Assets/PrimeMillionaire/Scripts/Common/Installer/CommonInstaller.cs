@@ -27,7 +27,7 @@ namespace PrimeMillionaire.Common.Installer
             // DataStore
             var mem = new MemoryDatabase(memoryFile.bytes);
             builder.RegisterInstance<MemoryDatabase>(mem); // TODO: 削除
-            builder.RegisterInstance<MemoryData>(new MemoryData(mem));
+            builder.RegisterInstance<MemoryDbData>(new MemoryDbData(mem));
             builder.RegisterInstance<BgmTable>(bgmTable);
             builder.RegisterInstance<SeTable>(seTable);
 

@@ -1,10 +1,10 @@
 namespace PrimeMillionaire.Common.Data.DataStore
 {
-    public sealed class MemoryData
+    public sealed class MemoryDbData
     {
         private MemoryDatabase _memoryDatabase;
 
-        public MemoryData(MemoryDatabase memoryDatabase)
+        public MemoryDbData(MemoryDatabase memoryDatabase)
         {
             _memoryDatabase = memoryDatabase;
         }

@@ -5,16 +5,16 @@ namespace PrimeMillionaire.Boot.Domain.Repository
 {
     public sealed class AppVersionRepository
     {
-        private readonly MemoryData _memoryData;
+        private readonly MemoryDbData _memoryDbData;
 
-        public AppVersionRepository(MemoryData memoryData)
+        public AppVersionRepository(MemoryDbData memoryDbData)
         {
-            _memoryData = memoryData;
+            _memoryDbData = memoryDbData;
         }
 
         public AppVersionVO Get()
         {
-            return _memoryData.Get().AppVersionMasterTable.All.First.ToVO();
+            return _memoryDbData.Get().AppVersionMasterTable.All.First.ToVO();
         }
     }
 }
