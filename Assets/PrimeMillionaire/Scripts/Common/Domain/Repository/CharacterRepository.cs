@@ -7,16 +7,16 @@ namespace PrimeMillionaire.Common.Domain.Repository
 {
     public sealed class CharacterRepository
     {
-        private readonly MemoryDatabase _memoryDatabase;
+        private readonly MemoryDbData _memoryDbData;
 
-        public CharacterRepository(MemoryDatabase memoryDatabase)
+        public CharacterRepository(MemoryDbData memoryDbData)
         {
-            _memoryDatabase = memoryDatabase;
+            _memoryDbData = memoryDbData;
         }
 
         public CharacterVO FindOther(CharacterType type)
         {
-            return _memoryDatabase.CharacterMasterTable.All
+            return _memoryDbData.Get().CharacterMasterTable.All
                 .Where(x => x.Type.ToCharacterType() != type)
                 .ToList()
                 .GetRandom()
@@ -25,7 +25,7 @@ namespace PrimeMillionaire.Common.Domain.Repository
 
         public CharacterVO Find(CharacterType type)
         {
-            if (_memoryDatabase.CharacterMasterTable.TryFindByType(type.ToInt32(), out var master))
+            if (_memoryDbData.Get().CharacterMasterTable.TryFindByType(type.ToInt32(), out var master))
             {
                 return master.ToVO();
             }

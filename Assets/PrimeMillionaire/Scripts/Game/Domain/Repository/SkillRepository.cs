@@ -8,22 +8,22 @@ namespace PrimeMillionaire.Game.Domain.Repository
 {
     public sealed class SkillRepository
     {
-        private readonly MemoryDatabase _memoryDatabase;
+        private readonly MemoryDbData _memoryDbData;
 
-        public SkillRepository(MemoryDatabase memoryDatabase)
+        public SkillRepository(MemoryDbData memoryDbData)
         {
-            _memoryDatabase = memoryDatabase;
+            _memoryDbData = memoryDbData;
         }
 
         public LotSkillVO FindLotteryTargets(int level)
         {
             var random = new System.Random();
-            var skills = _memoryDatabase.SkillEffectMasterTable.FindClosestByLevel(level)
+            var skills = _memoryDbData.Get().SkillEffectMasterTable.FindClosestByLevel(level)
                 .OrderBy(_ => random.Next())
                 .Take(SkillConfig.LOT_NUM)
                 .Select(skillEffect =>
                 {
-                    if (_memoryDatabase.SkillBaseMasterTable.TryFindByType(skillEffect.Type, out var skillBase))
+                    if (_memoryDbData.Get().SkillBaseMasterTable.TryFindByType(skillEffect.Type, out var skillBase))
                     {
                         return new SkillVO(skillBase.ToVO(), skillEffect.ToVO());
                     }
@@ -39,7 +39,7 @@ namespace PrimeMillionaire.Game.Domain.Repository
 
         public bool IsExistTarget(SkillTarget target, SkillTarget containTarget)
         {
-            if (_memoryDatabase.SkillTargetMasterTable.TryFindByTarget(target.ToInt32(), out var skillTarget))
+            if (_memoryDbData.Get().SkillTargetMasterTable.TryFindByTarget(target.ToInt32(), out var skillTarget))
             {
                 return skillTarget.Targets.Any(x => x == containTarget.ToInt32());
             }
@@ -51,11 +51,11 @@ namespace PrimeMillionaire.Game.Domain.Repository
 
         public IEnumerable<SkillType> FindsSkillType(SkillTarget target)
         {
-            var targets = _memoryDatabase.SkillTargetMasterTable.All
+            var targets = _memoryDbData.Get().SkillTargetMasterTable.All
                 .Where(x => x.Targets.Contains(target.ToInt32()))
                 .Select(x => x.Target);
 
-            return _memoryDatabase.SkillBaseMasterTable.All
+            return _memoryDbData.Get().SkillBaseMasterTable.All
                 .Where(x => targets.Contains(x.Target))
                 .Select(x => x.Type.ToSkillType());
         }

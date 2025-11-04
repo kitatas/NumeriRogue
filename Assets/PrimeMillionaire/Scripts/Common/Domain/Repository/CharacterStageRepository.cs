@@ -7,18 +7,18 @@ namespace PrimeMillionaire.Common.Domain.Repository
 {
     public sealed class CharacterStageRepository
     {
-        private readonly MemoryDatabase _memoryDatabase;
+        private readonly MemoryDbData _memoryDbData;
 
-        public CharacterStageRepository(MemoryDatabase memoryDatabase)
+        public CharacterStageRepository(MemoryDbData memoryDbData)
         {
-            _memoryDatabase = memoryDatabase;
+            _memoryDbData = memoryDbData;
         }
 
         public DeckVO GetCards(CharacterType type)
         {
-            if (_memoryDatabase.CharacterStageMasterTable.TryFindByType(type.ToInt32(), out var characterStage))
+            if (_memoryDbData.Get().CharacterStageMasterTable.TryFindByType(type.ToInt32(), out var characterStage))
             {
-                var cards = _memoryDatabase.CardMasterTable.All
+                var cards = _memoryDbData.Get().CardMasterTable.All
                     .Where(x => characterStage.Suits.Contains(x.Suit) && characterStage.Ranks.Contains(x.Rank))
                     .Select(x => x.ToVO());
 
@@ -36,14 +36,14 @@ namespace PrimeMillionaire.Common.Domain.Repository
                 .Where(x => x.isClear)
                 .Select(x => x.type.ToInt32());
 
-            return _memoryDatabase.CharacterStageMasterTable.All
+            return _memoryDbData.Get().CharacterStageMasterTable.All
                 .Where(x => x.ReleaseConditions.All(y => released.Contains(y)))
                 .Select(x => x.Type.ToCharacterType());
         }
 
         public StageVO GetStage(CharacterType type)
         {
-            if (_memoryDatabase.CharacterStageMasterTable.TryFindByType(type.ToInt32(), out var master))
+            if (_memoryDbData.Get().CharacterStageMasterTable.TryFindByType(type.ToInt32(), out var master))
             {
                 return master.ToStageVO();
             }

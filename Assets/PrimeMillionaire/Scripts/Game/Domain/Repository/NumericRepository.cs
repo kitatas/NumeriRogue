@@ -8,21 +8,21 @@ namespace PrimeMillionaire.Game.Domain.Repository
 {
     public sealed class NumericRepository
     {
-        private readonly MemoryDatabase _memoryDatabase;
+        private readonly MemoryDbData _memoryDbData;
 
-        public NumericRepository(MemoryDatabase memoryDatabase)
+        public NumericRepository(MemoryDbData memoryDbData)
         {
-            _memoryDatabase = memoryDatabase;
+            _memoryDbData = memoryDbData;
         }
 
         public bool IsAny(int value)
         {
-            return _memoryDatabase.NumericMasterTable.FindByValue(value).Any();
+            return _memoryDbData.Get().NumericMasterTable.FindByValue(value).Any();
         }
 
         public BonusVO Find(BonusType type)
         {
-            if (_memoryDatabase.NumericBonusMasterTable.TryFindByType(type.ToInt32(), out var master))
+            if (_memoryDbData.Get().NumericBonusMasterTable.TryFindByType(type.ToInt32(), out var master))
             {
                 return master.ToVO();
             }
@@ -34,7 +34,7 @@ namespace PrimeMillionaire.Game.Domain.Repository
 
         public BonusTargetVO FindTarget(BonusType type)
         {
-            if (_memoryDatabase.NumericBonusMasterTable.TryFindByType(type.ToInt32(), out var master))
+            if (_memoryDbData.Get().NumericBonusMasterTable.TryFindByType(type.ToInt32(), out var master))
             {
                 return master.ToTargetVO();
             }
@@ -46,7 +46,7 @@ namespace PrimeMillionaire.Game.Domain.Repository
 
         public IEnumerable<BonusVO> Finds(int value)
         {
-            return _memoryDatabase.NumericMasterTable.FindByValue(value)
+            return _memoryDbData.Get().NumericMasterTable.FindByValue(value)
                 .Select(x => Find(x.Bonus.ToBonusType()))
                 .OrderBy(x => x.type);
         }

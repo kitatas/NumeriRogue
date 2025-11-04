@@ -25,9 +25,7 @@ namespace PrimeMillionaire.Common.Installer
             var soundProvider = new SoundProvider(providerSettings.sound);
 
             // DataStore
-            var mem = new MemoryDatabase(memoryFile.bytes);
-            builder.RegisterInstance<MemoryDatabase>(mem); // TODO: 削除
-            builder.RegisterInstance<MemoryDbData>(new MemoryDbData(mem));
+            builder.RegisterInstance<MemoryDbData>(new MemoryDbData(new MemoryDatabase(memoryFile.bytes)));
             builder.RegisterInstance<BgmTable>(bgmTable);
             builder.RegisterInstance<SeTable>(seTable);
 

@@ -5,16 +5,16 @@ namespace PrimeMillionaire.Game.Domain.Repository
 {
     public sealed class LevelRepository
     {
-        private readonly MemoryDatabase _memoryDatabase;
+        private readonly MemoryDbData _memoryDbData;
 
-        public LevelRepository(MemoryDatabase memoryDatabase)
+        public LevelRepository(MemoryDbData memoryDbData)
         {
-            _memoryDatabase = memoryDatabase;
+            _memoryDbData = memoryDbData;
         }
 
         public LevelVO FindClosest(int level)
         {
-            return _memoryDatabase.LevelMasterTable.FindClosestByLevel(level).ToVO();
+            return _memoryDbData.Get().LevelMasterTable.FindClosestByLevel(level).ToVO();
         }
     }
 }
