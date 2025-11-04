@@ -16,7 +16,7 @@ namespace PrimeMillionaire.Boot.Installer
             builder.Register<AppVersionRepository>(Lifetime.Scoped);
 
             // UseCase
-            builder.Register<AppVersionUseCase>(Lifetime.Scoped);
+            builder.Register<MasterUseCase>(Lifetime.Scoped);
             builder.Register<InterruptUseCase>(Lifetime.Scoped);
             builder.Register<LoginUseCase>(Lifetime.Scoped);
             builder.Register<ModalUseCase>(Lifetime.Scoped);

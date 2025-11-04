@@ -7,13 +7,13 @@ namespace PrimeMillionaire.Boot.Presentation.State
 {
     public sealed class CheckState : BaseState
     {
-        private readonly AppVersionUseCase _appVersionUseCase;
+        private readonly MasterUseCase _masterUseCase;
         private readonly LoadingUseCase _loadingUseCase;
         private readonly ModalUseCase _modalUseCase;
 
-        public CheckState(AppVersionUseCase appVersionUseCase, LoadingUseCase loadingUseCase, ModalUseCase modalUseCase)
+        public CheckState(MasterUseCase masterUseCase, LoadingUseCase loadingUseCase, ModalUseCase modalUseCase)
         {
-            _appVersionUseCase = appVersionUseCase;
+            _masterUseCase = masterUseCase;
             _loadingUseCase = loadingUseCase;
             _modalUseCase = modalUseCase;
         }
@@ -29,11 +29,11 @@ namespace PrimeMillionaire.Boot.Presentation.State
         {
             _loadingUseCase.Set(true);
 
-            var isForceUpdate = await _appVersionUseCase.IsForceUpdateAsync(token);
+            await _masterUseCase.FetchAndBuildAsync(token);
 
             _loadingUseCase.Set(false);
 
-            if (isForceUpdate)
+            if (_masterUseCase.IsForceUpdate())
             {
                 await _modalUseCase.ShowAsync(ModalType.Update, token);
                 return BootState.None;

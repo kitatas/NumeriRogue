@@ -5,13 +5,13 @@ using PrimeMillionaire.Common.Domain.Repository;
 
 namespace PrimeMillionaire.Boot.Domain.UseCase
 {
-    public sealed class AppVersionUseCase
+    public sealed class MasterUseCase
     {
         private readonly AppVersionRepository _appVersionRepository;
         private readonly MasterMemoryRepository _memoryRepository;
         private readonly PlayFabRepository _playFabRepository;
 
-        public AppVersionUseCase(AppVersionRepository appVersionRepository, MasterMemoryRepository memoryRepository,
+        public MasterUseCase(AppVersionRepository appVersionRepository, MasterMemoryRepository memoryRepository,
             PlayFabRepository playFabRepository)
         {
             _appVersionRepository = appVersionRepository;
@@ -19,10 +19,14 @@ namespace PrimeMillionaire.Boot.Domain.UseCase
             _playFabRepository = playFabRepository;
         }
 
-        public async UniTask<bool> IsForceUpdateAsync(CancellationToken token)
+        public async UniTask FetchAndBuildAsync(CancellationToken token)
         {
             var master = await _playFabRepository.GetMasterAsync(token);
             _memoryRepository.Build(master);
+        }
+
+        public bool IsForceUpdate()
+        {
             return _appVersionRepository.Get().isForceUpdate;
         }
     }
