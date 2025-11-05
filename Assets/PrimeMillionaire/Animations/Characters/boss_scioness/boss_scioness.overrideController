@@ -9,11 +9,11 @@ AnimatorOverrideController:
   m_Name: boss_scioness
   m_Controller: {fileID: 9100000, guid: 7ecb51f0365ab48858c4d9bb970432e9, type: 2}
   m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 1d0ab0db1341a49a1bdaf4104a3f1ddf, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d6309947f50af42dd8bd03e569ec8a7e, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: a21e2147ec3ae4bd3a5d3874c68e2dcf, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: fcd5ff6928c7c4d2aad65591d6d86116, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 06113c3c932f24446a929fb923b36195, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: 82d3744d19ed6405396e0c5cfc2396a6, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: 1d0ab0db1341a49a1bdaf4104a3f1ddf, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: d6309947f50af42dd8bd03e569ec8a7e, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 87ccbbe31d47d450d9c89c5acf737b0e, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: 26aff72e241c4426498dd72850dcc26c, type: 2}
