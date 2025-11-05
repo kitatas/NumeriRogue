@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &7072821653763950579
+--- !u!1001 &6152690100746756654
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,39 +10,39 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1727829766073714275, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_Size.x
-      value: 1.3
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 1727829766073714275, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_Size.y
-      value: 1.3
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 1727829766073714275, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -5211895803393410983, guid: 8ef57ab00291641c0aade8293a6f23af, type: 3}
+      objectReference: {fileID: -4280070552006097424, guid: 22efdb98d7a694c21a51822f31c64477, type: 3}
     - target: {fileID: 1727829766073714275, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2775116556438757013, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.12
+      value: -0.18
       objectReference: {fileID: 0}
     - target: {fileID: 3502071019341154681, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 22100000, guid: ff1ef216fb080462a9fe17f0a7d2e08b, type: 2}
+      objectReference: {fileID: 22100000, guid: f76c7dd42a2f444b793ece2611eaa529, type: 2}
     - target: {fileID: 4351035717049259497, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_Name
-      value: Character - scioness2
+      value: Character - sajj
       objectReference: {fileID: 0}
     - target: {fileID: 6054036509863231754, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: deadFrame
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6054036509863231754, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: applyDamageFrame
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 8368267371645522459, guid: 3610ea5ac81c6471f945c6f78fdbdba4, type: 3}
       propertyPath: m_LocalPosition.x
