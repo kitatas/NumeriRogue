@@ -9,11 +9,11 @@ AnimatorOverrideController:
   m_Name: boss_starstrider
   m_Controller: {fileID: 9100000, guid: 7ecb51f0365ab48858c4d9bb970432e9, type: 2}
   m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 1d0ab0db1341a49a1bdaf4104a3f1ddf, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ce296cbab394c4b48b7ca6ad548a172b, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: a21e2147ec3ae4bd3a5d3874c68e2dcf, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: 9ffe8194b7e4b4b2eae7ec0c6950479c, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 06113c3c932f24446a929fb923b36195, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: b4e5f89092e5f4086b7035dc7e1ec2ef, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: 1d0ab0db1341a49a1bdaf4104a3f1ddf, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: ce296cbab394c4b48b7ca6ad548a172b, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 87ccbbe31d47d450d9c89c5acf737b0e, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: fa45d20f5d1724eb389b795d131c69f5, type: 2}
