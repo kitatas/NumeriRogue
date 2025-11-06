@@ -38,7 +38,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public bool IsClear()
         {
-            _maxEnemyCount ??= _characterStageRepository.GetStage(_playerCharacterEntity.type).maxEnemyCount;
+            _maxEnemyCount ??= _characterStageRepository.GetStage(_playerCharacterEntity.id).maxEnemyCount;
             return _enemyCountEntity.currentValue == _maxEnemyCount;
         }
 

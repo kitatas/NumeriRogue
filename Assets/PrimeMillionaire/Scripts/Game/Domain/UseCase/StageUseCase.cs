@@ -19,7 +19,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public async UniTask PublishStageAsync(CancellationToken token)
         {
-            var stage = _characterStageRepository.GetStage(_playerCharacterEntity.type);
+            var stage = _characterStageRepository.GetStage(_playerCharacterEntity.id);
             await Router.Default.PublishAsync(stage, token);
         }
     }

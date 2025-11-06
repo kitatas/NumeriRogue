@@ -1,7 +1,6 @@
 using Cysharp.Text;
 using DG.Tweening;
 using FancyScrollView;
-using FastEnumUtility;
 using PrimeMillionaire.Common.Utility;
 using R3;
 using R3.Triggers;
@@ -40,7 +39,7 @@ namespace PrimeMillionaire.Top.Presentation.View
                 chara.rectTransform.DOAnchorPosY(x.rect.height * 0.65f, 0.0f);
                 chara.sprite = x;
             });
-            characterId.text = ZString.Format("No.{0:000}", value.character.type.ToInt32());
+            characterId.text = ZString.Format("No.{0:000}", value.character.parameter.id);
             characterName.text = value.character.name;
 
             newLabel.SetActive(value.progress.isNew);

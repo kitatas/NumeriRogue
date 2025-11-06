@@ -35,7 +35,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public async UniTask InitPlayerParamAsync(CancellationToken token)
         {
-            var character = _characterRepository.Find(_playerCharacterEntity.type);
+            var character = _characterRepository.Find(_playerCharacterEntity.id);
             _playerParameterEntity.Init(character.parameter);
 
             await PublishPlayerParamAsync(token);
@@ -48,7 +48,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public async UniTask InitEnemyParamAsync(CancellationToken token)
         {
-            var character = _characterRepository.Find(_enemyCharacterEntity.type);
+            var character = _characterRepository.Find(_enemyCharacterEntity.id);
             var level = _levelRepository.FindClosest(_levelEntity.currentValue);
             _enemyParameterEntity.Init(character.parameter, level);
 

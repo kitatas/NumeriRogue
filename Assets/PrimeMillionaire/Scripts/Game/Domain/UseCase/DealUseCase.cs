@@ -25,7 +25,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public void Init()
         {
-            var deck = _characterStageRepository.GetCards(_playerCharacterEntity.type);
+            var deck = _characterStageRepository.GetDeck(_playerCharacterEntity.id);
             _deckEntity.Init(deck);
         }
 

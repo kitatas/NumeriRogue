@@ -7,7 +7,7 @@ namespace PrimeMillionaire.Game
 {
     public sealed class PlayerParameterVO : ParameterVO, ICommand
     {
-        public PlayerParameterVO(int type, int hp, int atk, int def) : base(type, hp, atk, def)
+        public PlayerParameterVO(int id, string name, int hp, int atk, int def) : base(id, name, hp, atk, def)
         {
         }
 
@@ -18,7 +18,7 @@ namespace PrimeMillionaire.Game
 
     public sealed class EnemyParameterVO : ParameterVO, ICommand
     {
-        public EnemyParameterVO(int type, int hp, int atk, int def) : base(type, hp, atk, def)
+        public EnemyParameterVO(int id, string name, int hp, int atk, int def) : base(id, name, hp, atk, def)
         {
         }
 
@@ -194,7 +194,7 @@ namespace PrimeMillionaire.Game
 
         public BattleAnimationVO(Side side, CharacterVO character)
         {
-            if (character.type == CharacterType.None) throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_CHARACTER);
+            if (character.parameter.id == 0) throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_CHARACTER);
             this.side = side;
             this.battleAnim = BattleAnim.Entry;
             this.character = character;

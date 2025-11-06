@@ -23,7 +23,7 @@ namespace PrimeMillionaire.Game.Domain.UseCase
         public async UniTask UpdateProgressAsync(ProgressStatus status, CancellationToken token)
         {
             var progress = _userEntity.progress;
-            var type = _playerCharacterEntity.type;
+            var type = _playerCharacterEntity.id;
             var characterProgress = progress.Find(type);
             if (characterProgress == null)
             {

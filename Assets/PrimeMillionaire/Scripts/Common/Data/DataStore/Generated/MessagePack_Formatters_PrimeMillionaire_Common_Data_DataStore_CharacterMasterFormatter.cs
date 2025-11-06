@@ -18,8 +18,10 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
 {
     public sealed class CharacterMasterFormatter : global::MessagePack.Formatters.IMessagePackFormatter<global::PrimeMillionaire.Common.Data.DataStore.CharacterMaster>
     {
-        // Type
-        private static global::System.ReadOnlySpan<byte> GetSpan_Type() => new byte[1 + 4] { 164, 84, 121, 112, 101 };
+        // Id
+        private static global::System.ReadOnlySpan<byte> GetSpan_Id() => new byte[1 + 2] { 162, 73, 100 };
+        // Name
+        private static global::System.ReadOnlySpan<byte> GetSpan_Name() => new byte[1 + 4] { 164, 78, 97, 109, 101 };
         // Hp
         private static global::System.ReadOnlySpan<byte> GetSpan_Hp() => new byte[1 + 2] { 162, 72, 112 };
         // Atk
@@ -35,9 +37,12 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
                 return;
             }
 
-            writer.WriteMapHeader(4);
-            writer.WriteRaw(GetSpan_Type());
-            writer.Write(value.Type);
+            var formatterResolver = options.Resolver;
+            writer.WriteMapHeader(5);
+            writer.WriteRaw(GetSpan_Id());
+            writer.Write(value.Id);
+            writer.WriteRaw(GetSpan_Name());
+            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Serialize(ref writer, value.Name, options);
             writer.WriteRaw(GetSpan_Hp());
             writer.Write(value.Hp);
             writer.WriteRaw(GetSpan_Atk());
@@ -54,8 +59,10 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
             }
 
             options.Security.DepthStep(ref reader);
+            var formatterResolver = options.Resolver;
             var length = reader.ReadMapHeader();
-            var __Type__ = default(int);
+            var __Id__ = default(int);
+            var __Name__ = default(string);
             var __Hp__ = default(int);
             var __Atk__ = default(int);
             var __Def__ = default(int);
@@ -69,15 +76,21 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
                     FAIL:
                       reader.Skip();
                       continue;
-                    case 4:
-                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 1701869908UL) { goto FAIL; }
-
-                        __Type__ = reader.ReadInt32();
-                        continue;
                     case 2:
-                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 28744UL) { goto FAIL; }
+                        switch (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey))
+                        {
+                            default: goto FAIL;
+                            case 25673UL:
+                                __Id__ = reader.ReadInt32();
+                                continue;
+                            case 28744UL:
+                                __Hp__ = reader.ReadInt32();
+                                continue;
+                        }
+                    case 4:
+                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 1701667150UL) { goto FAIL; }
 
-                        __Hp__ = reader.ReadInt32();
+                        __Name__ = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Deserialize(ref reader, options);
                         continue;
                     case 3:
                         switch (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey))
@@ -94,7 +107,7 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
                 }
             }
 
-            var ____result = new global::PrimeMillionaire.Common.Data.DataStore.CharacterMaster(__Type__, __Hp__, __Atk__, __Def__);
+            var ____result = new global::PrimeMillionaire.Common.Data.DataStore.CharacterMaster(__Id__, __Name__, __Hp__, __Atk__, __Def__);
             reader.Depth--;
             return ____result;
         }

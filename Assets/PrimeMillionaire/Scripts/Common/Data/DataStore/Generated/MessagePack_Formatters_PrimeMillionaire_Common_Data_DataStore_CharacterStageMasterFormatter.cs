@@ -18,8 +18,8 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
 {
     public sealed class CharacterStageMasterFormatter : global::MessagePack.Formatters.IMessagePackFormatter<global::PrimeMillionaire.Common.Data.DataStore.CharacterStageMaster>
     {
-        // Type
-        private static global::System.ReadOnlySpan<byte> GetSpan_Type() => new byte[1 + 4] { 164, 84, 121, 112, 101 };
+        // Id
+        private static global::System.ReadOnlySpan<byte> GetSpan_Id() => new byte[1 + 2] { 162, 73, 100 };
         // Suits
         private static global::System.ReadOnlySpan<byte> GetSpan_Suits() => new byte[1 + 5] { 165, 83, 117, 105, 116, 115 };
         // Ranks
@@ -41,8 +41,8 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
 
             var formatterResolver = options.Resolver;
             writer.WriteMapHeader(6);
-            writer.WriteRaw(GetSpan_Type());
-            writer.Write(value.Type);
+            writer.WriteRaw(GetSpan_Id());
+            writer.Write(value.Id);
             writer.WriteRaw(GetSpan_Suits());
             global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<int[]>(formatterResolver).Serialize(ref writer, value.Suits, options);
             writer.WriteRaw(GetSpan_Ranks());
@@ -65,7 +65,7 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
             options.Security.DepthStep(ref reader);
             var formatterResolver = options.Resolver;
             var length = reader.ReadMapHeader();
-            var __Type__ = default(int);
+            var __Id__ = default(int);
             var __Suits__ = default(int[]);
             var __Ranks__ = default(int[]);
             var __ReleaseConditions__ = default(int[]);
@@ -81,10 +81,10 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
                     FAIL:
                       reader.Skip();
                       continue;
-                    case 4:
-                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 1701869908UL) { goto FAIL; }
+                    case 2:
+                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 25673UL) { goto FAIL; }
 
-                        __Type__ = reader.ReadInt32();
+                        __Id__ = reader.ReadInt32();
                         continue;
                     case 5:
                         switch (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey))
@@ -114,7 +114,7 @@ namespace MessagePack.Formatters.PrimeMillionaire.Common.Data.DataStore
                 }
             }
 
-            var ____result = new global::PrimeMillionaire.Common.Data.DataStore.CharacterStageMaster(__Type__, __Suits__, __Ranks__, __ReleaseConditions__, __Stage__, __MaxEnemyCount__);
+            var ____result = new global::PrimeMillionaire.Common.Data.DataStore.CharacterStageMaster(__Id__, __Suits__, __Ranks__, __ReleaseConditions__, __Stage__, __MaxEnemyCount__);
             reader.Depth--;
             return ____result;
         }

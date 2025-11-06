@@ -36,7 +36,7 @@ namespace PrimeMillionaire.Common
         }
 
         public bool isEmptyUid => string.IsNullOrEmpty(uid);
-        public bool hasInterrupt => interrupt != null && interrupt.player.type != CharacterType.None;
+        public bool hasInterrupt => interrupt != null && interrupt.player.id != 0;
     }
 
     public sealed class MasterVO
@@ -111,15 +111,13 @@ namespace PrimeMillionaire.Common
 
     public sealed class CharacterVO : ICommand
     {
-        public readonly CharacterType type;
         public readonly string name;
         public readonly ParameterVO parameter;
 
-        public CharacterVO(int type, int hp, int atk, int def)
+        public CharacterVO(int id, string name, int hp, int atk, int def)
         {
-            this.type = type.ToCharacterType();
-            this.name = this.type.FastToString();
-            this.parameter = new ParameterVO(type, hp, atk, def);
+            this.name = name;
+            this.parameter = new ParameterVO(id, name, hp, atk, def);
         }
 
         public string objPath => ZString.Format("Assets/PrimeMillionaire/Prefabs/Characters/Character - {0}.prefab", name.ToLower());
@@ -128,24 +126,27 @@ namespace PrimeMillionaire.Common
 
     public class ParameterVO
     {
-        public readonly CharacterType type;
+        public readonly int id;
+        public readonly string name;
         public readonly int hp;
         public readonly int atk;
         public readonly int def;
         public readonly int currentHp;
 
-        public ParameterVO(int type, int hp, int atk, int def)
+        public ParameterVO(int id, string name, int hp, int atk, int def)
         {
-            this.type = type.ToCharacterType();
+            this.id = id;
+            this.name = name;
             this.hp = hp;
             this.atk = atk;
             this.def = def;
             this.currentHp = hp;
         }
 
-        public ParameterVO(int type, int hp, int atk, int def, int currentHp)
+        public ParameterVO(int id, string name, int hp, int atk, int def, int currentHp)
         {
-            this.type = type.ToCharacterType();
+            this.id = id;
+            this.name = name;
             this.hp = hp;
             this.atk = atk;
             this.def = def;
@@ -154,7 +155,8 @@ namespace PrimeMillionaire.Common
 
         public ParameterVO(ParameterVO parameter, int currentHp)
         {
-            this.type = parameter.type;
+            this.id = parameter.id;
+            this.name = parameter.name;
             this.hp = parameter.hp;
             this.atk = parameter.atk;
             this.def = parameter.def;
@@ -163,14 +165,14 @@ namespace PrimeMillionaire.Common
 
         public ParameterVO(ParameterVO parameter, LevelVO level)
         {
-            this.type = parameter.type;
+            this.id = parameter.id;
+            this.name = parameter.name;
             this.hp = Mathf.CeilToInt(parameter.hp * level.rate);
             this.atk = Mathf.CeilToInt(parameter.atk * level.rate);
             this.def = Mathf.CeilToInt(parameter.def * level.rate);
             this.currentHp = Mathf.CeilToInt(parameter.currentHp * level.rate);
         }
 
-        public string name => type.FastToString();
         public float hpRate => (float)currentHp / hp;
     }
 
@@ -352,20 +354,20 @@ namespace PrimeMillionaire.Common
             this.characterProgress = characterProgress;
         }
 
-        public CharacterProgressVO Find(CharacterType type)
+        public CharacterProgressVO Find(int id)
         {
-            return characterProgress.Find(x => x.type == type);
+            return characterProgress.Find(x => x.id == id);
         }
     }
 
     public sealed class CharacterProgressVO
     {
-        public readonly CharacterType type;
+        public readonly int id;
         public readonly ProgressStatus status;
 
-        public CharacterProgressVO(CharacterType type, ProgressStatus status)
+        public CharacterProgressVO(int id, ProgressStatus status)
         {
-            this.type = type;
+            this.id = id;
             this.status = status;
         }
 

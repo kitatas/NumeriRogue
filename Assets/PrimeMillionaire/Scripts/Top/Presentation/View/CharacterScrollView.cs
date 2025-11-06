@@ -14,7 +14,7 @@ namespace PrimeMillionaire.Top.Presentation.View
         [SerializeField] private CustomScroller scroller = default;
         [SerializeField] private GameObject cell = default;
 
-        private Action<CharacterType> _order;
+        private Action<int> _order;
 
         protected override GameObject CellPrefab => cell;
 
@@ -25,7 +25,7 @@ namespace PrimeMillionaire.Top.Presentation.View
             scroller.OnSelectionChanged(UpdateSelection);
         }
 
-        public void Init(IList<StageCharacterVO> characters, int index, Action<CharacterType> order)
+        public void Init(IList<StageCharacterVO> characters, int index, Action<int> order)
         {
             UpdateContents(characters);
             scroller.SetTotalCount(characters.Count);
@@ -46,7 +46,7 @@ namespace PrimeMillionaire.Top.Presentation.View
         {
             if (Context.index == index) return;
 
-            _order?.Invoke(ItemsSource[index].character.type);
+            _order?.Invoke(ItemsSource[index].character.parameter.id);
             Context.index = index;
             Refresh();
         }

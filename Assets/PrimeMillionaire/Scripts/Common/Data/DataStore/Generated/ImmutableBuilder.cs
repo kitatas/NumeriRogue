@@ -151,7 +151,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
 
         public void ReplaceAll(System.Collections.Generic.IList<CharacterMaster> data)
         {
-            var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
+            var newData = CloneAndSortBy(data, x => x.Id, System.Collections.Generic.Comparer<int>.Default);
             var table = new CharacterMasterTable(newData);
             memory = new MemoryDatabase(
                 memory.AppVersionMasterTable,
@@ -171,8 +171,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
 
         public void RemoveCharacterMaster(int[] keys)
         {
-            var data = RemoveCore(memory.CharacterMasterTable.GetRawDataUnsafe(), keys, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
-            var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
+            var data = RemoveCore(memory.CharacterMasterTable.GetRawDataUnsafe(), keys, x => x.Id, System.Collections.Generic.Comparer<int>.Default);
+            var newData = CloneAndSortBy(data, x => x.Id, System.Collections.Generic.Comparer<int>.Default);
             var table = new CharacterMasterTable(newData);
             memory = new MemoryDatabase(
                 memory.AppVersionMasterTable,
@@ -192,8 +192,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
 
         public void Diff(CharacterMaster[] addOrReplaceData)
         {
-            var data = DiffCore(memory.CharacterMasterTable.GetRawDataUnsafe(), addOrReplaceData, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
-            var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
+            var data = DiffCore(memory.CharacterMasterTable.GetRawDataUnsafe(), addOrReplaceData, x => x.Id, System.Collections.Generic.Comparer<int>.Default);
+            var newData = CloneAndSortBy(data, x => x.Id, System.Collections.Generic.Comparer<int>.Default);
             var table = new CharacterMasterTable(newData);
             memory = new MemoryDatabase(
                 memory.AppVersionMasterTable,
@@ -213,7 +213,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
 
         public void ReplaceAll(System.Collections.Generic.IList<CharacterStageMaster> data)
         {
-            var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
+            var newData = CloneAndSortBy(data, x => x.Id, System.Collections.Generic.Comparer<int>.Default);
             var table = new CharacterStageMasterTable(newData);
             memory = new MemoryDatabase(
                 memory.AppVersionMasterTable,
@@ -233,8 +233,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
 
         public void RemoveCharacterStageMaster(int[] keys)
         {
-            var data = RemoveCore(memory.CharacterStageMasterTable.GetRawDataUnsafe(), keys, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
-            var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
+            var data = RemoveCore(memory.CharacterStageMasterTable.GetRawDataUnsafe(), keys, x => x.Id, System.Collections.Generic.Comparer<int>.Default);
+            var newData = CloneAndSortBy(data, x => x.Id, System.Collections.Generic.Comparer<int>.Default);
             var table = new CharacterStageMasterTable(newData);
             memory = new MemoryDatabase(
                 memory.AppVersionMasterTable,
@@ -254,8 +254,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
 
         public void Diff(CharacterStageMaster[] addOrReplaceData)
         {
-            var data = DiffCore(memory.CharacterStageMasterTable.GetRawDataUnsafe(), addOrReplaceData, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
-            var newData = CloneAndSortBy(data, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
+            var data = DiffCore(memory.CharacterStageMasterTable.GetRawDataUnsafe(), addOrReplaceData, x => x.Id, System.Collections.Generic.Comparer<int>.Default);
+            var newData = CloneAndSortBy(data, x => x.Id, System.Collections.Generic.Comparer<int>.Default);
             var table = new CharacterStageMasterTable(newData);
             memory = new MemoryDatabase(
                 memory.AppVersionMasterTable,

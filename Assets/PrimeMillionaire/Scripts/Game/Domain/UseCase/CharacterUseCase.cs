@@ -21,22 +21,22 @@ namespace PrimeMillionaire.Game.Domain.UseCase
 
         public CharacterVO GetCharacter(Side side)
         {
-            return _characterRepository.Find(GetCharacterType(side));
+            return _characterRepository.Find(GetCharacterId(side));
         }
 
         public CharacterVO LotEnemyCharacter()
         {
-            var character = _characterRepository.FindOther(GetCharacterType(Side.Player));
-            _enemyCharacterEntity.SetType(character.type);
+            var character = _characterRepository.FindOther(GetCharacterId(Side.Player));
+            _enemyCharacterEntity.SetType(character.parameter.id);
             return character;
         }
 
-        private CharacterType GetCharacterType(Side side)
+        private int GetCharacterId(Side side)
         {
             return side switch
             {
-                Side.Player => _playerCharacterEntity.type,
-                Side.Enemy => _enemyCharacterEntity.type,
+                Side.Player => _playerCharacterEntity.id,
+                Side.Enemy => _enemyCharacterEntity.id,
                 _ => throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SIDE),
             };
         }

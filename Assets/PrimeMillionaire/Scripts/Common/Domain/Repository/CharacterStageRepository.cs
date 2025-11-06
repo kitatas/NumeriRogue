@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using FastEnumUtility;
 using PrimeMillionaire.Common.Data.DataStore;
 
 namespace PrimeMillionaire.Common.Domain.Repository
@@ -14,9 +13,9 @@ namespace PrimeMillionaire.Common.Domain.Repository
             _memoryDbData = memoryDbData;
         }
 
-        public DeckVO GetCards(CharacterType type)
+        public DeckVO GetDeck(int id)
         {
-            if (_memoryDbData.Get().CharacterStageMasterTable.TryFindByType(type.ToInt32(), out var characterStage))
+            if (_memoryDbData.Get().CharacterStageMasterTable.TryFindById(id, out var characterStage))
             {
                 var cards = _memoryDbData.Get().CardMasterTable.All
                     .Where(x => characterStage.Suits.Contains(x.Suit) && characterStage.Ranks.Contains(x.Rank))
@@ -30,20 +29,20 @@ namespace PrimeMillionaire.Common.Domain.Repository
             }
         }
 
-        public IEnumerable<CharacterType> GetReleased(ProgressVO progress)
+        public IEnumerable<int> GetReleased(ProgressVO progress)
         {
             var released = progress.characterProgress
                 .Where(x => x.isClear)
-                .Select(x => x.type.ToInt32());
+                .Select(x => x.id);
 
             return _memoryDbData.Get().CharacterStageMasterTable.All
                 .Where(x => x.ReleaseConditions.All(y => released.Contains(y)))
-                .Select(x => x.Type.ToCharacterType());
+                .Select(x => x.Id);
         }
 
-        public StageVO GetStage(CharacterType type)
+        public StageVO GetStage(int id)
         {
-            if (_memoryDbData.Get().CharacterStageMasterTable.TryFindByType(type.ToInt32(), out var master))
+            if (_memoryDbData.Get().CharacterStageMasterTable.TryFindById(id, out var master))
             {
                 return master.ToStageVO();
             }

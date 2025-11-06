@@ -4,14 +4,14 @@ namespace PrimeMillionaire.Game.Data.Entity
 {
     public sealed class EnemyCharacterEntity
     {
-        private CharacterType _type;
+        private int _id;
 
-        public CharacterType type => _type;
+        public int id => _id;
 
-        public void SetType(CharacterType value)
+        public void SetType(int value)
         {
-            if (value == CharacterType.None) throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_CHARACTER);
-            _type = value;
+            if (value == 0) throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_CHARACTER);
+            _id = value;
         }
     }
 }

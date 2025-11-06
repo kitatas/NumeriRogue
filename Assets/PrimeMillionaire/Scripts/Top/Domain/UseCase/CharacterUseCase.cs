@@ -44,23 +44,23 @@ namespace PrimeMillionaire.Top.Domain.UseCase
         public (List<StageCharacterVO>, int) GetAllAndIndex()
         {
             var characters = GetAll();
-            var type = _playerCharacterEntity.type == CharacterType.None
-                ? characters.OrderBy(x => x.character.type).Last().character.type
-                : _playerCharacterEntity.type;
+            var id = _playerCharacterEntity.id == 0
+                ? characters.OrderBy(x => x.character.parameter.id).Last().character.parameter.id
+                : _playerCharacterEntity.id;
 
             // 初期選択されているキャラ
-            Order(type);
+            Order(id);
 
-            var index = characters.FindIndex(x => x.character.type == type);
+            var index = characters.FindIndex(x => x.character.parameter.id == id);
             return (characters, index);
         }
 
-        public void Order(CharacterType type)
+        public void Order(int id)
         {
-            _playerCharacterEntity.SetType(type);
+            _playerCharacterEntity.SetType(id);
 
-            var character = _characterRepository.Find(_playerCharacterEntity.type);
-            var deck = _characterStageRepository.GetCards(_playerCharacterEntity.type);
+            var character = _characterRepository.Find(_playerCharacterEntity.id);
+            var deck = _characterStageRepository.GetDeck(_playerCharacterEntity.id);
             var order = new OrderCharacterVO(character, deck);
             _orderCharacter?.OnNext(order);
         }

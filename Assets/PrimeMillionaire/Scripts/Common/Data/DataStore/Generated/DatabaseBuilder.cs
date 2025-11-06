@@ -30,13 +30,13 @@ namespace PrimeMillionaire.Common.Data.DataStore
 
         public DatabaseBuilder Append(System.Collections.Generic.IEnumerable<CharacterMaster> dataSource)
         {
-            AppendCore(dataSource, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
+            AppendCore(dataSource, x => x.Id, System.Collections.Generic.Comparer<int>.Default);
             return this;
         }
 
         public DatabaseBuilder Append(System.Collections.Generic.IEnumerable<CharacterStageMaster> dataSource)
         {
-            AppendCore(dataSource, x => x.Type, System.Collections.Generic.Comparer<int>.Default);
+            AppendCore(dataSource, x => x.Id, System.Collections.Generic.Comparer<int>.Default);
             return this;
         }
 

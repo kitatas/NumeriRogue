@@ -50,7 +50,8 @@ namespace PrimeMillionaire.Common.Data.DataStore
     [Serializable]
     public sealed class ParameterDTO
     {
-        public CharacterType type;
+        public int id;
+        public string name;
         public int hp;
         public int atk;
         public int def;
@@ -58,14 +59,15 @@ namespace PrimeMillionaire.Common.Data.DataStore
 
         public ParameterDTO(ParameterVO parameter)
         {
-            type = parameter.type;
+            id = parameter.id;
+            name = parameter.name;
             hp = parameter.hp;
             atk = parameter.atk;
             def = parameter.def;
             currentHp = parameter.currentHp;
         }
 
-        public ParameterVO ToVO() => new(type.ToInt32(), hp, atk, def, currentHp);
+        public ParameterVO ToVO() => new(id, name, hp, atk, def, currentHp);
     }
 
     [Serializable]

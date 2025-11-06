@@ -14,7 +14,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
         {
             characterStages = new List<CharacterProgressDTO>
             {
-                new(new CharacterProgressVO(0.ToCharacterType(), ProgressStatus.Clear)),
+                new(new CharacterProgressVO(0, ProgressStatus.Clear)),
             };
         }
 
@@ -30,7 +30,7 @@ namespace PrimeMillionaire.Common.Data.DataStore
     [Serializable]
     public sealed class CharacterProgressDTO
     {
-        public CharacterType type;
+        public int id;
         public ProgressStatus status;
 
         public CharacterProgressDTO()
@@ -39,10 +39,10 @@ namespace PrimeMillionaire.Common.Data.DataStore
 
         public CharacterProgressDTO(CharacterProgressVO characterProgress)
         {
-            type = characterProgress.type;
+            id = characterProgress.id;
             status = characterProgress.status;
         }
 
-        public CharacterProgressVO ToVO() => new(type, status);
+        public CharacterProgressVO ToVO() => new(id, status);
     }
 }

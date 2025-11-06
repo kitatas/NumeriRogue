@@ -18,7 +18,7 @@ namespace PrimeMillionaire.Common.Data.DataStore.Tables
         public CharacterMasterTable(CharacterMaster[] sortedData)
             : base(sortedData)
         {
-            this.primaryIndexSelector = x => x.Type;
+            this.primaryIndexSelector = x => x.Id;
             OnAfterConstruct();
         }
 
@@ -26,14 +26,14 @@ namespace PrimeMillionaire.Common.Data.DataStore.Tables
 
 
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public CharacterMaster FindByType(int key)
+        public CharacterMaster FindById(int key)
         {
             var lo = 0;
             var hi = data.Length - 1;
             while (lo <= hi)
             {
                 var mid = (int)(((uint)hi + (uint)lo) >> 1);
-                var selected = data[mid].Type;
+                var selected = data[mid].Id;
                 var found = (selected < key) ? -1 : (selected > key) ? 1 : 0;
                 if (found == 0) { return data[mid]; }
                 if (found < 0) { lo = mid + 1; }
@@ -43,14 +43,14 @@ namespace PrimeMillionaire.Common.Data.DataStore.Tables
         }
 
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-        public bool TryFindByType(int key, out CharacterMaster result)
+        public bool TryFindById(int key, out CharacterMaster result)
         {
             var lo = 0;
             var hi = data.Length - 1;
             while (lo <= hi)
             {
                 var mid = (int)(((uint)hi + (uint)lo) >> 1);
-                var selected = data[mid].Type;
+                var selected = data[mid].Id;
                 var found = (selected < key) ? -1 : (selected > key) ? 1 : 0;
                 if (found == 0) { result = data[mid]; return true; }
                 if (found < 0) { lo = mid + 1; }
@@ -60,12 +60,12 @@ namespace PrimeMillionaire.Common.Data.DataStore.Tables
             return false;
         }
 
-        public CharacterMaster FindClosestByType(int key, bool selectLower = true)
+        public CharacterMaster FindClosestById(int key, bool selectLower = true)
         {
             return FindUniqueClosestCore(data, primaryIndexSelector, System.Collections.Generic.Comparer<int>.Default, key, selectLower);
         }
 
-        public RangeView<CharacterMaster> FindRangeByType(int min, int max, bool ascendant = true)
+        public RangeView<CharacterMaster> FindRangeById(int min, int max, bool ascendant = true)
         {
             return FindUniqueRangeCore(data, primaryIndexSelector, System.Collections.Generic.Comparer<int>.Default, min, max, ascendant);
         }
@@ -75,7 +75,7 @@ namespace PrimeMillionaire.Common.Data.DataStore.Tables
         {
 #if !DISABLE_MASTERMEMORY_VALIDATOR
 
-            ValidateUniqueCore(data, primaryIndexSelector, "Type", resultSet);       
+            ValidateUniqueCore(data, primaryIndexSelector, "Id", resultSet);       
 
 #endif
         }
@@ -87,14 +87,15 @@ namespace PrimeMillionaire.Common.Data.DataStore.Tables
             return new MasterMemory.Meta.MetaTable(typeof(CharacterMaster), typeof(CharacterMasterTable), "CharacterMaster",
                 new MasterMemory.Meta.MetaProperty[]
                 {
-                    new MasterMemory.Meta.MetaProperty(typeof(CharacterMaster).GetProperty("Type")),
+                    new MasterMemory.Meta.MetaProperty(typeof(CharacterMaster).GetProperty("Id")),
+                    new MasterMemory.Meta.MetaProperty(typeof(CharacterMaster).GetProperty("Name")),
                     new MasterMemory.Meta.MetaProperty(typeof(CharacterMaster).GetProperty("Hp")),
                     new MasterMemory.Meta.MetaProperty(typeof(CharacterMaster).GetProperty("Atk")),
                     new MasterMemory.Meta.MetaProperty(typeof(CharacterMaster).GetProperty("Def")),
                 },
                 new MasterMemory.Meta.MetaIndex[]{
                     new MasterMemory.Meta.MetaIndex(new System.Reflection.PropertyInfo[] {
-                        typeof(CharacterMaster).GetProperty("Type"),
+                        typeof(CharacterMaster).GetProperty("Id"),
                     }, true, true, System.Collections.Generic.Comparer<int>.Default),
                 });
         }

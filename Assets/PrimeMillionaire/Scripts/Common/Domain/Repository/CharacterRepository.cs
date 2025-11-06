@@ -1,5 +1,4 @@
 using System.Linq;
-using FastEnumUtility;
 using PrimeMillionaire.Common.Data.DataStore;
 using UniEx;
 
@@ -14,18 +13,18 @@ namespace PrimeMillionaire.Common.Domain.Repository
             _memoryDbData = memoryDbData;
         }
 
-        public CharacterVO FindOther(CharacterType type)
+        public CharacterVO FindOther(int id)
         {
             return _memoryDbData.Get().CharacterMasterTable.All
-                .Where(x => x.Type.ToCharacterType() != type)
+                .Where(x => x.Id != id)
                 .ToList()
                 .GetRandom()
                 .ToVO();
         }
 
-        public CharacterVO Find(CharacterType type)
+        public CharacterVO Find(int id)
         {
-            if (_memoryDbData.Get().CharacterMasterTable.TryFindByType(type.ToInt32(), out var master))
+            if (_memoryDbData.Get().CharacterMasterTable.TryFindById(id, out var master))
             {
                 return master.ToVO();
             }

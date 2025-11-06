@@ -171,9 +171,9 @@ namespace PrimeMillionaire.Common.Data.DataStore
             ((ITableUniqueValidate)CardMasterTable).ValidateUnique(result);
             ValidateTable(CardMasterTable.All, database, "(Suit, Rank)", CardMasterTable.PrimaryKeySelector, result);
             ((ITableUniqueValidate)CharacterMasterTable).ValidateUnique(result);
-            ValidateTable(CharacterMasterTable.All, database, "Type", CharacterMasterTable.PrimaryKeySelector, result);
+            ValidateTable(CharacterMasterTable.All, database, "Id", CharacterMasterTable.PrimaryKeySelector, result);
             ((ITableUniqueValidate)CharacterStageMasterTable).ValidateUnique(result);
-            ValidateTable(CharacterStageMasterTable.All, database, "Type", CharacterStageMasterTable.PrimaryKeySelector, result);
+            ValidateTable(CharacterStageMasterTable.All, database, "Id", CharacterStageMasterTable.PrimaryKeySelector, result);
             ((ITableUniqueValidate)DropRateMasterTable).ValidateUnique(result);
             ValidateTable(DropRateMasterTable.All, database, "Turn", DropRateMasterTable.PrimaryKeySelector, result);
             ((ITableUniqueValidate)LevelMasterTable).ValidateUnique(result);
