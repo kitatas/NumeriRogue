@@ -16,4 +16,11 @@ namespace PrimeMillionaire.Boot
         Interrupt = 1,
         Update = 2,
     }
+
+    public enum SplashType
+    {
+        None = 0,
+        Developer = 1,
+        PlayFab = 2,
+    }
 }
