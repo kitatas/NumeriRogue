@@ -2,7 +2,8 @@
     "name": "Boot.Application",
     "rootNamespace": "",
     "references": [
-        "GUID:33db315b82f264ceba5b853ae3b8cde8"
+        "GUID:33db315b82f264ceba5b853ae3b8cde8",
+        "GUID:77aea589fe3f34fa883d9f7e26eee12e"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
