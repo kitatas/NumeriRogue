@@ -35,7 +35,6 @@ namespace PrimeMillionaire.Boot.Installer
             // State
             builder.Register<BaseState, CheckState>(Lifetime.Scoped);
             builder.Register<BaseState, InterruptState>(Lifetime.Scoped);
-            builder.Register<BaseState, LoadState>(Lifetime.Scoped);
             builder.Register<BaseState, LoginState>(Lifetime.Scoped);
             builder.Register<BaseState, SplashState>(Lifetime.Scoped);
             builder.Register<BaseState, StartState>(Lifetime.Scoped);

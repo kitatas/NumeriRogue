@@ -10,12 +10,15 @@ namespace PrimeMillionaire.Boot.Presentation.State
     {
         private readonly InterruptUseCase _interruptUseCase;
         private readonly SceneUseCase _sceneUseCase;
+        private readonly ISoundUseCase _soundUseCase;
         private readonly TitleUseCase _titleUseCase;
 
-        public StartState(InterruptUseCase interruptUseCase, SceneUseCase sceneUseCase, TitleUseCase titleUseCase)
+        public StartState(InterruptUseCase interruptUseCase, SceneUseCase sceneUseCase, ISoundUseCase soundUseCase,
+            TitleUseCase titleUseCase)
         {
             _interruptUseCase = interruptUseCase;
             _sceneUseCase = sceneUseCase;
+            _soundUseCase = soundUseCase;
             _titleUseCase = titleUseCase;
         }
 
@@ -28,6 +31,8 @@ namespace PrimeMillionaire.Boot.Presentation.State
 
         public override async UniTask<BootState> TickAsync(CancellationToken token)
         {
+            _soundUseCase.Play(Bgm.Menu);
+
             var hasInterrupt = _interruptUseCase.HasInterrupt();
             if (hasInterrupt)
             {
