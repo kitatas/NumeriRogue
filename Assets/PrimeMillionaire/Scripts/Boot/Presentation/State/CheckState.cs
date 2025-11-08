@@ -10,12 +10,15 @@ namespace PrimeMillionaire.Boot.Presentation.State
         private readonly MasterUseCase _masterUseCase;
         private readonly LoadingUseCase _loadingUseCase;
         private readonly ModalUseCase _modalUseCase;
+        private readonly SplashUseCase _splashUseCase;
 
-        public CheckState(MasterUseCase masterUseCase, LoadingUseCase loadingUseCase, ModalUseCase modalUseCase)
+        public CheckState(MasterUseCase masterUseCase, LoadingUseCase loadingUseCase, ModalUseCase modalUseCase,
+            SplashUseCase splashUseCase)
         {
             _masterUseCase = masterUseCase;
             _loadingUseCase = loadingUseCase;
             _modalUseCase = modalUseCase;
+            _splashUseCase = splashUseCase;
         }
 
         public override BootState state => BootState.Check;
@@ -38,6 +41,8 @@ namespace PrimeMillionaire.Boot.Presentation.State
                 await _modalUseCase.ShowAsync(ModalType.Update, token);
                 return BootState.None;
             }
+
+            _splashUseCase.Activate(false);
 
             return BootState.Start;
         }

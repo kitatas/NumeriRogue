@@ -9,6 +9,7 @@ namespace PrimeMillionaire.Boot.Presentation.View
 {
     public sealed class SplashView : MonoBehaviour
     {
+        [SerializeField] private CanvasGroup canvasGroup = default;
         [SerializeField] private Image copyright = default;
         [SerializeField] private Button screen = default;
 
@@ -32,6 +33,12 @@ namespace PrimeMillionaire.Boot.Presentation.View
         public void Kill()
         {
             _tween?.Kill(true);
+        }
+
+        public void Activate(bool value)
+        {
+            canvasGroup.alpha = value ? 1.0f : 0.0f;
+            canvasGroup.blocksRaycasts = value;
         }
 
         public Observable<PointerEventData> push => screen.OnPointerDownAsObservable();

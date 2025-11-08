@@ -11,12 +11,16 @@ namespace PrimeMillionaire.Boot.Domain.UseCase
     {
         private readonly SplashRepository _splashRepository;
         private readonly Subject<Unit> _touchScreen;
+        private readonly ReactiveProperty<bool> _activation;
 
         public SplashUseCase(SplashRepository splashRepository)
         {
             _splashRepository = splashRepository;
             _touchScreen = new Subject<Unit>();
+            _activation = new ReactiveProperty<bool>(true);
         }
+
+        public Observable<bool> activation => _activation;
 
         public void TouchScreen()
         {
@@ -35,9 +39,15 @@ namespace PrimeMillionaire.Boot.Domain.UseCase
             }
         }
 
+        public void Activate(bool value)
+        {
+            _activation?.OnNext(value);
+        }
+
         public void Dispose()
         {
             _touchScreen?.Dispose();
+            _activation?.Dispose();
         }
     }
 }

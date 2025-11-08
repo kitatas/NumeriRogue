@@ -27,6 +27,10 @@ namespace PrimeMillionaire.Boot.Presentation.Presenter
                 })
                 .AddTo(_splashView);
 
+            _splashUseCase.activation
+                .Subscribe(_splashView.Activate)
+                .AddTo(_splashView);
+
             _splashView.push
                 .Subscribe(_ =>
                 {
