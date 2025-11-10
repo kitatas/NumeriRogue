@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae1459590fe481aaaa3cce3671a28bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 1
   button: {fileID: 4033240951779937121}
 --- !u!114 &4033240951779937121 stripped
 MonoBehaviour:
@@ -817,17 +818,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1687629659414884493, guid: 66ce232fa231440e0abcc61562ed706c, type: 3}
       propertyPath: m_text
-      value: 'New Text
-
-        New Text'
+      value: ---
       objectReference: {fileID: 0}
     - target: {fileID: 1687629659414884493, guid: 66ce232fa231440e0abcc61562ed706c, type: 3}
       propertyPath: m_fontSize
-      value: 40
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 1687629659414884493, guid: 66ce232fa231440e0abcc61562ed706c, type: 3}
       propertyPath: m_fontSizeMax
-      value: 40
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 1687629659414884493, guid: 66ce232fa231440e0abcc61562ed706c, type: 3}
       propertyPath: m_spriteAsset
