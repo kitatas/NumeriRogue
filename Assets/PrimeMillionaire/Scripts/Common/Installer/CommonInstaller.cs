@@ -49,9 +49,10 @@ namespace PrimeMillionaire.Common.Installer
             builder.Register<SceneUseCase>(Lifetime.Singleton);
             builder.Register<ISoundUseCase>(x =>
             {
+                var loadingEntity = x.Resolve<LoadingEntity>();
                 var saveRepository = x.Resolve<SaveRepository>();
                 var soundRepository = x.Resolve<SoundRepository>();
-                return soundProvider.ProvideUseCase(saveRepository, soundRepository);
+                return soundProvider.ProvideUseCase(loadingEntity, saveRepository, soundRepository);
             }, Lifetime.Singleton);
 
             // Presenter

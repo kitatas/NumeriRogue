@@ -1,3 +1,4 @@
+using PrimeMillionaire.Common.Data.Entity;
 using PrimeMillionaire.Common.Domain.Repository;
 using PrimeMillionaire.Common.Domain.UseCase;
 using PrimeMillionaire.Common.Presentation.View;
@@ -21,12 +22,13 @@ namespace PrimeMillionaire.Common.Provider
             _type = type;
         }
 
-        public ISoundUseCase ProvideUseCase(SaveRepository saveRepository, SoundRepository soundRepository)
+        public ISoundUseCase ProvideUseCase(LoadingEntity loadingEntity, SaveRepository saveRepository,
+            SoundRepository soundRepository)
         {
             return _type switch
             {
-                SoundType.UnityAudio => new SoundUseCase(saveRepository, soundRepository),
-                SoundType.Cri => new CriSoundUseCase(saveRepository),
+                SoundType.UnityAudio => new SoundUseCase(loadingEntity, saveRepository, soundRepository),
+                SoundType.Cri => new CriSoundUseCase(loadingEntity, saveRepository),
                 _ => throw new QuitExceptionVO(ExceptionConfig.FAILED_DEPENDENCY_RESOLUTION),
             };
         }

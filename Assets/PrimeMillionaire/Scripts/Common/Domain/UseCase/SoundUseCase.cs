@@ -1,4 +1,5 @@
 using System;
+using PrimeMillionaire.Common.Data.Entity;
 using PrimeMillionaire.Common.Domain.Repository;
 using R3;
 
@@ -6,6 +7,7 @@ namespace PrimeMillionaire.Common.Domain.UseCase
 {
     public sealed class SoundUseCase : ISoundUseCase, IDisposable
     {
+        private readonly LoadingEntity _loadingEntity;
         private readonly SaveRepository _saveRepository;
         private readonly SoundRepository _soundRepository;
         private readonly Subject<AudioVO> _playBgm;
@@ -15,8 +17,9 @@ namespace PrimeMillionaire.Common.Domain.UseCase
         private readonly ReactiveProperty<VolumeVO> _seVolume;
         private VolumeVO _master;
 
-        public SoundUseCase(SaveRepository saveRepository, SoundRepository soundRepository)
+        public SoundUseCase(LoadingEntity loadingEntity, SaveRepository saveRepository, SoundRepository soundRepository)
         {
+            _loadingEntity = loadingEntity;
             _saveRepository = saveRepository;
             _soundRepository = soundRepository;
             _playBgm = new Subject<AudioVO>();
@@ -47,6 +50,7 @@ namespace PrimeMillionaire.Common.Domain.UseCase
 
         public void Play(Se se, float duration = 0.0f)
         {
+            if (_loadingEntity.value) return;
             if (sound.isMuteSe) return;
 
             var clip = _soundRepository.Find(se);

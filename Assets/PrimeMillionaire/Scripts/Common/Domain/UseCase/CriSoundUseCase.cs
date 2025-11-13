@@ -1,5 +1,6 @@
 using System;
 using FastEnumUtility;
+using PrimeMillionaire.Common.Data.Entity;
 using PrimeMillionaire.Common.Domain.Repository;
 using R3;
 
@@ -7,6 +8,7 @@ namespace PrimeMillionaire.Common.Domain.UseCase
 {
     public sealed class CriSoundUseCase : ISoundUseCase, IDisposable
     {
+        private readonly LoadingEntity _loadingEntity;
         private readonly SaveRepository _saveRepository;
         private readonly Subject<AudioVO> _playBgm;
         private readonly Subject<AudioVO> _playSe;
@@ -15,8 +17,9 @@ namespace PrimeMillionaire.Common.Domain.UseCase
         private readonly ReactiveProperty<VolumeVO> _seVolume;
         private VolumeVO _master;
 
-        public CriSoundUseCase(SaveRepository saveRepository)
+        public CriSoundUseCase(LoadingEntity loadingEntity, SaveRepository saveRepository)
         {
+            _loadingEntity = loadingEntity;
             _saveRepository = saveRepository;
             _playBgm = new Subject<AudioVO>();
             _playSe = new Subject<AudioVO>();
@@ -46,6 +49,7 @@ namespace PrimeMillionaire.Common.Domain.UseCase
         public void Play(Se se, float duration = 0)
         {
             if (se == Se.None) throw new QuitExceptionVO(ExceptionConfig.NOT_FOUND_SE);
+            if (_loadingEntity.value) return;
             if (sound.isMuteSe) return;
             _playSe?.OnNext(new AudioVO(se.FastToString(), duration));
         }
