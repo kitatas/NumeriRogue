@@ -1,15 +1,18 @@
 using System;
+using PrimeMillionaire.Common.Data.Entity;
 using R3;
 
 namespace PrimeMillionaire.Common.Domain.UseCase
 {
     public sealed class LoadingUseCase : IDisposable
     {
+        private readonly LoadingEntity _loadingEntity;
         private readonly ReactiveProperty<bool> _isLoad;
 
-        public LoadingUseCase()
+        public LoadingUseCase(LoadingEntity loadingEntity)
         {
-            _isLoad = new ReactiveProperty<bool>(false);
+            _loadingEntity = loadingEntity;
+            _isLoad = new ReactiveProperty<bool>(_loadingEntity.value);
         }
 
         public Observable<bool> isLoad => _isLoad;
@@ -18,7 +21,8 @@ namespace PrimeMillionaire.Common.Domain.UseCase
 
         public void Set(bool value)
         {
-            _isLoad.Value = value;
+            _loadingEntity.Set(value);
+            _isLoad.Value = _loadingEntity.value;
         }
 
         public void Dispose()

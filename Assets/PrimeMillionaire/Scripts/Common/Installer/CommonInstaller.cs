@@ -30,6 +30,7 @@ namespace PrimeMillionaire.Common.Installer
             builder.RegisterInstance<SeTable>(seTable);
 
             // Entity
+            builder.Register<LoadingEntity>(Lifetime.Singleton);
             builder.Register<PlayerCharacterEntity>(Lifetime.Singleton);
             builder.Register<RetryCountEntity>(Lifetime.Singleton);
             builder.Register<UserEntity>(Lifetime.Singleton);
