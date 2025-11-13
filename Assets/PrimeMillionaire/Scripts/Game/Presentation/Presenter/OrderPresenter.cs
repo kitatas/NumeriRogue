@@ -1,4 +1,5 @@
 using PrimeMillionaire.Common;
+using PrimeMillionaire.Common.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.View;
 using R3;
 using VContainer.Unity;
@@ -8,11 +9,13 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
 {
     public sealed class OrderPresenter : IPostInitializable
     {
+        private readonly ISoundUseCase _soundUseCase;
         private readonly OrderView _orderView;
         private readonly TableView _tableView;
 
-        public OrderPresenter(OrderView orderView, TableView tableView)
+        public OrderPresenter(ISoundUseCase soundUseCase, OrderView orderView, TableView tableView)
         {
+            _soundUseCase = soundUseCase;
             _orderView = orderView;
             _tableView = tableView;
         }
@@ -22,6 +25,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
             Router.Default
                 .SubscribeAwait<OrderVO>(async (x, context) =>
                 {
+                    _soundUseCase.Play(Se.Flip);
                     await _orderView.RenderAsync(x.orderIndex, x.card, context.CancellationToken);
 
                     if (x.side != Side.None)

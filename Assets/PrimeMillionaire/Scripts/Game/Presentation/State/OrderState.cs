@@ -1,6 +1,7 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
+using PrimeMillionaire.Common.Utility;
 using PrimeMillionaire.Game.Domain.UseCase;
 using PrimeMillionaire.Game.Utility;
 
@@ -75,6 +76,7 @@ namespace PrimeMillionaire.Game.Presentation.State
             {
                 var card = _handUseCase.GetCard(Side.Enemy, index);
                 await _orderUseCase.SetAsync(Side.Enemy, index, card, token);
+                await UniTaskHelper.DelayAsync(CardConfig.FLIP_DURATION, token);
             }
 
             await _handUseCase.RemoveCardsAsync(Side.Enemy, _orderUseCase.orderHandIndex, token);

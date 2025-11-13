@@ -13,6 +13,7 @@ namespace PrimeMillionaire.Game
 
     public sealed class CardConfig
     {
+        public const float FLIP_DURATION = 0.05f;
         public const int MAX_RANK = 13;
 
         public static readonly Suit[] SUITS =

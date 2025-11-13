@@ -35,12 +35,12 @@ namespace PrimeMillionaire.Game.Presentation.View
             {
                 if (card == null)
                 {
-                    cardView.Close(UiConfig.TWEEN_DURATION).WithCancellation(token).Forget();
+                    cardView.Close(CardConfig.FLIP_DURATION).WithCancellation(token).Forget();
                 }
                 else
                 {
                     await cardView.RenderAsync(card, token);
-                    cardView.Open(UiConfig.TWEEN_DURATION).WithCancellation(token).Forget();
+                    cardView.Open(CardConfig.FLIP_DURATION).WithCancellation(token).Forget();
                 }
             }
         }
