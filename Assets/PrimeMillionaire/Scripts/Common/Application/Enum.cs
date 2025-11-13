@@ -36,6 +36,7 @@ namespace PrimeMillionaire.Common
         Cancel = 2,
         Flip = 3,
         Entry = 4,
+        BattlePt = 5,
     }
 
     public enum Suit

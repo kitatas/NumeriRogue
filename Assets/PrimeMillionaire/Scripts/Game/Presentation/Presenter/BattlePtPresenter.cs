@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
+using PrimeMillionaire.Common.Domain.UseCase;
 using PrimeMillionaire.Game.Presentation.View;
 using R3;
 using VContainer.Unity;
@@ -9,19 +10,21 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
 {
     public sealed class BattlePtPresenter : IPostInitializable
     {
+        private readonly ISoundUseCase _soundUseCase;
         private readonly BattlePtView _battlePtView;
 
-        public BattlePtPresenter(BattlePtView battlePtView)
+        public BattlePtPresenter(ISoundUseCase soundUseCase, BattlePtView battlePtView)
         {
+            _soundUseCase = soundUseCase;
             _battlePtView = battlePtView;
         }
 
         public void PostInitialize()
         {
-
             Router.Default
                 .SubscribeAwait<BattlePtVO>(async (x, context) =>
                 {
+                    _soundUseCase.Play(Se.BattlePt);
                     var rendering = x.side switch
                     {
                         Side.Player => _battlePtView.RenderPlayer(x.value),

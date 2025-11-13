@@ -38,7 +38,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
             Router.Default
                 .SubscribeAwait<OrderValueVO>(async (x, context) =>
                 {
-                    await _orderView.SetAsync(x, context.CancellationToken);
+                    await _orderView.SetAsync(x, se => _soundUseCase.Play(se), context.CancellationToken);
                 })
                 .AddTo(_orderView);
 

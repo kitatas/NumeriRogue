@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using Cysharp.Text;
 using Cysharp.Threading.Tasks;
@@ -45,8 +46,9 @@ namespace PrimeMillionaire.Game.Presentation.View
             }
         }
 
-        public async UniTask SetAsync(OrderValueVO orderValue, CancellationToken token)
+        public async UniTask SetAsync(OrderValueVO orderValue, Action<Se> playSe, CancellationToken token)
         {
+            playSe?.Invoke(Se.BattlePt);
             var value = orderValue.value;
             await TweenOrderValue(value).WithCancellation(token);
 
@@ -54,20 +56,18 @@ namespace PrimeMillionaire.Game.Presentation.View
             {
                 value = Mathf.CeilToInt(value * bonus.value);
                 await bonusView.TweenAsync(bonus, token);
+                playSe?.Invoke(Se.BattlePt);
                 await TweenOrderValue(value).WithCancellation(token);
             }
         }
 
         private Tween TweenOrderValue(int value)
         {
-            return DOTween.Sequence()
-                .Append(currentValue
-                    .DOFade(1.0f, UiConfig.TWEEN_DURATION))
-                .Append(DOTween.To(
-                    () => int.Parse(currentValue.text),
-                    x => currentValue.text = ZString.Format("{0}", x),
-                    value,
-                    UiConfig.TWEEN_DURATION));
+            return DOTween.To(
+                () => int.Parse(currentValue.text),
+                x => currentValue.text = ZString.Format("{0}", x),
+                value,
+                UiConfig.TWEEN_DURATION);
         }
 
         public async UniTask FadeInCardsAsync(float duration, CancellationToken token)
