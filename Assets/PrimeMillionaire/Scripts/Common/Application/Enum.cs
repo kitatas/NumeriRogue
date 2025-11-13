@@ -37,6 +37,7 @@ namespace PrimeMillionaire.Common
         Flip = 3,
         Entry = 4,
         BattlePt = 5,
+        Buff = 6,
     }
 
     public enum Suit
