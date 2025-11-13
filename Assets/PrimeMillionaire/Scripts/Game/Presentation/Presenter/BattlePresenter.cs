@@ -36,9 +36,11 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
                             await _battleView.PlayAttackAnimAsync(x.side, context.CancellationToken);
                             break;
                         case BattleAnim.Hit:
+                            _soundUseCase.Play(Se.Hit);
                             await _battleView.PlayDamageAnimAsync(x.side, false, context.CancellationToken);
                             break;
                         case BattleAnim.Death:
+                            _soundUseCase.Play(Se.Hit);
                             await _battleView.PlayDamageAnimAsync(x.side, true, context.CancellationToken);
                             break;
                         default:
