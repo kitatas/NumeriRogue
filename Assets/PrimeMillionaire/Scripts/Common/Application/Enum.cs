@@ -39,6 +39,7 @@ namespace PrimeMillionaire.Common
         BattlePt = 5,
         Buff = 6,
         Hit = 7,
+        Explode = 8,
     }
 
     public enum Suit

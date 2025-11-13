@@ -30,6 +30,7 @@ namespace PrimeMillionaire.Game.Presentation.Presenter
                             await _battleView.CreateCharacterAsync(x.side, x.character, context.CancellationToken);
                             break;
                         case BattleAnim.Exit:
+                            _soundUseCase.Play(Se.Explode);
                             await _battleView.DestroyCharacterAsync(x.side, context.CancellationToken);
                             break;
                         case BattleAnim.Attack:
