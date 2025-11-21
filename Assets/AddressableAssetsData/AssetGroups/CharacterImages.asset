@@ -1,0 +1,378 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterImages
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterImages
+  m_GUID: 0a6f6ead59888481eb0f5b53a7fd5f55
+  m_SerializeEntries:
+  - m_GUID: 035259bfa79f8494c97382f676a94e90
+    m_Address: Assets/Externals/Sprites/Characters/boss_christmas.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0d9cef1ad8d824c08b9957934075dcdf
+    m_Address: Assets/Externals/Sprites/Characters/boss_invader.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 10f48150546944897aae366a43583919
+    m_Address: Assets/Externals/Sprites/Characters/boss_winterblade.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 14fdde38cd0d84e8a92952ea46ac8366
+    m_Address: Assets/Externals/Sprites/Characters/boss_immortal.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 17407de6b367041e68fb3b7fead7477d
+    m_Address: Assets/Externals/Sprites/Characters/boss_highmayne.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 19363bae02bd4474c8ab1d2ba686514a
+    m_Address: Assets/Externals/Sprites/Characters/boss_aethermaster.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1b9e13aa33a324e6f9a8a8ae78904e83
+    m_Address: Assets/Externals/Sprites/Characters/boss_chaosknight.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1c10a786c4e0d4d53adc9da61119b49a
+    m_Address: Assets/Externals/Sprites/Characters/boss_decepticleprime.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1e80c3ea35e44442e8753a2a5d219cad
+    m_Address: Assets/Externals/Sprites/Characters/boss_kron.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1ec984696b95346c0adfe4bd3b4b7aaa
+    m_Address: Assets/Externals/Sprites/Characters/boss_cassyva.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2006647c09894408ea25be54bd6ffed5
+    m_Address: Assets/Externals/Sprites/Characters/boss_crystal.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 20c195fbfb981468dab2125d5babd8b0
+    m_Address: Assets/Externals/Sprites/Characters/boss_cindera.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 227d7df06ec004d8b8421cc5530377e6
+    m_Address: Assets/Externals/Sprites/Characters/boss_spelleater.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 22efdb98d7a694c21a51822f31c64477
+    m_Address: Assets/Externals/Sprites/Characters/boss_sajj.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2666475ab84a74e0988a5421a0e75bee
+    m_Address: Assets/Externals/Sprites/Characters/boss_grimrock.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 27f9e9160d66a45189f5de01dea6f8bf
+    m_Address: Assets/Externals/Sprites/Characters/boss_faie.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 29999043b6adb4538b7f33fe7f935ba2
+    m_Address: Assets/Externals/Sprites/Characters/boss_andromeda.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2a8b4315331a743b48982bad77ce166f
+    m_Address: Assets/Externals/Sprites/Characters/boss_borealjuggernaut.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 33dc81b8b4e7f4752bfc347ab368f3de
+    m_Address: Assets/Externals/Sprites/Characters/boss_zirix.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 35d5414b9d7fc456293f8b328329d276
+    m_Address: Assets/Externals/Sprites/Characters/boss_sunforge.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 365a0e2ebb4ca4e1bab6951116340c22
+    m_Address: Assets/Externals/Sprites/Characters/boss_general.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3aa82299083f24ebabdebda1b0efdf24
+    m_Address: Assets/Externals/Sprites/Characters/boss_blightchaser.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3c66e5791b8ec4d7f820af3fc1dc51b5
+    m_Address: Assets/Externals/Sprites/Characters/boss_treatdemon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 44ee6a2a2d0bc436182ddc4b8166662d
+    m_Address: Assets/Externals/Sprites/Characters/boss_grym.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 482802ef625e649ea9a5249feea3d775
+    m_Address: Assets/Externals/Sprites/Characters/boss_kane.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4a6d51f78fad84b1c825c0870403a4e6
+    m_Address: Assets/Externals/Sprites/Characters/boss_paragon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4af98a5aac13d4f8485224a84c114fa5
+    m_Address: Assets/Externals/Sprites/Characters/boss_elyxstormblade.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 552d48f7902634e77bdf23dd97572c69
+    m_Address: Assets/Externals/Sprites/Characters/boss_purgatos.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 590a36c5756724ab394670d6c0517e32
+    m_Address: Assets/Externals/Sprites/Characters/boss_reva.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5d7fc5d49957e4f4ab744217c155a94c
+    m_Address: Assets/Externals/Sprites/Characters/boss_skyfalltyrant.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5f54a506a1d224568a98166bb2d4ba47
+    m_Address: Assets/Externals/Sprites/Characters/boss_starstrider.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5f8b4d2878e9343a383cd8fce7122903
+    m_Address: Assets/Externals/Sprites/Characters/boss_soulstealer.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 62a954c76eb5c40d7a31794028ed0853
+    m_Address: Assets/Externals/Sprites/Characters/boss_goldenjusticar.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 65f519aae27f94dff8cb471ec0eae743
+    m_Address: Assets/Externals/Sprites/Characters/boss_taskmaster.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7430a92dc230c4d6281ccdea68b56a58
+    m_Address: Assets/Externals/Sprites/Characters/boss_dissonance.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7530d2f4a0a6a46deb353bc1de415680
+    m_Address: Assets/Externals/Sprites/Characters/boss_eventide.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7add36c9dfc7042b5b94f0a4ad79316a
+    m_Address: Assets/Externals/Sprites/Characters/boss_mystery.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7c7e782b5e1bc4e92b005b612db71250
+    m_Address: Assets/Externals/Sprites/Characters/boss_starhorn.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7db65430add3240e4914b8e1aad77eda
+    m_Address: Assets/Externals/Sprites/Characters/boss_seeker.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7de8226f52c684f91839dbabd5998b03
+    m_Address: Assets/Externals/Sprites/Characters/boss_keshraifanblade.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8de9c5ff56854422ea840fc13618ce23
+    m_Address: Assets/Externals/Sprites/Characters/boss_malyk.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 947416aa18fd848a1bdcb4eb00c3a82d
+    m_Address: Assets/Externals/Sprites/Characters/boss_scioness.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 963a4134fde2841eb92d6cbbf86e4fc1
+    m_Address: Assets/Externals/Sprites/Characters/boss_argeon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 96a41c6dbe9ad437c8194a9701f0024a
+    m_Address: Assets/Externals/Sprites/Characters/boss_shadowlord.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 979c4750254984be5b9fff8ba1551307
+    m_Address: Assets/Externals/Sprites/Characters/boss_caliber.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9acd8fb2590884737b4847e7b4a22f50
+    m_Address: Assets/Externals/Sprites/Characters/boss_soulreaper.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9cfada7496bee4de9a9ac24e6f2fae89
+    m_Address: Assets/Externals/Sprites/Characters/boss_serpenti.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b75a54efdd09f4afaab49dd9e7a1a481
+    m_Address: Assets/Externals/Sprites/Characters/boss_kaleos.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b9a8dcc86fdf84382a6887a7683e84dd
+    m_Address: Assets/Externals/Sprites/Characters/boss_vampire.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bb36a1de10f4a43f489ba3522496693a
+    m_Address: Assets/Externals/Sprites/Characters/boss_astralcrusader.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bfb149154de934c5192855988d2df6c5
+    m_Address: Assets/Externals/Sprites/Characters/boss_lilithe.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c481a8a0629b0474c9eb74a845c801db
+    m_Address: Assets/Externals/Sprites/Characters/boss_solfist.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c886589770ef24147bc2fe1e8f4e13c4
+    m_Address: Assets/Externals/Sprites/Characters/boss_unhallowed.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ca760e9954576429ebcedc4beb6d4bc3
+    m_Address: Assets/Externals/Sprites/Characters/boss_azuritelion.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cca3a45ec6b894d03a8ce6052e9833fa
+    m_Address: Assets/Externals/Sprites/Characters/boss_shinkagezendo.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ce286a96fd30842de82ff71ca5023c9b
+    m_Address: Assets/Externals/Sprites/Characters/boss_onyxpantheran.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d08e56fe1d3d141498a672fc51ffca65
+    m_Address: Assets/Externals/Sprites/Characters/boss_grandmasterzir.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d1a0480108f2146bc958bc3d366f977a
+    m_Address: Assets/Externals/Sprites/Characters/boss_ogremonk.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d1c28183625574a18aa6b18c0dc565c0
+    m_Address: Assets/Externals/Sprites/Characters/boss_stormkage.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d5549c9d738454f9e95d3c26df2024e3
+    m_Address: Assets/Externals/Sprites/Characters/boss_candypanda.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dd992a6492ce2438a99f58690019525a
+    m_Address: Assets/Externals/Sprites/Characters/boss_xaan.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e14e9a3ed03d7400684cc7add6d7855b
+    m_Address: Assets/Externals/Sprites/Characters/boss_anubis.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e1692628f265d473baa09faf5da4a00f
+    m_Address: Assets/Externals/Sprites/Characters/boss_sentinel.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e3017151cacba44ffb114ba28a66d0ec
+    m_Address: Assets/Externals/Sprites/Characters/boss_wraith.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e779257a862ea4b2a8647edf6acb8942
+    m_Address: Assets/Externals/Sprites/Characters/boss_valiant.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e92c283ea35954bfd861a6e5d01ae471
+    m_Address: Assets/Externals/Sprites/Characters/boss_antiswarm.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f35017fd448604b2f895780a1cf7b117
+    m_Address: Assets/Externals/Sprites/Characters/boss_kara.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f387613c6301042b99ae9af885a8be63
+    m_Address: Assets/Externals/Sprites/Characters/boss_wolfpunch.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fa00360942729442db25fc8bd07604cf
+    m_Address: Assets/Externals/Sprites/Characters/boss_emp.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fc777cc1ecb214be99448f5922e5705b
+    m_Address: Assets/Externals/Sprites/Characters/boss_vaath.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fcaf3f134e98c4aef989ec2af9b584a9
+    m_Address: Assets/Externals/Sprites/Characters/boss_harmony.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: a323ce742373146439901832acc2ab83, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: e75e771f55ddb46568c924ab307f11c8, type: 2}
+    - {fileID: 11400000, guid: 4ac668f4c910843f7aaca57690c6ac86, type: 2}

@@ -10,20 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Characters
+  m_Name: OtherImages
   m_EditorClassIdentifier: 
-  m_GroupName: Characters
-  m_Data:
-    m_SerializedData: []
-  m_GUID: 88168a1a6691c412da631b18c12f049b
+  m_GroupName: OtherImages
+  m_GUID: 487b591f823614320ab27c9881910813
   m_SerializeEntries:
-  - m_GUID: 1f77365d99e284cef8e5a062c3d5e7f8
-    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Andromeda.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: db9225d5f7cfb496b9b47e28681cb03a
-    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Borealjuggernaut.prefab
+  - m_GUID: 3101c17c910784ee49eb2cd602d69d77
+    m_Address: Assets/Externals/Sprites/Cards/cards.png
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -31,5 +24,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: a323ce742373146439901832acc2ab83, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: cf54350071a30432585b2392b78ff2ee, type: 2}
-    - {fileID: 11400000, guid: ef17c090d766c4c9a936ae4d67823a77, type: 2}
+    - {fileID: 11400000, guid: 393359ceed72b442db0f00a2896b01ef, type: 2}
+    - {fileID: 11400000, guid: fbe161cb8f3184fb5a0402b82292e341, type: 2}

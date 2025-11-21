@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: FxPrefabs
+  m_EditorClassIdentifier: 
+  m_GroupName: FxPrefabs
+  m_GUID: ac29c20158722430b8cd73fdfe056cce
+  m_SerializeEntries:
+  - m_GUID: 1a9f7b491f9d7409080be664520933e9
+    m_Address: Assets/PrimeMillionaire/Prefabs/Fx/Buff/Buff Variant - Atk.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4f8e95bbc67e847fe96d467ac25f0dd6
+    m_Address: Assets/PrimeMillionaire/Prefabs/Fx/Buff/Buff Variant - AtkDef.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8b82861dc1b6e4d009def44d126646af
+    m_Address: Assets/PrimeMillionaire/Prefabs/Fx/Buff/Buff Variant - Heal.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d0148eab2fc394130884303d004d6dc5
+    m_Address: Assets/PrimeMillionaire/Prefabs/Fx/Buff/Buff Variant - Def.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e3c401ff47e5b4e028e792301052042c
+    m_Address: Assets/PrimeMillionaire/Prefabs/Fx/Buff/Buff Variant - Dollar.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: a323ce742373146439901832acc2ab83, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: e743c7ef3738a4eca9bd7a18a5879adc, type: 2}
+    - {fileID: 11400000, guid: 69216a1a80d2146dd8f8ebc7b74702c0, type: 2}

@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: StageImages
+  m_EditorClassIdentifier: 
+  m_GroupName: StageImages
+  m_GUID: a87df6beb85da43259f064f0affecf5c
+  m_SerializeEntries:
+  - m_GUID: 004aca72d39cd44fdb583a2dc3d77573
+    m_Address: Assets/Externals/Sprites/Stages/abyssian/midground@2x.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 21a485eff24dc4fe68229788d24479c9
+    m_Address: Assets/Externals/Sprites/Stages/abyssian/background@2x.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3b11344b7f5cf469f85ecc79b15bd8e4
+    m_Address: Assets/Externals/Sprites/Stages/redrock/midground_glow@2x.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3eae6923f766a4307a0d13923cc6a650
+    m_Address: Assets/Externals/Sprites/Stages/shimzar/background@2x.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7eec0889f1fb848eea00c8600d856558
+    m_Address: Assets/Externals/Sprites/Stages/redrock/background@2x.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 917bb3dc2ea9445999d90b017d904413
+    m_Address: Assets/Externals/Sprites/Stages/vanar/background@2x.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9993c32c93a004032bcf850fa4a80f60
+    m_Address: Assets/Externals/Sprites/Stages/vanar/midground@2x.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: baea2e82b6f814f908bfbb4f08b58811
+    m_Address: Assets/Externals/Sprites/Stages/redrock/midground@2x.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cd7c64e27fa014f2d93e372244cd257c
+    m_Address: Assets/Externals/Sprites/Stages/abyssian/midground_glow@2x.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f55be99c9fcf54a3e94c1345906bf87d
+    m_Address: Assets/Externals/Sprites/Stages/shimzar/midground@2x.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: a323ce742373146439901832acc2ab83, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 143a05a610f784ba2a7f2bb72373a0c7, type: 2}
+    - {fileID: 11400000, guid: 9c7dea4af31834cdba5ea6e7ed4770e2, type: 2}

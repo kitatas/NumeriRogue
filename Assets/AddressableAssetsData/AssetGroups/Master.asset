@@ -10,14 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Default
+  m_Name: Master
   m_EditorClassIdentifier: 
-  m_GroupName: Default
-  m_GUID: d2f706a6a8ecb43bea5babf0421f6d00
-  m_SerializeEntries: []
+  m_GroupName: Master
+  m_GUID: cba7d23b3826a464593c9d9c04ebfd0f
+  m_SerializeEntries:
+  - m_GUID: f19550290786b4a56b801d51074fa119
+    m_Address: Assets/Externals/Binary/MasterMemory.bytes
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: a323ce742373146439901832acc2ab83, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 7e7e740bae21b4515b88e6a70a73c728, type: 2}
-    - {fileID: 11400000, guid: 3ed2130ee6dcf482a8f5226b46487394, type: 2}
+    - {fileID: 11400000, guid: e1f0cdc2b25e7494e81d943b10aa1a79, type: 2}
+    - {fileID: 11400000, guid: 7c38b1c32e169406fa1665fa6cfa34c5, type: 2}

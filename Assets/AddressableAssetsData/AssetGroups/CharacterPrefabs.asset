@@ -1,0 +1,373 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterPrefabs
+  m_EditorClassIdentifier: 
+  m_GroupName: CharacterPrefabs
+  m_GUID: 88168a1a6691c412da631b18c12f049b
+  m_SerializeEntries:
+  - m_GUID: 011cc243b6434465a8c8eee69ada482b
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - malyk.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0404b03a2721e46a19888629307690d2
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - kaleos.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0c8e97501e9654df5898df54021ffeb0
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - vaath.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 11158532c14184f29aea87cf6a9ee0cc
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - spelleater.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 11e67af41ea83448ba4fc8b2175d7439
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - seeker.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1254976b4693d47ea97adda1e8e33fd5
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - highmayne.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1a3974c285bd0472bb5676b112b63bdb
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - sentinel.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 27bf91a2c8c554b0ab557e1a0d54d23f
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - borealjuggernaut.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2fbb8dfffb729456baffd0b2e27d52ff
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - stormkage.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 307253accd9344fea89ebd95bd7335a1
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - vampire.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3b3406a6464244e58a4f41796f1bf300
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - immortal.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 422aa85030d4c49ce995f1fb4166733e
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - cassyva.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 431e52b34fa2f4f3191bc3f941c0d858
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - wraith.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 44f0aaf22e4e14f7e9789f3b0ca16c8d
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - sunforge.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4d8b5c52101c142fd829a55ceb747fb3
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - unhallowed.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5188ddda83548496eb5321acb0c431bd
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - cindera.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 51935faae67d34a9f898574e17b374bf
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - solfist.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 594bb8b7847fa4b55993d794264a54a2
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - faie.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 64648227d75d24f10abe176ea44a14f8
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - antiswarm.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6688ede98d3484788832a40043190608
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - paragon.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 67963e7a4c60449a0a729b059e1297c5
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - zirix.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6ae944d811c864b4ba4f960dc3215912
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - ogremonk.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7614880003cc14e2088b5870abc1a029
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - eventide.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7801b4b5ebf244242afe5fd242b18204
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - starhorn.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 78c233c9b5da84e10b1478838e9bcd7a
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - lilithe.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7a49d5060419d4a128c6fa0c37d1cceb
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - wolfpunch.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7d1bf190f8e774bce974f342ad1a7157
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - soulreaper.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7ed3b3a5f307d46f0b1c062a19b6e1ae
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - xaan.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8273280669013496abff9df8de773596
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - argeon.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 847d012225b51499f8c77fd37110ae54
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - shinkagezendo.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8a46c06a4d531418b89dc3bb41d6c54c
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - reva.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8c6bccbbbad774477a3017bc65c25a00
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - emp.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8c77f24b162164dbe92c9a208461377f
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - serpenti.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8e84548a53cdb4413a316ce09f6fd63d
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - azuritelion.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8ee56f4343f7d4b9ebc79291257605b6
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - grimrock.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8f87816b4265e48f6bf6a7178880bd66
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - blightchaser.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 90e4fe63c9c0c45a4a48a88df4b5c815
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - invader.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 95a76efd4b8f7411aa6668fa36d14110
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - starstrider.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99c1e9c0435984c84ba20e2fd2074fea
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - treatdemon.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9da216afc58a343d1a6ac5a00f3c34ce
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - astralcrusader.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9f1f29e0323d84a8db774fd1c68c2f7d
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - kron.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9fd1df1b4e5874d699087f48d40209a1
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - sajj.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a7ebcbb35bbc8458caf0e7a724558aa4
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - taskmaster.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a92c46e53b1884fa080e838e9c74c20d
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - dissonance.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b4c23ce63fd104bc3b89f6be4b43c2ac
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - winterblade.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b59d1cf2f9afb490789216ddb4c696d0
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - candypanda.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b682c85003bd34bd89c98f7057353e3f
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - mystery.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6eaa958c1bf24dfdad232872371ad1a
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - christmas.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba30597151bab4103b2d230120364688
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - aethermaster.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bbb1b8af6ba29483ea021a75099685d1
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - soulstealer.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bdce208e44ef24d329acf27923fd12c5
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - goldenjusticar.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c5390445d29f14f9ea7cbedae2ef7e6f
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - harmony.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c84d5a1294ad2485b93a3a99d5423e78
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - crystal.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c8d3b4a17eff049c683c64f9c5f28d76
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - kane.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf75017b8410742deae300f4914582e0
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - purgatos.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cfe83b4a279104a0098dd493d4db03c4
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - keshraifanblade.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d0d2e4cae88ce4502aa3890534dbdd4b
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - valiant.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d1a8095fa902c450eab130ac12b25440
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - elyxstormblade.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d7f6b54a9e4d241ecbe4aab25ecd605a
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - skyfalltyrant.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db6e06b68f45943c39ba4d667418d6df
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - shadowlord.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: de1266997b4a641ccb4dba7f6febe668
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - andromeda.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dfe89dc3cd5be4927ad649ceaf4b4d59
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - decepticleprime.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e192c51dd742a4ab3b973cfe31396463
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - grandmasterzir.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e36cd1b256cdf442f9e7d49a0ea9b9da
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - anubis.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e407f057c5eff4d82ae629fb2aaeb6b3
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - scioness.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e6921b7a2bdaf4a2fbc05648aff985c4
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - caliber.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e949e96ad3aef48dfa584f873fc1f6b0
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - kara.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f51b27d8c597f411f90d059ec53d4748
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - chaosknight.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fbaa134f1b47340658868a31ea80c454
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - general.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ffc94058ff77a4d7994bb0b45df6ea28
+    m_Address: Assets/PrimeMillionaire/Prefabs/Characters/Character - grym.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: a323ce742373146439901832acc2ab83, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: cf54350071a30432585b2392b78ff2ee, type: 2}
+    - {fileID: 11400000, guid: ef17c090d766c4c9a936ae4d67823a77, type: 2}

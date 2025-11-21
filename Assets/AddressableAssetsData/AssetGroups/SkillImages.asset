@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: SkillImages
+  m_EditorClassIdentifier: 
+  m_GroupName: SkillImages
+  m_GUID: fb18152295bb04769b84800786d03bf8
+  m_SerializeEntries:
+  - m_GUID: 1c2d24fd62d0a43c5b3abd1b1c290119
+    m_Address: Assets/Externals/Sprites/Skills/Empty.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4ef30c0e3197849698d99d134a0567e0
+    m_Address: Assets/Externals/Sprites/Skills/Heal.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7bc5f7bc1521a492f975bec71ae6a3a3
+    m_Address: Assets/Externals/Sprites/Skills/Dollar.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d5d0c98ffcaee4411bb5811a50e1465c
+    m_Address: Assets/Externals/Sprites/Skills/Def.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f163529e99ea648e896a64bba767df2e
+    m_Address: Assets/Externals/Sprites/Skills/Atk.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f9ab2a22a5f3842c3bb748cba2bf146c
+    m_Address: Assets/Externals/Sprites/Skills/AtkDef.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: a323ce742373146439901832acc2ab83, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 8a2a5f21d3f044b5fa61a0e216d0eacf, type: 2}
+    - {fileID: 11400000, guid: 8ef6929100db347d4af578b76f65c89a, type: 2}
