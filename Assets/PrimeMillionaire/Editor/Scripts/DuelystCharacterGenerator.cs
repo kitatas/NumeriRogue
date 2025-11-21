@@ -110,7 +110,7 @@ namespace PrimeMillionaire.Editor.Scripts
             importer.spritesheet = metas.ToArray();
             importer.SaveAndReimport();
 
-            RegisterAddressables<Texture2D>(_tex, "CharaImages");
+            RegisterAddressables<Texture2D>(_tex, "CharacterImages");
 
             Debug.Log($"[SUCCESS] {nameof(SliceTexture)}");
         }
@@ -261,7 +261,7 @@ namespace PrimeMillionaire.Editor.Scripts
             AssetDatabase.ImportAsset(prefabPath);
             AssetDatabase.SaveAssets();
 
-            RegisterAddressables<GameObject>(variant, "Characters");
+            RegisterAddressables<GameObject>(variant, "CharacterPrefabs");
 
             if (instance != null) DestroyImmediate(instance);
 
