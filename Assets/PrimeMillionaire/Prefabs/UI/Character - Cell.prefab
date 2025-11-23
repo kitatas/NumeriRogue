@@ -558,6 +558,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Image - CharacterIcon
       objectReference: {fileID: 0}
+    - target: {fileID: 7076579982940099400, guid: 43d15ac4b62f84904bd3df5c6e70f65c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 86276f68ae23e4138999073ad3ddde24, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
