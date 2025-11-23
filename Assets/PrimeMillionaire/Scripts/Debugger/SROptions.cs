@@ -3,6 +3,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using FastEnumUtility;
 using PrimeMillionaire.Common;
+using PrimeMillionaire.Common.Data.DataStore;
 using PrimeMillionaire.Common.Data.Entity;
 using PrimeMillionaire.Common.Domain.Repository;
 using PrimeMillionaire.Game.Domain.UseCase;
@@ -17,7 +18,7 @@ public partial class SROptions
     private const string CHARACTER_PROGRESS_SINGLE = "Character Progress - Single";
 
     [Category(CHARACTER_PROGRESS_SINGLE), Sort(0), DisplayName("Character Type")]
-    public CharacterType characterTypeSingle { get; set; }
+    public int characterIdSingle { get; set; }
 
     [Category(CHARACTER_PROGRESS_SINGLE), Sort(1), DisplayName("Progress Status")]
     public ProgressStatus progressStatusSingle { get; set; }
@@ -25,7 +26,7 @@ public partial class SROptions
     [Category(CHARACTER_PROGRESS_SINGLE), Sort(2), DisplayName("Exec")]
     public void UpdateCharacterProgressSingle()
     {
-        if (characterTypeSingle == CharacterType.None) return;
+        if (characterIdSingle == 0) return;
 
         var container = VContainerSettings.Instance.GetOrCreateRootLifetimeScopeInstance().Container;
         var playerCharacterEntity = container.Resolve<PlayerCharacterEntity>();
@@ -35,7 +36,7 @@ public partial class SROptions
         var progressUseCase = new ProgressUseCase(playerCharacterEntity, userEntity, playFabRepository);
         UniTask.Void(async token =>
         {
-            playerCharacterEntity.SetType(characterTypeSingle);
+            playerCharacterEntity.SetType(characterIdSingle);
             await progressUseCase.UpdateProgressAsync(progressStatusSingle, token);
             SceneManager.LoadScene(SceneName.Top.FastToString());
         }, CancellationToken.None);
@@ -54,21 +55,22 @@ public partial class SROptions
     public void UpdateCharacterProgressAll()
     {
         var container = VContainerSettings.Instance.GetOrCreateRootLifetimeScopeInstance().Container;
+        var memoryDbData = container.Resolve<MemoryDbData>();
         var userEntity = container.Resolve<UserEntity>();
         var playFabRepository = container.Resolve<PlayFabRepository>();
 
         var progress = userEntity.progress;
-        foreach (var characterType in FastEnum.GetValues<CharacterType>())
+        foreach (var master in memoryDbData.Get().CharacterMasterTable.All)
         {
-            if (characterType == CharacterType.None) continue;
+            if (master.Id == 0) continue;
 
-            var characterProgress = progress.Find(characterType);
+            var characterProgress = progress.Find(master.Id);
             if (characterProgress != null)
             {
                 progress.characterProgress.Remove(characterProgress);
             }
 
-            progress.characterProgress.Add(new CharacterProgressVO(characterType, progressStatusAll));
+            progress.characterProgress.Add(new CharacterProgressVO(master.Id, progressStatusAll));
         }
 
         UniTask.Void(async token =>
