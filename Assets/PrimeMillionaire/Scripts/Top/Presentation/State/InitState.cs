@@ -2,6 +2,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using PrimeMillionaire.Common;
 using PrimeMillionaire.Common.Domain.UseCase;
+using PrimeMillionaire.Common.Utility;
 
 namespace PrimeMillionaire.Top.Presentation.State
 {
@@ -25,7 +26,7 @@ namespace PrimeMillionaire.Top.Presentation.State
 
         public override async UniTask<TopState> TickAsync(CancellationToken token)
         {
-            await UniTask.Yield(token);
+            await UniTaskHelper.DelayAsync(2.5f, token);
             _loadingUseCase.Set(false);
 
             _soundUseCase.Play(Bgm.Menu);
