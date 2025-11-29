@@ -80,7 +80,7 @@ namespace PrimeMillionaire.Common
             this.loadType = loadType;
         }
 
-        public string name => sceneName.FastToString();
+        public string path => ZString.Format("Assets/PrimeMillionaire/Scenes/{0}.unity", sceneName.FastToString());
         public bool isFade => loadType == LoadType.Fade;
     }
 

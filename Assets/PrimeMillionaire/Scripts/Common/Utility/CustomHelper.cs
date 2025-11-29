@@ -106,6 +106,11 @@ namespace PrimeMillionaire.Common.Utility
 
             _handles.Clear();
         }
+
+        public static async UniTask LoadSceneAsync(string path, CancellationToken token)
+        {
+            await Addressables.LoadSceneAsync(path).ToUniTask(cancellationToken: token);
+        }
     }
 
     public static class UniTaskHelper

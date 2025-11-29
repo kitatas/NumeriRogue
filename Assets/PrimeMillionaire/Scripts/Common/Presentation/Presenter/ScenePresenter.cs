@@ -3,7 +3,6 @@ using PrimeMillionaire.Common.Domain.UseCase;
 using PrimeMillionaire.Common.Presentation.View;
 using PrimeMillionaire.Common.Utility;
 using R3;
-using UnityEngine.SceneManagement;
 using VContainer.Unity;
 
 namespace PrimeMillionaire.Common.Presentation.Presenter
@@ -30,7 +29,7 @@ namespace PrimeMillionaire.Common.Presentation.Presenter
 
                     // シーン内の全リソース解放してから遷移させる
                     ResourceHelper.Release();
-                    await SceneManager.LoadSceneAsync(x.name).ToUniTask(cancellationToken: token);
+                    await ResourceHelper.LoadSceneAsync(x.path, token);
 
                     _loadingUseCase.Set(true);
                     await UniTaskHelper.DelayAsync(0.5f, token);
