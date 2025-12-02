@@ -10,7 +10,7 @@ namespace PrimeMillionaire.Boot.Presentation.View
 
         private void Awake()
         {
-            version.text = ZString.Format("ver: {0}", Application.version);
+            version.text = ZString.Format("Ver.{0}", Application.version);
         }
     }
 }
