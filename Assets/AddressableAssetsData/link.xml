@@ -1,0 +1,218 @@
+<linker>
+  <assembly fullname="Boot.Data.DataStore, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="PrimeMillionaire.Boot.Data.DataStore.SplashData" preserve="all" />
+    <type fullname="PrimeMillionaire.Boot.Data.DataStore.SplashTable" preserve="all" />
+  </assembly>
+  <assembly fullname="Boot.Installer, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="PrimeMillionaire.Boot.Installer.BootInstaller" preserve="all" />
+  </assembly>
+  <assembly fullname="Boot.Presentation.View, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="PrimeMillionaire.Boot.Presentation.View.InterruptView" preserve="all" />
+    <type fullname="PrimeMillionaire.Boot.Presentation.View.Modal.BootModalView" preserve="all" />
+    <type fullname="PrimeMillionaire.Boot.Presentation.View.SplashView" preserve="all" />
+    <type fullname="PrimeMillionaire.Boot.Presentation.View.TitleView" preserve="all" />
+    <type fullname="PrimeMillionaire.Boot.Presentation.View.UpdateView" preserve="all" />
+    <type fullname="PrimeMillionaire.Boot.Presentation.View.VersionView" preserve="all" />
+  </assembly>
+  <assembly fullname="Coffee.UIEffect, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="Coffee.UIEffects.UIEffect" preserve="all" />
+    <type fullname="Coffee.UIEffects.UIEffectTweener" preserve="all" />
+    <type fullname="Coffee.UIEffectInternal.MinMax01" preserve="nothing" serialized="true" />
+    <type fullname="Coffee.UIEffects.UIEffectTweener/TweenerEvent" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Common.Presentation.View, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="PrimeMillionaire.Common.Presentation.View.Button.CommonButtonView" preserve="all" />
+    <type fullname="PrimeMillionaire.Common.Presentation.View.CardView" preserve="all" />
+    <type fullname="PrimeMillionaire.Common.Presentation.View.CriSoundView" preserve="all" />
+    <type fullname="PrimeMillionaire.Common.Presentation.View.DontDestroyView" preserve="all" />
+    <type fullname="PrimeMillionaire.Common.Presentation.View.LoadingView" preserve="all" />
+    <type fullname="PrimeMillionaire.Common.Presentation.View.Modal.ExceptionModalView" preserve="all" />
+    <type fullname="PrimeMillionaire.Common.Presentation.View.SoundView" preserve="all" />
+    <type fullname="PrimeMillionaire.Common.Presentation.View.TransitionView" preserve="all" />
+  </assembly>
+  <assembly fullname="Common.Utility, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="PrimeMillionaire.Common.Utility.CustomScroller" preserve="all" />
+    <type fullname="PrimeMillionaire.Common.Utility.CustomScroller/Snap" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="CriMw.CriWare.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="CriWare.CriAtom" preserve="all" />
+    <type fullname="CriWare.CriAtomSource" preserve="all" />
+    <type fullname="CriWare.CriWareErrorHandler" preserve="all" />
+    <type fullname="CriWare.CriWareInitializer" preserve="all" />
+    <type fullname="CriWare.CriAtomEx/Randomize3dConfig" preserve="nothing" serialized="true" />
+    <type fullname="CriWare.CriAtomConfig" preserve="nothing" serialized="true" />
+    <type fullname="CriWare.CriAtomConfig/AndroidLowLatencyStandardVoicePoolConfig" preserve="nothing" serialized="true" />
+    <type fullname="CriWare.CriAtomConfig/EditorPcmOutputConfig" preserve="nothing" serialized="true" />
+    <type fullname="CriWare.CriAtomConfig/HcaMxVoicePoolConfig" preserve="nothing" serialized="true" />
+    <type fullname="CriWare.CriAtomConfig/InGamePreviewConfig" preserve="nothing" serialized="true" />
+    <type fullname="CriWare.CriAtomConfig/InGamePreviewSwitchMode" preserve="nothing" serialized="true" />
+    <type fullname="CriWare.CriAtomConfig/StandardVoicePoolConfig" preserve="nothing" serialized="true" />
+    <type fullname="CriWare.CriAtomCueSheet" preserve="nothing" serialized="true" />
+    <type fullname="CriWare.CriFsConfig" preserve="nothing" serialized="true" />
+    <type fullname="CriWare.CriManaConfig" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Game.Installer, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="PrimeMillionaire.Game.Installer.GameInstaller" preserve="all" />
+  </assembly>
+  <assembly fullname="Game.Presentation.View, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="PrimeMillionaire.Game.Presentation.View.BattlePtView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.BattleView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.BonusView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.Button.GameModalButtonView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.Button.MuteButtonView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.Button.SortButtonView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.CameraView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.CharacterSideView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.CharacterView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.ClearView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.DamageFxView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.DollarView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.DropView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.EnemyCountView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.EnemyParameterView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.EntryFxView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.FailView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.FinishView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.GemView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.GiveUpView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.HandView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.HoldSkillView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.LevelView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.Modal.GameModalView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.Modal.PickSkillModalView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.OrderView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.PickSkillView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.PlayerParameterView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.SkillView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.SortView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.StageView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.TableView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.TurnView" preserve="all" />
+    <type fullname="PrimeMillionaire.Game.Presentation.View.VolumeView" preserve="all" />
+  </assembly>
+  <assembly fullname="MPUIKit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="MPUIKIT.MPImage" preserve="all" />
+    <type fullname="MPUIKIT.ChamferBox" preserve="nothing" serialized="true" />
+    <type fullname="MPUIKIT.Circle" preserve="nothing" serialized="true" />
+    <type fullname="MPUIKIT.GradientEffect" preserve="nothing" serialized="true" />
+    <type fullname="MPUIKIT.Hexagon" preserve="nothing" serialized="true" />
+    <type fullname="MPUIKIT.NStarPolygon" preserve="nothing" serialized="true" />
+    <type fullname="MPUIKIT.Parallelogram" preserve="nothing" serialized="true" />
+    <type fullname="MPUIKIT.Pentagon" preserve="nothing" serialized="true" />
+    <type fullname="MPUIKIT.Rectangle" preserve="nothing" serialized="true" />
+    <type fullname="MPUIKIT.Triangle" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Top.Installer, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="PrimeMillionaire.Top.Installer.TopInstaller" preserve="all" />
+  </assembly>
+  <assembly fullname="Top.Presentation.View, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="PrimeMillionaire.Top.Presentation.View.Button.MuteButtonView" preserve="all" />
+    <type fullname="PrimeMillionaire.Top.Presentation.View.Button.OtherAppButtonView" preserve="all" />
+    <type fullname="PrimeMillionaire.Top.Presentation.View.Button.TopModalButtonView" preserve="all" />
+    <type fullname="PrimeMillionaire.Top.Presentation.View.CharacterCellView" preserve="all" />
+    <type fullname="PrimeMillionaire.Top.Presentation.View.CharacterScrollView" preserve="all" />
+    <type fullname="PrimeMillionaire.Top.Presentation.View.DeckView" preserve="all" />
+    <type fullname="PrimeMillionaire.Top.Presentation.View.DeleteView" preserve="all" />
+    <type fullname="PrimeMillionaire.Top.Presentation.View.Modal.TopModalView" preserve="all" />
+    <type fullname="PrimeMillionaire.Top.Presentation.View.Modal.WebViewModalView" preserve="all" />
+    <type fullname="PrimeMillionaire.Top.Presentation.View.OrderCharacterView" preserve="all" />
+    <type fullname="PrimeMillionaire.Top.Presentation.View.StartView" preserve="all" />
+    <type fullname="PrimeMillionaire.Top.Presentation.View.VolumeView" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.RenderPipelines.Universal.2D.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Rendering.Universal.Light2D" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Rendering.Universal.UniversalAdditionalCameraData" preserve="all" />
+    <type fullname="UnityEngine.Rendering.Universal.TemporalAA/Settings" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.InstanceProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.SceneProvider" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="TMPro.TextMeshProUGUI" preserve="all" />
+    <type fullname="TMPro.TMP_FontAsset" preserve="all" />
+    <type fullname="TMPro.TMP_SpriteAsset" preserve="all" />
+    <type fullname="TMPro.FaceInfo_Legacy" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.FontAssetCreationSettings" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.KerningTable" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.TMP_Character" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.TMP_FontFeatureTable" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.TMP_FontWeightPair" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.VertexGradient" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.TMP_SpriteCharacter" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.TMP_SpriteGlyph" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.AnimationClip" preserve="all" />
+    <type fullname="UnityEngine.Animator" preserve="all" />
+    <type fullname="UnityEngine.AnimatorOverrideController" preserve="all" />
+    <type fullname="UnityEngine.RuntimeAnimatorController" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.AudioListener" preserve="all" />
+    <type fullname="UnityEngine.AudioSource" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Camera" preserve="all" />
+    <type fullname="UnityEngine.GameObject" preserve="all" />
+    <type fullname="UnityEngine.LightmapSettings" preserve="all" />
+    <type fullname="UnityEngine.Material" preserve="all" />
+    <type fullname="UnityEngine.Object" preserve="all" />
+    <type fullname="UnityEngine.RectTransform" preserve="all" />
+    <type fullname="UnityEngine.RenderSettings" preserve="all" />
+    <type fullname="UnityEngine.Shader" preserve="all" />
+    <type fullname="UnityEngine.Sprite" preserve="all" />
+    <type fullname="UnityEngine.SpriteRenderer" preserve="all" />
+    <type fullname="UnityEngine.TextAsset" preserve="all" />
+    <type fullname="UnityEngine.Texture2D" preserve="all" />
+    <type fullname="UnityEngine.Transform" preserve="all" />
+    <type fullname="UnityEngine.Events.PersistentCallGroup" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.RectOffset" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Events.UnityEvent" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.EventSystems.EventSystem" preserve="all" />
+    <type fullname="UnityEngine.EventSystems.StandaloneInputModule" preserve="all" />
+    <type fullname="UnityEngine.UI.Button" preserve="all" />
+    <type fullname="UnityEngine.UI.CanvasScaler" preserve="all" />
+    <type fullname="UnityEngine.UI.ContentSizeFitter" preserve="all" />
+    <type fullname="UnityEngine.UI.GraphicRaycaster" preserve="all" />
+    <type fullname="UnityEngine.UI.Image" preserve="all" />
+    <type fullname="UnityEngine.UI.LayoutElement" preserve="all" />
+    <type fullname="UnityEngine.UI.Mask" preserve="all" />
+    <type fullname="UnityEngine.UI.Scrollbar" preserve="all" />
+    <type fullname="UnityEngine.UI.ScrollRect" preserve="all" />
+    <type fullname="UnityEngine.UI.Slider" preserve="all" />
+    <type fullname="UnityEngine.UI.VerticalLayoutGroup" preserve="all" />
+    <type fullname="UnityEngine.UI.AnimationTriggers" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.Button/ButtonClickedEvent" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.ColorBlock" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.MaskableGraphic/CullStateChangedEvent" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.Navigation" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.ScrollRect/ScrollRectEvent" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.Scrollbar/ScrollEvent" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.Slider/SliderEvent" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.SpriteState" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Canvas" preserve="all" />
+    <type fullname="UnityEngine.CanvasGroup" preserve="all" />
+    <type fullname="UnityEngine.CanvasRenderer" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.TextCoreFontEngineModule">
+    <type fullname="UnityEngine.TextCore.FaceInfo" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.Glyph" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.GlyphMetrics" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.GlyphRect" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="VContainer">
+    <type fullname="VContainer.Unity.ParentReference" preserve="nothing" serialized="true" />
+  </assembly>
+</linker>
