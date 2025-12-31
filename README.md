@@ -1,6 +1,8 @@
 # NumeriRogue
 
 * [Unity Play](https://play.unity.com/en/games/87b56217-85cb-459b-8e38-a5ba4186af09/numerirogue-prototype) (prototype Ver.0.30)
+* [Google Play](https://play.google.com/store/apps/details?id=com.KitaLab.NumeriRogue) (Ver.1.0)
+* [unityroom](https://unityroom.com/games/numeri_rogue) (Ver.1.0)
 
 ## Unity version
 
@@ -13,7 +15,7 @@ There are things not included in this repository.
 |Name|Version|Description|
 |---|---|---|
 |[ADX LE Unity SDK](https://game.criware.jp/products/adx-le/#ledl)|3.12.01||
-|[DOTween Pro](https://assetstore.unity.com/packages/tools/visual-scripting/dotween-pro-32416)|1.0.380||
+|[DOTween Pro](https://assetstore.unity.com/packages/tools/visual-scripting/dotween-pro-32416)|1.0.386||
 |[Easy Save - The Complete Save Game & Data Serializer System](https://assetstore.unity.com/packages/tools/utilities/easy-save-the-complete-save-game-data-serializer-system-768)|3.5.25||
 |[FastEnum](https://github.com/xin9le/FastEnum)|1.8.0||
 |[FancyScrollView](https://github.com/setchi/FancyScrollView)|1.9.0||
